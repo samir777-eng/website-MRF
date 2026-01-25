@@ -1,4 +1,5 @@
 # 🎓 منصة الأستاذ رضا الفاروق التعليمية
+
 ## MRF Educational Platform - Modern Arabic Learning Revolution
 
 > **رؤيتنا**: تحويل تعلم اللغة العربية إلى رحلة ممتعة وتفاعلية للجيل الجديد من الطلاب المصريين  
@@ -45,23 +46,27 @@
 ### 📱 **رحلة الطالب التعليمية / Student Learning Journey:**
 
 #### 1️⃣ **التسجيل والبداية / Registration & Onboarding**
+
 - 📝 **إنشاء حساب شخصي** مع اختيار الصف الدراسي (أول، ثاني، ثالث ثانوي)
 - 🎯 **اختبار تحديد المستوى** لتخصيص المحتوى حسب قدرات الطالب
 - 🎨 **تخصيص الملف الشخصي** مع اختيار الأهداف والجدول الزمني المفضل
 
 #### 2️⃣ **تجربة التعلم اليومية / Daily Learning Experience**
+
 - 🌅 **تحديات يومية**: مهام قصيرة (10-15 دقيقة) لتعلم مفاهيم جديدة
 - 📺 **فيديوهات تفاعلية**: دروس مرئية عالية الجودة مع ترجمة عربية
 - ❓ **اختبارات فورية**: أسئلة متنوعة لتثبيت المعلومات
 - 📚 **مراجعة ذكية**: نظام تكرار متباعد لضمان الاحتفاظ بالمعلومات
 
 #### 3️⃣ **نظام التحفيز / Motivation System**
+
 - ⭐ **نقاط الخبرة (XP)**: اكسب نقاط مع كل إنجاز
 - 🏆 **الشارات والجوائز**: افتح إنجازات مع التقدم
 - 🔥 **سلسلة التعلم اليومي**: حافظ على دراستك اليومية
 - 📊 **المسابقات**: تنافس مع الأصدقاء في التحديات الأسبوعية
 
 #### 4️⃣ **التتبع والتحليل / Progress Tracking**
+
 - 📈 **لوحة التحكم الشخصية**: رؤية شاملة للتقدم والإنجازات
 - 🎯 **تحليل نقاط القوة والضعف**: تحديد المواضيع التي تحتاج مراجعة
 - 📅 **جدولة ذكية**: اقتراحات مواعيد المراجعة المثلى
@@ -70,14 +75,15 @@
 ### 🎯 **الميزات الأساسية / Core Features**
 
 #### 🎮 **نظام التلعيب المتطور / Advanced Gamification**
+
 ```typescript
 // مثال على نظام النقاط
 interface XPSystem {
-  lessonCompletion: 100;     // إنهاء درس
-  quizPerfect: 150;          // اختبار بدرجة كاملة
-  dailyStreak: 25;           // استمرارية يومية
-  weeklyGoal: 500;           // هدف أسبوعي
-  monthlyChallenge: 1000;    // تحدي شهري
+  lessonCompletion: 100; // إنهاء درس
+  quizPerfect: 150; // اختبار بدرجة كاملة
+  dailyStreak: 25; // استمرارية يومية
+  weeklyGoal: 500; // هدف أسبوعي
+  monthlyChallenge: 1000; // تحدي شهري
 }
 ```
 
@@ -89,18 +95,21 @@ interface XPSystem {
 #### 📚 **المحتوى التعليمي المتنوع / Diverse Educational Content**
 
 ##### 📖 **للصف الأول الثانوي:**
+
 - 📝 النحو الأساسي (الإعراب، أقسام الكلام)
 - 🎭 الأدب والنصوص (العصر الجاهلي، الإسلامي)
 - 📚 القراءة والفهم (تحليل النصوص)
 - ✍️ التعبير الكتابي (المقال، الرسالة)
 
 ##### 📖 **للصف الثاني الثانوي:**
+
 - 🔤 البلاغة (التشبيه، الاستعارة، الكناية)
 - 📜 الأدب المتوسط (العصر العباسي، الأندلسي)
 - 📖 النقد الأدبي (تحليل القصائد والنثر)
 - 🎯 النحو المتقدم (المنصوبات، المجرورات)
 
 ##### 📖 **للصف الثالث الثانوي:**
+
 - 🎨 البلاغة المتقدمة (المحسنات البديعية)
 - 📚 الأدب الحديث والمعاصر
 - 🏛️ النقد والتذوق الأدبي
@@ -111,11 +120,11 @@ interface XPSystem {
 ```typescript
 // مكونات الفيديو التفاعلي
 interface InteractiveVideo {
-  arabicSubtitles: boolean;    // ترجمة عربية
-  playbackSpeed: number[];     // سرعة متغيرة
-  quizBreaks: QuizQuestion[];  // أسئلة أثناء الفيديو
-  notes: StudentNote[];        // ملاحظات الطالب
-  bookmarks: Timestamp[];      // علامات مرجعية
+  arabicSubtitles: boolean; // ترجمة عربية
+  playbackSpeed: number[]; // سرعة متغيرة
+  quizBreaks: QuizQuestion[]; // أسئلة أثناء الفيديو
+  notes: StudentNote[]; // ملاحظات الطالب
+  bookmarks: Timestamp[]; // علامات مرجعية
 }
 ```
 
@@ -144,20 +153,22 @@ interface AdaptiveLearning {
 ### 🌍 **التصميم الشامل / Inclusive Design**
 
 #### 🇪🇬 **الهوية المصرية / Egyptian Identity**
+
 - 🎨 **ألوان مستوحاة من التراث**: أزرق النيل، ذهبي الصحراء
 - 🖋️ **خطوط عربية أصيلة**: نوتو سانس العربية، القاهرة
 - 🏛️ **رموز ثقافية**: استخدام العناصر المصرية في التصميم
 - 🌟 **لهجة ودودة**: محتوى يتحدث بلغة الشباب المصري
 
 #### ♿ **إمكانية الوصول / Accessibility**
+
 ```typescript
 // معايير إمكانية الوصول
 interface AccessibilityFeatures {
-  screenReader: boolean;        // قارئ الشاشة
-  keyboardNavigation: boolean;  // التنقل بلوحة المفاتيح
-  highContrast: boolean;        // تباين عالي
-  textSizeAdjustment: boolean;  // تعديل حجم النص
-  colorBlindSupport: boolean;   // دعم عمى الألوان
+  screenReader: boolean; // قارئ الشاشة
+  keyboardNavigation: boolean; // التنقل بلوحة المفاتيح
+  highContrast: boolean; // تباين عالي
+  textSizeAdjustment: boolean; // تعديل حجم النص
+  colorBlindSupport: boolean; // دعم عمى الألوان
 }
 ```
 
@@ -167,6 +178,7 @@ interface AccessibilityFeatures {
 - 📱 **تكبير النص**: تحكم في حجم الخط
 
 #### 📱 **التوافق مع جميع الأجهزة / Multi-Device Compatibility**
+
 - 📲 **هواتف ذكية**: تطبيق ويب تقدمي (PWA)
 - 💻 **أجهزة كمبيوتر**: واجهة محسنة للشاشات الكبيرة
 - � **أجهزة لوحية**: تصميم متكيف للتاب لت
@@ -328,27 +340,27 @@ src/
 ```typescript
 // هيكل نظام النقاط
 interface XPRewards {
-  lessonComplete: 100;        // إنهاء درس
-  quizPerfect: 150;          // اختبار بدرجة كاملة
-  quizGood: 100;             // اختبار بدرجة جيدة
-  quizPass: 75;              // اختبار بدرجة مقبولة
-  dailyLogin: 25;            // تسجيل دخول يومي
-  streakMaintain: 50;        // الحفاظ على السلسلة
-  weeklyGoal: 500;           // تحقيق الهدف الأسبوعي
-  monthlyChallenge: 1000;    // تحدي شهري
-  firstLesson: 200;          // أول درس
-  firstPerfectQuiz: 250;     // أول اختبار كامل
+  lessonComplete: 100; // إنهاء درس
+  quizPerfect: 150; // اختبار بدرجة كاملة
+  quizGood: 100; // اختبار بدرجة جيدة
+  quizPass: 75; // اختبار بدرجة مقبولة
+  dailyLogin: 25; // تسجيل دخول يومي
+  streakMaintain: 50; // الحفاظ على السلسلة
+  weeklyGoal: 500; // تحقيق الهدف الأسبوعي
+  monthlyChallenge: 1000; // تحدي شهري
+  firstLesson: 200; // أول درس
+  firstPerfectQuiz: 250; // أول اختبار كامل
 }
 
 // مستويات التقدم
 interface LevelSystem {
-  beginner: 0;               // مبتدئ
-  student: 1000;             // طالب
-  learner: 2500;             // متعلم
-  scholar: 5000;             // عالم
-  expert: 10000;             // خبير
-  master: 20000;             // أستاذ
-  grandMaster: 50000;        // أستاذ كبير
+  beginner: 0; // مبتدئ
+  student: 1000; // طالب
+  learner: 2500; // متعلم
+  scholar: 5000; // عالم
+  expert: 10000; // خبير
+  master: 20000; // أستاذ
+  grandMaster: 50000; // أستاذ كبير
 }
 ```
 
@@ -363,10 +375,10 @@ interface LevelSystem {
 
 ```typescript
 interface StreakSystem {
-  dailyTarget: number;        // الهدف اليومي (دقائق أو مهام)
-  streakCount: number;        // عدد الأيام المتتالية
-  longestStreak: number;      // أطول سلسلة حققها الطالب
-  streakFreeze: number;       // عدد "تجميدات" السلسلة المتاحة
+  dailyTarget: number; // الهدف اليومي (دقائق أو مهام)
+  streakCount: number; // عدد الأيام المتتالية
+  longestStreak: number; // أطول سلسلة حققها الطالب
+  streakFreeze: number; // عدد "تجميدات" السلسلة المتاحة
   streakRewards: {
     day7: "شارة أسبوع كامل";
     day30: "شارة شهر مثابر";
@@ -455,18 +467,18 @@ interface InteractiveVideoFeatures {
   qualityOptions: ["480p", "720p", "1080p"];
   playbackSpeeds: [0.5, 0.75, 1.0, 1.25, 1.5, 2.0];
   arabicSubtitles: boolean;
-  
+
   // التفاعل أثناء المشاهدة
-  inVideoQuizzes: QuizQuestion[];      // أسئلة تظهر أثناء الفيديو
-  notesTaking: StudentNote[];          // إمكانية أخذ ملاحظات
-  bookmarks: Timestamp[];              // علامات مرجعية
-  chapters: VideoChapter[];            // فصول الفيديو
-  
+  inVideoQuizzes: QuizQuestion[]; // أسئلة تظهر أثناء الفيديو
+  notesTaking: StudentNote[]; // إمكانية أخذ ملاحظات
+  bookmarks: Timestamp[]; // علامات مرجعية
+  chapters: VideoChapter[]; // فصول الفيديو
+
   // التحليل والتتبع
-  watchTime: number;                   // وقت المشاهدة الفعلي
-  completionRate: number;              // نسبة الإكمال
-  replaySegments: TimeRange[];         // الأجزاء التي أعيد تشغيلها
-  quizPerformance: QuizResult[];       // نتائج الأسئلة التفاعلية
+  watchTime: number; // وقت المشاهدة الفعلي
+  completionRate: number; // نسبة الإكمال
+  replaySegments: TimeRange[]; // الأجزاء التي أعيد تشغيلها
+  quizPerformance: QuizResult[]; // نتائج الأسئلة التفاعلية
 }
 ```
 
@@ -485,20 +497,20 @@ class AdaptiveLearningEngine {
       optimalStudyTime: this.findOptimalTimes(student.activityData)
     };
   }
-  
+
   // إنشاء مسار تعليمي مخصص
   generateLearningPath(profile: LearningProfile): LearningPath {
     const path = [];
-    
+
     // إعطاء أولوية للمواضيع الضعيفة
     const priorityTopics = profile.weaknesses.slice(0, 3);
-    
+
     // تخصيص صعوبة المحتوى
     const difficultyLevel = this.calculateOptimalDifficulty(profile);
-    
+
     // ترتيب المحتوى حسب التفضيلات
     const orderedContent = this.orderByPreference(profile.preferredContentType);
-    
+
     return {
       topics: priorityTopics,
       difficulty: difficultyLevel,
@@ -506,12 +518,12 @@ class AdaptiveLearningEngine {
       estimatedDuration: this.estimateCompletionTime(profile)
     };
   }
-  
+
   // اقتراح أوقات المراجعة المثلى
   scheduleReview(topic: Topic, masteryLevel: number): Date[] {
     // تطبيق خوارزمية التكرار المتباعد (Spaced Repetition)
     const intervals = this.calculateSpacedIntervals(masteryLevel);
-    return intervals.map(interval => 
+    return intervals.map(interval =>
       new Date(Date.now() + interval * 24 * 60 * 60 * 1000)
     );
   }
@@ -652,7 +664,7 @@ interface DailyLearningSession {
   duration: "15-30 minutes";
   activities: [
     "مراجعة سريعة للدرس السابق",
-    "مشاهدة فيديو جديد", 
+    "مشاهدة فيديو جديد",
     "إجراء اختبار قصير",
     "مراجعة الملاحظات"
   ];
@@ -754,11 +766,11 @@ npm run lighthouse    # تحليل الأداء
 
 ```typescript
 interface PerformanceTargets {
-  LCP: "< 2.5s";        // أكبر رسم للمحتوى
-  FID: "< 100ms";       // تأخير الإدخال الأول  
-  CLS: "< 0.1";         // التحول التراكمي للتخطيط
-  TTFB: "< 600ms";      // الوقت للبايت الأول
-  TTI: "< 3.5s";        // الوقت للتفاعل
+  LCP: "< 2.5s"; // أكبر رسم للمحتوى
+  FID: "< 100ms"; // تأخير الإدخال الأول
+  CLS: "< 0.1"; // التحول التراكمي للتخطيط
+  TTFB: "< 600ms"; // الوقت للبايت الأول
+  TTI: "< 3.5s"; // الوقت للتفاعل
 }
 ```
 
@@ -795,7 +807,7 @@ interface AnalyticsDashboard {
     lessonsCompleted: number;
     quizzesAttempted: number;
   };
-  
+
   learningMetrics: {
     averageXPPerSession: number;
     streakDistribution: number[];
@@ -805,7 +817,7 @@ interface AnalyticsDashboard {
       courses: number;
     };
   };
-  
+
   technicalMetrics: {
     pageLoadTimes: number[];
     errorRates: number;
@@ -951,7 +963,4 @@ Educational content and videos are copyrighted by Professor Reda El Farouk.
 
 **🚀 مبني بحب وشغف للطلاب المصريين | Built with ❤️ for Egyptian Students**
 
-*منصة الأستاذ رضا الفاروق التعليمية - حيث التقليد يلتقي بالتكنولوجيا*
-
-
-````
+_منصة الأستاذ رضا الفاروق التعليمية - حيث التقليد يلتقي بالتكنولوجيا_

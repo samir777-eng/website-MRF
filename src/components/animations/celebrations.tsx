@@ -1,5 +1,6 @@
 "use client";
 
+import { CELEBRATION_COLORS } from "@/lib/design-tokens";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Award,
@@ -265,8 +266,8 @@ export function ConfettiBurst({ show }: { show: boolean }) {
       const newParticles = Array.from({ length: 30 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
-        color: ["#FFD700", "#FF6B6B", "#4ECDC4", "#A78BFA", "#F472B6"][
-          Math.floor(Math.random() * 5)
+        color: CELEBRATION_COLORS.confetti[
+          Math.floor(Math.random() * CELEBRATION_COLORS.confetti.length)
         ],
       }));
       setParticles(newParticles);

@@ -1,5 +1,6 @@
 "use client";
 
+import { CELEBRATION_COLORS } from "@/lib/design-tokens";
 import { ShoppingCart } from "lucide-react";
 import {
   createContext,
@@ -173,11 +174,11 @@ function FlyingItemComponent({ item }: { item: FlyingItem }) {
     return () => clearTimeout(timeout);
   }, []);
 
-  const deltaX = item.endX - item.startX;
-  const deltaY = item.endY - item.startY;
+  const _deltaX = item.endX - item.startX;
+  const _deltaY = item.endY - item.startY;
 
   // Create a curved path using CSS
-  const midY = Math.min(item.startY, item.endY) - 100; // Arc above the line
+  const _midY = Math.min(item.startY, item.endY) - 100; // Arc above the line
 
   return (
     <div
@@ -235,9 +236,7 @@ function CelebrationBurst({ celebration }: { celebration: Celebration }) {
       endX: Math.cos(angle) * distance,
       endY: Math.sin(angle) * distance,
       size: 6 + Math.random() * 6,
-      color: ["#10b981", "#34d399", "#fbbf24", "#f59e0b", "#ec4899", "#8b5cf6"][
-        i % 6
-      ],
+      color: CELEBRATION_COLORS.confetti[i % CELEBRATION_COLORS.confetti.length],
       delay: Math.random() * 100,
     };
   });

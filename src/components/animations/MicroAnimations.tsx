@@ -1,14 +1,36 @@
 "use client";
 
+import { CELEBRATION_COLORS } from "@/lib/design-tokens";
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Hook to detect prefers-reduced-motion preference
+function usePrefersReducedMotion() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handler = (event: MediaQueryListEvent) => {
+      setPrefersReducedMotion(event.matches);
+    };
+
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
+  return prefersReducedMotion;
+}
+
 // Floating Icon Animation
 export function FloatingIcon({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   return (
     <motion.div
       initial={{ y: 0 }}
-      animate={{ y: [-5, 5, -5] }}
+      animate={prefersReducedMotion ? {} : { y: [-5, 5, -5] }}
       transition={{
         duration: 3,
         repeat: Infinity,
@@ -48,9 +70,11 @@ export function RotateOnHover({ children, degrees = 15 }: { children: React.Reac
 
 // Scale Pulse
 export function ScalePulse({ children }: { children: React.ReactNode }) {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   return (
     <motion.div
-      animate={{ scale: [1, 1.05, 1] }}
+      animate={prefersReducedMotion ? {} : { scale: [1, 1.05, 1] }}
       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
     >
       {children}
@@ -206,12 +230,23 @@ export function RippleButton({ children, onClick }: { children: React.ReactNode;
   };
 
   return (
-    <div className="relative overflow-hidden cursor-pointer" onClick={handleClick}>
+    <div
+      role="button"
+      tabIndex={0}
+      className="relative overflow-hidden cursor-pointer"
+      onClick={handleClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick?.();
+        }
+      }}
+    >
       {children}
       {ripples.map(ripple => (
         <motion.span
           key={ripple.id}
-          className="absolute bg-white/30 rounded-full"
+          className="absolute bg-white/30 rounded-full pointer-events-none"
           initial={{ width: 0, height: 0, opacity: 1 }}
           animate={{ width: 300, height: 300, opacity: 0 }}
           transition={{ duration: 0.6 }}
@@ -258,12 +293,11 @@ export function ConfettiExplosion({ trigger }: { trigger: boolean }) {
 
   useEffect(() => {
     if (trigger) {
-      const colors = ['#3b82f6', '#8b5cf6', '#10b981', '#f59e0b', '#ef4444', '#ec4899'];
       const newParticles = Array.from({ length: 30 }, (_, i) => ({
         id: i,
         x: Math.random() * 200 - 100,
         y: Math.random() * 200 - 100,
-        color: colors[Math.floor(Math.random() * colors.length)]
+        color: CELEBRATION_COLORS.confetti[Math.floor(Math.random() * CELEBRATION_COLORS.confetti.length)]
       }));
       setParticles(newParticles);
       
@@ -297,13 +331,15 @@ export function ConfettiExplosion({ trigger }: { trigger: boolean }) {
 
 // Loading Dots
 export function LoadingDots() {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   return (
     <div className="flex gap-1">
       {[0, 1, 2].map((i) => (
         <motion.div
           key={i}
           className="w-2 h-2 bg-current rounded-full"
-          animate={{ y: [0, -10, 0] }}
+          animate={prefersReducedMotion ? { opacity: [1, 0.5, 1] } : { y: [0, -10, 0] }}
           transition={{
             duration: 0.6,
             repeat: Infinity,
@@ -317,6 +353,12 @@ export function LoadingDots() {
 
 // Shimmer Effect
 export function ShimmerEffect({ children }: { children: React.ReactNode }) {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  if (prefersReducedMotion) {
+    return <div>{children}</div>;
+  }
+
   return (
     <div className="relative overflow-hidden">
       {children}

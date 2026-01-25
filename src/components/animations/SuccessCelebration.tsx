@@ -1,5 +1,6 @@
 "use client";
 
+import { CELEBRATION_COLORS } from "@/lib/design-tokens";
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, Trophy, Star, Zap } from 'lucide-react';
@@ -24,12 +25,11 @@ export function SuccessCelebration({
   useEffect(() => {
     if (show) {
       // Generate confetti
-      const colors = ['#3b82f6', '#8b5cf6', '#10b981', '#f59e0b', '#ef4444', '#ec4899', '#14b8a6'];
       const newConfetti = Array.from({ length: 50 }, (_, i) => ({
         id: i,
         x: Math.random() * window.innerWidth,
         y: -20,
-        color: colors[Math.floor(Math.random() * colors.length)],
+        color: CELEBRATION_COLORS.confetti[Math.floor(Math.random() * CELEBRATION_COLORS.confetti.length)],
         rotation: Math.random() * 360
       }));
       setConfetti(newConfetti);

@@ -7,7 +7,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-semibold transition-all duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 active:scale-[0.98] active:transition-transform active:duration-75",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-semibold transition-all duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-60 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 active:scale-[0.98] active:transition-transform active:duration-75",
   {
     variants: {
       variant: {
@@ -25,7 +25,7 @@ const buttonVariants = cva(
         success:
           "bg-green-600 text-white shadow-soft hover:bg-green-700 hover:shadow-green/25 hover:shadow-soft-lg dark:bg-green-600 dark:hover:bg-green-500",
         warning:
-          "bg-amber-500 text-white shadow-soft hover:bg-amber-600 hover:shadow-amber/25 hover:shadow-soft-lg dark:bg-amber-600 dark:hover:bg-amber-500",
+          "bg-amber-600 text-white shadow-soft hover:bg-amber-700 hover:shadow-amber/25 hover:shadow-soft-lg focus-visible:ring-amber-500 dark:bg-amber-600 dark:hover:bg-amber-500",
         // Special effect variants
         glass:
           "glass text-foreground hover:bg-background/80 shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5",

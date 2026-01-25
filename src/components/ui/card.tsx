@@ -12,6 +12,9 @@ const cardVariants = cva(
         outline: "border-border bg-transparent",
         ghost: "border-transparent bg-transparent shadow-none",
         muted: "border-transparent bg-muted shadow-none",
+        // Interactive variant with hover feedback
+        interactive:
+          "border-border shadow-soft-sm cursor-pointer hover:border-primary/50 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm",
         // Special effect variants
         glass: "glass shadow-soft",
         gradient:

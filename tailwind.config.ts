@@ -141,6 +141,40 @@ const config: Config = {
         achievement: "#eab308", // Yellow
         level: "#3b82f6", // Blue
 
+        // Achievement Rarity Colors
+        rarity: {
+          common: {
+            DEFAULT: "#94a3b8",      // slate-400
+            bg: "#f1f5f9",           // slate-100
+            text: "#334155",         // slate-700
+            border: "#cbd5e1",       // slate-300
+          },
+          uncommon: {
+            DEFAULT: "#22c55e",      // green-500
+            bg: "#dcfce7",           // green-100
+            text: "#166534",         // green-800
+            border: "#86efac",       // green-300
+          },
+          rare: {
+            DEFAULT: "#3b82f6",      // blue-500
+            bg: "#dbeafe",           // blue-100
+            text: "#1e40af",         // blue-800
+            border: "#93c5fd",       // blue-300
+          },
+          epic: {
+            DEFAULT: "#8b5cf6",      // violet-500
+            bg: "#ede9fe",           // violet-100
+            text: "#5b21b6",         // violet-800
+            border: "#c4b5fd",       // violet-300
+          },
+          legendary: {
+            DEFAULT: "#f59e0b",      // amber-500
+            bg: "#fef3c7",           // amber-100
+            text: "#92400e",         // amber-800
+            border: "#fcd34d",       // amber-300
+          },
+        },
+
         // Semantic vars
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

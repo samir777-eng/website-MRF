@@ -14,6 +14,7 @@ import {
 } from 'recharts';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { CHART_COLORS } from '@/lib/design-tokens';
 import { BarChart3, TrendingUp, AlertCircle } from 'lucide-react';
 
 export function PerformanceBreakdown() {
@@ -31,10 +32,10 @@ export function PerformanceBreakdown() {
 
   // Color coding based on performance level
   const getColor = (score: number) => {
-    if (score >= 90) return '#10b981'; // Green - Excellent
-    if (score >= 80) return '#3b82f6'; // Blue - Good
-    if (score >= 70) return '#f59e0b'; // Orange - Average
-    return '#ef4444'; // Red - Needs Improvement
+    if (score >= 90) return CHART_COLORS.hex.success; // Green - Excellent
+    if (score >= 80) return CHART_COLORS.hex.info;    // Blue - Good
+    if (score >= 70) return CHART_COLORS.hex.warning; // Orange - Average
+    return CHART_COLORS.hex.error;                     // Red - Needs Improvement
   };
 
   const getStatusLabel = (status: string) => {
@@ -194,10 +195,10 @@ export function PerformanceBreakdown() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { label: 'ممتاز (90%+)', color: '#10b981' },
-              { label: 'جيد (80-89%)', color: '#3b82f6' },
-              { label: 'متوسط (70-79%)', color: '#f59e0b' },
-              { label: 'يحتاج تحسين (<70%)', color: '#ef4444' },
+              { label: 'ممتاز (90%+)', color: CHART_COLORS.hex.success },
+              { label: 'جيد (80-89%)', color: CHART_COLORS.hex.info },
+              { label: 'متوسط (70-79%)', color: CHART_COLORS.hex.warning },
+              { label: 'يحتاج تحسين (<70%)', color: CHART_COLORS.hex.error },
             ].map((level, index) => (
               <div key={index} className="flex items-center gap-2">
                 <div 

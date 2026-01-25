@@ -168,3 +168,141 @@ export const RTL = {
 export type PageAccent = keyof typeof PAGE_ACCENTS;
 export type CornerType = keyof typeof CORNER_COLORS;
 
+// =============================================================================
+// CHART COLORS (Use these instead of hardcoded hex values)
+// =============================================================================
+// Maps to CSS custom properties for theme consistency
+
+export const CHART_COLORS = {
+  primary: 'hsl(var(--primary))',
+  success: 'hsl(var(--color-xp))',
+  warning: 'hsl(var(--color-streak))',
+  error: 'hsl(var(--destructive))',
+  info: 'hsl(var(--color-level))',
+  accent: 'hsl(var(--color-achievement))',
+
+  // Direct color values for charts that don't support CSS vars
+  hex: {
+    primary: '#6366f1',     // Indigo-500
+    success: '#06b6d4',     // Cyan-500 (XP color)
+    warning: '#f59e0b',     // Amber-500 (Streak color)
+    error: '#ef4444',       // Red-500
+    info: '#3b82f6',        // Blue-500 (Level color)
+    accent: '#eab308',      // Yellow-500 (Achievement color)
+  },
+
+  // Array for multi-series charts
+  series: [
+    '#6366f1',  // primary
+    '#06b6d4',  // success/xp
+    '#f59e0b',  // warning/streak
+    '#3b82f6',  // info/level
+    '#8b5cf6',  // violet
+    '#ec4899',  // pink
+  ],
+} as const;
+
+// =============================================================================
+// CELEBRATION/CONFETTI COLORS
+// =============================================================================
+
+export const CELEBRATION_COLORS = {
+  confetti: [
+    '#6366f1',  // primary (indigo)
+    '#8b5cf6',  // accent (violet)
+    '#eab308',  // achievement (yellow)
+    '#06b6d4',  // xp (cyan)
+    '#f59e0b',  // streak (amber)
+    '#ec4899',  // bonus (pink)
+  ],
+
+  // For sparkle effects
+  sparkle: ['#fbbf24', '#fcd34d', '#fef08a'],  // Gold tones
+
+  // Achievement unlock colors by rarity
+  achievement: {
+    common: '#94a3b8',      // slate
+    uncommon: '#22c55e',    // green
+    rare: '#3b82f6',        // blue
+    epic: '#8b5cf6',        // violet
+    legendary: '#f59e0b',   // amber
+  },
+} as const;
+
+// =============================================================================
+// GAMIFICATION COLORS (Use for XP, streaks, gems, etc.)
+// =============================================================================
+
+export const GAMIFICATION_COLORS = {
+  xp: {
+    DEFAULT: '#06b6d4',     // Cyan-500
+    light: '#ecfeff',       // Cyan-50
+    dark: '#0e7490',        // Cyan-700 (text-safe)
+    gradient: 'from-cyan-400 to-cyan-600',
+  },
+  streak: {
+    DEFAULT: '#f59e0b',     // Amber-500
+    light: '#fffbeb',       // Amber-50
+    dark: '#b45309',        // Amber-700 (text-safe)
+    gradient: 'from-orange-400 to-orange-600',
+  },
+  gems: {
+    DEFAULT: '#0ea5e9',     // Sky-500
+    light: '#f0f9ff',       // Sky-50
+    dark: '#0369a1',        // Sky-700 (text-safe)
+    gradient: 'from-sky-400 to-sky-600',
+  },
+  achievement: {
+    DEFAULT: '#eab308',     // Yellow-500
+    light: '#fefce8',       // Yellow-50
+    dark: '#a16207',        // Yellow-700 (text-safe)
+    gradient: 'from-yellow-400 to-yellow-600',
+  },
+  level: {
+    DEFAULT: '#3b82f6',     // Blue-500
+    light: '#eff6ff',       // Blue-50
+    dark: '#1d4ed8',        // Blue-700 (text-safe)
+    gradient: 'from-blue-400 to-blue-600',
+  },
+} as const;
+
+// =============================================================================
+// RARITY COLORS (For achievements and rewards)
+// =============================================================================
+
+export const RARITY_COLORS = {
+  common: {
+    DEFAULT: '#94a3b8',
+    bg: '#f1f5f9',
+    text: '#334155',
+    border: '#cbd5e1',
+  },
+  uncommon: {
+    DEFAULT: '#22c55e',
+    bg: '#dcfce7',
+    text: '#166534',
+    border: '#86efac',
+  },
+  rare: {
+    DEFAULT: '#3b82f6',
+    bg: '#dbeafe',
+    text: '#1e40af',
+    border: '#93c5fd',
+  },
+  epic: {
+    DEFAULT: '#8b5cf6',
+    bg: '#ede9fe',
+    text: '#5b21b6',
+    border: '#c4b5fd',
+  },
+  legendary: {
+    DEFAULT: '#f59e0b',
+    bg: '#fef3c7',
+    text: '#92400e',
+    border: '#fcd34d',
+    glow: '0 0 20px rgba(245, 158, 11, 0.5)',
+  },
+} as const;
+
+export type RarityType = keyof typeof RARITY_COLORS;
+

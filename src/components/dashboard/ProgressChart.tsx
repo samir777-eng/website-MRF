@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { CHART_COLORS } from "@/lib/design-tokens";
 import { Calendar, TrendingUp } from "lucide-react";
 import { useState } from "react";
 import {
@@ -146,12 +147,12 @@ export function ProgressChart({ variant = "area" }: ProgressChartProps) {
               >
                 <defs>
                   <linearGradient id="colorXP" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8} />
-                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                    <stop offset="5%" stopColor={CHART_COLORS.hex.info} stopOpacity={0.8} />
+                    <stop offset="95%" stopColor={CHART_COLORS.hex.info} stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.8} />
-                    <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0} />
+                    <stop offset="5%" stopColor={CHART_COLORS.hex.primary} stopOpacity={0.8} />
+                    <stop offset="95%" stopColor={CHART_COLORS.hex.primary} stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
@@ -177,7 +178,7 @@ export function ProgressChart({ variant = "area" }: ProgressChartProps) {
                 <Area
                   type="monotone"
                   dataKey="xp"
-                  stroke="#3b82f6"
+                  stroke={CHART_COLORS.hex.info}
                   fillOpacity={1}
                   fill="url(#colorXP)"
                   strokeWidth={2}
@@ -186,7 +187,7 @@ export function ProgressChart({ variant = "area" }: ProgressChartProps) {
                 <Area
                   type="monotone"
                   dataKey="score"
-                  stroke="#8b5cf6"
+                  stroke={CHART_COLORS.hex.primary}
                   fillOpacity={1}
                   fill="url(#colorScore)"
                   strokeWidth={2}
@@ -221,7 +222,7 @@ export function ProgressChart({ variant = "area" }: ProgressChartProps) {
                 <Line
                   type="monotone"
                   dataKey="lessons"
-                  stroke="#3b82f6"
+                  stroke={CHART_COLORS.hex.info}
                   strokeWidth={3}
                   dot={{ r: 5 }}
                   activeDot={{ r: 7 }}
@@ -230,7 +231,7 @@ export function ProgressChart({ variant = "area" }: ProgressChartProps) {
                 <Line
                   type="monotone"
                   dataKey="quizzes"
-                  stroke="#8b5cf6"
+                  stroke={CHART_COLORS.hex.primary}
                   strokeWidth={3}
                   dot={{ r: 5 }}
                   activeDot={{ r: 7 }}

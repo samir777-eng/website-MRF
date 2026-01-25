@@ -52,9 +52,9 @@
   --accent: 220 20% 96%;
   --accent-foreground: 234 47% 11%;
 
-  /* Border, Input, Ring */
-  --border: 220 15% 90%;
-  --input: 220 15% 90%;
+  /* Border, Input, Ring - Enhanced contrast for WCAG 2.1 */
+  --border: 220 20% 80%;
+  --input: 220 20% 80%;
   --ring: 234 83% 55%;
 
   /* Primary - Deep Indigo (Trust) */
@@ -139,6 +139,16 @@
 
   /* Border radius - Softer, more modern */
   --radius: 1rem;
+
+  /* Glass/Overlay colors */
+  --shadow-color: 0 15% 20%;
+  --shadow-soft: 0 8px 30px hsl(var(--shadow-color) / 0.12);
+  --shadow-soft-lg: 0 15px 35px hsl(var(--shadow-color) / 0.15);
+  --glass-bg: 255 255 255 / 0.7;
+  --glass-border: 255 255 255 / 0.5;
+  --glass-blur: 16px;
+  --overlay-light: 0 0% 100% / 0.8;
+  --overlay-dark: 0 0% 0% / 0.5;
 }
 
 /* ========================================
@@ -201,6 +211,13 @@
   --sidebar-accent-foreground: 220 20% 98%;
   --sidebar-border: 234 30% 18%;
   --sidebar-ring: 234 70% 65%;
+
+  /* Glass/Overlay colors - Dark mode */
+  --shadow-color: 234 50% 10%;
+  --glass-bg: 15 5 24 / 0.6;
+  --glass-border: 255 255 255 / 0.08;
+  --overlay-light: 0 0% 100% / 0.1;
+  --overlay-dark: 0 0% 0% / 0.8;
 }
 
 /* Light mode override for explicit light class */
@@ -509,21 +526,30 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Glassmorphism Utilities - The key to "Premium" */
+/* Glassmorphism Utilities - Single source of truth */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(var(--glass-bg));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(var(--glass-border));
 }
 
-.glass-dark,
-.dark .glass {
-  background: rgba(15, 5, 24, 0.6); /* Violet-tinted dark glass */
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+.glass-card {
+  background: rgba(var(--glass-bg));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(var(--glass-border));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.glass-button {
+  background: rgba(var(--glass-bg));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(var(--glass-border));
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
 }
 
 .glass-panel {
@@ -533,6 +559,7 @@ body {
     rgba(255, 255, 255, 0.05)
   );
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
 }
@@ -719,9 +746,9 @@ h3,
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 600;
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: linear-gradient(135deg, hsl(var(--color-xp)), hsl(var(--color-xp-dark)));
   color: white;
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 2px 8px hsl(var(--color-xp) / 0.3);
 }
 
 .streak-counter {
@@ -760,15 +787,16 @@ h3,
    GAMIFICATION COLORS (used throughout)
    ======================================== */
 :root {
-  /* XP - Green */
-  --color-xp: 142 76% 36%;
-  --color-xp-light: 142 76% 95%;
+  /* XP - Electric Cyan (matches Tailwind xp-500) */
+  --color-xp: 187 94% 43%;
+  --color-xp-dark: 187 94% 30%;
+  --color-xp-light: 187 80% 92%;
 
   /* Streak - Orange */
   --color-streak: 25 95% 53%;
   --color-streak-light: 25 95% 95%;
 
-  /* Gems - Cyan */
+  /* Gems - Sky Blue */
   --color-gems: 199 89% 48%;
   --color-gems-light: 199 89% 95%;
 
@@ -779,14 +807,92 @@ h3,
   /* Level - Blue */
   --color-level: 217 91% 60%;
   --color-level-light: 217 91% 95%;
+
+  /* Text-safe variants (4.5:1+ contrast on white for WCAG AA) */
+  --color-xp-text: 187 94% 28%;           /* Cyan-700 */
+  --color-streak-text: 25 95% 30%;        /* Amber-700 */
+  --color-gems-text: 199 89% 30%;         /* Sky-700 */
+  --color-achievement-text: 45 93% 28%;   /* Yellow-700 */
+  --color-level-text: 217 91% 35%;        /* Blue-700 */
+
+  /* Semantic text-safe colors */
+  --success-text: 142 76% 28%;            /* Green-700 */
+  --warning-text: 38 92% 30%;             /* Amber-700 */
+  --info-text: 217 91% 40%;               /* Blue-700 */
+  --error-text: 0 84% 40%;                /* Red-700 */
 }
 
 .dark {
-  --color-xp-light: 142 70% 15%;
+  --color-xp-light: 187 70% 15%;
   --color-streak-light: 25 80% 15%;
   --color-gems-light: 199 80% 15%;
   --color-achievement-light: 45 80% 15%;
   --color-level-light: 217 80% 15%;
+}
+
+/* ========================================
+   GEN-Z EFFECTS (Used in gamification)
+   ======================================== */
+
+/* Vibrant gradient for XP badges and CTAs */
+.gen-z-gradient {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #f97354 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Glow effect for highlighted elements */
+.gen-z-glow {
+  box-shadow:
+    0 4px 20px rgba(99, 102, 241, 0.3),
+    0 0 40px rgba(99, 102, 241, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.gen-z-glow:hover {
+  box-shadow:
+    0 8px 30px rgba(99, 102, 241, 0.4),
+    0 0 60px rgba(99, 102, 241, 0.2);
+}
+
+/* Subtle pulse for attention-grabbing elements */
+.micro-pulse {
+  animation: micro-pulse-anim 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes micro-pulse-anim {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+/* Bounce effect for celebrations */
+.micro-bounce {
+  animation: micro-bounce-anim 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes micro-bounce-anim {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* Spacing System */

@@ -13,7 +13,7 @@ const badgeVariants = cva(
           "border-transparent bg-destructive text-destructive-foreground",
         outline: "border-border text-foreground bg-transparent",
         // Gamification variants with subtle glow on hover
-        xp: "border-transparent bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300 hover:shadow-green/20 hover:shadow-sm",
+        xp: "border-transparent bg-cyan-100 text-cyan-800 dark:bg-cyan-900/50 dark:text-cyan-300 hover:shadow-cyan-500/20 hover:shadow-sm",
         streak:
           "border-transparent bg-orange-100 text-orange-800 dark:bg-orange-900/50 dark:text-orange-300 hover:shadow-orange/20 hover:shadow-sm",
         gems: "border-transparent bg-cyan-100 text-cyan-800 dark:bg-cyan-900/50 dark:text-cyan-300 hover:shadow-cyan-500/20 hover:shadow-sm",

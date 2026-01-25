@@ -5,6 +5,7 @@
  * Phase 1 Refinement: Better animations, haptics, sounds, and polish
  */
 
+import { CELEBRATION_COLORS } from "@/lib/design-tokens";
 import confetti from "canvas-confetti";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -633,13 +634,13 @@ export function CelebrationProvider({ children }: { children: ReactNode }) {
           particleCount: 100,
           spread: 70,
           origin: { y: 0.6 },
-          colors: ["#8B5CF6", "#EC4899", "#06B6D4", "#22C55E", "#F59E0B"],
+          colors: CELEBRATION_COLORS.confetti,
         },
         gold: {
           particleCount: 150,
           spread: 100,
           origin: { y: 0.5 },
-          colors: ["#FFD700", "#FFA500", "#FF8C00", "#DAA520", "#F4D03F"],
+          colors: CELEBRATION_COLORS.sparkle,
           shapes: ["circle", "square"] as confetti.Shape[],
           scalar: 1.2,
         },
@@ -648,12 +649,8 @@ export function CelebrationProvider({ children }: { children: ReactNode }) {
           spread: 120,
           origin: { y: 0.6 },
           colors: [
-            "#FF6B6B",
-            "#4ECDC4",
-            "#FFE66D",
-            "#95E1D3",
-            "#F38181",
-            "#AA96DA",
+            ...CELEBRATION_COLORS.confetti,
+            "#FF6B6B", // Extra festive colors
           ],
           gravity: 0.8,
           ticks: 300,
@@ -666,7 +663,7 @@ export function CelebrationProvider({ children }: { children: ReactNode }) {
           gravity: 0.5,
           origin: { x: 0.5, y: 0.5 },
           colors: [
-            "#FF0000",
+            "#FF0000", // Rainbow colors for fireworks
             "#FF7F00",
             "#FFFF00",
             "#00FF00",
@@ -678,7 +675,7 @@ export function CelebrationProvider({ children }: { children: ReactNode }) {
           particleCount: 80,
           spread: 90,
           origin: { y: 0.6 },
-          colors: ["#FFD700", "#FFF8DC", "#FFFACD", "#FAFAD2"],
+          colors: CELEBRATION_COLORS.sparkle,
           shapes: ["star"] as confetti.Shape[],
           scalar: 1.5,
           ticks: 200,
@@ -881,7 +878,7 @@ function XPFloatParticles({ particles }: { particles: XPFloatParticle[] }) {
                 <span className="text-white font-display font-bold text-base drop-shadow-sm">
                   +{particle.amount}
                   {particle.multiplier && particle.multiplier > 1 && (
-                    <span className="text-amber-100 text-sm ml-1">
+                    <span className="text-amber-100 text-sm ms-1">
                       ×{particle.multiplier}
                     </span>
                   )}

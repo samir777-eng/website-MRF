@@ -315,7 +315,7 @@ export function DesignSystem() {
                       onClick={() => copyToClipboard(type.cssClass)}
                       className="h-6"
                     >
-                      <Copy className="w-3 h-3 mr-1" />
+                      <Copy className="w-3 h-3 me-1" />
                       Copy
                     </Button>
                   </div>

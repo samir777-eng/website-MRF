@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { useLectureProgress } from "@/hooks/useLectureProgress";
 import {
   AlertCircle,
   ArrowLeft,
@@ -40,6 +41,8 @@ export default function PreQuizPage() {
   const params = useParams();
   const router = useRouter();
   const lectureId = params?.id as string;
+
+  const { completePreQuiz, progress } = useLectureProgress(lectureId);
 
   const [state, setState] = useState<QuizState>("intro");
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -170,6 +173,11 @@ export default function PreQuizPage() {
     const score = calculateScore();
     const passed = score >= preQuizData.threshold;
 
+    // Save progress when quiz is passed
+    if (passed && !progress.preQuizCompleted) {
+      completePreQuiz(score);
+    }
+
     return (
       <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-24" dir="rtl">
         <div className="container mx-auto px-4 py-8">
@@ -179,19 +187,27 @@ export default function PreQuizPage() {
                 {passed ? <CheckCircle className="h-12 w-12 text-green-600" /> : <XCircle className="h-12 w-12 text-red-600" />}
               </div>
 
-              <h1 className="text-3xl font-bold">{passed ? "تم اجتياز الاختبار! 🎉" : "لم تجتز الاختبار"}</h1>
+              <h1 className="text-3xl font-bold">{passed ? "تم اجتياز الاختبار!" : "لم تجتز الاختبار"}</h1>
 
               <div className={`text-6xl font-bold ${passed ? "text-green-600" : "text-red-600"}`}>{score}%</div>
 
               <p className="text-muted-foreground">الحد الأدنى المطلوب: {preQuizData.threshold}%</p>
 
               {passed ? (
-                <Link href={`/ar/lectures/${lectureId}`}>
-                  <Button size="lg" className="w-full gap-2 bg-gradient-to-r from-green-500 to-emerald-500">
-                    <Play className="h-5 w-5" />
-                    الذهاب للمحاضرة
-                  </Button>
-                </Link>
+                <div className="space-y-4">
+                  <div className="p-4 bg-green-100 dark:bg-green-900/20 rounded-lg">
+                    <div className="flex items-center gap-2 justify-center text-green-800 dark:text-green-200">
+                      <CheckCircle className="h-5 w-5" />
+                      <span>تم فتح الفيديوهات! يمكنك الآن مشاهدة المحاضرة</span>
+                    </div>
+                  </div>
+                  <Link href={`/ar/lectures/${lectureId}`}>
+                    <Button size="lg" className="w-full gap-2 bg-gradient-to-r from-green-500 to-emerald-500">
+                      <Play className="h-5 w-5" />
+                      الذهاب للمحاضرة
+                    </Button>
+                  </Link>
+                </div>
               ) : (
                 <div className="space-y-4">
                   <p className="text-sm text-muted-foreground">المحاولات المتبقية: {preQuizData.maxAttempts - preQuizData.currentAttempts - 1}</p>
@@ -214,7 +230,7 @@ export default function PreQuizPage() {
 
   // Playing Screen
   const question = preQuizData.questions[currentQuestion];
-  const progress = ((currentQuestion + 1) / preQuizData.questions.length) * 100;
+  const quizProgress = ((currentQuestion + 1) / preQuizData.questions.length) * 100;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-24" dir="rtl">
@@ -227,7 +243,7 @@ export default function PreQuizPage() {
           </div>
         </div>
 
-        <Progress value={progress} className="h-2 mb-8" />
+        <Progress value={quizProgress} className="h-2 mb-8" />
 
         <Card className="max-w-3xl mx-auto border-0 shadow-xl">
           <CardContent className="p-8 space-y-6">

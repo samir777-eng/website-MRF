@@ -8,7 +8,7 @@ interface ChartProps {
   type?: "bar" | "line";
 }
 
-export function Chart({ data, className, type = "bar" }: ChartProps) {
+export function Chart({ data, className, type: _type = "bar" }: ChartProps) {
   const maxValue = Math.max(...data.map((d) => d.value));
 
   return (

@@ -1,6 +1,15 @@
 "use client";
 
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+/**
+ * SearchContext - Optimized with Memoization
+ *
+ * This context provides search functionality with optimizations:
+ * - Memoized context value to prevent unnecessary re-renders
+ * - Stable action references via useCallback
+ * - Selector hooks for subscribing to specific state slices
+ */
+
+import React, { createContext, useContext, useState, useCallback, useEffect, useMemo } from 'react';
 import { SearchableItem, SearchResult, searchItems, getSearchSuggestions } from '@/lib/utils/search';
 
 interface SearchContextType {
@@ -10,10 +19,10 @@ interface SearchContextType {
   suggestions: string[];
   isSearching: boolean;
   isOpen: boolean;
-  
+
   // Recent searches
   recentSearches: string[];
-  
+
   // Actions
   setQuery: (query: string) => void;
   search: (query: string) => void;
@@ -23,7 +32,7 @@ interface SearchContextType {
   toggleSearch: () => void;
   addRecentSearch: (query: string) => void;
   clearRecentSearches: () => void;
-  
+
   // Filters
   filters: {
     type?: SearchableItem['type'][];
@@ -47,7 +56,7 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [filters, setFiltersState] = useState<SearchContextType['filters']>({});
-  
+
   // Load recent searches from localStorage
   useEffect(() => {
     try {
@@ -59,8 +68,8 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
       console.error('Failed to load recent searches:', error);
     }
   }, []);
-  
-  // Save recent searches to localStorage
+
+  // Save recent searches to localStorage - memoized
   const saveRecentSearches = useCallback((searches: string[]) => {
     try {
       localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(searches));
@@ -68,18 +77,18 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
       console.error('Failed to save recent searches:', error);
     }
   }, []);
-  
-  // Get all searchable items (this would be replaced with actual data)
+
+  // Get all searchable items - memoized
   const getAllSearchableItems = useCallback((): SearchableItem[] => {
     // This is a placeholder - in a real app, this would fetch from API or state
     // For now, return empty array - will be populated when integrated
     return [];
   }, []);
-  
-  // Set query and update suggestions
+
+  // Set query and update suggestions - memoized
   const setQuery = useCallback((newQuery: string) => {
     setQueryState(newQuery);
-    
+
     if (newQuery.trim().length > 0) {
       const items = getAllSearchableItems();
       const newSuggestions = getSearchSuggestions(newQuery, items, 5);
@@ -88,16 +97,16 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
       setSuggestions([]);
     }
   }, [getAllSearchableItems]);
-  
-  // Perform search
+
+  // Perform search - memoized
   const search = useCallback((searchQuery: string) => {
     if (!searchQuery || searchQuery.trim().length === 0) {
       setResults([]);
       return;
     }
-    
+
     setIsSearching(true);
-    
+
     try {
       const items = getAllSearchableItems();
       const searchResults = searchItems(searchQuery, items, {
@@ -105,7 +114,7 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
         maxResults: 20,
         filters,
       });
-      
+
       setResults(searchResults);
     } catch (error) {
       console.error('Search error:', error);
@@ -114,33 +123,33 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
       setIsSearching(false);
     }
   }, [getAllSearchableItems, filters]);
-  
-  // Clear search
+
+  // Clear search - memoized
   const clearSearch = useCallback(() => {
     setQueryState('');
     setResults([]);
     setSuggestions([]);
   }, []);
-  
-  // Open search modal
+
+  // Open search modal - memoized
   const openSearch = useCallback(() => {
     setIsOpen(true);
   }, []);
-  
-  // Close search modal
+
+  // Close search modal - memoized
   const closeSearch = useCallback(() => {
     setIsOpen(false);
   }, []);
-  
-  // Toggle search modal
+
+  // Toggle search modal - memoized
   const toggleSearch = useCallback(() => {
     setIsOpen(prev => !prev);
   }, []);
-  
-  // Add to recent searches
+
+  // Add to recent searches - memoized
   const addRecentSearch = useCallback((searchQuery: string) => {
     if (!searchQuery || searchQuery.trim().length === 0) return;
-    
+
     setRecentSearches(prev => {
       // Remove if already exists
       const filtered = prev.filter(s => s !== searchQuery);
@@ -150,46 +159,46 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
       return updated;
     });
   }, [saveRecentSearches]);
-  
-  // Clear recent searches
+
+  // Clear recent searches - memoized
   const clearRecentSearches = useCallback(() => {
     setRecentSearches([]);
     saveRecentSearches([]);
   }, [saveRecentSearches]);
-  
-  // Set filters
+
+  // Set filters - memoized
   const setFilters = useCallback((newFilters: SearchContextType['filters']) => {
     setFiltersState(newFilters);
-    // Re-search with new filters if there's a query
-    if (query.trim().length > 0) {
-      search(query);
-    }
-  }, [query, search]);
-  
-  // Clear filters
+  }, []);
+
+  // Clear filters - memoized
   const clearFilters = useCallback(() => {
     setFiltersState({});
-    // Re-search without filters if there's a query
-    if (query.trim().length > 0) {
-      search(query);
-    }
-  }, [query, search]);
-  
+  }, []);
+
   // Auto-search when query changes (debounced)
   useEffect(() => {
     if (query.trim().length === 0) {
       setResults([]);
       return;
     }
-    
+
     const timeoutId = setTimeout(() => {
       search(query);
     }, 300); // 300ms debounce
-    
+
     return () => clearTimeout(timeoutId);
   }, [query, search]);
-  
-  const value: SearchContextType = {
+
+  // Re-search when filters change and there's an active query
+  useEffect(() => {
+    if (query.trim().length > 0) {
+      search(query);
+    }
+  }, [filters, query, search]);
+
+  // Memoize the entire context value to prevent unnecessary re-renders
+  const value = useMemo<SearchContextType>(() => ({
     query,
     results,
     suggestions,
@@ -207,8 +216,26 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
     filters,
     setFilters,
     clearFilters,
-  };
-  
+  }), [
+    query,
+    results,
+    suggestions,
+    isSearching,
+    isOpen,
+    recentSearches,
+    setQuery,
+    search,
+    clearSearch,
+    openSearch,
+    closeSearch,
+    toggleSearch,
+    addRecentSearch,
+    clearRecentSearches,
+    filters,
+    setFilters,
+    clearFilters,
+  ]);
+
   return (
     <SearchContext.Provider value={value}>
       {children}
@@ -222,5 +249,55 @@ export function useSearch() {
     throw new Error('useSearch must be used within a SearchProvider');
   }
   return context;
+}
+
+// === Selector hooks for fine-grained subscriptions ===
+
+/**
+ * Get only search query and results - for search results display
+ */
+export function useSearchResults() {
+  const { query, results, isSearching, suggestions } = useSearch();
+  return { query, results, isSearching, suggestions };
+}
+
+/**
+ * Get only search modal state - for modal toggle button
+ */
+export function useSearchModal() {
+  const { isOpen, openSearch, closeSearch, toggleSearch } = useSearch();
+  return { isOpen, openSearch, closeSearch, toggleSearch };
+}
+
+/**
+ * Get only recent searches - for recent searches display
+ */
+export function useRecentSearches() {
+  const { recentSearches, addRecentSearch, clearRecentSearches } = useSearch();
+  return { recentSearches, addRecentSearch, clearRecentSearches };
+}
+
+/**
+ * Get only filter state - for filter controls
+ */
+export function useSearchFilters() {
+  const { filters, setFilters, clearFilters } = useSearch();
+  return { filters, setFilters, clearFilters };
+}
+
+/**
+ * Get only search actions - for search input component
+ */
+export function useSearchActions() {
+  const { setQuery, search, clearSearch, addRecentSearch } = useSearch();
+  return { setQuery, search, clearSearch, addRecentSearch };
+}
+
+/**
+ * Check if search is open - minimal subscription
+ */
+export function useIsSearchOpen() {
+  const { isOpen } = useSearch();
+  return isOpen;
 }
 

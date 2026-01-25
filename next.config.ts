@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
   // Allow network access from local IP for development
   allowedDevOrigins: ["192.168.1.46:3000"],
 
+  // Optimize framer-motion for HMR
+  experimental: {
+    optimizePackageImports: ["framer-motion"],
+  },
+
   eslint: {
     ignoreDuringBuilds: true,
     dirs: ["src/app", "src/components", "src/lib", "src/hooks", "src/contexts"],

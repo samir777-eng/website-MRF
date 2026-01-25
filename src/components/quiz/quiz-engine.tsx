@@ -237,7 +237,7 @@ export function QuizEngine({ quiz }: QuizEngineProps) {
           </div>
 
           <Button size="lg" onClick={startQuiz} className="w-full">
-            <Play className="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2" />
+            <Play className="w-5 h-5 me-2" />
             بدء الاختبار
           </Button>
         </CardContent>
@@ -349,11 +349,11 @@ export function QuizEngine({ quiz }: QuizEngineProps) {
                 variant="outline"
                 className="flex-1"
               >
-                <RefreshCw className="w-4 h-4 mr-2 rtl:mr-0 rtl:ml-2" />
+                <RefreshCw className="w-4 h-4 me-2" />
                 إعادة المحاولة
               </Button>
               <Button className="flex-1">
-                <Home className="w-4 h-4 mr-2 rtl:mr-0 rtl:ml-2" />
+                <Home className="w-4 h-4 me-2" />
                 العودة للرئيسية
               </Button>
             </div>
@@ -444,7 +444,7 @@ export function QuizEngine({ quiz }: QuizEngineProps) {
                           : -1
                       }
                     >
-                      <span className="mr-3 rtl:mr-0 rtl:ml-3 w-6 h-6 rounded-full border-2 flex items-center justify-center text-sm">
+                      <span className="me-3 w-6 h-6 rounded-full border-2 flex items-center justify-center text-sm">
                         {String.fromCharCode(65 + index)}
                       </span>
                       {option}
@@ -489,7 +489,7 @@ export function QuizEngine({ quiz }: QuizEngineProps) {
                         : -1
                     }
                   >
-                    <CheckCircle className="w-6 h-6 mr-2 rtl:mr-0 rtl:ml-2" />
+                    <CheckCircle className="w-6 h-6 me-2" />
                     صحيح
                   </Button>
                   <Button
@@ -517,7 +517,7 @@ export function QuizEngine({ quiz }: QuizEngineProps) {
                     aria-label="خطأ"
                     tabIndex={selectedAnswer === false ? 0 : -1}
                   >
-                    <XCircle className="w-6 h-6 mr-2 rtl:mr-0 rtl:ml-2" />
+                    <XCircle className="w-6 h-6 me-2" />
                     خطأ
                   </Button>
                 </div>
@@ -581,7 +581,7 @@ export function QuizEngine({ quiz }: QuizEngineProps) {
                   onClick={previousQuestion}
                   disabled={currentQuestion === 0}
                 >
-                  <ArrowRight className="w-4 h-4 mr-2 rtl:-scale-x-100" />
+                  <ArrowRight className="w-4 h-4 me-2 rtl:-scale-x-100" />
                   السابق
                 </Button>
 
@@ -597,7 +597,7 @@ export function QuizEngine({ quiz }: QuizEngineProps) {
                     {currentQuestion === quiz.questions_data.length - 1
                       ? "إنهاء الاختبار"
                       : "التالي"}
-                    <ArrowLeft className="w-4 h-4 ml-2 rtl:-scale-x-100" />
+                    <ArrowLeft className="w-4 h-4 ms-2 rtl:-scale-x-100" />
                   </Button>
                 )}
               </div>

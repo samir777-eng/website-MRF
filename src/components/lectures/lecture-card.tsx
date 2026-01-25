@@ -243,7 +243,12 @@ export function LectureCard({
           onClick={handleCardClick}
           role="button"
           tabIndex={0}
-          onKeyDown={(e) => e.key === "Enter" && handleCardClick()}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleCardClick();
+            }
+          }}
         >
           {cardContent}
         </div>

@@ -115,7 +115,7 @@ export default function ForgotPasswordPage() {
                 onClick={() => router.push("/ar/login")}
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
               >
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRight className="w-4 h-4 ms-2" />
                 العودة لتسجيل الدخول
               </Button>
 
@@ -189,7 +189,7 @@ export default function ForgotPasswordPage() {
                     placeholder="example@email.com أو 01012345678"
                     value={emailOrPhone}
                     onChange={(e) => handleInputChange(e.target.value)}
-                    className={`pr-10 ${error ? "border-red-500" : ""}`}
+                    className={`ps-10 ${error ? "border-red-500" : ""}`}
                     disabled={isLoading}
                   />
                 </div>
@@ -218,12 +218,12 @@ export default function ForgotPasswordPage() {
               >
                 {isLoading ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin ml-2" />
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin ms-2" />
                     جاري الإرسال...
                   </>
                 ) : (
                   <>
-                    <Mail className="w-4 h-4 ml-2" />
+                    <Mail className="w-4 h-4 ms-2" />
                     إرسال رابط إعادة التعيين
                   </>
                 )}

@@ -114,7 +114,7 @@ export function OTPForm({ locale }: OTPFormProps) {
       const otpString = otp.join("");
       await verifyOTP(email, otpString);
       router.push(`/${locale}/dashboard`);
-    } catch (error) {
+    } catch (_error) {
       setErrors({ general: t("auth.otpVerificationError") });
     }
   };
@@ -130,7 +130,7 @@ export function OTPForm({ locale }: OTPFormProps) {
       // Clear OTP inputs
       setOtp(["", "", "", "", "", ""]);
       inputRefs.current[0]?.focus();
-    } catch (error) {
+    } catch (_error) {
       setErrors({ general: t("auth.resendError") });
     }
   };
@@ -158,7 +158,7 @@ export function OTPForm({ locale }: OTPFormProps) {
           )}
 
           <div className="space-y-2">
-            <div className="flex justify-center space-x-2 rtl:space-x-reverse">
+            <div className="flex justify-center gap-2">
               {otp.map((digit, index) => (
                 <Input
                   key={index}
@@ -197,7 +197,7 @@ export function OTPForm({ locale }: OTPFormProps) {
                 disabled={isLoading}
                 className="p-0 h-auto font-medium"
               >
-                <RefreshCw className="w-4 h-4 mr-2 rtl:mr-0 rtl:ml-2" />
+                <RefreshCw className="w-4 h-4 me-2" />
                 {t("auth.resendCode")}
               </Button>
             ) : (
@@ -216,7 +216,7 @@ export function OTPForm({ locale }: OTPFormProps) {
           >
             {isLoading ? (
               <>
-                <Loader className="mr-2 rtl:mr-0 rtl:ml-2 h-4 w-4" />
+                <Loader className="me-2 h-4 w-4" />
                 {t("auth.verifying")}
               </>
             ) : (
@@ -228,7 +228,7 @@ export function OTPForm({ locale }: OTPFormProps) {
             href={`/${locale}/register`}
             className="flex items-center justify-center text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            <ArrowLeft className="w-4 h-4 mr-2 rtl:mr-0 rtl:ml-2" />
+            <ArrowLeft className="w-4 h-4 me-2" />
             {t("auth.backToRegister")}
           </Link>
         </CardFooter>

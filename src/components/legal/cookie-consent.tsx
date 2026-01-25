@@ -44,7 +44,7 @@ export function CookieConsent() {
           setShowBanner(false);
           return;
         }
-      } catch (e) {
+      } catch (_e) {
         // Invalid consent data, show banner
       }
     }

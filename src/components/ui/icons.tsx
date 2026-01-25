@@ -893,3 +893,39 @@ export const Target = ({ className = "w-6 h-6" }: IconProps) => (
     <circle cx="12" cy="12" r="2" />
   </svg>
 );
+
+// Captions/Subtitles icon for video player accessibility
+export const Captions = ({ className = "w-6 h-6" }: IconProps) => (
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <rect x="2" y="4" width="20" height="16" rx="2" strokeWidth={2} />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M7 15h4m-4-3h2m6 3h4m-4-3h2"
+    />
+  </svg>
+);
+
+// Captions off icon for video player
+export const CaptionsOff = ({ className = "w-6 h-6" }: IconProps) => (
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <rect x="2" y="4" width="20" height="16" rx="2" strokeWidth={2} />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M2 2l20 20"
+    />
+  </svg>
+);

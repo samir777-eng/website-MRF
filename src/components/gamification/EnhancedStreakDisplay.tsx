@@ -464,7 +464,7 @@ function CardStreak({
             transition={{ duration: 2, repeat: Infinity }}
           >
             <span className="text-6xl font-black drop-shadow-lg">{days}</span>
-            <span className="text-2xl font-bold mr-2">يوم</span>
+            <span className="text-2xl font-bold me-2">يوم</span>
           </motion.div>
           {longestStreak > days && (
             <p className="text-sm opacity-80 mt-2">

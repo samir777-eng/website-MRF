@@ -328,7 +328,7 @@ export default function ExercisePage() {
                         size="lg"
                         className="w-full h-full bg-gradient-to-r from-green-600 to-emerald-600 text-white"
                       >
-                        <BookOpen className="w-5 h-5 ml-2" aria-hidden="true" />
+                        <BookOpen className="w-5 h-5 ms-2" aria-hidden="true" />
                         ابدأ الواجب المنزلي
                       </Button>
                     </Link>
@@ -343,7 +343,7 @@ export default function ExercisePage() {
                     }}
                     className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg py-6"
                   >
-                    <ChevronRight className="w-5 h-5 ml-2" />
+                    <ChevronRight className="w-5 h-5 ms-2" />
                     إعادة المحاولة
                   </Button>
                 )}
@@ -434,7 +434,7 @@ export default function ExercisePage() {
                 onClick={handleStartExercise}
                 className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white text-lg py-6"
               >
-                <Play className="w-5 h-5 ml-2" />
+                <Play className="w-5 h-5 ms-2" />
                 ابدأ التمرين
               </Button>
             </CardContent>
@@ -560,7 +560,7 @@ export default function ExercisePage() {
             disabled={currentQuestionIndex === 0}
             className="flex-1"
           >
-            <ChevronRight className="w-4 h-4 ml-2" />
+            <ChevronRight className="w-4 h-4 ms-2" />
             السابق
           </Button>
           {currentQuestionIndex === exercise.questions.length - 1 ? (
@@ -571,7 +571,7 @@ export default function ExercisePage() {
               }
               className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white"
             >
-              <Flag className="w-4 h-4 ml-2" />
+              <Flag className="w-4 h-4 ms-2" />
               إنهاء
             </Button>
           ) : (
@@ -580,7 +580,7 @@ export default function ExercisePage() {
               className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white"
             >
               التالي
-              <ChevronLeft className="w-4 h-4 mr-2" />
+              <ChevronLeft className="w-4 h-4 me-2" />
             </Button>
           )}
         </div>

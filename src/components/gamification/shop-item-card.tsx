@@ -3,7 +3,7 @@
 import { ShopItem } from "@/types/gamification";
 import { motion } from "framer-motion";
 import { Check, Gem, Lock, ShoppingCart, Sparkles } from "lucide-react";
-import { useState } from "react";
+import { useState, memo } from "react";
 
 interface ShopItemCardProps {
   item: ShopItem;
@@ -12,7 +12,7 @@ interface ShopItemCardProps {
   onPurchase: (itemId: string) => Promise<boolean>;
 }
 
-export function ShopItemCard({
+export const ShopItemCard = memo(function ShopItemCard({
   item,
   userGems,
   isPurchased = false,
@@ -98,7 +98,7 @@ export function ShopItemCard({
               {item.price}
             </span>
             {item.originalPrice && (
-              <span className="text-zinc-500 line-through text-sm mr-1">
+              <span className="text-zinc-500 line-through text-sm me-1">
                 {item.originalPrice}
               </span>
             )}
@@ -141,4 +141,4 @@ export function ShopItemCard({
       </div>
     </motion.div>
   );
-}
+});

@@ -18,7 +18,7 @@ export function Header() {
           {/* Logo */}
           <Link
             href={`/${locale}`}
-            className="flex items-center space-x-2 rtl:space-x-reverse"
+            className="flex items-center gap-2"
           >
             <GraduationCap className="h-8 w-8 text-primary-600" />
             <span className="text-xl font-bold text-primary-900 dark:text-primary-100">
@@ -29,7 +29,7 @@ export function Header() {
           {/* Simple Navigation */}
           <nav
             aria-label="Main navigation"
-            className="hidden md:flex items-center space-x-6 rtl:space-x-reverse"
+            className="hidden md:flex items-center gap-6"
           >
             <Link
               href={`/${locale}`}
@@ -52,7 +52,7 @@ export function Header() {
           </nav>
 
           {/* Auth Buttons */}
-          <div className="flex items-center space-x-2 rtl:space-x-reverse">
+          <div className="flex items-center gap-2">
             <Link href={`/${locale}/login`}>
               <Button variant="ghost" size="sm">
                 تسجيل الدخول

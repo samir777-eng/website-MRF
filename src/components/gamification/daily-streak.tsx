@@ -144,8 +144,8 @@ export function DailyStreak({
                     day.completed
                       ? "bg-green-500 text-white"
                       : day.isToday
-                        ? "bg-primary-100 dark:bg-primary-900 text-primary-600 border-2 border-primary-300"
-                        : "bg-gray-200 dark:bg-gray-700 text-gray-500"
+                        ? "bg-primary/10 text-primary border-2 border-primary/30"
+                        : "bg-muted text-muted-foreground"
                   }`}
                 >
                   {day.completed ? (
@@ -199,7 +199,7 @@ export function DailyStreak({
               className={`p-2 rounded text-center ${
                 currentStreak >= 7
                   ? "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300"
-                  : "bg-gray-100 dark:bg-gray-800 text-gray-500"
+                  : "bg-muted text-muted-foreground"
               }`}
             >
               <div className="font-semibold">7 أيام</div>
@@ -209,7 +209,7 @@ export function DailyStreak({
               className={`p-2 rounded text-center ${
                 currentStreak >= 14
                   ? "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300"
-                  : "bg-gray-100 dark:bg-gray-800 text-gray-500"
+                  : "bg-muted text-muted-foreground"
               }`}
             >
               <div className="font-semibold">14 يوم</div>
@@ -219,7 +219,7 @@ export function DailyStreak({
               className={`p-2 rounded text-center ${
                 currentStreak >= 30
                   ? "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300"
-                  : "bg-gray-100 dark:bg-gray-800 text-gray-500"
+                  : "bg-muted text-muted-foreground"
               }`}
             >
               <div className="font-semibold">30 يوم</div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { Card, CardContent } from '@/components/ui/card';
 import { Loader2 } from 'lucide-react';
@@ -20,6 +20,7 @@ export function ProtectedRoute({
   allowedRoles,
 }: ProtectedRouteProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const { user, isAuthenticated, isLoading } = useAuth();
 
   useEffect(() => {
@@ -27,7 +28,9 @@ export function ProtectedRoute({
 
     // Check authentication
     if (requireAuth && !isAuthenticated) {
-      router.push('/ar/auth/login');
+      // Build login URL with redirect parameter
+      const loginUrl = `/ar/auth/login?redirect=${encodeURIComponent(pathname)}&message=${encodeURIComponent('يرجى تسجيل الدخول للوصول إلى هذه الصفحة')}`;
+      router.push(loginUrl);
       return;
     }
 
@@ -42,7 +45,7 @@ export function ProtectedRoute({
       router.push('/ar/dashboard');
       return;
     }
-  }, [isLoading, isAuthenticated, user, requireAuth, requireSubscription, allowedRoles, router]);
+  }, [isLoading, isAuthenticated, user, requireAuth, requireSubscription, allowedRoles, router, pathname]);
 
   // Show loading state
   if (isLoading) {

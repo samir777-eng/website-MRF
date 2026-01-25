@@ -80,7 +80,7 @@ export function DevToolbar({
         >
           🛠️ Dev
           {errorCount > 0 && (
-            <Badge variant="destructive" className="ml-1 px-1 py-0 text-xs">
+            <Badge variant="destructive" className="ms-1 px-1 py-0 text-xs">
               {errorCount}
             </Badge>
           )}

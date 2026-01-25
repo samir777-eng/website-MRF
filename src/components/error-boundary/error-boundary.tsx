@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { logger } from "@/lib/utils/logger";
 
 interface Props {
   children: ReactNode;
@@ -24,6 +25,11 @@ interface State {
   errorInfo: ErrorInfo | null;
 }
 
+/**
+ * Error Boundary Component
+ * Catches JavaScript errors anywhere in the child component tree
+ * Logs error information and displays a fallback UI with Arabic messages
+ */
 export class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -37,10 +43,15 @@ export class ErrorBoundary extends Component<Props, State> {
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     this.setState({ error, errorInfo });
 
-    // Log error to console in development
-    if (process.env.NODE_ENV === "development") {
-      console.error("Error Boundary caught an error:", error, errorInfo);
-    }
+    // Log error using logger utility
+    logger.error("Error Boundary caught an error", error, {
+      context: "ErrorBoundary",
+      data: {
+        componentStack: errorInfo.componentStack,
+        errorMessage: error.message,
+        errorStack: error.stack,
+      },
+    });
 
     // Call custom error handler if provided
     if (this.props.onError) {
@@ -52,21 +63,21 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   private reportError = (error: Error, errorInfo: ErrorInfo) => {
-    // In a real app, you would send this to your error reporting service
-    // like Sentry, LogRocket, or Bugsnag
+    // Build error report for monitoring services
     const errorReport = {
       message: error.message,
       stack: error.stack,
       componentStack: errorInfo.componentStack,
       timestamp: new Date().toISOString(),
-      userAgent: navigator.userAgent,
-      url: window.location.href,
+      userAgent: typeof navigator !== "undefined" ? navigator.userAgent : "SSR",
+      url: typeof window !== "undefined" ? window.location.href : "SSR",
     };
 
-    // Log to console in development
-    if (process.env.NODE_ENV === "development") {
-      console.error("Error Report:", errorReport);
-    }
+    // Log detailed error report
+    logger.error("Error Report", error, {
+      context: "ErrorBoundary",
+      data: errorReport,
+    });
 
     // Send to error reporting service in production
     if (process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_SENTRY_DSN) {
@@ -180,13 +191,28 @@ export function withErrorBoundary<P extends object>(
   return WrappedComponent;
 }
 
-// Hook for error reporting in functional components
+/**
+ * Hook for error reporting in functional components
+ * Use this to manually report errors that occur outside of the ErrorBoundary
+ */
 export function useErrorHandler() {
   return (error: Error, errorInfo?: { componentStack?: string }) => {
-    // Report error to monitoring service
-    console.error("Manual error report:", error, errorInfo);
+    // Report error using logger
+    logger.error("Manual error report", error, {
+      context: "useErrorHandler",
+      data: {
+        componentStack: errorInfo?.componentStack,
+        timestamp: new Date().toISOString(),
+        url: typeof window !== "undefined" ? window.location.href : "SSR",
+      },
+    });
 
-    // TODO: Send to error reporting service
-    // errorReportingService.captureException(error, { extra: errorInfo });
+    // Send to error reporting service in production
+    if (process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_SENTRY_DSN) {
+      // Sentry integration would go here
+      // Example: Sentry.captureException(error, { extra: errorInfo });
+    }
   };
 }
+
+export default ErrorBoundary;

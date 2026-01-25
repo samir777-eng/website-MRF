@@ -63,18 +63,18 @@ export function CreateThreadForm() {
     <div className="max-w-2xl mx-auto space-y-6">
       <Link
         href="/ar/forum"
-        className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+        className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
       >
         <ArrowRight size={20} /> العودة للمناقشات
       </Link>
 
-      <div className="p-6 bg-gray-800/50 border border-gray-700/50 rounded-2xl">
-        <h1 className="text-2xl font-bold text-white mb-6">مناقشة جديدة</h1>
+      <div className="p-6 bg-card border border-border rounded-2xl">
+        <h1 className="text-2xl font-bold text-foreground mb-6">مناقشة جديدة</h1>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Title */}
           <div>
-            <label className="block text-gray-300 font-medium mb-2">
+            <label className="block text-foreground font-medium mb-2">
               العنوان *
             </label>
             <input
@@ -83,14 +83,14 @@ export function CreateThreadForm() {
               onChange={(e) => setTitle(e.target.value)}
               placeholder="اكتب عنوان مناقشتك..."
               maxLength={150}
-              className="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+              className="w-full p-3 bg-background border border-input rounded-xl text-foreground placeholder-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
             />
-            <p className="text-gray-500 text-sm mt-1">{title.length}/150</p>
+            <p className="text-muted-foreground text-sm mt-1">{title.length}/150</p>
           </div>
 
           {/* Category */}
           <div>
-            <label className="block text-gray-300 font-medium mb-2 flex items-center gap-2">
+            <label className="block text-foreground font-medium mb-2 flex items-center gap-2">
               <Folder size={18} /> الفئة
             </label>
             <div className="grid grid-cols-3 gap-2">
@@ -106,8 +106,8 @@ export function CreateThreadForm() {
                   onClick={() => setCategory(catId)}
                   className={`p-3 rounded-xl text-sm font-medium transition-all ${
                     category === catId
-                      ? "bg-purple-500 text-white"
-                      : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-muted-foreground hover:bg-muted/80"
                   }`}
                 >
                   {catInfo.icon} {catInfo.nameAr}
@@ -118,7 +118,7 @@ export function CreateThreadForm() {
 
           {/* Content */}
           <div>
-            <label className="block text-gray-300 font-medium mb-2">
+            <label className="block text-foreground font-medium mb-2">
               المحتوى *
             </label>
             <textarea
@@ -127,14 +127,14 @@ export function CreateThreadForm() {
               placeholder="اكتب تفاصيل مناقشتك أو سؤالك..."
               rows={6}
               maxLength={5000}
-              className="w-full p-3 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 resize-none"
+              className="w-full p-3 bg-background border border-input rounded-xl text-foreground placeholder-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary resize-none"
             />
-            <p className="text-gray-500 text-sm mt-1">{content.length}/5000</p>
+            <p className="text-muted-foreground text-sm mt-1">{content.length}/5000</p>
           </div>
 
           {/* Tags */}
           <div>
-            <label className="block text-gray-300 font-medium mb-2 flex items-center gap-2">
+            <label className="block text-foreground font-medium mb-2 flex items-center gap-2">
               <Tag size={18} /> الوسوم (اختياري)
             </label>
             <div className="flex gap-2 mb-2">
@@ -147,12 +147,12 @@ export function CreateThreadForm() {
                 }
                 placeholder="أضف وسماً..."
                 maxLength={20}
-                className="flex-1 p-3 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:border-purple-500"
+                className="flex-1 p-3 bg-background border border-input rounded-xl text-foreground placeholder-muted-foreground focus:border-primary"
               />
               <button
                 type="button"
                 onClick={addTag}
-                className="px-4 bg-gray-700 text-white rounded-xl hover:bg-gray-600"
+                className="px-4 bg-muted text-foreground rounded-xl hover:bg-muted/80"
               >
                 إضافة
               </button>
@@ -162,13 +162,13 @@ export function CreateThreadForm() {
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="flex items-center gap-1 px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm"
+                    className="flex items-center gap-1 px-3 py-1 bg-primary/20 text-primary rounded-full text-sm"
                   >
                     {tag}
                     <button
                       type="button"
                       onClick={() => removeTag(tag)}
-                      className="hover:text-white"
+                      className="hover:text-foreground"
                     >
                       ✕
                     </button>
@@ -178,7 +178,7 @@ export function CreateThreadForm() {
             )}
           </div>
 
-          {error && <p className="text-red-400 text-sm">{error}</p>}
+          {error && <p className="text-destructive text-sm">{error}</p>}
 
           {/* Submit */}
           <motion.button
@@ -186,10 +186,10 @@ export function CreateThreadForm() {
             whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={isSubmitting}
-            className="w-full flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            className="w-full flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-primary to-violet-600 text-primary-foreground font-bold rounded-xl hover:shadow-lg hover:shadow-primary/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           >
             {isSubmitting ? (
-              <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              <div className="w-6 h-6 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
             ) : (
               <>
                 <Send size={20} /> نشر المناقشة

@@ -125,7 +125,7 @@ export default function ProfileClient() {
                   onClick={() => setIsEditing(true)}
                   className="bg-white/20 hover:bg-white/30 text-white border-0"
                 >
-                  <Edit className="w-4 h-4 ml-1" />
+                  <Edit className="w-4 h-4 ms-1" />
                   تعديل
                 </Button>
                 <Link href="/ar/settings">

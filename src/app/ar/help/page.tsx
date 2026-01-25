@@ -1,6 +1,6 @@
 "use client";
 
-import ErrorBoundary from "@/components/ErrorBoundary";
+import { ErrorBoundary } from "@/components/error-boundary";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -216,19 +216,19 @@ function HelpContent() {
         <Tabs defaultValue="faq" className="space-y-6">
           <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 lg:w-auto">
             <TabsTrigger value="faq">
-              <HelpCircle className="w-4 h-4 mr-2" />
+              <HelpCircle className="w-4 h-4 me-2" />
               الأسئلة الشائعة
             </TabsTrigger>
             <TabsTrigger value="guides">
-              <BookOpen className="w-4 h-4 mr-2" />
+              <BookOpen className="w-4 h-4 me-2" />
               أدلة الاستخدام
             </TabsTrigger>
             <TabsTrigger value="videos">
-              <Video className="w-4 h-4 mr-2" />
+              <Video className="w-4 h-4 me-2" />
               فيديوهات تعليمية
             </TabsTrigger>
             <TabsTrigger value="contact">
-              <MessageCircle className="w-4 h-4 mr-2" />
+              <MessageCircle className="w-4 h-4 me-2" />
               تواصل معنا
             </TabsTrigger>
           </TabsList>
@@ -244,7 +244,7 @@ function HelpContent() {
                     <input
                       type="text"
                       placeholder="ابحث في الأسئلة الشائعة..."
-                      className="w-full pr-10 pl-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full pe-10 ps-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
@@ -300,7 +300,7 @@ function HelpContent() {
 
                     {expandedFAQ === faq.id && (
                       <div className="px-6 pb-6 pt-0">
-                        <div className="pr-14 text-muted-foreground leading-relaxed">
+                        <div className="pe-14 text-muted-foreground leading-relaxed">
                           {faq.answer}
                         </div>
                       </div>
@@ -367,7 +367,7 @@ function HelpContent() {
                           {guide.description}
                         </p>
                         <Button variant="outline" size="sm">
-                          <FileText className="w-4 h-4 mr-2" />
+                          <FileText className="w-4 h-4 me-2" />
                           قراءة الدليل
                         </Button>
                       </div>
@@ -513,7 +513,7 @@ function HelpContent() {
                     className="w-full md:w-auto"
                     aria-label="إرسال رسالة المساعدة"
                   >
-                    <Mail className="w-4 h-4 mr-2" />
+                    <Mail className="w-4 h-4 me-2" />
                     إرسال الرسالة
                   </Button>
                 </form>

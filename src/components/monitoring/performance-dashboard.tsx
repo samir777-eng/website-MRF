@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { AlertTriangle, Activity, Zap, Eye, Clock, Gauge } from "lucide-react";
+import { AlertTriangle, Activity, Zap, Eye, Clock as _Clock, Gauge } from "lucide-react";
 import {
   performanceMonitor,
   type PerformanceMetric,
@@ -136,7 +136,7 @@ export function PerformanceDashboard({
           size="sm"
           className="shadow-lg"
         >
-          <Gauge className="w-4 h-4 mr-2" />
+          <Gauge className="w-4 h-4 me-2" />
           Performance
         </Button>
       </div>

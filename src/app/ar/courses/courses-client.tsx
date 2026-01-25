@@ -512,9 +512,9 @@ export default function ArabicCoursesClient() {
                             course.progress > 0 ? "متابعة التعلم" : "بدء الدورة"
                           }
                         >
-                          <Play className="w-5 h-5 ml-2" />
+                          <Play className="w-5 h-5 ms-2" />
                           {course.progress > 0 ? "متابعة التعلم" : "بدء الدورة"}
-                          <ArrowLeft className="w-5 h-5 mr-2" />
+                          <ArrowLeft className="w-5 h-5 me-2" />
                         </Button>
                       </Link>
                     ) : (
@@ -524,9 +524,9 @@ export default function ArabicCoursesClient() {
                           data-testid="enroll-course"
                           aria-label="التسجيل في الدورة"
                         >
-                          <BookOpen className="w-5 h-5 ml-2" />
+                          <BookOpen className="w-5 h-5 ms-2" />
                           التسجيل في الدورة
-                          <ArrowLeft className="w-5 h-5 mr-2" />
+                          <ArrowLeft className="w-5 h-5 me-2" />
                         </Button>
                       </Link>
                     )}
@@ -540,7 +540,7 @@ export default function ArabicCoursesClient() {
                         aria-label="عرض المنهج"
                         onClick={() => handleViewCurriculum(course.title)}
                       >
-                        <FileText className="w-4 h-4 ml-1" />
+                        <FileText className="w-4 h-4 ms-1" />
                         المنهج
                       </Button>
                       <Button
@@ -551,7 +551,7 @@ export default function ArabicCoursesClient() {
                         aria-label="معاينة الدورة"
                         onClick={() => handlePreviewCourse(course.title)}
                       >
-                        <Video className="w-4 h-4 ml-1" />
+                        <Video className="w-4 h-4 ms-1" />
                         معاينة
                       </Button>
                     </div>
@@ -606,7 +606,7 @@ export default function ArabicCoursesClient() {
                           variant="secondary"
                           className="bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 text-sm"
                         >
-                          <Trophy className="w-3 h-3 ml-1" />
+                          <Trophy className="w-3 h-3 ms-1" />
                           شهادة معتمدة
                         </Badge>
                       )}
@@ -721,22 +721,22 @@ export default function ArabicCoursesClient() {
                         {course.enrolled ? (
                           course.progress > 0 ? (
                             <>
-                              <Play className="w-4 h-4 ml-2" />
+                              <Play className="w-4 h-4 ms-2" />
                               متابعة التعلم
-                              <ArrowLeft className="w-4 h-4 mr-2" />
+                              <ArrowLeft className="w-4 h-4 me-2" />
                             </>
                           ) : (
                             <>
-                              <CheckCircle className="w-4 h-4 ml-2" />
+                              <CheckCircle className="w-4 h-4 ms-2" />
                               ابدأ الدورة
-                              <ArrowLeft className="w-4 h-4 mr-2" />
+                              <ArrowLeft className="w-4 h-4 me-2" />
                             </>
                           )
                         ) : (
                           <>
-                            <GraduationCap className="w-4 h-4 ml-2" />
+                            <GraduationCap className="w-4 h-4 ms-2" />
                             التسجيل المجاني
-                            <ArrowLeft className="w-4 h-4 mr-2" />
+                            <ArrowLeft className="w-4 h-4 me-2" />
                           </>
                         )}
                       </Button>
@@ -749,7 +749,7 @@ export default function ArabicCoursesClient() {
                       aria-label="معاينة الدورة"
                       onClick={() => handlePreviewCourse(course.title)}
                     >
-                      <Video className="w-4 h-4 ml-1" />
+                      <Video className="w-4 h-4 ms-1" />
                       معاينة
                     </Button>
                   </div>

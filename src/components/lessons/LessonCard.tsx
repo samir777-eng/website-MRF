@@ -108,7 +108,7 @@ export function LessonCard({ lesson }: LessonCardProps) {
         <div className="absolute top-4 right-4 flex flex-col gap-2">
           {lesson.completed && (
             <Badge className="bg-green-500 text-white border-0 shadow-lg">
-              <CheckCircle className="w-3 h-3 ml-1" />
+              <CheckCircle className="w-3 h-3 ms-1" />
               مكتمل
             </Badge>
           )}
@@ -230,28 +230,28 @@ export function LessonCard({ lesson }: LessonCardProps) {
           >
             {lesson.completed ? (
               <>
-                <Trophy className="w-4 h-4 ml-2" aria-hidden="true" />
+                <Trophy className="w-4 h-4 ms-2" aria-hidden="true" />
                 مراجعة الدرس
                 <ArrowLeft
-                  className="w-4 h-4 mr-2 rtl:-scale-x-100"
+                  className="w-4 h-4 me-2 rtl:-scale-x-100"
                   aria-hidden="true"
                 />
               </>
             ) : lesson.progress > 0 ? (
               <>
-                <Play className="w-4 h-4 ml-2" aria-hidden="true" />
+                <Play className="w-4 h-4 ms-2" aria-hidden="true" />
                 متابعة التعلم
                 <ArrowLeft
-                  className="w-4 h-4 mr-2 rtl:-scale-x-100"
+                  className="w-4 h-4 me-2 rtl:-scale-x-100"
                   aria-hidden="true"
                 />
               </>
             ) : (
               <>
-                <BookOpen className="w-4 h-4 ml-2" aria-hidden="true" />
+                <BookOpen className="w-4 h-4 ms-2" aria-hidden="true" />
                 ابدأ الدرس
                 <ArrowLeft
-                  className="w-4 h-4 mr-2 rtl:-scale-x-100"
+                  className="w-4 h-4 me-2 rtl:-scale-x-100"
                   aria-hidden="true"
                 />
               </>

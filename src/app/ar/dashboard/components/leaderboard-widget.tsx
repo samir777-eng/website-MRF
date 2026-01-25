@@ -44,7 +44,7 @@ export function LeaderboardWidget() {
           <Link href="/ar/leaderboard">
             <Button variant="ghost" size="sm" className="text-primary">
               عرض الكل
-              <ArrowLeft className="w-4 h-4 mr-2" />
+              <ArrowLeft className="w-4 h-4 me-2" />
             </Button>
           </Link>
         </div>
@@ -136,7 +136,7 @@ export function LeaderboardWidget() {
         {/* View Full Leaderboard */}
         <Link href="/ar/leaderboard" className="block">
           <Button variant="outline" className="w-full">
-            <Medal className="w-4 h-4 ml-2" />
+            <Medal className="w-4 h-4 ms-2" />
             عرض الترتيب الكامل
           </Button>
         </Link>

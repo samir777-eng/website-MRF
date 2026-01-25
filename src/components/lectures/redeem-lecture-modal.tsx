@@ -113,7 +113,7 @@ export function RedeemLectureModal({
               </div>
             </div>
             <Button onClick={handleClose} className="w-full">
-              <Video className="w-4 h-4 ml-2" />
+              <Video className="w-4 h-4 ms-2" />
               الذهاب للمحاضرة
             </Button>
           </div>
@@ -204,12 +204,12 @@ export function RedeemLectureModal({
             >
               {isRedeeming ? (
                 <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent ml-2" />
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent ms-2" />
                   جاري الاستبدال...
                 </>
               ) : (
                 <>
-                  <CheckCircle className="w-4 h-4 ml-2" />
+                  <CheckCircle className="w-4 h-4 ms-2" />
                   تأكيد الاستبدال
                 </>
               )}

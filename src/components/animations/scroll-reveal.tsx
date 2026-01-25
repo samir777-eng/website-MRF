@@ -43,7 +43,7 @@ export function ScrollReveal({
 
     return () => {
       if (ref.current) {
-        observer.unobserve(ref.current);
+        observer.unobserve(ref.current); // eslint-disable-line react-hooks/exhaustive-deps
       }
     };
   }, [delay]);

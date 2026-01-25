@@ -231,7 +231,7 @@ export default function DistributorPage() {
               </div>
 
               <Button type="submit" size="lg" className="w-full md:w-auto">
-                <Users className="w-5 h-5 ml-2" />
+                <Users className="w-5 h-5 ms-2" />
                 إرسال الطلب
               </Button>
             </form>

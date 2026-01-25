@@ -297,7 +297,7 @@ function BundlesTab() {
                         </p>
                       </div>
                       <Badge variant="default" className="bg-green-600">
-                        <CheckCircle className="w-3 h-3 ml-1" />
+                        <CheckCircle className="w-3 h-3 ms-1" />
                         نشطة
                       </Badge>
                     </div>
@@ -321,7 +321,7 @@ function BundlesTab() {
 
                     <Link href="/ar/lectures">
                       <Button className="w-full mt-4" variant="outline" size="sm">
-                        <Video className="w-4 h-4 ml-2" />
+                        <Video className="w-4 h-4 ms-2" />
                         استبدال محاضرة
                       </Button>
                     </Link>
@@ -352,7 +352,7 @@ function BundlesTab() {
             >
               {bundle.popular && (
                 <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center py-2 text-sm font-bold">
-                  <Crown className="w-4 h-4 inline-block ml-1" />
+                  <Crown className="w-4 h-4 inline-block ms-1" />
                   الأكثر شعبية
                 </div>
               )}
@@ -406,7 +406,7 @@ function BundlesTab() {
                   }`}
                   onClick={() => handlePurchase(bundle.id)}
                 >
-                  <Gift className="w-4 h-4 ml-2" />
+                  <Gift className="w-4 h-4 ms-2" />
                   شراء الباقة
                 </Button>
               </CardContent>
@@ -491,7 +491,7 @@ function BooksTab() {
       <div className="flex justify-end">
         <Link href="/ar/cart">
           <Button size="sm" variant="outline" className="relative cart-button-target">
-            <ShoppingCart className="w-4 h-4 ml-2" />
+            <ShoppingCart className="w-4 h-4 ms-2" />
             السلة
             {getCartItemCount() > 0 && (
               <Badge
@@ -517,7 +517,7 @@ function BooksTab() {
                   placeholder="ابحث عن كتاب..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pr-10 h-10"
+                  className="pe-10 h-10"
                 />
               </div>
             </div>
@@ -551,7 +551,7 @@ function BooksTab() {
               size="sm"
               onClick={() => setShowPackages(true)}
             >
-              <Package className="w-4 h-4 ml-1" />
+              <Package className="w-4 h-4 ms-1" />
               الباقات
             </Button>
             <Button
@@ -559,7 +559,7 @@ function BooksTab() {
               size="sm"
               onClick={() => setShowPackages(false)}
             >
-              <BookOpen className="w-4 h-4 ml-1" />
+              <BookOpen className="w-4 h-4 ms-1" />
               الكتب الفردية
             </Button>
           </div>
@@ -615,7 +615,7 @@ function BooksTab() {
                         setTimeout(() => setCartBounce(false), 600);
                       }}
                     >
-                      <ShoppingCart className="w-4 h-4 ml-2" />
+                      <ShoppingCart className="w-4 h-4 ms-2" />
                       أضف للسلة
                     </Button>
                   </div>
@@ -681,7 +681,7 @@ function BooksTab() {
                       onClick={(e) => handleAddToCart(book, e)}
                       disabled={!book.inStock}
                     >
-                      <ShoppingCart className="w-4 h-4 ml-2" />
+                      <ShoppingCart className="w-4 h-4 ms-2" />
                       أضف للسلة
                     </Button>
                   </div>
@@ -841,7 +841,7 @@ function RewardsTab() {
                 disabled={isPurchasing || gems < deal.salePrice}
                 onClick={() => handleBuyNow(deal.id, deal.name, deal.salePrice)}
               >
-                <Gift className="w-4 h-4 ml-2" />
+                <Gift className="w-4 h-4 ms-2" />
                 {gems < deal.salePrice ? "رصيد غير كافٍ" : "شراء الآن"}
               </Button>
             </div>

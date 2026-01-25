@@ -17,13 +17,13 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link href="/ar">
             <Button className="flex items-center">
-              <Home className="w-4 h-4 ml-2" />
+              <Home className="w-4 h-4 ms-2" />
               العودة للرئيسية
             </Button>
           </Link>
           <Link href="/ar/lectures">
             <Button variant="outline" className="flex items-center">
-              <Search className="w-4 h-4 ml-2" />
+              <Search className="w-4 h-4 ms-2" />
               تصفح الدروس
             </Button>
           </Link>
@@ -36,7 +36,7 @@ export default function NotFound() {
           <Link href="/ar/help">
             <Button variant="link" className="flex items-center">
               اتصل بالدعم
-              <ArrowRight className="w-4 h-4 mr-2" />
+              <ArrowRight className="w-4 h-4 me-2" />
             </Button>
           </Link>
         </div>

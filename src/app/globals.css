@@ -121,11 +121,11 @@
   --destructive-foreground: 0 0% 100%;
 
   /* Chart colors - Harmonized with new palette */
-  --chart-1: 234 83% 55%;  /* Indigo */
-  --chart-2: 239 68% 68%;  /* Coral */
-  --chart-3: 16 185 129;   /* Emerald */
-  --chart-4: 6 182 212;    /* Cyan */
-  --chart-5: 45 93% 47%;   /* Gold */
+  --chart-1: 234 83% 55%; /* Indigo */
+  --chart-2: 239 68% 68%; /* Coral */
+  --chart-3: 16 185 129; /* Emerald */
+  --chart-4: 6 182 212; /* Cyan */
+  --chart-5: 45 93% 47%; /* Gold */
 
   /* Sidebar */
   --sidebar: 220 20% 98%;
@@ -196,11 +196,11 @@
   --destructive-foreground: 0 0% 100%;
 
   /* Chart colors */
-  --chart-1: 234 70% 65%;  /* Indigo */
-  --chart-2: 239 65% 70%;  /* Coral */
-  --chart-3: 16 170% 50%;  /* Emerald */
-  --chart-4: 6 170% 60%;   /* Cyan */
-  --chart-5: 45 93% 55%;   /* Gold */
+  --chart-1: 234 70% 65%; /* Indigo */
+  --chart-2: 239 65% 70%; /* Coral */
+  --chart-3: 16 170% 50%; /* Emerald */
+  --chart-4: 6 170% 60%; /* Cyan */
+  --chart-5: 45 93% 55%; /* Gold */
 
   /* Sidebar */
   --sidebar: 234 48% 3%;
@@ -403,15 +403,17 @@ body {
 
 /* Signature Brand Gradients */
 .bg-premium-gradient {
-  background: linear-gradient(135deg, 
-    rgb(var(--brand-indigo-500)) 0%, 
+  background: linear-gradient(
+    135deg,
+    rgb(var(--brand-indigo-500)) 0%,
     rgb(var(--brand-coral-600)) 100%
   );
 }
 
 .bg-premium-gradient-soft {
-  background: linear-gradient(135deg, 
-    rgb(var(--brand-indigo-400)) 0%, 
+  background: linear-gradient(
+    135deg,
+    rgb(var(--brand-indigo-400)) 0%,
     rgb(var(--brand-coral-500)) 100%
   );
 }
@@ -425,8 +427,9 @@ body {
 }
 
 .bg-xp-gradient {
-  background: linear-gradient(135deg, 
-    rgb(var(--xp-400)) 0%, 
+  background: linear-gradient(
+    135deg,
+    rgb(var(--xp-400)) 0%,
     rgb(var(--success-500)) 100%
   );
 }
@@ -443,8 +446,9 @@ body {
 
 /* Text Gradients */
 .text-premium-gradient {
-  background: linear-gradient(135deg, 
-    rgb(var(--brand-indigo-500)), 
+  background: linear-gradient(
+    135deg,
+    rgb(var(--brand-indigo-500)),
     rgb(var(--brand-coral-600))
   );
   -webkit-background-clip: text;
@@ -453,8 +457,9 @@ body {
 }
 
 .text-success-gradient {
-  background: linear-gradient(135deg, 
-    rgb(var(--success-500)), 
+  background: linear-gradient(
+    135deg,
+    rgb(var(--success-500)),
     rgb(var(--xp-500))
   );
   -webkit-background-clip: text;
@@ -746,7 +751,11 @@ h3,
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 600;
-  background: linear-gradient(135deg, hsl(var(--color-xp)), hsl(var(--color-xp-dark)));
+  background: linear-gradient(
+    135deg,
+    hsl(var(--color-xp)),
+    hsl(var(--color-xp-dark))
+  );
   color: white;
   box-shadow: 0 2px 8px hsl(var(--color-xp) / 0.3);
 }
@@ -809,17 +818,17 @@ h3,
   --color-level-light: 217 91% 95%;
 
   /* Text-safe variants (4.5:1+ contrast on white for WCAG AA) */
-  --color-xp-text: 187 94% 28%;           /* Cyan-700 */
-  --color-streak-text: 25 95% 30%;        /* Amber-700 */
-  --color-gems-text: 199 89% 30%;         /* Sky-700 */
-  --color-achievement-text: 45 93% 28%;   /* Yellow-700 */
-  --color-level-text: 217 91% 35%;        /* Blue-700 */
+  --color-xp-text: 187 94% 28%; /* Cyan-700 */
+  --color-streak-text: 25 95% 30%; /* Amber-700 */
+  --color-gems-text: 199 89% 30%; /* Sky-700 */
+  --color-achievement-text: 45 93% 28%; /* Yellow-700 */
+  --color-level-text: 217 91% 35%; /* Blue-700 */
 
   /* Semantic text-safe colors */
-  --success-text: 142 76% 28%;            /* Green-700 */
-  --warning-text: 38 92% 30%;             /* Amber-700 */
-  --info-text: 217 91% 40%;               /* Blue-700 */
-  --error-text: 0 84% 40%;                /* Red-700 */
+  --success-text: 142 76% 28%; /* Green-700 */
+  --warning-text: 38 92% 30%; /* Amber-700 */
+  --info-text: 217 91% 40%; /* Blue-700 */
+  --error-text: 0 84% 40%; /* Red-700 */
 }
 
 .dark {
@@ -842,8 +851,13 @@ h3,
 }
 
 @keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 /* Glow effect for highlighted elements */
@@ -866,7 +880,8 @@ h3,
 }
 
 @keyframes micro-pulse-anim {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }

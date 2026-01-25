@@ -523,7 +523,7 @@ export default function AdaptiveLearningDisplay({
 
                   {rec.actionable && (
                     <Button size="sm" className="w-full">
-                      <ArrowRight className="w-4 h-4 mr-2" />
+                      <ArrowRight className="w-4 h-4 me-2" />
                       تطبيق التوصية
                     </Button>
                   )}
@@ -589,7 +589,7 @@ export default function AdaptiveLearningDisplay({
                   </div>
 
                   <Button className="w-full">
-                    <BookOpen className="w-4 h-4 mr-2" />
+                    <BookOpen className="w-4 h-4 me-2" />
                     {path.completionRate > 0 ? "متابعة المسار" : "بدء المسار"}
                   </Button>
                 </div>

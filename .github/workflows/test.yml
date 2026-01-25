@@ -2,107 +2,53 @@ name: Playwright Tests
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main, develop ]
-  schedule:
-    # Run daily at 2 AM UTC
-    - cron: '0 2 * * *'
+    branches: [main, develop]
 
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
         node-version: [18.x, 20.x]
-        
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: mrf-edu-web/package-lock.json
-        
-    - name: Install dependencies
-      working-directory: ./mrf-edu-web
-      run: npm ci
-      
-    - name: Install Playwright Browsers
-      working-directory: ./mrf-edu-web
-      run: npx playwright install --with-deps
-      
-    - name: Run Playwright tests
-      working-directory: ./mrf-edu-web
-      run: npx playwright test
-      
-    - name: Upload test results
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: playwright-report-node-${{ matrix.node-version }}
-        path: mrf-edu-web/playwright-report/
-        retention-days: 30
-        
-    - name: Upload test screenshots
-      uses: actions/upload-artifact@v4
-      if: failure()
-      with:
-        name: test-screenshots-node-${{ matrix.node-version }}
-        path: mrf-edu-web/test-results/
-        retention-days: 7
 
-  notify:
-    needs: test
-    runs-on: ubuntu-latest
-    if: failure()
-    
     steps:
-    - name: Send notification on failure
-      run: |
-        echo "Tests failed! Check the workflow run for details."
-        # Add your notification logic here (Slack, Email, etc.)
-        # Example for Slack:
-        # curl -X POST -H 'Content-type: application/json' \
-        #   --data '{"text":"Playwright tests failed! Check GitHub Actions."}' \
-        #   ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  coverage:
-    needs: test
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20.x'
-        cache: 'npm'
-        cache-dependency-path: mrf-edu-web/package-lock.json
-        
-    - name: Install dependencies
-      working-directory: ./mrf-edu-web
-      run: npm ci
-      
-    - name: Generate coverage report
-      working-directory: ./mrf-edu-web
-      run: |
-        echo "Test coverage report generation"
-        # Add coverage generation commands here
-        
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      if: always()
-      with:
-        files: ./mrf-edu-web/coverage/coverage-final.json
-        flags: unittests
-        name: codecov-umbrella
-        fail_ci_if_error: false
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
 
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Build application
+        run: npm run build
+
+      - name: Run Playwright tests
+        run: npx playwright test
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-node-${{ matrix.node-version }}
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Upload test screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: test-screenshots-node-${{ matrix.node-version }}
+          path: test-results/
+          retention-days: 7

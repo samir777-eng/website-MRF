@@ -64,7 +64,7 @@ export function FormField({
     <div className={cn("space-y-2", className)}>
       <Label htmlFor={name}>
         {label}
-        {required && <span className="text-destructive mr-1">*</span>}
+        {required && <span className="text-destructive me-1">*</span>}
       </Label>
       <div className="relative">
         <Input
@@ -75,6 +75,10 @@ export function FormField({
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder={placeholder}
+          required={required}
+          aria-required={required}
+          aria-invalid={!!displayError}
+          aria-describedby={displayError ? `${name}-error` : undefined}
           className={cn(
             displayError && "border-destructive focus-visible:ring-destructive",
             isValid &&
@@ -90,7 +94,11 @@ export function FormField({
         )}
       </div>
       {displayError && (
-        <p className="text-sm text-destructive flex items-center gap-1">
+        <p
+          id={`${name}-error`}
+          role="alert"
+          className="text-sm text-destructive flex items-center gap-1"
+        >
           {displayError}
         </p>
       )}

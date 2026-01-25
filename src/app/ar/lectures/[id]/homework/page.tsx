@@ -1,11 +1,13 @@
 "use client";
 
+import { LectureProgressGuard } from "@/components/lectures";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
+import { useLectureProgress } from "@/hooks/useLectureProgress";
 import {
   ArrowRight,
   BookOpen,
@@ -107,10 +109,12 @@ function getMockHomework(lectureId: string): HomeworkData {
 
 type HomeworkState = "intro" | "working" | "submitted" | "results";
 
-export default function LectureHomeworkPage() {
+function HomeworkContent() {
   const params = useParams();
   const router = useRouter();
   const lectureId = params.id as string;
+
+  const { completeHomework, progress: lectureProgress } = useLectureProgress(lectureId);
 
   const [homework] = useState(() => getMockHomework(lectureId));
   const [state, setState] = useState<HomeworkState>("intro");
@@ -155,10 +159,16 @@ export default function LectureHomeworkPage() {
     });
     setScore(totalScore);
     setState("results");
+
+    // Save progress if passed
+    const didPass = totalScore >= homework.passingScore;
+    if (didPass && !lectureProgress.homeworkCompleted) {
+      completeHomework(totalScore);
+    }
   };
 
   const passed = score >= homework.passingScore;
-  const progress = ((currentQuestion + 1) / homework.questions.length) * 100;
+  const quizProgress = ((currentQuestion + 1) / homework.questions.length) * 100;
   const currentQ = homework.questions[currentQuestion];
 
   // Locked state
@@ -182,7 +192,7 @@ export default function LectureHomeworkPage() {
             </div>
             <Link href={`/ar/lectures/${lectureId}`}>
               <Button className="w-full">
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRight className="w-4 h-4 ms-2" />
                 العودة للمحاضرة
               </Button>
             </Link>
@@ -199,7 +209,7 @@ export default function LectureHomeworkPage() {
         <div className="container mx-auto px-6 max-w-2xl">
           <Link href={`/ar/lectures/${lectureId}`}>
             <Button variant="ghost" size="sm" className="mb-6">
-              <ArrowRight className="w-4 h-4 ml-2" />
+              <ArrowRight className="w-4 h-4 ms-2" />
               العودة للمحاضرة
             </Button>
           </Link>
@@ -234,7 +244,7 @@ export default function LectureHomeworkPage() {
                 </div>
               </div>
               <Button size="lg" className="w-full" onClick={handleStart}>
-                <BookOpen className="w-4 h-4 ml-2" />
+                <BookOpen className="w-4 h-4 ms-2" />
                 بدء الواجب
               </Button>
             </CardContent>
@@ -323,7 +333,7 @@ export default function LectureHomeworkPage() {
               {currentQ.points} نقطة
             </span>
           </div>
-          <Progress value={progress} className="h-2" />
+          <Progress value={quizProgress} className="h-2" />
         </div>
 
         {/* Question Card */}
@@ -382,7 +392,7 @@ export default function LectureHomeworkPage() {
             onClick={handlePrev}
             disabled={currentQuestion === 0}
           >
-            <ChevronRight className="w-4 h-4 ml-2" />
+            <ChevronRight className="w-4 h-4 ms-2" />
             السابق
           </Button>
 
@@ -392,13 +402,13 @@ export default function LectureHomeworkPage() {
               disabled={Object.keys(answers).length < homework.questions.length}
               className="bg-gradient-to-r from-green-600 to-emerald-600"
             >
-              <CheckCircle className="w-4 h-4 ml-2" />
+              <CheckCircle className="w-4 h-4 ms-2" />
               تسليم الواجب
             </Button>
           ) : (
             <Button onClick={handleNext}>
               التالي
-              <ChevronLeft className="w-4 h-4 mr-2" />
+              <ChevronLeft className="w-4 h-4 me-2" />
             </Button>
           )}
         </div>
@@ -421,5 +431,17 @@ export default function LectureHomeworkPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Export the wrapped component with progress guard
+export default function LectureHomeworkPage() {
+  const params = useParams();
+  const lectureId = params?.id as string;
+
+  return (
+    <LectureProgressGuard lectureId={lectureId} requiredStep="homework">
+      <HomeworkContent />
+    </LectureProgressGuard>
   );
 }

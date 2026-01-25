@@ -117,7 +117,7 @@ export default function SpacedRepetitionDisplay({
                 className="w-full h-11 min-h-[44px]"
                 disabled={!!currentSession}
               >
-                <Brain className="w-4 h-4 mr-2" />
+                <Brain className="w-4 h-4 me-2" />
                 {currentSession ? "جلسة نشطة" : "ابدأ المراجعة"}
               </Button>
             )}
@@ -194,7 +194,7 @@ export default function SpacedRepetitionDisplay({
                 }
                 className="w-full h-11 min-h-[44px]"
               >
-                <Brain className="w-4 h-4 mr-2" />
+                <Brain className="w-4 h-4 me-2" />
                 {currentSession ? "جلسة نشطة" : "ابدأ المراجعة"}
               </Button>
             )}
@@ -331,7 +331,7 @@ export default function SpacedRepetitionDisplay({
                 }
                 className="w-full h-11 min-h-[44px]"
               >
-                <Brain className="w-4 h-4 mr-2" />
+                <Brain className="w-4 h-4 me-2" />
                 {currentSession ? "جلسة نشطة" : "ابدأ المراجعة"}
               </Button>
             )}

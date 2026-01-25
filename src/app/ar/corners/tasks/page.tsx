@@ -202,9 +202,9 @@ export default function TasksCornerPage() {
                 }
               >
                 {isRunning ? (
-                  <Pause className="w-5 h-5 ml-2" />
+                  <Pause className="w-5 h-5 ms-2" />
                 ) : (
-                  <Play className="w-5 h-5 ml-2" />
+                  <Play className="w-5 h-5 ms-2" />
                 )}
                 {isRunning ? "إيقاف" : "ابدأ"}
               </Button>

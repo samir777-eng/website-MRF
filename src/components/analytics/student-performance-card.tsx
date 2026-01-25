@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TrendingUp, TrendingDown, Minus, Flame, Target, Clock } from "lucide-react";
-import { StudentSummary, getTrendIcon } from "@/types/analytics";
+import { TrendingUp, TrendingDown, Minus, Flame, Target } from "lucide-react";
+import { StudentSummary } from "@/types/analytics";
 import Link from "next/link";
 
 interface StudentPerformanceCardProps {
@@ -11,7 +11,7 @@ interface StudentPerformanceCardProps {
   showDetails?: boolean;
 }
 
-export function StudentPerformanceCard({ student, rank, showDetails = false }: StudentPerformanceCardProps) {
+export function StudentPerformanceCard({ student, rank, showDetails: _showDetails = false }: StudentPerformanceCardProps) {
   const trendIcons = {
     improving: <TrendingUp className="text-green-400" size={16} />,
     stable: <Minus className="text-gray-400" size={16} />,

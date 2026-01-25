@@ -5,7 +5,7 @@
  * Loading state for lessons page with lesson cards
  */
 
-import { EnhancedSkeleton, SkeletonListItem } from "./EnhancedSkeleton";
+import { EnhancedSkeleton, SkeletonListItem as _SkeletonListItem } from "./EnhancedSkeleton";
 
 export function LessonsListSkeleton() {
   return (

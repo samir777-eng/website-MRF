@@ -157,7 +157,7 @@ export function DailyQuestionCard({ onComplete }: DailyQuestionProps) {
           </p>
           <div className="flex items-center justify-center gap-4">
             <Badge className="bg-green-600 text-white text-lg px-4 py-2">
-              <Flame className="w-5 h-5 ml-2" />
+              <Flame className="w-5 h-5 ms-2" />
               {userXp.dailyQuestionStreak} يوم متتالي
             </Badge>
           </div>
@@ -176,11 +176,11 @@ export function DailyQuestionCard({ onComplete }: DailyQuestionProps) {
           </CardTitle>
           <div className="flex items-center gap-2">
             <Badge className="bg-yellow-600 text-white">
-              <Star className="w-4 h-4 ml-1" />+{question.xpReward} XP
+              <Star className="w-4 h-4 ms-1" />+{question.xpReward} XP
             </Badge>
             {userXp.dailyQuestionStreak > 0 && (
               <Badge className="bg-orange-600 text-white">
-                <Flame className="w-4 h-4 ml-1" />
+                <Flame className="w-4 h-4 ms-1" />
                 {userXp.dailyQuestionStreak} 🔥
               </Badge>
             )}
@@ -193,7 +193,7 @@ export function DailyQuestionCard({ onComplete }: DailyQuestionProps) {
         {userXp.dailyQuestionStreak > 0 && !isSubmitted && (
           <div className="p-4 bg-orange-100 dark:bg-orange-900/20 rounded-lg">
             <p className="text-sm text-orange-900 dark:text-orange-100">
-              <Flame className="w-4 h-4 inline ml-1" />
+              <Flame className="w-4 h-4 inline ms-1" />
               <strong>سلسلة نارية!</strong> أنت في سلسلة{" "}
               {userXp.dailyQuestionStreak} يوم متتالي. أجب بشكل صحيح للحصول على{" "}
               <strong>
@@ -273,7 +273,7 @@ export function DailyQuestionCard({ onComplete }: DailyQuestionProps) {
             disabled={selectedAnswer === null}
             className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-lg py-6"
           >
-            <CheckCircle className="w-5 h-5 ml-2" />
+            <CheckCircle className="w-5 h-5 ms-2" />
             تأكيد الإجابة
           </Button>
         )}
@@ -302,17 +302,17 @@ export function DailyQuestionCard({ onComplete }: DailyQuestionProps) {
                 {isCorrect && (
                   <div className="flex items-center gap-3 flex-wrap">
                     <Badge className="bg-yellow-600 text-white text-base px-3 py-1">
-                      <Trophy className="w-4 h-4 ml-1" />+{xpEarned} XP
+                      <Trophy className="w-4 h-4 ms-1" />+{xpEarned} XP
                     </Badge>
                     {calculateStreakBonus(userXp.dailyQuestionStreak) > 0 && (
                       <Badge className="bg-orange-600 text-white text-base px-3 py-1">
-                        <Flame className="w-4 h-4 ml-1" />
+                        <Flame className="w-4 h-4 ms-1" />
                         مكافأة السلسلة: +
                         {calculateStreakBonus(userXp.dailyQuestionStreak)} XP
                       </Badge>
                     )}
                     <Badge className="bg-blue-600 text-white text-base px-3 py-1">
-                      <TrendingUp className="w-4 h-4 ml-1" />
+                      <TrendingUp className="w-4 h-4 ms-1" />
                       المستوى {userXp.currentLevel}
                     </Badge>
                   </div>

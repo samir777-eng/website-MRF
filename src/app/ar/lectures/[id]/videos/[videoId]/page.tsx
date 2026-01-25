@@ -1,9 +1,10 @@
 "use client";
 
-import { LivesPurchaseModal } from "@/components/lectures";
+import { LectureProgressGuard, LivesPurchaseModal } from "@/components/lectures";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { useLectureProgress } from "@/hooks/useLectureProgress";
 import {
   AlertTriangle,
   ArrowRight,
@@ -87,11 +88,13 @@ function getMockAccess(lectureId: string): LectureAccess {
   };
 }
 
-export default function VideoPlayerPage() {
+function VideoPlayerContent() {
   const params = useParams();
   const router = useRouter();
   const lectureId = params.id as string;
   const videoId = params.videoId as string;
+
+  const { markVideoWatched, progress: lectureProgress } = useLectureProgress(lectureId);
 
   const [video, setVideo] = useState<VideoData | null>(null);
   const [access, setAccess] = useState<LectureAccess | null>(null);
@@ -103,6 +106,7 @@ export default function VideoPlayerPage() {
   const [lifeUsed, setLifeUsed] = useState(false);
   const [noLivesLeft, setNoLivesLeft] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+  const [videoCompleted, setVideoCompleted] = useState(false);
 
   // Load data on mount
   useEffect(() => {
@@ -152,6 +156,21 @@ export default function VideoPlayerPage() {
     }
   };
 
+  // Mark video as completed when it finishes
+  const handleVideoComplete = useCallback(() => {
+    if (!videoCompleted) {
+      markVideoWatched(videoId);
+      setVideoCompleted(true);
+    }
+  }, [markVideoWatched, videoId, videoCompleted]);
+
+  // Simulate video completion when progress reaches 90%
+  useEffect(() => {
+    if (video && currentTime >= video.duration * 0.9 && !videoCompleted) {
+      handleVideoComplete();
+    }
+  }, [currentTime, video, videoCompleted, handleVideoComplete]);
+
   if (!video || !access) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -194,7 +213,7 @@ export default function VideoPlayerPage() {
                 className="flex-1 bg-gradient-to-r from-rose-600 to-pink-600"
                 onClick={() => setShowPurchaseModal(true)}
               >
-                <Heart className="w-4 h-4 ml-2" />
+                <Heart className="w-4 h-4 ms-2" />
                 شراء أرواح
               </Button>
             </div>
@@ -261,7 +280,7 @@ export default function VideoPlayerPage() {
                 className="flex-1 bg-gradient-to-r from-rose-600 to-pink-600"
                 onClick={handleUseLife}
               >
-                <Heart className="w-4 h-4 ml-2" />
+                <Heart className="w-4 h-4 ms-2" />
                 استخدم روح للمشاهدة
               </Button>
             </div>
@@ -283,7 +302,7 @@ export default function VideoPlayerPage() {
               size="sm"
               className="text-white hover:bg-white/20"
             >
-              <ArrowRight className="w-4 h-4 ml-2" />
+              <ArrowRight className="w-4 h-4 ms-2" />
               العودة للمحاضرة
             </Button>
           </Link>
@@ -371,6 +390,23 @@ export default function VideoPlayerPage() {
               </Button>
             </div>
             <div className="flex items-center gap-3">
+              {/* Mark Complete Button for demo purposes */}
+              {!videoCompleted && !lectureProgress.videosWatched.includes(videoId) && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:bg-white/20 bg-green-600/80 hover:bg-green-600"
+                  onClick={handleVideoComplete}
+                >
+                  وضع علامة مكتمل
+                </Button>
+              )}
+              {(videoCompleted || lectureProgress.videosWatched.includes(videoId)) && (
+                <span className="text-green-400 text-sm flex items-center gap-1">
+                  <Play className="w-4 h-4" />
+                  مكتمل
+                </span>
+              )}
               <select
                 value={playbackSpeed}
                 onChange={(e) => setPlaybackSpeed(Number(e.target.value))}
@@ -395,5 +431,17 @@ export default function VideoPlayerPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Export the wrapped component with progress guard
+export default function VideoPlayerPage() {
+  const params = useParams();
+  const lectureId = params?.id as string;
+
+  return (
+    <LectureProgressGuard lectureId={lectureId} requiredStep="videos">
+      <VideoPlayerContent />
+    </LectureProgressGuard>
   );
 }

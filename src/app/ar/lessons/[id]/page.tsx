@@ -1,6 +1,6 @@
 "use client";
 
-import ErrorBoundary from "@/components/ErrorBoundary";
+import { ErrorBoundary } from "@/components/error-boundary";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -473,7 +473,7 @@ function LessonContent() {
                       </Badge>
                       {progress.isCompleted && (
                         <Badge className="bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400">
-                          <CheckCircle className="w-3 h-3 ml-1" />
+                          <CheckCircle className="w-3 h-3 ms-1" />
                           مكتمل
                         </Badge>
                       )}
@@ -504,11 +504,11 @@ function LessonContent() {
               <Tabs defaultValue="notes" className="w-full">
                 <TabsList className="w-full grid grid-cols-2">
                   <TabsTrigger value="notes">
-                    <BookOpen className="w-4 h-4 ml-2" />
+                    <BookOpen className="w-4 h-4 ms-2" />
                     ملاحظات الدرس
                   </TabsTrigger>
                   <TabsTrigger value="materials">
-                    <FileText className="w-4 h-4 ml-2" />
+                    <FileText className="w-4 h-4 ms-2" />
                     المواد
                   </TabsTrigger>
                 </TabsList>
@@ -530,7 +530,7 @@ function LessonContent() {
                         </div>
                       </div>
                       <Button variant="outline" size="sm">
-                        <Download className="w-4 h-4 ml-2" />
+                        <Download className="w-4 h-4 ms-2" />
                         تحميل
                       </Button>
                     </div>
@@ -549,7 +549,7 @@ function LessonContent() {
                 {navigation.previousLesson ? (
                   <Link href={`/ar/lessons/${navigation.previousLesson.id}`}>
                     <Button variant="outline" className="w-full justify-start">
-                      <ChevronRight className="w-4 h-4 ml-2" />
+                      <ChevronRight className="w-4 h-4 ms-2" />
                       الدرس السابق
                     </Button>
                   </Link>
@@ -559,7 +559,7 @@ function LessonContent() {
                     className="w-full justify-start"
                     disabled
                   >
-                    <ChevronRight className="w-4 h-4 ml-2" />
+                    <ChevronRight className="w-4 h-4 ms-2" />
                     لا يوجد درس سابق
                   </Button>
                 )}
@@ -570,14 +570,14 @@ function LessonContent() {
                       className="w-full justify-start"
                       disabled
                     >
-                      <Lock className="w-4 h-4 ml-2" />
+                      <Lock className="w-4 h-4 ms-2" />
                       الدرس التالي (مغلق)
                     </Button>
                   ) : (
                     <Link href={`/ar/lessons/${navigation.nextLesson.id}`}>
                       <Button className="w-full justify-start bg-gradient-to-r from-blue-600 to-purple-600 text-white">
                         الدرس التالي
-                        <ChevronLeft className="w-4 h-4 mr-2" />
+                        <ChevronLeft className="w-4 h-4 me-2" />
                       </Button>
                     </Link>
                   )
@@ -588,7 +588,7 @@ function LessonContent() {
                     style={{ minHeight: "44px" }}
                   >
                     <Button className="w-full h-full justify-start bg-gradient-to-r from-green-600 to-emerald-600 text-white">
-                      <CheckCircle className="w-4 h-4 ml-2" />
+                      <CheckCircle className="w-4 h-4 ms-2" />
                       إنهاء المحاضرة
                     </Button>
                   </Link>

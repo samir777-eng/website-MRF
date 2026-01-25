@@ -236,7 +236,7 @@ export default function GoalTracker({ variant = "compact" }: GoalTrackerProps) {
         </div>
 
         <Button size="sm" variant="outline" className="w-full">
-          <Plus className="w-4 h-4 mr-2" />
+          <Plus className="w-4 h-4 me-2" />
           هدف جديد
         </Button>
       </div>
@@ -321,7 +321,7 @@ export default function GoalTracker({ variant = "compact" }: GoalTrackerProps) {
           </div>
 
           <Button className="w-full">
-            <Plus className="w-4 h-4 mr-2" />
+            <Plus className="w-4 h-4 me-2" />
             إضافة هدف جديد
           </Button>
         </CardContent>
@@ -400,7 +400,7 @@ export default function GoalTracker({ variant = "compact" }: GoalTrackerProps) {
         </div>
 
         <Button>
-          <Plus className="w-4 h-4 mr-2" />
+          <Plus className="w-4 h-4 me-2" />
           هدف جديد
         </Button>
       </div>
@@ -495,11 +495,11 @@ export default function GoalTracker({ variant = "compact" }: GoalTrackerProps) {
               {goal.status === "active" && (
                 <div className="flex gap-2 pt-2">
                   <Button size="sm" variant="outline" className="flex-1">
-                    <Edit className="w-4 h-4 mr-2" />
+                    <Edit className="w-4 h-4 me-2" />
                     تعديل
                   </Button>
                   <Button size="sm" variant="outline" className="flex-1">
-                    <Flag className="w-4 h-4 mr-2" />
+                    <Flag className="w-4 h-4 me-2" />
                     إيقاف
                   </Button>
                   <Button size="sm" variant="outline">

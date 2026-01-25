@@ -137,7 +137,7 @@ export function RegisterForm({ locale }: RegisterFormProps) {
       router.push(
         `/${locale}/verify-otp?email=${encodeURIComponent(formData.email)}`
       );
-    } catch (error) {
+    } catch (_error) {
       setErrors({ general: t("auth.registerError") });
     }
   };
@@ -164,14 +164,14 @@ export function RegisterForm({ locale }: RegisterFormProps) {
           <div className="space-y-2">
             <Label htmlFor="name">{t("auth.name")}</Label>
             <div className="relative">
-              <User className="absolute left-3 rtl:left-auto rtl:right-3 top-3 h-4 w-4 text-muted-foreground" />
+              <User className="absolute start-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
                 id="name"
                 type="text"
                 placeholder={t("auth.namePlaceholder")}
                 value={formData.name}
                 onChange={(e) => handleInputChange("name", e.target.value)}
-                className={`pl-10 rtl:pl-3 rtl:pr-10 ${errors.name ? "border-red-500" : ""}`}
+                className={`ps-10 ${errors.name ? "border-red-500" : ""}`}
                 disabled={isLoading}
               />
             </div>
@@ -183,14 +183,14 @@ export function RegisterForm({ locale }: RegisterFormProps) {
           <div className="space-y-2">
             <Label htmlFor="email">{t("auth.email")}</Label>
             <div className="relative">
-              <Mail className="absolute left-3 rtl:left-auto rtl:right-3 top-3 h-4 w-4 text-muted-foreground" />
+              <Mail className="absolute start-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
                 id="email"
                 type="email"
                 placeholder={t("auth.emailPlaceholder")}
                 value={formData.email}
                 onChange={(e) => handleInputChange("email", e.target.value)}
-                className={`pl-10 rtl:pl-3 rtl:pr-10 ${errors.email ? "border-red-500" : ""}`}
+                className={`ps-10 ${errors.email ? "border-red-500" : ""}`}
                 disabled={isLoading}
                 dir="ltr"
               />
@@ -203,14 +203,14 @@ export function RegisterForm({ locale }: RegisterFormProps) {
           <div className="space-y-2">
             <Label htmlFor="phone">{t("auth.phone")}</Label>
             <div className="relative">
-              <Phone className="absolute left-3 rtl:left-auto rtl:right-3 top-3 h-4 w-4 text-muted-foreground" />
+              <Phone className="absolute start-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
                 id="phone"
                 type="tel"
                 placeholder={t("auth.phonePlaceholder")}
                 value={formData.phone}
                 onChange={(e) => handleInputChange("phone", e.target.value)}
-                className={`pl-10 rtl:pl-3 rtl:pr-10 ${errors.phone ? "border-red-500" : ""}`}
+                className={`ps-10 ${errors.phone ? "border-red-500" : ""}`}
                 disabled={isLoading}
                 dir="ltr"
               />
@@ -223,14 +223,14 @@ export function RegisterForm({ locale }: RegisterFormProps) {
           <div className="space-y-2">
             <Label htmlFor="grade">{t("auth.grade")}</Label>
             <div className="relative">
-              <GraduationCap className="absolute left-3 rtl:left-auto rtl:right-3 top-3 h-4 w-4 text-muted-foreground z-10" />
+              <GraduationCap className="absolute start-3 top-3 h-4 w-4 text-muted-foreground z-10" />
               <Select
                 value={formData.grade}
                 onValueChange={(value) => handleInputChange("grade", value)}
                 disabled={isLoading}
               >
                 <SelectTrigger
-                  className={`pl-10 rtl:pl-3 rtl:pr-10 ${errors.grade ? "border-red-500" : ""}`}
+                  className={`ps-10 ${errors.grade ? "border-red-500" : ""}`}
                 >
                   <SelectValue placeholder={t("auth.gradePlaceholder")} />
                 </SelectTrigger>
@@ -251,21 +251,21 @@ export function RegisterForm({ locale }: RegisterFormProps) {
           <div className="space-y-2">
             <Label htmlFor="password">{t("auth.password")}</Label>
             <div className="relative">
-              <Lock className="absolute left-3 rtl:left-auto rtl:right-3 top-3 h-4 w-4 text-muted-foreground" />
+              <Lock className="absolute start-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder={t("auth.passwordPlaceholder")}
                 value={formData.password}
                 onChange={(e) => handleInputChange("password", e.target.value)}
-                className={`pl-10 pr-10 rtl:pl-10 rtl:pr-10 ${errors.password ? "border-red-500" : ""}`}
+                className={`ps-10 pe-10 ${errors.password ? "border-red-500" : ""}`}
                 disabled={isLoading}
               />
               <Button
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="absolute right-0 rtl:right-auto rtl:left-0 top-1/2 -translate-y-1/2 hover:bg-transparent"
+                className="absolute end-0 top-1/2 -translate-y-1/2 hover:bg-transparent"
                 onClick={() => setShowPassword(!showPassword)}
                 disabled={isLoading}
                 aria-label={
@@ -287,7 +287,7 @@ export function RegisterForm({ locale }: RegisterFormProps) {
           <div className="space-y-2">
             <Label htmlFor="confirmPassword">{t("auth.confirmPassword")}</Label>
             <div className="relative">
-              <Lock className="absolute left-3 rtl:left-auto rtl:right-3 top-3 h-4 w-4 text-muted-foreground" />
+              <Lock className="absolute start-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
                 id="confirmPassword"
                 type={showConfirmPassword ? "text" : "password"}
@@ -296,14 +296,14 @@ export function RegisterForm({ locale }: RegisterFormProps) {
                 onChange={(e) =>
                   handleInputChange("confirmPassword", e.target.value)
                 }
-                className={`pl-10 pr-10 rtl:pl-10 rtl:pr-10 ${errors.confirmPassword ? "border-red-500" : ""}`}
+                className={`ps-10 pe-10 ${errors.confirmPassword ? "border-red-500" : ""}`}
                 disabled={isLoading}
               />
               <Button
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="absolute right-0 rtl:right-auto rtl:left-0 top-1/2 -translate-y-1/2 hover:bg-transparent"
+                className="absolute end-0 top-1/2 -translate-y-1/2 hover:bg-transparent"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 disabled={isLoading}
                 aria-label={
@@ -324,7 +324,7 @@ export function RegisterForm({ locale }: RegisterFormProps) {
             )}
           </div>
 
-          <div className="flex items-start space-x-2 rtl:space-x-reverse">
+          <div className="flex items-start gap-2">
             <Checkbox
               id="terms"
               aria-label={t("auth.acceptTerms")}
@@ -363,7 +363,7 @@ export function RegisterForm({ locale }: RegisterFormProps) {
           <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading ? (
               <>
-                <Loader className="mr-2 rtl:mr-0 rtl:ml-2 h-4 w-4" />
+                <Loader className="me-2 h-4 w-4" />
                 {t("common.loading")}
               </>
             ) : (

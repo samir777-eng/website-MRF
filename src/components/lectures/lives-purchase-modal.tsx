@@ -175,7 +175,7 @@ export function LivesPurchaseModal({
                 >
                   {pkg.popular && (
                     <Badge className="absolute -top-2 left-4 bg-gradient-to-r from-purple-600 to-pink-600">
-                      <Sparkles className="w-3 h-3 ml-1" />
+                      <Sparkles className="w-3 h-3 ms-1" />
                       الأكثر شعبية
                     </Badge>
                   )}
@@ -275,12 +275,12 @@ export function LivesPurchaseModal({
           >
             {isPurchasing ? (
               <>
-                <Loader2 className="w-5 h-5 ml-2 animate-spin" />
+                <Loader2 className="w-5 h-5 ms-2 animate-spin" />
                 جاري الشراء...
               </>
             ) : (
               <>
-                <Heart className="w-5 h-5 ml-2" />
+                <Heart className="w-5 h-5 ms-2" />
                 شراء {selectedPkg?.lives || 0} أرواح
                 {paymentMethod === "coins"
                   ? ` بـ ${selectedPkg?.coinsPrice || 0} عملة`

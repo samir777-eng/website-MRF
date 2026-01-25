@@ -4,31 +4,30 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { NotificationBadge } from "@/components/ui/notification-badge";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { useMounted } from "@/hooks/use-mounted";
 import {
-    Award,
-    ChevronDown,
-    LayoutDashboard,
-    LogIn,
-    LogOut,
-    Medal,
-    Menu,
-    Package,
-    Settings,
-    ShoppingBag,
-    ShoppingCart,
-    Trophy,
-    User,
-    UserPlus,
-    Video,
-    X,
+  Award,
+  ChevronDown,
+  LayoutDashboard,
+  LogIn,
+  LogOut,
+  Medal,
+  Menu,
+  Package,
+  Settings,
+  ShoppingBag,
+  ShoppingCart,
+  Trophy,
+  User,
+  UserPlus,
+  Video,
+  X,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export function Navigation() {
-  const isMounted = useMounted();
+  const [mounted, setMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
@@ -38,13 +37,12 @@ export function Navigation() {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // Check authentication status
+  // Handle mounting and auth check
   useEffect(() => {
-    if (isMounted) {
-      const user = localStorage.getItem("user");
-      setIsAuthenticated(!!user);
-    }
-  }, [isMounted]);
+    setMounted(true);
+    const user = localStorage.getItem("user");
+    setIsAuthenticated(!!user);
+  }, []);
 
   // Close dropdown on click outside
   useEffect(() => {
@@ -92,10 +90,6 @@ export function Navigation() {
     { href: "/ar/store", label: "المتجر", icon: ShoppingBag },
   ];
 
-  // Guest nav: No items needed - they're on the landing page
-  // Only show Login/Signup buttons
-  const guestNavItems: typeof authNavItems = [];
-
   const accountMenuItems = [
     { href: "/ar/achievements", label: "الإنجازات", icon: Trophy },
     { href: "/ar/leaderboard", label: "المتصدرون", icon: Medal },
@@ -104,21 +98,22 @@ export function Navigation() {
     { href: "/ar/settings", label: "الإعدادات", icon: Settings },
   ];
 
-  const navItems = isAuthenticated ? authNavItems : guestNavItems;
-
   return (
     <nav
       ref={navRef}
-      className="fixed top-0 left-0 right-0 z-[9999] w-full glass transition-all duration-300 border-b-0 overflow-visible"
+      className="fixed top-0 inset-x-0 z-[9999] w-full glass transition-all duration-300 border-b-0 overflow-visible"
       dir="rtl"
     >
-      <div className="container mx-auto px-4 overflow-visible" style={{ overflow: 'visible' }}>
-        <div className="flex h-16 items-center justify-between overflow-visible" style={{ overflow: 'visible' }}>
-          {/* Logo */}
-          <Link
-            href={isAuthenticated ? "/ar/dashboard" : "/ar"}
-            className="flex items-center gap-2"
-          >
+      <div
+        className="container mx-auto px-4 overflow-visible"
+        style={{ overflow: "visible" }}
+      >
+        <div
+          className="flex h-16 items-center justify-between overflow-visible"
+          style={{ overflow: "visible" }}
+        >
+          {/* Logo - Always link to /ar, dashboard redirect handled by page */}
+          <Link href="/ar" className="flex items-center gap-2">
             <div className="w-9 h-9 rounded-xl bg-gradient-primary flex items-center justify-center shadow-glow">
               <span className="text-white font-bold text-lg">ر</span>
             </div>
@@ -127,177 +122,210 @@ export function Navigation() {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          {navItems.length > 0 && (
-            <div className="hidden md:flex items-center gap-1">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                const active = isActive(item.href);
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                      active
-                        ? "bg-gradient-primary text-white shadow-glow-sm"
-                        : "text-muted-foreground hover:text-primary hover:bg-white/5"
-                    }`}
-                  >
-                    <Icon className="w-4 h-4" />
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </div>
-          )}
-
-          {/* Right Side */}
-          <div className="flex items-center gap-1 overflow-visible" style={{ overflow: 'visible' }}>
-            {isAuthenticated ? (
+          {/* Desktop Navigation - Only show for authenticated users after mount */}
+          <div
+            className="hidden md:flex items-center gap-1"
+            suppressHydrationWarning
+          >
+            {mounted && isAuthenticated && (
               <>
-                {/* Cart */}
-                <Link href="/ar/cart">
+                {authNavItems.map((item) => {
+                  const Icon = item.icon;
+                  const active = isActive(item.href);
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                        active
+                          ? "bg-gradient-primary text-white shadow-glow-sm"
+                          : "text-muted-foreground hover:text-primary hover:bg-white/5"
+                      }`}
+                    >
+                      <Icon className="w-4 h-4" />
+                      {item.label}
+                    </Link>
+                  );
+                })}
+              </>
+            )}
+          </div>
+
+          {/* Right Side - Auth buttons with hydration suppression */}
+          <div
+            className="flex items-center gap-1 overflow-visible"
+            style={{ overflow: "visible" }}
+            suppressHydrationWarning
+          >
+            {/* Auth-dependent content - wrapped to suppress hydration warnings */}
+            <div
+              className="flex items-center gap-1"
+              suppressHydrationWarning
+            >
+              {!mounted ? (
+                // Skeleton placeholder during SSR/hydration
+                <>
+                  <div className="h-11 w-16 rounded-lg bg-muted/30 animate-pulse" />
+                  <div className="h-11 w-24 rounded-lg bg-muted/30 animate-pulse" />
+                </>
+              ) : isAuthenticated ? (
+                // Authenticated user content
+                <>
+                  {/* Cart */}
+                  <Link href="/ar/cart">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="relative h-9 w-9"
+                    >
+                      <ShoppingCart className="w-4 h-4" />
+                    </Button>
+                  </Link>
+
+                  {/* Notifications */}
+                  <NotificationBadge />
+
+                  {/* Account Dropdown */}
+                  <div
+                    className="relative overflow-visible"
+                    ref={accountDropdownRef}
+                    style={{ overflow: "visible" }}
+                  >
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="flex items-center gap-1 px-2"
+                      onClick={() =>
+                        setAccountDropdownOpen(!accountDropdownOpen)
+                      }
+                    >
+                      <div className="w-7 h-7 rounded-full bg-gradient-primary flex items-center justify-center">
+                        <User className="w-3.5 h-3.5 text-white" />
+                      </div>
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform ${accountDropdownOpen ? "rotate-180" : ""}`}
+                      />
+                    </Button>
+
+                    {/* Dropdown Menu */}
+                    {accountDropdownOpen && (
+                      <div className="absolute left-0 mt-2 w-56 bg-popover border border-border rounded-xl shadow-xl py-2 z-50">
+                        {/* User Info */}
+                        <div className="px-4 py-3 border-b border-border">
+                          <p className="font-medium text-foreground">
+                            أحمد محمد
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            الصف الثالث الثانوي
+                          </p>
+                          <div className="flex items-center gap-2 mt-2">
+                            <Badge variant="secondary" className="text-xs">
+                              <Award className="w-3 h-3 ms-1" />
+                              المستوى 12
+                            </Badge>
+                          </div>
+                        </div>
+
+                        {/* Menu Items */}
+                        <div className="py-1">
+                          {accountMenuItems.map((item) => {
+                            const Icon = item.icon;
+                            return (
+                              <Link
+                                key={item.href}
+                                href={item.href}
+                                className="flex items-center gap-3 px-4 py-2 text-sm text-foreground hover:bg-muted/50 transition-colors"
+                                onClick={() => setAccountDropdownOpen(false)}
+                              >
+                                <Icon className="w-4 h-4 text-muted-foreground" />
+                                {item.label}
+                              </Link>
+                            );
+                          })}
+                        </div>
+
+                        {/* Logout */}
+                        <div className="border-t border-border pt-1 mt-1">
+                          <button
+                            onClick={handleLogout}
+                            className="flex items-center gap-3 px-4 py-2 text-sm text-red-500 hover:bg-red-500/10 w-full transition-colors"
+                          >
+                            <LogOut className="w-4 h-4" />
+                            تسجيل الخروج
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Mobile Menu Button */}
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="relative h-9 w-9"
+                    className="md:hidden"
+                    onClick={toggleMenu}
+                    aria-label={isMenuOpen ? "إغلاق القائمة" : "فتح القائمة"}
                   >
-                    <ShoppingCart className="w-4 h-4" />
+                    {isMenuOpen ? (
+                      <X className="w-5 h-5" />
+                    ) : (
+                      <Menu className="w-5 h-5" />
+                    )}
                   </Button>
-                </Link>
-
-                {/* Notifications */}
-                <NotificationBadge />
-
-                {/* Account Dropdown */}
-                <div className="relative overflow-visible" ref={accountDropdownRef} style={{ overflow: 'visible' }}>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="flex items-center gap-1 px-2"
-                    onClick={() => setAccountDropdownOpen(!accountDropdownOpen)}
-                  >
-                    <div className="w-7 h-7 rounded-full bg-gradient-primary flex items-center justify-center">
-                      <User className="w-3.5 h-3.5 text-white" />
-                    </div>
-                    <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform ${accountDropdownOpen ? "rotate-180" : ""}`}
-                    />
-                  </Button>
-
-                  {/* Dropdown Menu */}
-                  {accountDropdownOpen && (
-                    <div className="absolute left-0 mt-2 w-56 bg-popover border border-border rounded-xl shadow-xl py-2">
-                      {/* User Info */}
-                      <div className="px-4 py-3 border-b border-border">
-                        <p className="font-medium text-foreground">أحمد محمد</p>
-                        <p className="text-xs text-muted-foreground">
-                          الصف الثالث الثانوي
-                        </p>
-                        <div className="flex items-center gap-2 mt-2">
-                          <Badge variant="secondary" className="text-xs">
-                            <Award className="w-3 h-3 ml-1" />
-                            المستوى 12
-                          </Badge>
-                        </div>
-                      </div>
-
-                      {/* Menu Items */}
-                      <div className="py-1">
-                        {accountMenuItems.map((item) => {
-                          const Icon = item.icon;
-                          return (
-                            <Link
-                              key={item.href}
-                              href={item.href}
-                              className="flex items-center gap-3 px-4 py-2 text-sm text-foreground hover:bg-muted/50 transition-colors"
-                              onClick={() => setAccountDropdownOpen(false)}
-                            >
-                              <Icon className="w-4 h-4 text-muted-foreground" />
-                              {item.label}
-                            </Link>
-                          );
-                        })}
-                      </div>
-
-                      {/* Logout */}
-                      <div className="border-t border-border pt-1 mt-1">
-                        <button
-                          onClick={handleLogout}
-                          className="flex items-center gap-3 px-4 py-2 text-sm text-red-500 hover:bg-red-500/10 w-full transition-colors"
-                        >
-                          <LogOut className="w-4 h-4" />
-                          تسجيل الخروج
-                        </button>
-                      </div>
-                    </div>
+                </>
+              ) : (
+                // Guest content - Login/Signup buttons
+                <>
+                  {/* Dev: Quick login for testing */}
+                  {process.env.NODE_ENV === "development" && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="text-xs border-dashed hidden sm:flex"
+                      onClick={() => {
+                        localStorage.setItem(
+                          "user",
+                          JSON.stringify({ id: 1, name: "أحمد" })
+                        );
+                        window.location.reload();
+                      }}
+                    >
+                      Dev Login
+                    </Button>
                   )}
-                </div>
-              </>
-            ) : (
-              <>
-                {/* Dev: Quick login for testing - only show after hydration */}
-                {isMounted && process.env.NODE_ENV === "development" && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="text-xs border-dashed"
-                    onClick={() => {
-                      localStorage.setItem(
-                        "user",
-                        JSON.stringify({ id: 1, name: "أحمد" }),
-                      );
-                      window.location.reload();
-                    }}
-                  >
-                    🔑 Dev Login
-                  </Button>
-                )}
-                {/* Guest: Login/Signup - Always show text */}
-                <Link href="/ar/auth/login">
-                  <Button variant="ghost" size="sm" className="gap-1.5 text-sm">
-                    <LogIn className="w-4 h-4" />
-                    دخول
-                  </Button>
-                </Link>
-                <Link href="/ar/signup">
-                  <Button
-                    size="sm"
-                    className="gap-1.5 text-sm bg-gradient-primary hover:shadow-glow transition-all duration-300 hover:scale-105"
-                  >
-                    <UserPlus className="w-4 h-4" />
-                    حساب جديد
-                  </Button>
-                </Link>
-              </>
-            )}
+                  {/* Guest: Login/Signup */}
+                  <Link href="/ar/auth/login">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="gap-1.5 text-sm"
+                    >
+                      <LogIn className="w-4 h-4" />
+                      دخول
+                    </Button>
+                  </Link>
+                  <Link href="/ar/signup">
+                    <Button
+                      size="sm"
+                      className="gap-1.5 text-sm bg-gradient-primary hover:shadow-glow transition-all duration-300 hover:scale-105"
+                    >
+                      <UserPlus className="w-4 h-4" />
+                      حساب جديد
+                    </Button>
+                  </Link>
+                </>
+              )}
+            </div>
 
-            {/* Theme Toggle */}
+            {/* Theme Toggle - Always render consistently */}
             <ThemeToggle />
-
-            {/* Mobile Menu Button - Only show for authenticated users */}
-            {isAuthenticated && (
-              <Button
-                variant="ghost"
-                size="icon"
-                className="md:hidden"
-                onClick={toggleMenu}
-                aria-label={isMenuOpen ? "إغلاق القائمة" : "فتح القائمة"}
-              >
-                {isMenuOpen ? (
-                  <X className="w-5 h-5" />
-                ) : (
-                  <Menu className="w-5 h-5" />
-                )}
-              </Button>
-            )}
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
+        {/* Mobile Menu - Only show after mount and when authenticated */}
+        {mounted && isMenuOpen && isAuthenticated && (
           <div className="md:hidden border-t border-border py-4 space-y-2">
-            {navItems.map((item) => {
+            {authNavItems.map((item) => {
               const Icon = item.icon;
               const active = isActive(item.href);
               return (
@@ -317,32 +345,28 @@ export function Navigation() {
               );
             })}
 
-            {isAuthenticated && (
-              <>
-                <div className="border-t border-border my-2" />
-                {accountMenuItems.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      <Icon className="w-5 h-5" />
-                      {item.label}
-                    </Link>
-                  );
-                })}
-                <button
-                  onClick={handleLogout}
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-red-500 hover:bg-red-500/10 w-full transition-colors"
+            <div className="border-t border-border my-2" />
+            {accountMenuItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
                 >
-                  <LogOut className="w-5 h-5" />
-                  تسجيل الخروج
-                </button>
-              </>
-            )}
+                  <Icon className="w-5 h-5" />
+                  {item.label}
+                </Link>
+              );
+            })}
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-red-500 hover:bg-red-500/10 w-full transition-colors"
+            >
+              <LogOut className="w-5 h-5" />
+              تسجيل الخروج
+            </button>
           </div>
         )}
       </div>

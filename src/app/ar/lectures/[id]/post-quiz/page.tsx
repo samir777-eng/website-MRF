@@ -1,8 +1,10 @@
 "use client";
 
+import { LectureProgressGuard } from "@/components/lectures";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { useLectureProgress } from "@/hooks/useLectureProgress";
 import {
   AlertCircle,
   ArrowLeft,
@@ -78,10 +80,12 @@ const postQuizData = {
 
 type QuizState = "intro" | "playing" | "finished";
 
-export default function PostQuizPage() {
+function PostQuizContent() {
   const params = useParams();
   const router = useRouter();
   const lectureId = params?.id as string;
+
+  const { completePostQuiz, progress: lectureProgress } = useLectureProgress(lectureId);
 
   const [state, setState] = useState<QuizState>("intro");
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -230,6 +234,11 @@ export default function PostQuizPage() {
     const passed = score >= postQuizData.threshold;
     const xpEarned = calculateXP(score);
 
+    // Save progress when quiz is passed
+    if (passed && !lectureProgress.postQuizCompleted) {
+      completePostQuiz(score);
+    }
+
     return (
       <div
         className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-24"
@@ -249,7 +258,7 @@ export default function PostQuizPage() {
               </div>
 
               <h1 className="text-3xl font-bold">
-                {passed ? "أحسنت! 🎉" : "جيد، يمكنك التحسن"}
+                {passed ? "أحسنت!" : "جيد، يمكنك التحسن"}
               </h1>
 
               <div
@@ -315,7 +324,7 @@ export default function PostQuizPage() {
 
   // Playing Screen
   const question = postQuizData.questions[currentQuestion];
-  const progress =
+  const quizProgress =
     ((currentQuestion + 1) / postQuizData.questions.length) * 100;
 
   return (
@@ -336,7 +345,7 @@ export default function PostQuizPage() {
           </div>
         </div>
 
-        <Progress value={progress} className="h-2 mb-8" />
+        <Progress value={quizProgress} className="h-2 mb-8" />
 
         <Card className="max-w-3xl mx-auto border-0 shadow-xl">
           <CardContent className="p-8 space-y-6">
@@ -386,5 +395,17 @@ export default function PostQuizPage() {
         </Card>
       </div>
     </div>
+  );
+}
+
+// Export the wrapped component with progress guard
+export default function PostQuizPage() {
+  const params = useParams();
+  const lectureId = params?.id as string;
+
+  return (
+    <LectureProgressGuard lectureId={lectureId} requiredStep="post-quiz">
+      <PostQuizContent />
+    </LectureProgressGuard>
   );
 }

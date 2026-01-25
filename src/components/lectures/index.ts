@@ -11,6 +11,7 @@
  * - RedeemLectureModal: Modal for redeeming lectures from bundles
  * - LectureProgressTracker: 4-step progress indicator (Pre-Quiz → Videos → Post-Quiz → Homework)
  * - LectureCompletionModal: Celebration modal with badge, XP bonus, and unlock message
+ * - LectureProgressGuard: Wrapper component that enforces learning progression sequence
  */
 
 export { ActivateLectureModal } from "./activate-lecture-modal";
@@ -18,6 +19,7 @@ export { DetailedCountdown, LectureAccessTimer } from "./lecture-access-timer";
 export { LectureCard } from "./lecture-card";
 export { LectureCompletionModal } from "./lecture-completion-modal";
 export { LectureLifeDisplay } from "./lecture-lives-display";
+export { LectureProgressGuard } from "./lecture-progress-guard";
 export { LectureProgressTracker } from "./lecture-progress-tracker";
 export type { LectureProgress, LectureStep } from "./lecture-progress-tracker";
 export { LivesPurchaseModal } from "./lives-purchase-modal";

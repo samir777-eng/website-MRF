@@ -91,7 +91,7 @@ export function FloatingLabelInput({
         )}
       >
         {label}
-        {required && <span className="text-destructive mr-1">*</span>}
+        {required && <span className="text-destructive me-1">*</span>}
       </label>
 
       {/* Success/Error Icon */}

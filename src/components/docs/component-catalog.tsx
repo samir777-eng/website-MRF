@@ -171,7 +171,7 @@ export function ComponentCatalog({
                   placeholder="Search components..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
+                  className="ps-10"
                 />
               </div>
             </CardHeader>
@@ -320,7 +320,7 @@ export function ComponentCatalog({
                             copyToClipboard(selectedComponent.code)
                           }
                         >
-                          <Copy className="w-4 h-4 mr-2" />
+                          <Copy className="w-4 h-4 me-2" />
                           Copy
                         </Button>
                       </div>
@@ -341,7 +341,7 @@ export function ComponentCatalog({
                             copyToClipboard(selectedComponent.usage)
                           }
                         >
-                          <Copy className="w-4 h-4 mr-2" />
+                          <Copy className="w-4 h-4 me-2" />
                           Copy
                         </Button>
                       </div>
@@ -375,7 +375,7 @@ export function ComponentCatalog({
                                   )
                                 }
                               >
-                                <Copy className="w-4 h-4 mr-2" />
+                                <Copy className="w-4 h-4 me-2" />
                                 Copy Props
                               </Button>
                             </div>

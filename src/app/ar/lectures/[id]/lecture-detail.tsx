@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { useLectureProgress } from "@/hooks/useLectureProgress";
 import {
   Award,
   BookOpen,
@@ -26,7 +27,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type GradeLevel = "1" | "2" | "3";
 type VideoStatus = "locked" | "available" | "in-progress" | "completed";
@@ -109,34 +110,56 @@ function getMockLecture(): LectureData {
   };
 }
 
-// Mock progress data
-const mockProgress: LectureProgress = {
-  preQuizPassed: true,
-  videosCompleted: 2,
-  videosTotal: 5,
-  postQuizPassed: false,
-  homeworkCompleted: false,
-};
-
 export default function LectureDetailPage() {
   const params = useParams();
   const lectureId = params.id as string;
   const userGrade: GradeLevel = "1";
 
-  const [progress, setProgress] = useState<LectureProgress>(mockProgress);
-  const [showCompletionModal, setShowCompletionModal] = useState(false);
   const lecture = getMockLecture();
+  const totalVideos = lecture.videos.length;
+
+  // Use the lecture progress hook
+  const {
+    progress: lectureProgressData,
+    isLoaded,
+    getCompletionPercentage,
+    isLectureCompleted,
+    resetProgress: resetLectureProgress,
+  } = useLectureProgress(lectureId, totalVideos);
+
+  // Convert hook progress to LectureProgress format for the tracker component
+  const [progress, setProgress] = useState<LectureProgress>({
+    preQuizPassed: false,
+    videosCompleted: 0,
+    videosTotal: totalVideos,
+    postQuizPassed: false,
+    homeworkCompleted: false,
+  });
+
+  // Update progress when lectureProgressData changes
+  useEffect(() => {
+    if (isLoaded) {
+      setProgress({
+        preQuizPassed: lectureProgressData.preQuizCompleted,
+        videosCompleted: lectureProgressData.videosWatched.length,
+        videosTotal: totalVideos,
+        postQuizPassed: lectureProgressData.postQuizCompleted,
+        homeworkCompleted: lectureProgressData.homeworkCompleted,
+      });
+    }
+  }, [lectureProgressData, isLoaded, totalVideos]);
+
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
 
   // Check grade access
   const hasGradeAccess = lecture.gradeLevel === userGrade;
 
-  // Calculate overall progress
-  const completedVideos = lecture.videos.filter(
-    (v) => v.status === "completed"
-  ).length;
+  // Calculate overall progress from actual localStorage data
+  const completedVideos = lectureProgressData.videosWatched.length;
+  const allVideosCompleted = lectureProgressData.allVideosCompleted || completedVideos >= totalVideos;
   const overallProgress = Math.round(
     (progress.preQuizPassed ? 25 : 0) +
-      (completedVideos / lecture.videos.length) * 25 +
+      (completedVideos / totalVideos) * 25 +
       (progress.postQuizPassed ? 25 : 0) +
       (progress.homeworkCompleted ? 25 : 0)
   );
@@ -144,7 +167,7 @@ export default function LectureDetailPage() {
   // Check if lecture is complete
   const isLectureComplete =
     progress.preQuizPassed &&
-    progress.videosCompleted === progress.videosTotal &&
+    allVideosCompleted &&
     progress.postQuizPassed &&
     progress.homeworkCompleted;
 
@@ -204,7 +227,7 @@ export default function LectureDetailPage() {
             </p>
             <Link href="/ar/lectures">
               <Button className="w-full">
-                <ChevronRight className="w-4 h-4 ml-2" />
+                <ChevronRight className="w-4 h-4 ms-2" />
                 العودة إلى المحاضرات
               </Button>
             </Link>
@@ -280,7 +303,7 @@ export default function LectureDetailPage() {
                   className={`w-5 h-5 ${i < lecture.livesRemaining ? "text-rose-500 fill-rose-500" : "text-muted-foreground/30"}`}
                 />
               ))}
-              <span className="text-sm mr-2">
+              <span className="text-sm me-2">
                 {lecture.livesRemaining} أرواح
               </span>
             </div>
@@ -336,7 +359,7 @@ export default function LectureDetailPage() {
               ) : (
                 <Link href={`/ar/lectures/${lectureId}/pre-quiz`}>
                   <Button className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600">
-                    <Play className="w-4 h-4 ml-2" />
+                    <Play className="w-4 h-4 ms-2" />
                     ابدأ الاختبار
                   </Button>
                 </Link>
@@ -353,18 +376,18 @@ export default function LectureDetailPage() {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-4">
                 <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center ${completedVideos === lecture.videos.length ? "bg-green-500" : progress.preQuizPassed ? "bg-blue-500" : "bg-muted"}`}
+                  className={`w-12 h-12 rounded-xl flex items-center justify-center ${allVideosCompleted ? "bg-green-500" : progress.preQuizPassed ? "bg-blue-500" : "bg-muted"}`}
                 >
                   <Video className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h3 className="text-lg font-bold">الخطوة 2: الفيديوهات</h3>
                   <p className="text-sm text-muted-foreground">
-                    {completedVideos}/{lecture.videos.length} فيديو مكتمل
+                    {completedVideos}/{totalVideos} فيديو مكتمل
                   </p>
                 </div>
               </div>
-              {completedVideos === lecture.videos.length && (
+              {allVideosCompleted && (
                 <Badge className="bg-green-500 text-white">مكتمل</Badge>
               )}
             </div>
@@ -373,9 +396,12 @@ export default function LectureDetailPage() {
             {progress.preQuizPassed && (
               <div className="space-y-3 mt-4">
                 {lecture.videos.map((video, idx) => {
-                  const badge = getVideoStatusBadge(video.status);
+                  // Determine video status based on actual progress
+                  const isVideoWatched = lectureProgressData.videosWatched.includes(video.id);
+                  const actualStatus: VideoStatus = isVideoWatched ? "completed" : "available";
+                  const badge = getVideoStatusBadge(actualStatus);
                   const StatusIcon = badge.icon;
-                  const canWatch = video.status !== "locked";
+                  const canWatch = progress.preQuizPassed;
 
                   return (
                     <div
@@ -392,13 +418,8 @@ export default function LectureDetailPage() {
                           <span>{video.duration} دقيقة</span>
                         </div>
                       </div>
-                      {video.progress > 0 && video.progress < 100 && (
-                        <div className="w-20">
-                          <Progress value={video.progress} className="h-1.5" />
-                        </div>
-                      )}
                       <Badge className={badge.className}>
-                        <StatusIcon className="w-3 h-3 ml-1" />
+                        <StatusIcon className="w-3 h-3 ms-1" />
                         {badge.label}
                       </Badge>
                       {canWatch && (
@@ -409,11 +430,7 @@ export default function LectureDetailPage() {
                             size="sm"
                             className="bg-gradient-to-r from-blue-500 to-purple-500 text-white"
                           >
-                            {video.status === "completed"
-                              ? "مراجعة"
-                              : video.status === "in-progress"
-                                ? "متابعة"
-                                : "شاهد"}
+                            {isVideoWatched ? "مراجعة" : "شاهد"}
                           </Button>
                         </Link>
                       )}
@@ -427,13 +444,13 @@ export default function LectureDetailPage() {
 
         {/* Step 3: Post-Quiz */}
         <Card
-          className={`mb-4 border-0 shadow-lg ${completedVideos < lecture.videos.length ? "opacity-60" : progress.postQuizPassed ? "bg-green-50/50 dark:bg-green-950/10" : "bg-blue-50/50 dark:bg-blue-950/10"}`}
+          className={`mb-4 border-0 shadow-lg ${!allVideosCompleted ? "opacity-60" : progress.postQuizPassed ? "bg-green-50/50 dark:bg-green-950/10" : "bg-blue-50/50 dark:bg-blue-950/10"}`}
         >
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center ${progress.postQuizPassed ? "bg-green-500" : completedVideos === lecture.videos.length ? "bg-blue-500" : "bg-muted"}`}
+                  className={`w-12 h-12 rounded-xl flex items-center justify-center ${progress.postQuizPassed ? "bg-green-500" : allVideosCompleted ? "bg-blue-500" : "bg-muted"}`}
                 >
                   <BookOpen className="w-6 h-6 text-white" />
                 </div>
@@ -444,24 +461,24 @@ export default function LectureDetailPage() {
                   <p className="text-sm text-muted-foreground">
                     {progress.postQuizPassed
                       ? "تم اجتياز الاختبار ✓"
-                      : completedVideos < lecture.videos.length
-                        ? "أكمل جميع الفيديوهات أولاً"
+                      : !allVideosCompleted
+                        ? `أكمل جميع الفيديوهات أولاً (${completedVideos}/${totalVideos})`
                         : "اختبر فهمك للمحاضرة"}
                   </p>
                 </div>
               </div>
               {progress.postQuizPassed ? (
                 <Badge className="bg-green-500 text-white">مكتمل</Badge>
-              ) : completedVideos === lecture.videos.length ? (
+              ) : allVideosCompleted ? (
                 <Link href={`/ar/lectures/${lectureId}/post-quiz`}>
                   <Button className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600">
-                    <Play className="w-4 h-4 ml-2" />
+                    <Play className="w-4 h-4 ms-2" />
                     ابدأ الاختبار
                   </Button>
                 </Link>
               ) : (
                 <Badge variant="outline">
-                  <Lock className="w-3 h-3 ml-1" />
+                  <Lock className="w-3 h-3 ms-1" />
                   مغلق
                 </Badge>
               )}
@@ -499,13 +516,13 @@ export default function LectureDetailPage() {
               ) : progress.postQuizPassed ? (
                 <Link href={`/ar/lectures/${lectureId}/homework`}>
                   <Button className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600">
-                    <Play className="w-4 h-4 ml-2" />
+                    <Play className="w-4 h-4 ms-2" />
                     ابدأ الواجب
                   </Button>
                 </Link>
               ) : (
                 <Badge variant="outline">
-                  <Lock className="w-3 h-3 ml-1" />
+                  <Lock className="w-3 h-3 ms-1" />
                   مغلق
                 </Badge>
               )}
@@ -523,7 +540,7 @@ export default function LectureDetailPage() {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-bold text-green-700 dark:text-green-400">
-                    🎉 أحسنت! أكملت المحاضرة بنجاح
+                    أحسنت! أكملت المحاضرة بنجاح
                   </h3>
                   <p className="text-green-600/80 dark:text-green-300/80">
                     حصلت على {lecture.xpReward} XP
@@ -532,9 +549,30 @@ export default function LectureDetailPage() {
                 <Link href="/ar/lectures">
                   <Button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white">
                     المحاضرة التالية
-                    <ChevronLeft className="w-4 h-4 mr-2" />
+                    <ChevronLeft className="w-4 h-4 me-2" />
                   </Button>
                 </Link>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Development: Reset Progress Button */}
+        {process.env.NODE_ENV === "development" && (
+          <Card className="mt-4 border-dashed border-2 border-orange-300 dark:border-orange-700 bg-orange-50/50 dark:bg-orange-950/20">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div className="text-sm text-orange-700 dark:text-orange-300">
+                  <strong>وضع التطوير:</strong> إعادة تعيين تقدم المحاضرة للاختبار
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={resetLectureProgress}
+                  className="border-orange-400 text-orange-700 hover:bg-orange-100 dark:border-orange-600 dark:text-orange-300 dark:hover:bg-orange-900/30"
+                >
+                  إعادة تعيين التقدم
+                </Button>
               </div>
             </CardContent>
           </Card>

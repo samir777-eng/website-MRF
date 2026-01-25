@@ -1,7 +1,7 @@
 // This file is required for the app directory to work.
 // It will be overridden by the [locale]/layout.tsx file.
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cairo, Noto_Sans_Arabic } from "next/font/google";
 import "../styles/responsive-fixes.css";
 import "./globals.css";
@@ -27,6 +27,17 @@ export const metadata: Metadata = {
   },
   description:
     "منصة تعليمية متكاملة لتعلم اللغة العربية للمرحلة الثانوية مع الأستاذ رضا الفاروق",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
 };
 
 // Critical CSS for above-the-fold content (LCP optimization)

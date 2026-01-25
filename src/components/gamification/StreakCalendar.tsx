@@ -12,11 +12,11 @@ import { Progress } from "@/components/ui/progress";
 import {
   Flame,
   Snowflake,
-  Trophy,
-  Medal,
-  Crown,
+  Trophy as _Trophy,
+  Medal as _Medal,
+  Crown as _Crown,
   CheckCircle,
-  Circle,
+  Circle as _Circle,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
@@ -110,7 +110,7 @@ function getStreakMilestones(currentStreak: number): StreakMilestone[] {
   ];
 }
 
-function getWeekdayName(date: Date): string {
+function _getWeekdayName(date: Date): string {
   const weekdays = ["ح", "ن", "ث", "ر", "خ", "ج", "س"];
   return weekdays[date.getDay()];
 }
@@ -124,10 +124,10 @@ export function StreakCalendar({
   longestStreak,
   freezesAvailable,
   freezeCost = 50,
-  onUseFreeze,
+  onUseFreeze: _onUseFreeze,
   className,
 }: StreakCalendarProps) {
-  const [showFreezeModal, setShowFreezeModal] = useState(false);
+  const [_showFreezeModal, setShowFreezeModal] = useState(false);
   const [selectedDay, setSelectedDay] = useState<DayData | null>(null);
   
   const last30Days = getLast30Days();
@@ -274,7 +274,7 @@ export function StreakCalendar({
             onClick={() => setShowFreezeModal(true)}
             disabled={freezesAvailable === 0}
           >
-            <Snowflake className="w-4 h-4 ml-2" />
+            <Snowflake className="w-4 h-4 ms-2" />
             استخدم تجميد ({freezeCost} 💎)
           </Button>
         </div>

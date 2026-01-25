@@ -148,9 +148,9 @@ export function HeroSection() {
                   size="xl"
                   className="w-full sm:w-auto bg-premium-gradient hover:opacity-90 text-white px-8 sm:px-12 h-20 text-base sm:text-lg font-bold rounded-2xl shadow-2xl shadow-primary/30 btn-glow hover-lift transition-all duration-300"
                 >
-                  <Zap className="w-5 h-5 sm:w-6 sm:h-6 ml-2" aria-hidden="true" />
+                  <Zap className="w-5 h-5 sm:w-6 sm:h-6 ms-2" aria-hidden="true" />
                   {content.ctaPrimary}
-                  <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 mr-2" aria-hidden="true" />
+                  <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 me-2" aria-hidden="true" />
                 </Button>
               </Link>
               <Button
@@ -159,9 +159,9 @@ export function HeroSection() {
                 onClick={() => setShowVideo(true)}
                 className="w-full sm:w-auto px-8 sm:px-10 h-16 sm:h-20 text-base sm:text-lg font-semibold rounded-2xl border-2 hover:bg-accent/50 glass hover-lift group transition-all duration-300"
               >
-                <div className="w-8 h-8 bg-gradient-premium rounded-full flex items-center justify-center ml-3 group-hover:scale-110 transition-transform">
+                <div className="w-8 h-8 bg-gradient-premium rounded-full flex items-center justify-center ms-3 group-hover:scale-110 transition-transform">
                   <Play
-                    className="w-4 h-4 text-white ml-0.5"
+                    className="w-4 h-4 text-white ms-0.5"
                     aria-hidden="true"
                   />
                 </div>

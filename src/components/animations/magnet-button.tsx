@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 import { cn } from "@/lib/utils";
 
 interface MagnetButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -16,32 +16,42 @@ export function MagnetButton({
 }: MagnetButtonProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const throttleRef = useRef(false);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!buttonRef.current) return;
+  // Throttled mouse move handler - limits to ~30fps for smooth performance
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (throttleRef.current || !buttonRef.current) return;
 
-    const rect = buttonRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
+      throttleRef.current = true;
+      setTimeout(() => {
+        throttleRef.current = false;
+      }, 33); // ~30fps throttle
 
-    const deltaX = e.clientX - centerX;
-    const deltaY = e.clientY - centerY;
+      const rect = buttonRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
 
-    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-    const maxDistance = Math.max(rect.width, rect.height);
+      const deltaX = e.clientX - centerX;
+      const deltaY = e.clientY - centerY;
 
-    if (distance < maxDistance) {
-      const factor = (1 - distance / maxDistance) * strength;
-      setPosition({
-        x: (deltaX / maxDistance) * factor,
-        y: (deltaY / maxDistance) * factor,
-      });
-    }
-  };
+      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+      const maxDistance = Math.max(rect.width, rect.height);
 
-  const handleMouseLeave = () => {
+      if (distance < maxDistance) {
+        const factor = (1 - distance / maxDistance) * strength;
+        setPosition({
+          x: (deltaX / maxDistance) * factor,
+          y: (deltaY / maxDistance) * factor,
+        });
+      }
+    },
+    [strength]
+  );
+
+  const handleMouseLeave = useCallback(() => {
     setPosition({ x: 0, y: 0 });
-  };
+  }, []);
 
   return (
     <button

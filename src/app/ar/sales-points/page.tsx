@@ -147,7 +147,7 @@ export default function SalesPointsPage() {
                   placeholder="ابحث عن منفذ بيع..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pr-10"
+                  className="pe-10"
                 />
               </div>
               <select
@@ -191,7 +191,7 @@ export default function SalesPointsPage() {
                   </div>
                   {point.verified && (
                     <Badge className="bg-green-500">
-                      <CheckCircle2 className="w-3 h-3 ml-1" />
+                      <CheckCircle2 className="w-3 h-3 ms-1" />
                       موثق
                     </Badge>
                   )}
@@ -217,7 +217,7 @@ export default function SalesPointsPage() {
                   <span>{point.hours}</span>
                 </div>
                 <Button className="w-full" variant="outline">
-                  <Navigation className="w-4 h-4 ml-2" />
+                  <Navigation className="w-4 h-4 ms-2" />
                   الاتجاهات
                 </Button>
               </CardContent>
@@ -244,7 +244,7 @@ export default function SalesPointsPage() {
               انضم إلى شبكة منافذ البيع لدينا واحصل على فرصة لتوزيع منتجاتنا في منطقتك
             </p>
             <Button>
-              <Store className="w-4 h-4 ml-2" />
+              <Store className="w-4 h-4 ms-2" />
               تقديم طلب
             </Button>
           </CardContent>

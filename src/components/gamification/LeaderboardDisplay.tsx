@@ -211,10 +211,10 @@ export default function LeaderboardDisplay({
   showLeagues = true,
   hideFilters = false,
 }: LeaderboardDisplayProps) {
-  const { userStats } = useGamification();
+  const { userStats: _userStats } = useGamification();
   const [selectedTimeframe, setSelectedTimeframe] = useState(timeframe);
   const [selectedCategory, setSelectedCategory] = useState(category);
-  const [leaderboardData, setLeaderboardData] = useState(MOCK_LEADERBOARD);
+  const [leaderboardData, _setLeaderboardData] = useState(MOCK_LEADERBOARD);
 
   // Sync internal state with props when they change (for controlled usage)
   useEffect(() => {

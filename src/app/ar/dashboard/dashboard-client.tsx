@@ -262,7 +262,7 @@ function DashboardContent() {
                   size="lg"
                   className="bg-gradient-primary shadow-glow hover:shadow-glow-sm hover:scale-105 transition-all duration-300 text-white h-12 px-6 rounded-xl"
                 >
-                  <Play className="w-5 h-5 ml-2 fill-current" />
+                  <Play className="w-5 h-5 ms-2 fill-current" />
                   متابعة
                 </Button>
               </Link>

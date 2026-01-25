@@ -147,7 +147,7 @@ function TestimonialCard({
           <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary-500/20 to-brand-coral-500/20">
             <div className="text-center">
               <div className="w-20 h-20 bg-white/90 dark:bg-gray-900/90 rounded-full flex items-center justify-center mx-auto mb-2 shadow-xl backdrop-blur-sm">
-                <Play className="w-8 h-8 text-primary mr-1" />
+                <Play className="w-8 h-8 text-primary me-1" />
               </div>
               {testimonial.duration && (
                 <span className="text-sm font-medium text-foreground">
@@ -164,7 +164,7 @@ function TestimonialCard({
             aria-label={`شاهد شهادة ${testimonial.name}`}
           >
             <div className="w-16 h-16 bg-white/90 dark:bg-gray-900/90 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform backdrop-blur-sm">
-              <Play className="w-7 h-7 text-primary mr-1" />
+              <Play className="w-7 h-7 text-primary me-1" />
             </div>
           </button>
 
@@ -194,7 +194,7 @@ function TestimonialCard({
           {/* Quote */}
           <div className="relative">
             <Quote className="w-6 h-6 text-primary/20 absolute -top-2 -right-2" />
-            <p className="text-sm text-muted-foreground leading-relaxed pr-4">
+            <p className="text-sm text-muted-foreground leading-relaxed pe-4">
               {testimonial.quote}
             </p>
           </div>

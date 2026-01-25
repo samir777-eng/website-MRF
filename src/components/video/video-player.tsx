@@ -2,6 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import {
+  Captions,
+  CaptionsOff,
   Loader,
   Maximize,
   Pause,
@@ -32,6 +34,18 @@ const supportsHLS = () => {
   return video.canPlayType("application/vnd.apple.mpegurl") !== "";
 };
 
+// LocalStorage key for caption preferences
+const CAPTION_PREFERENCE_KEY = "mrf-video-caption-preference";
+
+// Caption track interface for accessibility support
+export interface CaptionTrack {
+  src: string;
+  srcLang: string;
+  label: string;
+  kind: "captions" | "subtitles" | "descriptions";
+  default?: boolean;
+}
+
 interface VideoPlayerProps {
   src: string;
   poster?: string;
@@ -41,6 +55,7 @@ interface VideoPlayerProps {
   onComplete?: () => void;
   autoPlay?: boolean;
   startTime?: number;
+  captions?: CaptionTrack[];
 }
 
 export function VideoPlayer({
@@ -52,9 +67,11 @@ export function VideoPlayer({
   onComplete,
   autoPlay = false,
   startTime = 0,
+  captions = [],
 }: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const captionMenuRef = useRef<HTMLDivElement>(null);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -67,11 +84,96 @@ export function VideoPlayer({
   const [playbackRate, setPlaybackRate] = useState(1);
   const [hasError, setHasError] = useState(false);
   const [isSafariBrowser, setIsSafariBrowser] = useState(false);
+  const [captionsEnabled, setCaptionsEnabled] = useState(false);
+  const [activeCaptionTrack, setActiveCaptionTrack] = useState<string | null>(null);
+  const [showCaptionMenu, setShowCaptionMenu] = useState(false);
 
   // Detect Safari on mount
   useEffect(() => {
     setIsSafariBrowser(isSafari());
   }, []);
+
+  // Load caption preferences from localStorage and initialize captions
+  useEffect(() => {
+    if (typeof window === "undefined" || captions.length === 0) return;
+
+    // Load saved preference
+    const savedPreference = localStorage.getItem(CAPTION_PREFERENCE_KEY);
+    if (savedPreference) {
+      try {
+        const { enabled, trackLang } = JSON.parse(savedPreference);
+        setCaptionsEnabled(enabled);
+        if (trackLang) {
+          setActiveCaptionTrack(trackLang);
+        }
+      } catch {
+        // Invalid saved preference, use defaults
+      }
+    }
+
+    // If no saved preference, check for default track
+    const defaultTrack = captions.find((track) => track.default);
+    if (defaultTrack && !savedPreference) {
+      setActiveCaptionTrack(defaultTrack.srcLang);
+    }
+  }, [captions]);
+
+  // Update text tracks when caption settings change
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || captions.length === 0) return;
+
+    // Update all text track modes
+    const tracks = video.textTracks;
+    for (let i = 0; i < tracks.length; i++) {
+      const track = tracks[i];
+      if (captionsEnabled && track.language === activeCaptionTrack) {
+        track.mode = "showing";
+      } else {
+        track.mode = "hidden";
+      }
+    }
+
+    // Save preference to localStorage
+    if (typeof window !== "undefined") {
+      localStorage.setItem(
+        CAPTION_PREFERENCE_KEY,
+        JSON.stringify({
+          enabled: captionsEnabled,
+          trackLang: activeCaptionTrack,
+        })
+      );
+    }
+  }, [captionsEnabled, activeCaptionTrack, captions]);
+
+  // Close caption menu when clicking outside
+  useEffect(() => {
+    if (!showCaptionMenu) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        captionMenuRef.current &&
+        !captionMenuRef.current.contains(event.target as Node)
+      ) {
+        setShowCaptionMenu(false);
+      }
+    };
+
+    // Handle Escape key to close menu
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setShowCaptionMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [showCaptionMenu]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -262,6 +364,34 @@ export function VideoPlayer({
     setPlaybackRate(rate);
   };
 
+  // Toggle captions on/off
+  const toggleCaptions = () => {
+    if (captions.length === 0) return;
+
+    if (!captionsEnabled) {
+      // Enable captions - use active track or first available
+      setCaptionsEnabled(true);
+      if (!activeCaptionTrack && captions.length > 0) {
+        setActiveCaptionTrack(captions[0].srcLang);
+      }
+    } else {
+      setCaptionsEnabled(false);
+    }
+  };
+
+  // Select a specific caption track
+  const selectCaptionTrack = (srcLang: string) => {
+    setActiveCaptionTrack(srcLang);
+    setCaptionsEnabled(true);
+    setShowCaptionMenu(false);
+  };
+
+  // Turn off captions
+  const turnOffCaptions = () => {
+    setCaptionsEnabled(false);
+    setShowCaptionMenu(false);
+  };
+
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
@@ -312,6 +442,10 @@ export function VideoPlayer({
         e.preventDefault();
         toggleFullscreen();
         break;
+      case "c":
+        e.preventDefault();
+        toggleCaptions();
+        break;
       case "Home":
         e.preventDefault();
         if (videoRef.current) {
@@ -360,7 +494,7 @@ export function VideoPlayer({
       {/* Hidden keyboard shortcuts help text for screen readers */}
       <span id="video-keyboard-shortcuts" className="sr-only">
         اضغط مسافة أو K للتشغيل/الإيقاف، سهم يمين أو L للتقديم 10 ثواني، سهم
-        يسار أو J للرجوع 10 ثواني، M لكتم الصوت، F لملء الشاشة
+        يسار أو J للرجوع 10 ثواني، M لكتم الصوت، F لملء الشاشة، C لتفعيل/إيقاف الترجمة
       </span>
       { }
       <video
@@ -376,7 +510,19 @@ export function VideoPlayer({
         preload="metadata"
         crossOrigin="anonymous"
         aria-label={title || "فيديو"}
-      />
+      >
+        {/* Caption/Subtitle tracks for accessibility */}
+        {captions.map((track) => (
+          <track
+            key={`${track.srcLang}-${track.kind}`}
+            src={track.src}
+            kind={track.kind}
+            srcLang={track.srcLang}
+            label={track.label}
+            default={track.default}
+          />
+        ))}
+      </video>
 
       {/* Error Overlay */}
       {hasError && (
@@ -497,7 +643,7 @@ export function VideoPlayer({
               <SkipForward className="w-4 h-4" aria-hidden="true" />
             </Button>
 
-            <div className="flex items-center gap-2 ml-4">
+            <div className="flex items-center gap-2 ms-4">
               <Button
                 size="sm"
                 variant="ghost"
@@ -545,6 +691,91 @@ export function VideoPlayer({
               <option value={1.5}>1.5x</option>
               <option value={2}>2x</option>
             </select>
+
+            {/* Caption/Subtitle Controls */}
+            {captions.length > 0 && (
+              <div className="relative" ref={captionMenuRef}>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className={cn(
+                    "text-white hover:bg-white/20",
+                    captionsEnabled && "bg-white/20"
+                  )}
+                  onClick={() => {
+                    if (captions.length === 1) {
+                      toggleCaptions();
+                    } else {
+                      setShowCaptionMenu(!showCaptionMenu);
+                    }
+                  }}
+                  aria-label={captionsEnabled ? "إيقاف الترجمة" : "تفعيل الترجمة"}
+                  aria-expanded={showCaptionMenu}
+                  aria-haspopup={captions.length > 1 ? "menu" : undefined}
+                  title={captionsEnabled ? "إيقاف الترجمة (C)" : "تفعيل الترجمة (C)"}
+                >
+                  {captionsEnabled ? (
+                    <Captions className="w-4 h-4" aria-hidden="true" />
+                  ) : (
+                    <CaptionsOff className="w-4 h-4" aria-hidden="true" />
+                  )}
+                </Button>
+
+                {/* Caption track selection menu */}
+                {showCaptionMenu && captions.length > 1 && (
+                  <div
+                    className="absolute bottom-full mb-2 end-0 bg-black/90 backdrop-blur-sm rounded-lg shadow-lg py-2 min-w-[160px] z-50"
+                    role="menu"
+                    aria-label="اختر لغة الترجمة"
+                  >
+                    <button
+                      className={cn(
+                        "w-full px-4 py-2 text-start text-sm text-white hover:bg-white/20 transition-colors",
+                        !captionsEnabled && "bg-white/10"
+                      )}
+                      role="menuitem"
+                      onClick={turnOffCaptions}
+                    >
+                      إيقاف الترجمة
+                    </button>
+                    <div className="border-t border-white/20 my-1" role="separator" />
+                    {captions.map((track) => (
+                      <button
+                        key={`${track.srcLang}-${track.kind}`}
+                        className={cn(
+                          "w-full px-4 py-2 text-start text-sm text-white hover:bg-white/20 transition-colors",
+                          captionsEnabled &&
+                            activeCaptionTrack === track.srcLang &&
+                            "bg-white/10"
+                        )}
+                        role="menuitem"
+                        onClick={() => selectCaptionTrack(track.srcLang)}
+                        aria-current={
+                          captionsEnabled && activeCaptionTrack === track.srcLang
+                            ? "true"
+                            : undefined
+                        }
+                      >
+                        <span className="flex items-center gap-2">
+                          {captionsEnabled &&
+                            activeCaptionTrack === track.srcLang && (
+                              <span aria-hidden="true">&#10003;</span>
+                            )}
+                          <span>
+                            {track.label}
+                            {track.kind === "descriptions" && (
+                              <span className="text-xs text-white/70 ms-1">
+                                (وصف صوتي)
+                              </span>
+                            )}
+                          </span>
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
 
             <Button
               size="sm"

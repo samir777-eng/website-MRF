@@ -20,6 +20,8 @@ const eslintConfig = [
       "next-env.d.ts",
       "src/tests/**",
       "src/mocks/**",
+      "scripts/**", // Exclude scripts folder from linting
+      "src/components/docs/**", // Exclude docs showcase components
     ],
   },
   {

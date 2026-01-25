@@ -14,7 +14,7 @@ interface GemsDisplayProps {
 export function GemsDisplay({ showAddButton = true, size = "md", animated = true }: GemsDisplayProps) {
   const [gems, setGems] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [showPulse, setShowPulse] = useState(false);
+  const [showPulse, _setShowPulse] = useState(false);
 
   useEffect(() => {
     fetchGems();
@@ -64,7 +64,7 @@ export function GemsDisplay({ showAddButton = true, size = "md", animated = true
       </AnimatePresence>
 
       {showAddButton && (
-        <Link href="/ar/store?tab=rewards" className="ml-1 p-1 hover:bg-purple-500/20 rounded-full transition-colors" aria-label="اذهب للمتجر">
+        <Link href="/ar/store?tab=rewards" className="ms-1 p-1 hover:bg-purple-500/20 rounded-full transition-colors" aria-label="اذهب للمتجر">
           <Plus size={iconSizes[size] - 4} className="text-purple-400" />
         </Link>
       )}

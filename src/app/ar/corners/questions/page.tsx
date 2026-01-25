@@ -96,7 +96,7 @@ export default function QuestionsCornerPage() {
             </div>
           </div>
           <Button className="bg-gradient-to-r from-blue-500 to-blue-600">
-            <MessageCircle className="w-4 h-4 mr-2" />
+            <MessageCircle className="w-4 h-4 me-2" />
             اسأل سؤالاً
           </Button>
         </div>

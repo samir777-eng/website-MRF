@@ -294,7 +294,7 @@ export default function AnnouncementsPage() {
                 size="sm"
                 onClick={() => setFilter("feature")}
               >
-                <Star className="w-4 h-4 mr-2" />
+                <Star className="w-4 h-4 me-2" />
                 ميزات جديدة
               </Button>
               <Button
@@ -302,7 +302,7 @@ export default function AnnouncementsPage() {
                 size="sm"
                 onClick={() => setFilter("content")}
               >
-                <BookOpen className="w-4 h-4 mr-2" />
+                <BookOpen className="w-4 h-4 me-2" />
                 محتوى جديد
               </Button>
               <Button
@@ -310,7 +310,7 @@ export default function AnnouncementsPage() {
                 size="sm"
                 onClick={() => setFilter("event")}
               >
-                <Calendar className="w-4 h-4 mr-2" />
+                <Calendar className="w-4 h-4 me-2" />
                 أحداث
               </Button>
               <Button
@@ -318,7 +318,7 @@ export default function AnnouncementsPage() {
                 size="sm"
                 onClick={() => setFilter("update")}
               >
-                <TrendingUp className="w-4 h-4 mr-2" />
+                <TrendingUp className="w-4 h-4 me-2" />
                 تحديثات
               </Button>
               <Button
@@ -326,7 +326,7 @@ export default function AnnouncementsPage() {
                 size="sm"
                 onClick={() => setFilter("achievement")}
               >
-                <Trophy className="w-4 h-4 mr-2" />
+                <Trophy className="w-4 h-4 me-2" />
                 إنجازات
               </Button>
             </div>
@@ -358,7 +358,7 @@ export default function AnnouncementsPage() {
                         <div className="flex items-center gap-2 mb-2">
                           {announcement.isPinned && (
                             <Badge className="bg-yellow-100 text-yellow-800">
-                              <Zap className="w-3 h-3 mr-1" />
+                              <Zap className="w-3 h-3 me-1" />
                               مثبت
                             </Badge>
                           )}
@@ -436,7 +436,7 @@ export default function AnnouncementsPage() {
               size="lg"
               className="bg-gradient-to-r from-blue-600 to-indigo-600"
             >
-              <Bell className="w-5 h-5 mr-2" />
+              <Bell className="w-5 h-5 me-2" />
               تفعيل الإشعارات
             </Button>
           </CardContent>

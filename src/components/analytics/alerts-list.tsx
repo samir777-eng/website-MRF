@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { AlertTriangle, TrendingDown, Clock, Trophy, Bell, Check } from "lucide-react";
-import { EducatorAlert, getSeverityColor } from "@/types/analytics";
+import { EducatorAlert } from "@/types/analytics";
 
 interface AlertsListProps {
   alerts: EducatorAlert[];

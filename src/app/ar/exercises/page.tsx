@@ -129,7 +129,7 @@ export default function ExercisesPage() {
                   <p className="text-sm text-muted-foreground">{exercise.description}</p>
                 </div>
                 {exercise.status === 'completed' && exercise.score && (
-                  <Badge variant={exercise.score >= 80 ? 'default' : 'secondary'} className="mr-4">
+                  <Badge variant={exercise.score >= 80 ? 'default' : 'secondary'} className="me-4">
                     {exercise.score}%
                   </Badge>
                 )}
@@ -148,12 +148,12 @@ export default function ExercisesPage() {
                 <Badge variant="outline">{exercise.difficulty}</Badge>
                 {exercise.status === 'completed' ? (
                   <Badge variant="default" className="bg-green-600">
-                    <CheckCircle className="w-3 h-3 ml-1" aria-hidden="true" />
+                    <CheckCircle className="w-3 h-3 ms-1" aria-hidden="true" />
                     مكتمل
                   </Badge>
                 ) : (
                   <Badge variant="secondary">
-                    <Clock className="w-3 h-3 ml-1" aria-hidden="true" />
+                    <Clock className="w-3 h-3 ms-1" aria-hidden="true" />
                     قيد الانتظار
                   </Badge>
                 )}

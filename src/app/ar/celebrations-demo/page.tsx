@@ -596,7 +596,7 @@ export default function CelebrationsDemoPage() {
                 }, 2500);
               }}
             >
-              <Sparkles className="w-5 h-5 ml-2" />
+              <Sparkles className="w-5 h-5 ms-2" />
               أكمل الدرس بنجاح!
             </Button>
           </CardContent>

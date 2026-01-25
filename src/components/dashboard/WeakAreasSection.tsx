@@ -16,7 +16,7 @@ import {
   AlertCircle,
   CheckCircle,
   ChevronLeft,
-  Sparkles,
+
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -123,7 +123,7 @@ export function WeakAreasSection({
         <Link href="/ar/weak-areas">
           <Button variant="ghost" size="sm" className="text-primary">
             عرض الكل
-            <ChevronLeft className="w-4 h-4 mr-2" />
+            <ChevronLeft className="w-4 h-4 me-2" />
           </Button>
         </Link>
       </div>
@@ -322,7 +322,7 @@ function WeakAreaCard({ area, index }: { area: WeakArea; index: number }) {
                 status === "success" && "bg-success-500 hover:bg-success-600"
               )}
             >
-              <Target className="w-4 h-4 ml-2" />
+              <Target className="w-4 h-4 ms-2" />
               تدرب الآن
             </Button>
           </Link>

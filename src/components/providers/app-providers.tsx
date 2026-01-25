@@ -16,24 +16,34 @@ import { ErrorBoundaryProvider } from "./error-boundary-provider";
 import { ThemeProvider } from "./theme-provider";
 
 /**
- * Consolidated App Providers
+ * Consolidated App Providers - Optimized for Performance
  *
  * This component consolidates all context providers into a single component
  * to reduce deep nesting (was 8 levels, now 1 level from consumer perspective).
  *
- * Benefits:
- * - Reduced re-render propagation through provider chain
- * - Cleaner layout.tsx
- * - Easier provider management
- * - Better performance with useMemo for children
+ * PERFORMANCE OPTIMIZATIONS:
+ * 1. GamificationProvider is now split into 3 sub-contexts (Stats, Streak, Achievements)
+ *    - Components only re-render when their specific data changes
+ *    - Selector hooks available for fine-grained subscriptions
+ * 2. SearchProvider uses memoized context values
+ *    - Selector hooks for query, modal, filters, history
+ * 3. Children are memoized to prevent unnecessary re-renders
+ *
+ * MIGRATION GUIDE FOR CONSUMERS:
+ * Instead of using the full useGamification() hook, use specific selectors:
+ *   - useGamificationXP() - for XP displays only
+ *   - useGamificationGems() - for gem displays only
+ *   - useCurrentStreak() - for streak displays only
+ *   - useSearchModal() - for search modal controls
+ *   - useSearchResults() - for search results display
  *
  * Provider Order (dependencies):
  * 1. ThemeProvider - No deps, handles theme
  * 2. AuthProvider - No deps, handles authentication
- * 3. GamificationProvider - Depends on Auth (for user stats)
+ * 3. GamificationProvider - Depends on Auth (now split into 3 sub-contexts)
  * 4. SpacedRepetitionProvider - Depends on Auth
  * 5. StoreProvider - Depends on Auth (for cart/purchases)
- * 6. SearchProvider - No deps, handles search state
+ * 6. SearchProvider - No deps, handles search state (optimized with memoization)
  * 7. ErrorBoundaryProvider - Top-level error catching
  * 8. AnalyticsProvider - Depends on Auth (for user tracking)
  */

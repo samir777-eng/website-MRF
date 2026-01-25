@@ -27,7 +27,7 @@ export default function StreakDisplay({
   variant = "compact",
   showGoals = true,
 }: StreakDisplayProps) {
-  const { userStats, updateStreak } = useGamification();
+  const { userStats, updateStreak: _updateStreak } = useGamification();
   const [streakFreezes, setStreakFreezes] = useState(3); // Mock data - in real app, get from backend
   const [dailyGoals, setDailyGoals] = useState({
     lessonsCompleted: 0,
@@ -72,7 +72,7 @@ export default function StreakDisplay({
   const isGoalCompleted = overallDailyProgress >= 100;
 
   // Get streak color based on length
-  const getStreakColor = (streak: number) => {
+  const _getStreakColor = (streak: number) => {
     if (streak >= 30) return "text-purple-600 bg-purple-100";
     if (streak >= 14) return "text-orange-600 bg-orange-100";
     if (streak >= 7) return "text-red-600 bg-red-100";
@@ -227,7 +227,7 @@ export default function StreakDisplay({
 
               {isGoalCompleted && (
                 <Badge className="bg-green-600 text-white">
-                  <CheckCircle className="w-4 h-4 mr-1" />
+                  <CheckCircle className="w-4 h-4 me-1" />
                   مكتمل
                 </Badge>
               )}

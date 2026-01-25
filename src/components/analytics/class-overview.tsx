@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Users, Target, Flame, BarChart3, AlertTriangle, Award } from "lucide-react";
-import { ClassOverview as ClassOverviewType, TimeRange } from "@/types/analytics";
+import { ClassOverview as ClassOverviewType } from "@/types/analytics";
 import { StudentPerformanceCard } from "./student-performance-card";
 
 interface ClassOverviewProps {
@@ -16,6 +16,7 @@ export function ClassOverview({ classId }: ClassOverviewProps) {
 
   useEffect(() => {
     fetchOverview();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [classId]);
 
   async function fetchOverview() {

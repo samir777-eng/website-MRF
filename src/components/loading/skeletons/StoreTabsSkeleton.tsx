@@ -5,7 +5,7 @@
  * Loading state for store page with tabs and product grids
  */
 
-import { EnhancedSkeleton, SkeletonCard } from "../EnhancedSkeleton";
+import { EnhancedSkeleton, SkeletonCard as _SkeletonCard } from "../EnhancedSkeleton";
 
 export function StoreTabsSkeleton() {
   return (

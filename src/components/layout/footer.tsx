@@ -44,7 +44,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2 rtl:space-x-reverse">
+            <div className="flex items-center gap-2">
               <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold">ر</span>
               </div>
@@ -56,7 +56,7 @@ export function Footer() {
               {t("teacher.description")}
             </p>
             <nav aria-label="روابط التواصل الاجتماعي">
-              <div className="flex space-x-4 rtl:space-x-reverse">
+              <div className="flex gap-4">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
                   return (
@@ -120,19 +120,19 @@ export function Footer() {
               {t("footer.contact")}
             </h3>
             <div className="space-y-3">
-              <div className="flex items-center space-x-3 rtl:space-x-reverse">
+              <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-primary-400" />
                 <span className="text-primary-200 text-sm">
                   info@mrredaelfarouk.com
                 </span>
               </div>
-              <div className="flex items-center space-x-3 rtl:space-x-reverse">
+              <div className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-primary-400" />
                 <span className="text-primary-200 text-sm">
                   +20 123 456 7890
                 </span>
               </div>
-              <div className="flex items-center space-x-3 rtl:space-x-reverse">
+              <div className="flex items-center gap-3">
                 <MapPin className="w-4 h-4 text-primary-400" />
                 <span className="text-primary-200 text-sm">
                   {t("footer.location")}
@@ -150,7 +150,7 @@ export function Footer() {
               {t("footer.allRightsReserved")}
             </p>
             <nav aria-label="روابط قانونية">
-              <div className="flex items-center space-x-6 rtl:space-x-reverse">
+              <div className="flex items-center gap-6">
                 <a
                   href="/privacy"
                   className="text-primary-200 hover:text-primary-100 transition-colors text-sm"

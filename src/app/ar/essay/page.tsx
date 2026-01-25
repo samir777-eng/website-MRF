@@ -188,7 +188,7 @@ export default function EssayWritingPage() {
                     </div>
                     <div className="flex gap-2">
                       <Button className="flex-1">
-                        <BookOpen className="w-4 h-4 ml-2" />
+                        <BookOpen className="w-4 h-4 ms-2" />
                         قراءة
                       </Button>
                       <Button variant="outline" size="icon">
@@ -229,7 +229,7 @@ export default function EssayWritingPage() {
               <CardContent>
                 <div className="aspect-video bg-gradient-to-br from-green-100 to-blue-100 dark:from-green-950 dark:to-blue-950 rounded-lg flex items-center justify-center">
                   <Button size="lg">
-                    <Play className="w-6 h-6 ml-2" />
+                    <Play className="w-6 h-6 ms-2" />
                     مشاهدة الفيديو
                   </Button>
                 </div>
@@ -253,7 +253,7 @@ export default function EssayWritingPage() {
                   </CardHeader>
                   <CardContent>
                     <Button className="w-full">
-                      <FileText className="w-4 h-4 ml-2" />
+                      <FileText className="w-4 h-4 ms-2" />
                       ابدأ الكتابة
                     </Button>
                   </CardContent>

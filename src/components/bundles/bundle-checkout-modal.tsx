@@ -368,7 +368,7 @@ export function BundleCheckoutModal({
                 >
                   {isProcessing ? (
                     <>
-                      <Loader2 className="w-4 h-4 ml-2 animate-spin" />
+                      <Loader2 className="w-4 h-4 ms-2 animate-spin" />
                       جاري المعالجة...
                     </>
                   ) : (

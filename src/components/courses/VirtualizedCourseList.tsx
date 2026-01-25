@@ -64,7 +64,7 @@ export function VirtualizedCourseList({
     }
   };
 
-  const renderCourseCard = (course: Course, index: number) => (
+  const renderCourseCard = (course: Course, _index: number) => (
     <Card className="group hover:shadow-2xl transition-all duration-500 border-0 bg-gradient-to-br from-background to-muted/20 overflow-hidden hover:scale-[1.01] h-full">
       {/* Course Header */}
       <CardHeader className="pb-4">
@@ -97,7 +97,7 @@ export function VirtualizedCourseList({
                 variant="secondary"
                 className="bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 text-sm"
               >
-                <Trophy className="w-3 h-3 ml-1" />
+                <Trophy className="w-3 h-3 ms-1" />
                 شهادة معتمدة
               </Badge>
             )}
@@ -188,22 +188,22 @@ export function VirtualizedCourseList({
             {course.enrolled ? (
               course.progress > 0 ? (
                 <>
-                  <Play className="w-4 h-4 ml-2" aria-hidden="true" />
+                  <Play className="w-4 h-4 ms-2" aria-hidden="true" />
                   متابعة التعلم
-                  <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" />
+                  <ArrowLeft className="w-4 h-4 me-2" aria-hidden="true" />
                 </>
               ) : (
                 <>
-                  <CheckCircle className="w-4 h-4 ml-2" aria-hidden="true" />
+                  <CheckCircle className="w-4 h-4 ms-2" aria-hidden="true" />
                   ابدأ الدورة
-                  <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" />
+                  <ArrowLeft className="w-4 h-4 me-2" aria-hidden="true" />
                 </>
               )
             ) : (
               <>
-                <GraduationCap className="w-4 h-4 ml-2" aria-hidden="true" />
+                <GraduationCap className="w-4 h-4 ms-2" aria-hidden="true" />
                 التسجيل المجاني
-                <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" />
+                <ArrowLeft className="w-4 h-4 me-2" aria-hidden="true" />
               </>
             )}
           </Button>

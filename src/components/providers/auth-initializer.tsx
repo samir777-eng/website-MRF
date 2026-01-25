@@ -110,7 +110,7 @@ export function AuthInitializer({ children }: AuthInitializerProps) {
                   />
                 </svg>
               </div>
-              <div className="ml-3 rtl:mr-3 rtl:ml-0">
+              <div className="ms-3">
                 <h3 className="text-sm font-medium text-yellow-800">
                   انتهاء صلاحية الجلسة قريباً
                 </h3>
@@ -119,7 +119,7 @@ export function AuthInitializer({ children }: AuthInitializerProps) {
                   تلقائياً.
                 </p>
               </div>
-              <div className="ml-auto rtl:mr-auto rtl:ml-0 pl-3 rtl:pr-3 rtl:pl-0">
+              <div className="ms-auto ps-3">
                 <button
                   onClick={() => setShowExpiryWarning(false)}
                   className="inline-flex rounded-md bg-yellow-50 p-1.5 text-yellow-500 hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2 focus:ring-offset-yellow-50"
@@ -208,7 +208,7 @@ function AuthDebugInfo() {
         } else {
           setTokenInfo(null);
         }
-      } catch (error) {
+      } catch (_error) {
         setTokenInfo({
           isValid: false,
           isExpired: true,

@@ -45,7 +45,7 @@ export default function MistakesCornerPage() {
           <h3 className="font-semibold text-foreground">{mistake.question}</h3>
           {mistake.reviewed && (
             <Badge variant="secondary" className="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
-              <CheckCircle className="w-3 h-3 mr-1" />
+              <CheckCircle className="w-3 h-3 me-1" />
               تمت المراجعة
             </Badge>
           )}

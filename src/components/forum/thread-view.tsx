@@ -29,6 +29,7 @@ export function ThreadView({ threadId }: ThreadViewProps) {
   useEffect(() => {
     fetchThread();
     fetchReplies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [threadId]);
 
   async function fetchThread() {

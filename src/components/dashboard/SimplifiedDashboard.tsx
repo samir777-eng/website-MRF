@@ -7,9 +7,7 @@
 
 import NextActionCard, { type NextAction } from "./NextActionCard";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import {
   Accordion,
   AccordionContent,
@@ -25,7 +23,6 @@ import {
   Medal,
   ShoppingBag,
   CheckCircle,
-  ChevronDown,
   Brain,
   ClipboardList,
   HelpCircle,

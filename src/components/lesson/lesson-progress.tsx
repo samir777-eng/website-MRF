@@ -30,7 +30,7 @@ export function LessonProgress({
   progress,
   duration,
   completedTime,
-  isCompleted = false,
+  isCompleted: _isCompleted = false,
 }: LessonProgressProps) {
   const getProgressColor = (progress: number) => {
     if (progress >= 100) return "text-green-600";
@@ -147,18 +147,18 @@ export function LessonProgress({
         <div className="space-y-2">
           {progress < 100 ? (
             <Button className="w-full">
-              <Play className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" />
+              <Play className="h-4 w-4 me-2" />
               {progress > 0 ? "متابعة المشاهدة" : "بدء المشاهدة"}
             </Button>
           ) : (
             <Button variant="outline" className="w-full">
-              <CheckCircle className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" />
+              <CheckCircle className="h-4 w-4 me-2" />
               إعادة المشاهدة
             </Button>
           )}
 
           <Button variant="outline" className="w-full" size="sm">
-            <TrendingUp className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" />
+            <TrendingUp className="h-4 w-4 me-2" />
             عرض الإحصائيات التفصيلية
           </Button>
         </div>

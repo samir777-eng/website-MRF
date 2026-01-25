@@ -24,7 +24,7 @@ interface NotesPanelProps {
   lessonId: number;
 }
 
-export function NotesPanel({ lessonId }: NotesPanelProps) {
+export function NotesPanel({ lessonId: _lessonId }: NotesPanelProps) {
   const [notes, setNotes] = useState<Note[]>([
     {
       id: "1",
@@ -115,7 +115,7 @@ export function NotesPanel({ lessonId }: NotesPanelProps) {
             onClick={() => setIsAdding(true)}
             disabled={isAdding}
           >
-            <Plus className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" />
+            <Plus className="h-4 w-4 me-2" />
             إضافة
           </Button>
         </div>
@@ -135,7 +135,7 @@ export function NotesPanel({ lessonId }: NotesPanelProps) {
             />
             <div className="flex items-center gap-2 mt-2">
               <Button size="sm" onClick={addNote}>
-                <Save className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" />
+                <Save className="h-4 w-4 me-2" />
                 حفظ
               </Button>
               <Button
@@ -146,7 +146,7 @@ export function NotesPanel({ lessonId }: NotesPanelProps) {
                   setNewNoteContent("");
                 }}
               >
-                <X className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" />
+                <X className="h-4 w-4 me-2" />
                 إلغاء
               </Button>
             </div>
@@ -175,11 +175,11 @@ export function NotesPanel({ lessonId }: NotesPanelProps) {
                     />
                     <div className="flex items-center gap-2 mt-2">
                       <Button size="sm" onClick={saveEdit}>
-                        <Save className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" />
+                        <Save className="h-4 w-4 me-2" />
                         حفظ
                       </Button>
                       <Button size="sm" variant="outline" onClick={cancelEdit}>
-                        <X className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" />
+                        <X className="h-4 w-4 me-2" />
                         إلغاء
                       </Button>
                     </div>
@@ -188,7 +188,7 @@ export function NotesPanel({ lessonId }: NotesPanelProps) {
                   <div>
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <Badge variant="outline" className="text-sm">
-                        <Clock className="h-3 w-3 mr-1 rtl:mr-0 rtl:ml-1" />
+                        <Clock className="h-3 w-3 me-1" />
                         {note.timeLabel}
                       </Badge>
                       <div className="flex items-center gap-1">

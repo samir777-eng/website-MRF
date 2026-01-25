@@ -137,8 +137,8 @@ export default function RewardsSystem({
   showCelebrations = true,
 }: RewardsSystemProps) {
   const {
-    userStats,
-    addXP,
+    userStats: _userStats,
+    addXP: _addXP,
     gems,
     purchaseItem: apiPurchaseItem,
     refreshGems,
@@ -566,12 +566,12 @@ export default function RewardsSystem({
                     >
                       {item.equipped ? (
                         <>
-                          <Star className="w-4 h-4 mr-2 fill-current" />
+                          <Star className="w-4 h-4 me-2 fill-current" />
                           مُفعّل ✓
                         </>
                       ) : (
                         <>
-                          <Crown className="w-4 h-4 mr-2" />
+                          <Crown className="w-4 h-4 me-2" />
                           تفعيل
                         </>
                       )}
@@ -581,12 +581,12 @@ export default function RewardsSystem({
                       onClick={() => applyItem(item.id)}
                       className="w-full h-11 min-h-[44px] bg-green-600 hover:bg-green-500 text-white rounded-xl"
                     >
-                      <Zap className="w-4 h-4 mr-2" />
+                      <Zap className="w-4 h-4 me-2" />
                       استخدام
                     </Button>
                   ) : (
                     <div className="flex items-center justify-center text-green-400 h-11 min-h-[44px]">
-                      <Award className="w-5 h-5 mr-2" />
+                      <Award className="w-5 h-5 me-2" />
                       <span className="font-medium">مملوك</span>
                     </div>
                   )
@@ -595,7 +595,7 @@ export default function RewardsSystem({
                     onClick={() => purchaseItem(item.id)}
                     className="w-full h-11 min-h-[44px] bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl"
                   >
-                    <ShoppingCart className="w-4 h-4 mr-2" />
+                    <ShoppingCart className="w-4 h-4 me-2" />
                     شراء
                   </Button>
                 )}
@@ -698,13 +698,9 @@ export default function RewardsSystem({
         </div>
       </CardContent>
 
-      {/* Celebration Effects with Focus Trap */}
+      {/* Celebration Effects */}
       {showCelebrations &&
         celebrations.map((celebration) => {
-          // Dynamic import for FocusTrap
-          const {
-            FocusTrap,
-          } = require("@/components/accessibility/focus-trap");
           const dismissCelebration = () =>
             setCelebrations((prev) =>
               prev.filter((c) => c.id !== celebration.id)
@@ -718,11 +714,10 @@ export default function RewardsSystem({
               aria-labelledby={`celebration-title-${celebration.id}`}
               onClick={dismissCelebration}
             >
-              <FocusTrap active={celebrations.length > 0} restoreFocus>
-                <Card
-                  className="border-0 shadow-2xl bg-gradient-to-br from-yellow-400 to-orange-500 text-white max-w-md mx-4"
-                  onClick={(e: React.MouseEvent) => e.stopPropagation()}
-                >
+              <div
+                className="border-0 shadow-2xl bg-gradient-to-br from-yellow-400 to-orange-500 text-white max-w-md mx-4 rounded-lg"
+                onClick={(e: React.MouseEvent) => e.stopPropagation()}
+              >
                   <CardContent className="p-8 text-center relative">
                     <button
                       onClick={dismissCelebration}
@@ -751,8 +746,7 @@ export default function RewardsSystem({
                       />
                     </div>
                   </CardContent>
-                </Card>
-              </FocusTrap>
+                </div>
             </div>
           );
         })}

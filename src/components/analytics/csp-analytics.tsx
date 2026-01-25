@@ -56,8 +56,8 @@ export function CSPGoogleAnalytics({
         // Initialize dataLayer and gtag function
         if (typeof window !== "undefined") {
           window.dataLayer = window.dataLayer || [];
-          window.gtag = function () {
-            window.dataLayer.push(arguments);
+          window.gtag = function (...args) {
+            window.dataLayer.push(args);
           };
 
           // Configure Google Analytics

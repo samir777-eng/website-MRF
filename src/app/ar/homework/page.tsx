@@ -178,7 +178,7 @@ export default function HomeworkPage() {
                     {hw.status === "submitted" && hw.score && (
                       <Badge
                         variant={hw.score >= 80 ? "default" : "secondary"}
-                        className="mr-4"
+                        className="me-4"
                       >
                         {hw.score}%
                       </Badge>
@@ -203,7 +203,7 @@ export default function HomeworkPage() {
                     {hw.status === "submitted" && (
                       <Badge variant="default" className="bg-green-600">
                         <CheckCircle
-                          className="w-3 h-3 ml-1"
+                          className="w-3 h-3 ms-1"
                           aria-hidden="true"
                         />
                         مسلم
@@ -211,7 +211,7 @@ export default function HomeworkPage() {
                     )}
                     {hw.status === "pending" && (
                       <Badge variant={isUrgent ? "destructive" : "secondary"}>
-                        <Clock className="w-3 h-3 ml-1" aria-hidden="true" />
+                        <Clock className="w-3 h-3 ms-1" aria-hidden="true" />
                         {isUrgent
                           ? `عاجل - ${daysRemaining} يوم`
                           : "قيد الانتظار"}
@@ -220,7 +220,7 @@ export default function HomeworkPage() {
                     {hw.status === "late" && (
                       <Badge variant="destructive">
                         <AlertCircle
-                          className="w-3 h-3 ml-1"
+                          className="w-3 h-3 ms-1"
                           aria-hidden="true"
                         />
                         متأخر
@@ -232,7 +232,7 @@ export default function HomeworkPage() {
                     <div className="bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-lg p-3 mb-4">
                       <p className="text-sm text-orange-800 dark:text-orange-200">
                         <AlertCircle
-                          className="w-4 h-4 inline ml-1"
+                          className="w-4 h-4 inline ms-1"
                           aria-hidden="true"
                         />
                         تنبيه: يتبقى {daysRemaining} يوم فقط على موعد التسليم!

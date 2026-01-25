@@ -1,13 +1,36 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Cart, CartItem, Book, Order, Wishlist } from '@/types/store';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
+import { Cart, CartItem, Book, Order, Wishlist, CheckoutState, CheckoutShippingData, CheckoutStep } from '@/types/store';
 import { MOCK_BOOKS } from '@/lib/store/mock-books';
+
+const CHECKOUT_STORAGE_KEY = 'mrf-checkout-state';
+
+// Default checkout state
+const getDefaultCheckoutState = (): CheckoutState => ({
+  step: 'shipping',
+  shippingData: {
+    fullName: '',
+    phone: '',
+    email: '',
+    governorate: '',
+    city: '',
+    area: '',
+    street: '',
+    building: '',
+    floor: '',
+    apartment: '',
+    notes: '',
+  },
+  selectedPayment: 'cod',
+  updatedAt: new Date().toISOString(),
+});
 
 interface StoreContextType {
   cart: Cart | null;
   wishlist: Wishlist | null;
   orders: Order[];
+  checkoutState: CheckoutState | null;
   addToCart: (book: Book, quantity?: number, format?: 'physical' | 'digital') => void;
   removeFromCart: (itemId: string) => void;
   updateCartItemQuantity: (itemId: string, quantity: number) => void;
@@ -17,6 +40,11 @@ interface StoreContextType {
   isInWishlist: (bookId: string) => boolean;
   getCartItemCount: () => number;
   getCartTotal: () => number;
+  // Checkout state management
+  setCheckoutStep: (step: CheckoutStep) => void;
+  setCheckoutShippingData: (data: Partial<CheckoutShippingData>) => void;
+  setCheckoutPayment: (paymentId: string) => void;
+  clearCheckoutState: () => void;
 }
 
 const StoreContext = createContext<StoreContextType | undefined>(undefined);
@@ -25,6 +53,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<Cart | null>(null);
   const [wishlist, setWishlist] = useState<Wishlist | null>(null);
   const [orders, setOrders] = useState<Order[]>([]);
+  const [checkoutState, setCheckoutState] = useState<CheckoutState | null>(null);
 
   // Initialize cart from localStorage
   useEffect(() => {
@@ -98,6 +127,32 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       };
       setWishlist(newWishlist);
     }
+
+    // Initialize checkout state from sessionStorage
+    const savedCheckout = sessionStorage.getItem(CHECKOUT_STORAGE_KEY);
+    if (savedCheckout) {
+      try {
+        const parsed = JSON.parse(savedCheckout);
+        // Check if the checkout state is still valid (not older than 24 hours)
+        const updatedAt = new Date(parsed.updatedAt);
+        const now = new Date();
+        const hoursDiff = (now.getTime() - updatedAt.getTime()) / (1000 * 60 * 60);
+
+        if (hoursDiff < 24) {
+          setCheckoutState(parsed);
+        } else {
+          // Expired, clear it
+          sessionStorage.removeItem(CHECKOUT_STORAGE_KEY);
+          setCheckoutState(getDefaultCheckoutState());
+        }
+      } catch {
+        // Invalid JSON, clear it
+        sessionStorage.removeItem(CHECKOUT_STORAGE_KEY);
+        setCheckoutState(getDefaultCheckoutState());
+      }
+    } else {
+      setCheckoutState(getDefaultCheckoutState());
+    }
   }, []);
 
   // Save cart to localStorage whenever it changes
@@ -113,6 +168,13 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       localStorage.setItem('mrf-wishlist', JSON.stringify(wishlist));
     }
   }, [wishlist]);
+
+  // Save checkout state to sessionStorage
+  useEffect(() => {
+    if (checkoutState) {
+      sessionStorage.setItem(CHECKOUT_STORAGE_KEY, JSON.stringify(checkoutState));
+    }
+  }, [checkoutState]);
 
   const calculateCartTotals = (items: CartItem[]): Partial<Cart> => {
     const subtotal = items.reduce((sum, item) => sum + item.subtotal, 0);
@@ -257,12 +319,55 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     return cart?.total || 0;
   };
 
+  // Checkout state management functions
+  const setCheckoutStep = useCallback((step: CheckoutStep) => {
+    setCheckoutState(prev => {
+      if (!prev) return getDefaultCheckoutState();
+      return {
+        ...prev,
+        step,
+        updatedAt: new Date().toISOString(),
+      };
+    });
+  }, []);
+
+  const setCheckoutShippingData = useCallback((data: Partial<CheckoutShippingData>) => {
+    setCheckoutState(prev => {
+      if (!prev) return getDefaultCheckoutState();
+      return {
+        ...prev,
+        shippingData: {
+          ...prev.shippingData,
+          ...data,
+        },
+        updatedAt: new Date().toISOString(),
+      };
+    });
+  }, []);
+
+  const setCheckoutPayment = useCallback((paymentId: string) => {
+    setCheckoutState(prev => {
+      if (!prev) return getDefaultCheckoutState();
+      return {
+        ...prev,
+        selectedPayment: paymentId,
+        updatedAt: new Date().toISOString(),
+      };
+    });
+  }, []);
+
+  const clearCheckoutState = useCallback(() => {
+    sessionStorage.removeItem(CHECKOUT_STORAGE_KEY);
+    setCheckoutState(getDefaultCheckoutState());
+  }, []);
+
   return (
     <StoreContext.Provider
       value={{
         cart,
         wishlist,
         orders,
+        checkoutState,
         addToCart,
         removeFromCart,
         updateCartItemQuantity,
@@ -272,6 +377,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         isInWishlist,
         getCartItemCount,
         getCartTotal,
+        setCheckoutStep,
+        setCheckoutShippingData,
+        setCheckoutPayment,
+        clearCheckoutState,
       }}
     >
       {children}

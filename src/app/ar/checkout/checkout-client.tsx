@@ -7,21 +7,28 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useStore } from "@/contexts/StoreContext";
 import { PAYMENT_METHODS } from "@/lib/store/mock-books";
-import { EGYPTIAN_GOVERNORATES } from "@/types/store";
+import { EGYPTIAN_GOVERNORATES, CheckoutShippingData } from "@/types/store";
 import { CheckCircle2, CreditCard, MapPin, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 export default function CheckoutClient() {
   const router = useRouter();
-  const { cart, clearCart } = useStore();
-  const [step, setStep] = useState<"shipping" | "payment" | "review">(
-    "shipping"
-  );
+  const {
+    cart,
+    clearCart,
+    checkoutState,
+    setCheckoutStep,
+    setCheckoutShippingData,
+    setCheckoutPayment,
+    clearCheckoutState,
+  } = useStore();
   const [orderPlaced, setOrderPlaced] = useState(false);
 
-  const [shippingData, setShippingData] = useState({
+  // Use checkout state from context (persisted in sessionStorage)
+  const step = checkoutState?.step || "shipping";
+  const shippingData = checkoutState?.shippingData || {
     fullName: "",
     phone: "",
     email: "",
@@ -32,9 +39,17 @@ export default function CheckoutClient() {
     building: "",
     floor: "",
     apartment: "",
-  });
+    notes: "",
+  };
+  const selectedPayment = checkoutState?.selectedPayment || "cod";
 
-  const [selectedPayment, setSelectedPayment] = useState("cod");
+  // Handler for updating shipping data fields
+  const handleShippingDataChange = useCallback(
+    (field: keyof CheckoutShippingData, value: string) => {
+      setCheckoutShippingData({ [field]: value });
+    },
+    [setCheckoutShippingData]
+  );
 
   if (!cart || cart.items.length === 0) {
     return (
@@ -106,6 +121,8 @@ export default function CheckoutClient() {
     // Simulate order placement
     setOrderPlaced(true);
     clearCart();
+    // Clear checkout state after successful order
+    clearCheckoutState();
   };
 
   return (
@@ -178,10 +195,7 @@ export default function CheckoutClient() {
                           data-testid="fullName"
                           value={shippingData.fullName}
                           onChange={(e) =>
-                            setShippingData({
-                              ...shippingData,
-                              fullName: e.target.value,
-                            })
+                            handleShippingDataChange("fullName", e.target.value)
                           }
                           placeholder="أدخل اسمك الكامل"
                         />
@@ -194,10 +208,7 @@ export default function CheckoutClient() {
                           data-testid="phone"
                           value={shippingData.phone}
                           onChange={(e) =>
-                            setShippingData({
-                              ...shippingData,
-                              phone: e.target.value,
-                            })
+                            handleShippingDataChange("phone", e.target.value)
                           }
                           placeholder="01xxxxxxxxx"
                         />
@@ -213,10 +224,7 @@ export default function CheckoutClient() {
                         type="email"
                         value={shippingData.email}
                         onChange={(e) =>
-                          setShippingData({
-                            ...shippingData,
-                            email: e.target.value,
-                          })
+                          handleShippingDataChange("email", e.target.value)
                         }
                         placeholder="example@email.com"
                       />
@@ -229,10 +237,7 @@ export default function CheckoutClient() {
                           id="governorate"
                           value={shippingData.governorate}
                           onChange={(e) =>
-                            setShippingData({
-                              ...shippingData,
-                              governorate: e.target.value,
-                            })
+                            handleShippingDataChange("governorate", e.target.value)
                           }
                           className="w-full p-2 border rounded-md"
                         >
@@ -252,10 +257,7 @@ export default function CheckoutClient() {
                           data-testid="city"
                           value={shippingData.city}
                           onChange={(e) =>
-                            setShippingData({
-                              ...shippingData,
-                              city: e.target.value,
-                            })
+                            handleShippingDataChange("city", e.target.value)
                           }
                           placeholder="أدخل المدينة"
                         />
@@ -268,10 +270,7 @@ export default function CheckoutClient() {
                         id="area"
                         value={shippingData.area}
                         onChange={(e) =>
-                          setShippingData({
-                            ...shippingData,
-                            area: e.target.value,
-                          })
+                          handleShippingDataChange("area", e.target.value)
                         }
                         placeholder="أدخل المنطقة"
                       />
@@ -284,10 +283,7 @@ export default function CheckoutClient() {
                           id="street"
                           value={shippingData.street}
                           onChange={(e) =>
-                            setShippingData({
-                              ...shippingData,
-                              street: e.target.value,
-                            })
+                            handleShippingDataChange("street", e.target.value)
                           }
                           placeholder="اسم الشارع"
                         />
@@ -298,10 +294,7 @@ export default function CheckoutClient() {
                           id="building"
                           value={shippingData.building}
                           onChange={(e) =>
-                            setShippingData({
-                              ...shippingData,
-                              building: e.target.value,
-                            })
+                            handleShippingDataChange("building", e.target.value)
                           }
                           placeholder="رقم العقار"
                         />
@@ -312,10 +305,7 @@ export default function CheckoutClient() {
                           id="floor"
                           value={shippingData.floor}
                           onChange={(e) =>
-                            setShippingData({
-                              ...shippingData,
-                              floor: e.target.value,
-                            })
+                            handleShippingDataChange("floor", e.target.value)
                           }
                           placeholder="رقم الدور"
                         />
@@ -325,7 +315,7 @@ export default function CheckoutClient() {
                     <Button
                       size="lg"
                       className="w-full"
-                      onClick={() => setStep("payment")}
+                      onClick={() => setCheckoutStep("payment")}
                       data-testid="next-payment"
                       aria-label="التالي: طريقة الدفع"
                     >
@@ -359,11 +349,11 @@ export default function CheckoutClient() {
                             ? "border-primary bg-primary/5"
                             : "border-border hover:border-primary/50"
                         }`}
-                        onClick={() => setSelectedPayment(method.id)}
+                        onClick={() => setCheckoutPayment(method.id)}
                         onKeyDown={(e) => {
                           if (e.key === "Enter" || e.key === " ") {
                             e.preventDefault();
-                            setSelectedPayment(method.id);
+                            setCheckoutPayment(method.id);
                           }
                         }}
                         role="radio"
@@ -407,7 +397,7 @@ export default function CheckoutClient() {
                   <div className="flex gap-4 mt-6">
                     <Button
                       variant="outline"
-                      onClick={() => setStep("shipping")}
+                      onClick={() => setCheckoutStep("shipping")}
                       data-testid="back-shipping"
                       aria-label="السابق"
                     >
@@ -415,7 +405,7 @@ export default function CheckoutClient() {
                     </Button>
                     <Button
                       className="flex-1"
-                      onClick={() => setStep("review")}
+                      onClick={() => setCheckoutStep("review")}
                       data-testid="next-review"
                       aria-label="التالي: مراجعة الطلب"
                     >
@@ -489,7 +479,7 @@ export default function CheckoutClient() {
                   <div className="flex gap-4">
                     <Button
                       variant="outline"
-                      onClick={() => setStep("payment")}
+                      onClick={() => setCheckoutStep("payment")}
                       data-testid="back-payment"
                       aria-label="السابق"
                     >

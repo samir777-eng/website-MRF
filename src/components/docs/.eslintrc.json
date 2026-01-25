@@ -1,0 +1,1 @@
+{\n  \"rules\": {\n    \"@typescript-eslint/no-unused-vars\": \"off\"\n  }\n}

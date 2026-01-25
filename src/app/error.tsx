@@ -38,11 +38,11 @@ export default function Error({
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Button onClick={reset}>
-            <RefreshCw className="w-4 h-4 ml-2" />
+            <RefreshCw className="w-4 h-4 ms-2" />
             حاول مرة أخرى
           </Button>
           <Button variant="outline" onClick={() => (window.location.href = "/ar")}>
-            <Home className="w-4 h-4 ml-2" />
+            <Home className="w-4 h-4 ms-2" />
             العودة للرئيسية
           </Button>
         </div>

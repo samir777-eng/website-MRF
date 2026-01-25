@@ -128,7 +128,7 @@ export default function SubscriptionPage() {
                   </div>
                   {daysUntilExpiry !== null && daysUntilExpiry > 0 && (
                     <p className="text-sm text-muted-foreground mt-2">
-                      <Calendar className="w-4 h-4 inline ml-1" />
+                      <Calendar className="w-4 h-4 inline ms-1" />
                       متبقي {daysUntilExpiry} يوم
                     </p>
                   )}
@@ -226,7 +226,7 @@ export default function SubscriptionPage() {
                   }`}
                   variant={plan.popular ? "default" : "outline"}
                 >
-                  <CreditCard className="w-5 h-5 ml-2" />
+                  <CreditCard className="w-5 h-5 ms-2" />
                   اشترك الآن
                 </Button>
               </CardContent>

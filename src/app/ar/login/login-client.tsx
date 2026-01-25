@@ -157,7 +157,7 @@ export default function LoginClient() {
                     onChange={(e) =>
                       handleInputChange("emailOrPhone", e.target.value)
                     }
-                    className={`pr-10 ${errors.emailOrPhone ? "border-red-500" : ""}`}
+                    className={`ps-10 ${errors.emailOrPhone ? "border-red-500" : ""}`}
                     disabled={isLoading}
                   />
                 </div>
@@ -182,7 +182,7 @@ export default function LoginClient() {
                     onChange={(e) =>
                       handleInputChange("password", e.target.value)
                     }
-                    className={`pr-10 pl-10 ${errors.password ? "border-red-500" : ""}`}
+                    className={`ps-10 pe-10 ${errors.password ? "border-red-500" : ""}`}
                     disabled={isLoading}
                     autoComplete="current-password"
                   />
@@ -256,12 +256,12 @@ export default function LoginClient() {
               >
                 {isLoading ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin ml-2" />
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin ms-2" />
                     جاري تسجيل الدخول...
                   </>
                 ) : (
                   <>
-                    <LogIn className="w-4 h-4 ml-2" />
+                    <LogIn className="w-4 h-4 ms-2" />
                     تسجيل الدخول
                   </>
                 )}

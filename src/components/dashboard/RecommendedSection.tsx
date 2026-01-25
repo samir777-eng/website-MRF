@@ -18,6 +18,7 @@ import {
   Star,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -229,9 +230,11 @@ function RecommendationCard({
             {/* Thumbnail or Icon */}
             {recommendation.thumbnail ? (
               <div className="w-full h-32 bg-muted rounded-lg overflow-hidden">
-                <img
+                <Image
                   src={recommendation.thumbnail}
                   alt={recommendation.title}
+                  width={200}
+                  height={128}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>

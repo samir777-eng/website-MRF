@@ -6,22 +6,49 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useScreenReaderAnnouncer } from "@/components/accessibility/screen-reader-announcer";
 import { useErrorHandler } from "@/hooks/useErrorHandler";
+import { useRedirectIfAuthenticated } from "@/hooks/useRequireAuth";
+import { useAuth } from "@/contexts/AuthContext";
 import { getFirstError, useZodForm } from "@/lib/hooks/use-zod-form";
 import { loginSchema, type LoginInput } from "@/lib/validation/auth-schemas";
-import { AlertCircle, Eye, EyeOff, Lock, LogIn, Mail } from "lucide-react";
+import { AlertCircle, Eye, EyeOff, Info, Lock, LogIn, Mail } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
 
-export default function LoginPage() {
+function LoginContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [showPassword, setShowPassword] = useState(false);
   const { handleError, handleSuccess } = useErrorHandler();
   const [generalError, setGeneralError] = useState<string | null>(null);
+  const [infoMessage, setInfoMessage] = useState<string | null>(null);
+
+  // Auth context for login
+  const { login, sessionExpiryReason, clearSessionExpiry } = useAuth();
+
+  // Redirect authenticated users to dashboard
+  useRedirectIfAuthenticated();
 
   // Screen reader announcements
   const { announceFormError, announceFormSuccess, announceLoading } =
     useScreenReaderAnnouncer();
+
+  // Get redirect path and message from URL params
+  const redirectPath = searchParams.get("redirect");
+  const urlMessage = searchParams.get("message");
+
+  // Show message from URL or session expiry
+  useEffect(() => {
+    if (urlMessage) {
+      setInfoMessage(decodeURIComponent(urlMessage));
+    } else if (sessionExpiryReason === "expired") {
+      setInfoMessage("انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى.");
+      clearSessionExpiry();
+    } else if (sessionExpiryReason === "invalid") {
+      setInfoMessage("جلسة غير صالحة. يرجى تسجيل الدخول مرة أخرى.");
+      clearSessionExpiry();
+    }
+  }, [urlMessage, sessionExpiryReason, clearSessionExpiry]);
 
   // Use Zod form hook for consistent validation
   const form = useZodForm<LoginInput>({
@@ -38,6 +65,7 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setGeneralError(null);
+    setInfoMessage(null);
 
     // Validate form with Zod
     const isValid = form.validateForm();
@@ -55,27 +83,20 @@ export default function LoginPage() {
     announceLoading(true, "تسجيل الدخول");
 
     try {
-      // TODO: Replace with actual API call
-      // const response = await fetch('/api/auth/login', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(form.values),
-      // });
+      // Use AuthContext login which calls /api/auth/login
+      await login({
+        email: form.values.email,
+        password: form.values.password,
+        rememberMe: form.values.rememberMe,
+      });
 
-      // MOCK: Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      announceLoading(false);
+      handleSuccess("LOGIN_SUCCESS");
+      announceFormSuccess("تم تسجيل الدخول بنجاح، جاري التحويل...");
 
-      // MOCK: Simulate successful login
-      const success = true;
-
-      if (success) {
-        announceLoading(false);
-        handleSuccess("LOGIN_SUCCESS");
-        announceFormSuccess("تم تسجيل الدخول بنجاح، جاري التحويل...");
-        router.push("/ar/dashboard");
-      } else {
-        throw { code: "INVALID_CREDENTIALS" };
-      }
+      // Redirect to original page or dashboard
+      const destination = redirectPath || "/ar/dashboard";
+      router.push(destination);
     } catch (error) {
       announceLoading(false);
       const { message } = handleError(error, { showToast: true });
@@ -107,6 +128,14 @@ export default function LoginPage() {
 
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Info Message (redirect reason) */}
+              {infoMessage && (
+                <div className="p-4 bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg flex items-start gap-3">
+                  <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-blue-600">{infoMessage}</p>
+                </div>
+              )}
+
               {/* General Error */}
               {generalError && (
                 <div className="p-4 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg flex items-start gap-3">
@@ -243,12 +272,12 @@ export default function LoginPage() {
               >
                 {form.isSubmitting ? (
                   <>
-                    <div className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full ml-2"></div>
+                    <div className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full ms-2"></div>
                     جاري تسجيل الدخول...
                   </>
                 ) : (
                   <>
-                    <LogIn className="w-5 h-5 ml-2" aria-hidden="true" />
+                    <LogIn className="w-5 h-5 ms-2" aria-hidden="true" />
                     تسجيل الدخول
                   </>
                 )}
@@ -273,15 +302,30 @@ export default function LoginPage() {
         <Card className="mt-6 border-0 shadow-lg bg-muted/50">
           <CardContent className="p-4">
             <p className="text-sm text-muted-foreground text-center mb-2">
-              🔧 للتجربة (سيتم إزالتها في الإنتاج)
+              للتجربة (سيتم إزالتها في الإنتاج)
             </p>
             <div className="text-sm space-y-1 text-center">
-              <p>البريد: student@example.com</p>
-              <p>كلمة المرور: Student123</p>
+              <p>البريد: test@example.com</p>
+              <p>كلمة المرور: password123</p>
             </div>
           </CardContent>
         </Card>
       </div>
     </div>
+  );
+}
+
+// Wrap with Suspense for useSearchParams
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex items-center justify-center">
+          <div className="animate-spin w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full"></div>
+        </div>
+      }
+    >
+      <LoginContent />
+    </Suspense>
   );
 }

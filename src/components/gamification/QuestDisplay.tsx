@@ -84,7 +84,7 @@ export default function QuestDisplay({
   };
 
   // Claim quest rewards
-  const claimRewards = (quest: Quest) => {
+  const _claimRewards = (quest: Quest) => {
     if (quest.isCompleted) {
       const reward = calculateQuestReward(quest);
       addXP("CHALLENGE_COMPLETED", reward);
@@ -232,7 +232,7 @@ export default function QuestDisplay({
 
               {quest.isCompleted ? (
                 <div className="flex items-center justify-center mt-3 text-green-600">
-                  <CheckCircle className="w-5 h-5 mr-2" />
+                  <CheckCircle className="w-5 h-5 me-2" />
                   <span className="font-medium">مكتمل</span>
                 </div>
               ) : canCompleteQuest(quest) && getQuestProgress(quest) >= 100 ? (
@@ -241,7 +241,7 @@ export default function QuestDisplay({
                   className="w-full mt-3"
                   variant="default"
                 >
-                  <Gift className="w-4 h-4 mr-2" />
+                  <Gift className="w-4 h-4 me-2" />
                   استلام المكافأة
                 </Button>
               ) : (
@@ -399,7 +399,7 @@ export default function QuestDisplay({
                       <Badge
                         key={index}
                         variant="outline"
-                        className="text-sm mr-1"
+                        className="text-sm me-1"
                       >
                         {reward}
                       </Badge>
@@ -411,12 +411,12 @@ export default function QuestDisplay({
               {/* Action Button */}
               {quest.isCompleted ? (
                 <div className="flex items-center justify-center text-green-600">
-                  <CheckCircle className="w-5 h-5 mr-2" />
+                  <CheckCircle className="w-5 h-5 me-2" />
                   <span className="font-medium">مكتمل</span>
                 </div>
               ) : quest.isLocked ? (
                 <div className="flex items-center justify-center text-muted-foreground">
-                  <Lock className="w-5 h-5 mr-2" />
+                  <Lock className="w-5 h-5 me-2" />
                   <span className="font-medium">مقفل</span>
                 </div>
               ) : canCompleteQuest(quest) && getQuestProgress(quest) >= 100 ? (
@@ -425,12 +425,12 @@ export default function QuestDisplay({
                   className="w-full"
                   variant="default"
                 >
-                  <Gift className="w-4 h-4 mr-2" />
+                  <Gift className="w-4 h-4 me-2" />
                   استلام المكافأة
                 </Button>
               ) : (
                 <Button variant="outline" className="w-full" disabled>
-                  <Zap className="w-4 h-4 mr-2" />
+                  <Zap className="w-4 h-4 me-2" />
                   في التقدم...
                 </Button>
               )}

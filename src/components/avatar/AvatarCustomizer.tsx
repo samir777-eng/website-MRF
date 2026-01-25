@@ -91,7 +91,7 @@ export function AvatarCustomizer({
 
   const parts = getPartsByType(selectedCategory);
 
-  const displayConfig = previewConfig ? { ...config, ...previewConfig } : config;
+  const _displayConfig = previewConfig ? { ...config, ...previewConfig } : config;
 
   const handlePartClick = (part: AvatarPart) => {
     if (isOwned(part.id)) {
@@ -244,7 +244,7 @@ export function AvatarCustomizer({
                       const owned = isOwned(part.id);
                       const equipped = isEquipped(part.id);
                       const previewing = previewConfig?.[selectedCategory] === part.id;
-                      const { canUnlock } = canUnlockPart(
+                      const { canUnlock: _canUnlock } = canUnlockPart(
                         part,
                         userLevel,
                         userStreak,

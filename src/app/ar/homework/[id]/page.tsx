@@ -339,7 +339,7 @@ export default function HomeworkPage() {
                   variant="outline"
                   className="border-green-500 text-green-600 hover:bg-green-50 dark:hover:bg-green-950/20"
                 >
-                  <Download className="w-4 h-4 mr-2" />
+                  <Download className="w-4 h-4 me-2" />
                   تحميل
                 </Button>
               </div>
@@ -567,7 +567,7 @@ export default function HomeworkPage() {
               disabled={answeredCount !== totalQuestions || !canSubmit}
               className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-lg py-6"
             >
-              <Send className="w-5 h-5 ml-2" />
+              <Send className="w-5 h-5 ms-2" />
               تسليم الواجب
             </Button>
             {answeredCount !== totalQuestions && (

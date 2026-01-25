@@ -220,9 +220,9 @@ export function NextActionCard({
                 isLarge ? "h-14 text-lg" : "h-12"
               }`}
             >
-              <Icon className="w-5 h-5 ml-2" />
+              <Icon className="w-5 h-5 ms-2" />
               {config.actionText}
-              <ArrowLeft className="w-5 h-5 mr-2" />
+              <ArrowLeft className="w-5 h-5 me-2" />
             </Button>
           </Link>
         </div>

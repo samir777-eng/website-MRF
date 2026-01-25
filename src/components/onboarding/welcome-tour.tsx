@@ -111,20 +111,20 @@ export function WelcomeTour() {
           <div className="flex items-center gap-2">
             {currentStep > 0 && (
               <Button variant="outline" onClick={handlePrevious}>
-                <ArrowRight className="w-4 h-4 ml-2 rtl:-scale-x-100" />
+                <ArrowRight className="w-4 h-4 ms-2 rtl:-scale-x-100" />
                 السابق
               </Button>
             )}
             <Button onClick={handleNext}>
               {isLastStep ? (
                 <>
-                  <CheckCircle className="w-4 h-4 ml-2" />
+                  <CheckCircle className="w-4 h-4 ms-2" />
                   ابدأ الآن
                 </>
               ) : (
                 <>
                   التالي
-                  <ArrowLeft className="w-4 h-4 mr-2 rtl:-scale-x-100" />
+                  <ArrowLeft className="w-4 h-4 me-2 rtl:-scale-x-100" />
                 </>
               )}
             </Button>

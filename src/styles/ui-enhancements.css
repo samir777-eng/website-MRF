@@ -1,35 +1,42 @@
 /* UI/UX Enhancements - Modern Design System */
 
 /* ============================================
-   GLASSMORPHISM EFFECTS
+   GLASSMORPHISM EFFECTS - Theme-aware
    ============================================ */
 
 .glass-effect {
-  background: rgba(255, 255, 255, 0.1);
+  background: hsl(var(--background) / 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid hsl(var(--border) / 0.5);
+  box-shadow: 0 8px 32px 0 hsl(var(--foreground) / 0.1);
+}
+
+.dark .glass-effect {
+  background: hsl(var(--card) / 0.6);
+  border: 1px solid hsl(var(--border) / 0.3);
+  box-shadow: 0 8px 32px 0 hsl(0 0% 0% / 0.4);
 }
 
 .glass-effect-dark {
-  background: rgba(0, 0, 0, 0.2);
+  background: hsl(var(--foreground) / 0.05);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  border: 1px solid hsl(var(--border) / 0.2);
+  box-shadow: 0 8px 32px 0 hsl(var(--foreground) / 0.15);
 }
 
 /* ============================================
    GRADIENT BACKGROUNDS
    ============================================ */
 
+/* NOTE: These gradients are aligned with tailwind.config.ts backgroundImage definitions */
 .gradient-primary {
-  background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+  background: linear-gradient(135deg, #4338ca 0%, #312e81 100%);
 }
 
 .gradient-secondary {
-  background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
 }
 
 .gradient-success {
@@ -59,19 +66,19 @@
 }
 
 /* ============================================
-   GLOW EFFECTS
+   GLOW EFFECTS - Theme-aware
    ============================================ */
 
 .glow-primary {
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
 }
 
 .glow-secondary {
-  box-shadow: 0 0 20px rgba(217, 70, 239, 0.5);
+  box-shadow: 0 0 20px hsl(280 70% 60% / 0.5);
 }
 
 .glow-accent {
-  box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
+  box-shadow: 0 0 20px hsl(var(--accent-foreground) / 0.3);
 }
 
 .glow-pulse {
@@ -81,10 +88,10 @@
 @keyframes glow-pulse {
   0%,
   100% {
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
   }
   50% {
-    box-shadow: 0 0 40px rgba(139, 92, 246, 0.8);
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.8);
   }
 }
 
@@ -100,7 +107,7 @@
 
 .hover-lift:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 24px hsl(var(--foreground) / 0.1);
 }
 
 .hover-scale {
@@ -116,7 +123,7 @@
 }
 
 .hover-glow:hover {
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 30px hsl(var(--primary) / 0.6);
 }
 
 /* ============================================
@@ -138,7 +145,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.3),
+    hsl(var(--foreground) / 0.1),
     transparent
   );
   animation: shimmer 2s infinite;
@@ -160,9 +167,9 @@
 .skeleton {
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.1) 25%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0.1) 75%
+    hsl(var(--muted)) 25%,
+    hsl(var(--muted-foreground) / 0.1) 50%,
+    hsl(var(--muted)) 75%
   );
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s ease-in-out infinite;
@@ -187,69 +194,79 @@
 
 .card-elevated {
   box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    0 4px 6px -1px hsl(var(--foreground) / 0.08),
+    0 2px 4px -1px hsl(var(--foreground) / 0.04);
   transition: all 0.3s ease;
 }
 
 .card-elevated:hover {
   box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    0 20px 25px -5px hsl(var(--foreground) / 0.1),
+    0 10px 10px -5px hsl(var(--foreground) / 0.04);
   transform: translateY(-2px);
 }
 
 .card-glass {
-  background: rgba(255, 255, 255, 0.1);
+  background: hsl(var(--background) / 0.8);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+.dark .card-glass {
+  background: hsl(var(--card) / 0.6);
+  border: 1px solid hsl(var(--border) / 0.3);
 }
 
 .card-gradient {
-  background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
-  color: white;
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(280 70% 60%) 100%);
+  color: hsl(var(--primary-foreground));
 }
 
 /* ============================================
-   BUTTON ENHANCEMENTS
+   BUTTON ENHANCEMENTS - Theme-aware
    ============================================ */
 
 .btn-gradient {
-  background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
-  color: white;
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(280 70% 60%) 100%);
+  color: hsl(var(--primary-foreground));
   transition: all 0.3s ease;
 }
 
 .btn-gradient:hover {
-  background: linear-gradient(135deg, #7c3aed 0%, #c026d3 100%);
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.9) 0%, hsl(280 70% 50%) 100%);
   transform: scale(1.02);
-  box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 10px 20px hsl(var(--primary) / 0.3);
 }
 
 .btn-glass {
-  background: rgba(255, 255, 255, 0.1);
+  background: hsl(var(--background) / 0.3);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
+  border: 1px solid hsl(var(--border) / 0.3);
+  color: hsl(var(--foreground));
   transition: all 0.3s ease;
 }
 
+.dark .btn-glass {
+  background: hsl(var(--card) / 0.3);
+  color: hsl(var(--foreground));
+}
+
 .btn-glass:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: hsl(var(--muted) / 0.5);
   transform: scale(1.02);
 }
 
 .btn-glow {
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
   transition: all 0.3s ease;
 }
 
 .btn-glow:hover {
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
+  box-shadow: 0 0 30px hsl(var(--primary) / 0.8);
 }
 
 /* ============================================
-   FORM ENHANCEMENTS
+   FORM ENHANCEMENTS - Theme-aware
    ============================================ */
 
 .input-enhanced {
@@ -258,20 +275,24 @@
 }
 
 .input-enhanced:focus {
-  border-color: #8b5cf6;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 3px hsl(var(--ring) / 0.2);
   transform: scale(1.01);
 }
 
 .input-glass {
-  background: rgba(255, 255, 255, 0.1);
+  background: hsl(var(--background) / 0.3);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
+  border: 1px solid hsl(var(--border) / 0.3);
+  color: hsl(var(--foreground));
+}
+
+.dark .input-glass {
+  background: hsl(var(--card) / 0.3);
 }
 
 .input-glass::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: hsl(var(--muted-foreground) / 0.8);
 }
 
 /* ============================================
@@ -294,20 +315,20 @@
 }
 
 .badge-gradient {
-  background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
-  color: white;
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(280 70% 60%) 100%);
+  color: hsl(var(--primary-foreground));
 }
 
 /* ============================================
-   PROGRESS BAR ENHANCEMENTS
+   PROGRESS BAR ENHANCEMENTS - Theme-aware
    ============================================ */
 
 .progress-gradient {
-  background: linear-gradient(90deg, #8b5cf6 0%, #d946ef 100%);
+  background: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(280 70% 60%) 100%);
 }
 
 .progress-animated {
-  background: linear-gradient(90deg, #8b5cf6 0%, #d946ef 50%, #8b5cf6 100%);
+  background: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(280 70% 60%) 50%, hsl(var(--primary)) 100%);
   background-size: 200% 100%;
   animation: progress-shine 2s linear infinite;
 }
@@ -322,14 +343,15 @@
 }
 
 /* ============================================
-   TOOLTIP ENHANCEMENTS
+   TOOLTIP ENHANCEMENTS - Theme-aware
    ============================================ */
 
 .tooltip-glass {
-  background: rgba(0, 0, 0, 0.8);
+  background: hsl(var(--popover));
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 8px 32px hsl(var(--foreground) / 0.15);
+  color: hsl(var(--popover-foreground));
 }
 
 /* ============================================

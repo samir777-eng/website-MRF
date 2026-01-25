@@ -306,7 +306,7 @@ function XPSlide({ data }: { data: WeeklyStats }) {
         <span className="text-6xl font-bold">
           {count.toLocaleString("ar-EG")}
         </span>
-        <span className="text-2xl mr-2">XP</span>
+        <span className="text-2xl me-2">XP</span>
       </motion.div>
 
       {data.xpChange !== 0 && (
@@ -452,7 +452,7 @@ function StreakSlide({ data }: { data: WeeklyStats }) {
         <span className="text-7xl font-bold">
           {data.streakDays.toLocaleString("ar-EG")}
         </span>
-        <span className="text-2xl mr-2">يوم</span>
+        <span className="text-2xl me-2">يوم</span>
       </motion.div>
 
       {data.streakBest && (
@@ -597,7 +597,7 @@ function SummarySlide({
             <div className="text-left">
               <span className="text-2xl font-bold">#{data.rank}</span>
               {data.rankChange && data.rankChange > 0 && (
-                <span className="text-green-400 text-sm mr-2">
+                <span className="text-green-400 text-sm me-2">
                   +{data.rankChange}
                 </span>
               )}

@@ -34,7 +34,7 @@ export default function CartClient() {
             </p>
             <Link href="/ar/store?tab=books" className="block">
               <Button size="lg">
-                <Package className="w-5 h-5 ml-2" />
+                <Package className="w-5 h-5 ms-2" />
                 تصفح الكتب
               </Button>
             </Link>
@@ -155,7 +155,7 @@ export default function CartClient() {
 
             {/* Clear Cart Button */}
             <Button variant="outline" className="w-full" onClick={clearCart}>
-              <Trash2 className="w-4 h-4 ml-2" />
+              <Trash2 className="w-4 h-4 ms-2" />
               إفراغ السلة
             </Button>
           </div>
@@ -212,7 +212,7 @@ export default function CartClient() {
                       data-testid="apply-coupon"
                       aria-label="تطبيق كوبون"
                     >
-                      <Tag className="w-4 h-4 ml-2" />
+                      <Tag className="w-4 h-4 ms-2" />
                       تطبيق
                     </Button>
                   </div>
@@ -229,7 +229,7 @@ export default function CartClient() {
                       aria-label="متابعة للدفع"
                     >
                       متابعة للدفع
-                      <ArrowRight className="w-5 h-5 mr-2" />
+                      <ArrowRight className="w-5 h-5 me-2" />
                     </Button>
                   </Link>
                   <Link href="/ar/store?tab=books" className="block">

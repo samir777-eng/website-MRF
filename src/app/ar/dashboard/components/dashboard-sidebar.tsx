@@ -13,9 +13,9 @@ interface DashboardSidebarProps {
 
 // Icon mapping for dynamic rendering
 const iconMap: Record<string, React.ReactNode> = {
-  Play: <Play className="w-4 h-4 ml-2" />,
-  Target: <Target className="w-4 h-4 ml-2" />,
-  BookOpen: <BookOpen className="w-4 h-4 ml-2" />,
+  Play: <Play className="w-4 h-4 ms-2" />,
+  Target: <Target className="w-4 h-4 ms-2" />,
+  BookOpen: <BookOpen className="w-4 h-4 ms-2" />,
 };
 
 function DashboardSidebarComponent({ currentStreak }: DashboardSidebarProps) {
@@ -43,7 +43,7 @@ function DashboardSidebarComponent({ currentStreak }: DashboardSidebarProps) {
                 className="bg-white text-orange-600 hover:bg-gray-100 shadow-lg h-11 min-h-[44px]"
                 aria-label="احصل على 100 نقطة مكافأة"
               >
-                <Gift className="w-4 h-4 ml-2" aria-hidden="true" />
+                <Gift className="w-4 h-4 ms-2" aria-hidden="true" />
                 احصل على 100 نقطة
               </Button>
             </Link>
@@ -67,7 +67,7 @@ function DashboardSidebarComponent({ currentStreak }: DashboardSidebarProps) {
               data-testid="start-lesson"
               aria-label="ابدأ درساً جديداً"
             >
-              <Play className="w-4 h-4 ml-2" />
+              <Play className="w-4 h-4 ms-2" />
               ابدأ درساً جديداً
             </Button>
           </Link>
@@ -78,7 +78,7 @@ function DashboardSidebarComponent({ currentStreak }: DashboardSidebarProps) {
               data-testid="take-challenge"
               aria-label="ابدأ تحدياً جديداً"
             >
-              <Target className="w-4 h-4 ml-2" />
+              <Target className="w-4 h-4 ms-2" />
               ابدأ تحدياً جديداً
             </Button>
           </Link>
@@ -89,7 +89,7 @@ function DashboardSidebarComponent({ currentStreak }: DashboardSidebarProps) {
               data-testid="review-vocabulary"
               aria-label="راجع المفردات"
             >
-              <BookOpen className="w-4 h-4 ml-2" />
+              <BookOpen className="w-4 h-4 ms-2" />
               راجع المفردات
             </Button>
           </Link>

@@ -204,6 +204,30 @@ export interface Wishlist {
   updatedAt: string;
 }
 
+// Checkout State - for persisting checkout form data
+export type CheckoutStep = "shipping" | "payment" | "review";
+
+export interface CheckoutShippingData {
+  fullName: string;
+  phone: string;
+  email: string;
+  governorate: string;
+  city: string;
+  area: string;
+  street: string;
+  building: string;
+  floor: string;
+  apartment: string;
+  notes: string;
+}
+
+export interface CheckoutState {
+  step: CheckoutStep;
+  shippingData: CheckoutShippingData;
+  selectedPayment: string;
+  updatedAt: string;
+}
+
 // Store State
 export interface StoreState {
   books: Book[];
@@ -211,6 +235,7 @@ export interface StoreState {
   cart: Cart | null;
   wishlist: Wishlist | null;
   orders: Order[];
+  checkoutState: CheckoutState | null;
   loading: boolean;
   error: string | null;
 }

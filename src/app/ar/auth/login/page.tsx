@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { useScreenReaderAnnouncer } from "@/components/accessibility/screen-reader-announcer";
 import { useErrorHandler } from "@/hooks/useErrorHandler";
 import { getFirstError, useZodForm } from "@/lib/hooks/use-zod-form";
 import { loginSchema, type LoginInput } from "@/lib/validation/auth-schemas";
@@ -19,9 +20,6 @@ export default function LoginPage() {
   const [generalError, setGeneralError] = useState<string | null>(null);
 
   // Screen reader announcements
-  const {
-    useScreenReaderAnnouncer,
-  } = require("@/components/accessibility/screen-reader-announcer");
   const { announceFormError, announceFormSuccess, announceLoading } =
     useScreenReaderAnnouncer();
 

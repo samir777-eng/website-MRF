@@ -97,7 +97,7 @@ type Props = {
 
 export default function ArabicLayout({ children }: Props) {
   // Import AppProviders dynamically to prevent IDE from removing unused import
-  const { AppProviders } = require("@/components/providers/app-providers");
+import { AppProviders } from "@/components/providers/app-providers";
 
   return (
     <AppProviders>

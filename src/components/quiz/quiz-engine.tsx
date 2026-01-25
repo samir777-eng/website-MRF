@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { useScreenReaderAnnouncer } from "@/components/accessibility/screen-reader-announcer";
 import { FadeIn, SlideIn } from "@/lib/animations/lightweight-motion";
 import {
   ArrowLeft,
@@ -63,9 +64,6 @@ export function QuizEngine({ quiz }: QuizEngineProps) {
   >(null);
 
   // Screen reader announcements
-  const {
-    useScreenReaderAnnouncer,
-  } = require("@/components/accessibility/screen-reader-announcer");
   const {
     announceQuestion,
     announceAnswer,

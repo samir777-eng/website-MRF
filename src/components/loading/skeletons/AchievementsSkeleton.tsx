@@ -67,7 +67,7 @@ export function AchievementsSkeleton() {
         </div>
 
         {/* Achievement Categories */}
-        {Array.from({ length: 3 }).map((categoryIdx) => (
+        {Array.from({ length: 3 }).map((_, categoryIdx) => (
           <div key={categoryIdx} className="space-y-6">
             {/* Category Header */}
             <div className="flex items-center gap-4">

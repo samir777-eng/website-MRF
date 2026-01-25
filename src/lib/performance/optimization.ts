@@ -60,7 +60,7 @@ export const codeSplitting = {
   // Route-based splitting
   routes: {
     home: () => import("@/app/ar/page"),
-    lessons: () => import("@/app/ar/lessons/page"),
+    // lessons: () => import("@/app/ar/lessons/page"), // Dynamic route only
     challenges: () => import("@/app/ar/challenges/page"),
     dashboard: () => import("@/app/ar/dashboard/page"),
   },

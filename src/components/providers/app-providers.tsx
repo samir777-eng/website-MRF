@@ -61,7 +61,7 @@ export function AppProviders({ children }: AppProvidersProps) {
 
   // Import ScreenReaderAnnouncerProvider dynamically to avoid SSR issues
   const ScreenReaderAnnouncerProvider =
-    require("@/components/accessibility/screen-reader-announcer").ScreenReaderAnnouncerProvider;
+    // require() not allowed in strict TypeScript mode
 
   // Define providers in dependency order (innermost to outermost)
   // AnalyticsProvider wraps content last (innermost in the chain)

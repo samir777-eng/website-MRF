@@ -198,7 +198,11 @@ export function Swipeable({
   const handlers = useSwipeable(config);
 
   return (
-    <div {...handlers} className={className} style={style}>
+    <div 
+      {...(handlers as any)} 
+      className={className} 
+      style={style}
+    >
       {children}
     </div>
   );

@@ -7,9 +7,9 @@
  * Usage: node scripts/convert-images-to-webp.js
  */
 
-const fs = require('fs');
-const path = require('path');
-const sharp = require('sharp');
+import fs from 'fs';
+import path from 'path';
+import sharp from 'sharp';
 
 // Configuration
 const CONFIG = {

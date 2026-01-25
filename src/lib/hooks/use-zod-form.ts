@@ -147,7 +147,7 @@ export function useZodForm<T extends Record<string, unknown>>(
     (field: keyof T, value: T[keyof T]) => {
       setState((prev) => {
         const newValues = { ...prev.values, [field]: value };
-        let newErrors = { ...prev.errors };
+        const newErrors = { ...prev.errors };
 
         // Clear error when user starts typing
         if (prev.errors[field]) {
@@ -190,7 +190,7 @@ export function useZodForm<T extends Record<string, unknown>>(
     (field: keyof T) => {
       setState((prev) => {
         const newTouched = { ...prev.touched, [field]: true };
-        let newErrors = { ...prev.errors };
+        const newErrors = { ...prev.errors };
 
         // Validate on blur if enabled
         if (validateOnBlur) {

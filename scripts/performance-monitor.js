@@ -7,7 +7,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { execSync } = require("child_process");
+const { execSync: _execSync } = require("child_process");
 
 const BUDGET_FILE = path.join(__dirname, "../performance.budget.json");
 const BUILD_DIR = path.join(__dirname, "../.next");

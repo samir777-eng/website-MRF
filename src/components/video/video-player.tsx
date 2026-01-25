@@ -362,7 +362,7 @@ export function VideoPlayer({
         اضغط مسافة أو K للتشغيل/الإيقاف، سهم يمين أو L للتقديم 10 ثواني، سهم
         يسار أو J للرجوع 10 ثواني، M لكتم الصوت، F لملء الشاشة
       </span>
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+      { }
       <video
         ref={videoRef}
         src={src}

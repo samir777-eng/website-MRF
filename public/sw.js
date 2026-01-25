@@ -1,5 +1,5 @@
 // Service Worker for MRF Educational Platform
-const CACHE_NAME = "mrf-edu-v1";
+const _CACHE_NAME = "mrf-edu-v1";
 const STATIC_CACHE = "mrf-static-v1";
 const DYNAMIC_CACHE = "mrf-dynamic-v1";
 
@@ -79,7 +79,7 @@ self.addEventListener("activate", (event) => {
 // Fetch event - serve cached content when offline
 self.addEventListener("fetch", (event) => {
   const { request } = event;
-  const url = new URL(request.url);
+  const _url = new URL(request.url);
 
   // Skip non-GET requests
   if (request.method !== "GET") {
@@ -120,7 +120,7 @@ async function handlePageRequest(request) {
     }
 
     return networkResponse;
-  } catch (error) {
+  } catch (_error) {
     // Network failed, try cache
     const cachedResponse = await caches.match(request);
 
@@ -208,7 +208,7 @@ async function handleAPIRequest(request) {
     }
 
     return networkResponse;
-  } catch (error) {
+  } catch (_error) {
     // Network failed, try cache for GET requests
     if (request.method === "GET") {
       const cachedResponse = await caches.match(request);

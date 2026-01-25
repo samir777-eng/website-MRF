@@ -10,7 +10,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { execSync } = require("child_process");
+const { execSync: _execSync } = require("child_process");
 
 const SRC_DIR = path.join(__dirname, "../src");
 const ANALYSIS_FILE = path.join(__dirname, "../BUNDLE-OPTIMIZATION.md");

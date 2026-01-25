@@ -5,9 +5,9 @@
  * Changes: page.locator('[role="navigation"]') to page.locator('[role="navigation"]').first()
  */
 
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
+import fs from 'fs';
+import path from 'path';
+import { glob } from 'glob';
 
 function fixNavigationTests(filePath) {
   console.log(`Processing: ${path.basename(filePath)}`);

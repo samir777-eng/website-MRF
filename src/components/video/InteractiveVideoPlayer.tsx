@@ -385,7 +385,7 @@ export function InteractiveVideoPlayer({
       </span>
       {/* Video Container */}
       <div className="relative bg-black rounded-lg overflow-hidden aspect-video">
-        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        { }
         <video
           ref={videoRef}
           src={videoUrl}

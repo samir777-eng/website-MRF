@@ -12,12 +12,14 @@ import { Progress } from "@/components/ui/progress";
 import { HomepageSkeleton } from "@/components/loading/skeletons/HomepageSkeleton";
 import {
   ArrowLeft,
+  ArrowUp,
   Award,
   BarChart3,
   BookOpen,
   Brain,
   CheckCircle,
   ChevronDown,
+  Clock,
   Crown,
   GraduationCap,
   Play,
@@ -29,26 +31,35 @@ import {
   TrendingUp,
   Users,
   Video,
+  X,
   Zap,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import {
   motion,
   useInView,
-  useScroll,
-  useTransform,
-  Variants,
+  AnimatePresence,
+  useReducedMotion,
 } from "framer-motion";
+import type { Variants } from "framer-motion";
 
-// Animation variants
+// Animation variants with reduced motion support
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
+  },
+};
+
+const fadeInUpReduced: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.3 },
   },
 };
 
@@ -60,11 +71,19 @@ const staggerContainer: Variants = {
   },
 };
 
-// Animated counter hook
-function useAnimatedCounter(target: number, duration: number = 2000) {
+// Animated counter component (self-contained to avoid hook issues)
+function AnimatedCounter({
+  target,
+  duration = 2000,
+  suffix = "",
+}: {
+  target: number;
+  duration?: number;
+  suffix?: string;
+}) {
   const [count, setCount] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   useEffect(() => {
@@ -86,17 +105,35 @@ function useAnimatedCounter(target: number, duration: number = 2000) {
     }
   }, [isInView, target, duration, hasAnimated]);
 
-  return { count, ref };
+  return (
+    <div
+      ref={ref}
+      className="text-4xl md:text-5xl font-black text-foreground mb-2"
+    >
+      {count.toLocaleString()}
+      {suffix}
+    </div>
+  );
 }
 
-// Floating orb component
+// Floating orb component with reduced motion support
 function FloatingOrb({
   className,
   delay = 0,
+  reducedMotion = false,
 }: {
   className?: string;
   delay?: number;
+  reducedMotion?: boolean;
 }) {
+  if (reducedMotion) {
+    return (
+      <div
+        className={`absolute rounded-full blur-3xl opacity-30 ${className}`}
+      />
+    );
+  }
+
   return (
     <motion.div
       className={`absolute rounded-full blur-3xl opacity-30 ${className}`}
@@ -115,22 +152,229 @@ function FloatingOrb({
   );
 }
 
+// Live activity indicator component
+function LiveActivityIndicator() {
+  const [activity, setActivity] = useState({ count: 0, name: "" });
+
+  const activities = useMemo(
+    () => [
+      { name: "أحمد من القاهرة", action: "انضم للمنصة" },
+      { name: "فاطمة من الإسكندرية", action: "أكملت درساً" },
+      { name: "محمد من الجيزة", action: "حقق شارة جديدة" },
+      { name: "نور من المنصورة", action: "انضم للمنصة" },
+      { name: "سارة من طنطا", action: "أكملت اختباراً" },
+    ],
+    [],
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const randomActivity =
+        activities[Math.floor(Math.random() * activities.length)];
+      setActivity({
+        count: Math.floor(Math.random() * 50) + 10,
+        name: randomActivity.name,
+      });
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [activities]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="fixed bottom-24 left-6 z-40 hidden md:block"
+    >
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activity.name}
+          initial={{ opacity: 0, x: -20, scale: 0.9 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          exit={{ opacity: 0, x: 20, scale: 0.9 }}
+          className="flex items-center gap-3 px-4 py-3 bg-card/95 backdrop-blur-md border border-border/50 rounded-2xl shadow-lg"
+        >
+          <div className="relative">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white font-bold">
+              {activity.name?.charAt(0) || "م"}
+            </div>
+            <span className="absolute -top-1 -right-1 flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
+            </span>
+          </div>
+          <div className="text-sm">
+            <p className="font-semibold text-foreground">
+              {activity.name || "طالب جديد"}
+            </p>
+            <p className="text-muted-foreground text-xs">انضم للمنصة الآن</p>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
+// Sticky CTA Bar component
+function StickyCTABar({ show }: { show: boolean }) {
+  return (
+    <AnimatePresence>
+      {show && (
+        <motion.div
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -100, opacity: 0 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-primary via-violet-600 to-primary py-3 px-4 shadow-lg"
+        >
+          <div className="container mx-auto flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3 text-white">
+              <Sparkles className="w-5 h-5 hidden sm:block" />
+              <span className="font-bold text-sm sm:text-base">
+                ابدأ رحلتك التعليمية مجاناً - انضم لـ 15,000+ طالب!
+              </span>
+            </div>
+            <Link href="/ar/signup">
+              <Button
+                size="sm"
+                className="bg-white text-primary hover:bg-white/90 font-bold px-6 shadow-md hover:shadow-lg transition-all"
+              >
+                سجّل الآن
+                <ArrowLeft className="w-4 h-4 me-1 rtl:rotate-180" />
+              </Button>
+            </Link>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+// Scroll to top button
+function ScrollToTopButton({ show }: { show: boolean }) {
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {show && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={scrollToTop}
+          className="fixed bottom-6 left-6 z-40 w-12 h-12 rounded-full bg-primary text-white shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center"
+          aria-label="العودة للأعلى"
+        >
+          <ArrowUp className="w-5 h-5" />
+        </motion.button>
+      )}
+    </AnimatePresence>
+  );
+}
+
+// Urgency banner component
+function UrgencyBanner() {
+  const [timeLeft, setTimeLeft] = useState({
+    hours: 23,
+    minutes: 59,
+    seconds: 59,
+  });
+  const [dismissed, setDismissed] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
+        if (prev.minutes > 0)
+          return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
+        if (prev.hours > 0)
+          return { hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        return { hours: 23, minutes: 59, seconds: 59 };
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  if (dismissed) return null;
+
+  return (
+    <motion.div
+      initial={{ height: 0, opacity: 0 }}
+      animate={{ height: "auto", opacity: 1 }}
+      className="bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white py-2 px-4"
+    >
+      <div className="container mx-auto flex items-center justify-center gap-4 text-sm">
+        <Clock className="w-4 h-4 animate-pulse" />
+        <span className="font-bold">عرض خاص ينتهي خلال:</span>
+        <div className="flex items-center gap-1 font-mono font-bold bg-black/20 px-2 py-1 rounded">
+          <span>{String(timeLeft.hours).padStart(2, "0")}</span>:
+          <span>{String(timeLeft.minutes).padStart(2, "0")}</span>:
+          <span>{String(timeLeft.seconds).padStart(2, "0")}</span>
+        </div>
+        <button
+          onClick={() => setDismissed(true)}
+          className="absolute left-4 hover:bg-white/20 p-1 rounded transition-colors"
+          aria-label="إغلاق"
+        >
+          <X className="w-4 h-4" />
+        </button>
+      </div>
+    </motion.div>
+  );
+}
+
+// Mobile floating CTA button
+function MobileFloatingCTA({ show }: { show: boolean }) {
+  return (
+    <AnimatePresence>
+      {show && (
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-gradient-to-t from-background via-background to-transparent md:hidden"
+        >
+          <Link href="/ar/signup" className="block">
+            <Button
+              size="lg"
+              className="w-full h-14 text-lg font-bold rounded-xl bg-gradient-to-r from-primary to-violet-600 text-white shadow-lg"
+            >
+              <Rocket className="w-5 h-5 ms-2" />
+              ابدأ مجاناً الآن
+              <ArrowLeft className="w-5 h-5 me-2" />
+            </Button>
+          </Link>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export default function ArabicHomeClient() {
   const router = useRouter();
   const [isChecking, setIsChecking] = useState(true);
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+  const [showStickyCTA, setShowStickyCTA] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const heroRef = useRef<HTMLElement>(null);
 
-  // Animated counters
-  const studentsCounter = useAnimatedCounter(15247);
-  const successCounter = useAnimatedCounter(98);
-  const lessonsCounter = useAnimatedCounter(500);
-  const yearsCounter = useAnimatedCounter(31);
+  // Scroll tracking for sticky CTA and scroll-to-top
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const heroHeight = heroRef.current?.offsetHeight || 800;
+      setShowStickyCTA(scrollY > heroHeight);
+      setShowScrollTop(scrollY > 500);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -141,19 +385,35 @@ export default function ArabicHomeClient() {
     }
   }, [router]);
 
+  // Use reduced motion variants if user prefers
+  const animationVariants = prefersReducedMotion ? fadeInUpReduced : fadeInUp;
+
   if (isChecking) {
     return <HomepageSkeleton />;
   }
 
   return (
     <div className="min-h-screen overflow-x-hidden" dir="rtl">
+      {/* Urgency Banner */}
+      <UrgencyBanner />
+
+      {/* Sticky CTA Bar */}
+      <StickyCTABar show={showStickyCTA} />
+
+      {/* Live Activity Indicator */}
+      <LiveActivityIndicator />
+
+      {/* Scroll to Top Button */}
+      <ScrollToTopButton show={showScrollTop} />
+
+      {/* Mobile Floating CTA */}
+      <MobileFloatingCTA show={showStickyCTA} />
       {/* ============================================
           HERO SECTION - Immersive & Dramatic
           ============================================ */}
-      <motion.section
+      <section
         ref={heroRef}
         className="relative min-h-[100vh] flex items-center justify-center overflow-hidden"
-        style={{ opacity: heroOpacity, scale: heroScale }}
       >
         {/* Animated Background */}
         <div className="absolute inset-0 -z-10">
@@ -164,18 +424,21 @@ export default function ArabicHomeClient() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-violet-500/15 via-transparent to-transparent" />
 
-          {/* Floating orbs */}
+          {/* Floating orbs with reduced motion support */}
           <FloatingOrb
             className="w-[500px] h-[500px] bg-primary/40 top-[-10%] right-[-10%]"
             delay={0}
+            reducedMotion={!!prefersReducedMotion}
           />
           <FloatingOrb
             className="w-[400px] h-[400px] bg-violet-500/30 bottom-[-5%] left-[-5%]"
             delay={2}
+            reducedMotion={!!prefersReducedMotion}
           />
           <FloatingOrb
             className="w-[300px] h-[300px] bg-cyan-500/25 top-[30%] left-[10%]"
             delay={4}
+            reducedMotion={!!prefersReducedMotion}
           />
 
           {/* Grid pattern overlay */}
@@ -310,28 +573,46 @@ export default function ArabicHomeClient() {
               className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
             >
               <Link href="/ar/signup">
-                <Button
-                  size="lg"
-                  className="group relative h-16 px-10 text-lg font-bold rounded-2xl bg-gradient-to-r from-primary to-violet-600 hover:from-primary/90 hover:to-violet-600/90 text-white shadow-2xl shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:scale-105"
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="relative"
                 >
-                  <Rocket className="w-5 h-5 ms-2 group-hover:rotate-12 transition-transform" />
-                  ابدأ رحلتك مجاناً
-                  <ArrowLeft className="w-5 h-5 me-2 group-hover:-translate-x-1 transition-transform rtl:group-hover:translate-x-1" />
-                  {/* Glow effect */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary to-violet-600 blur-xl opacity-50 -z-10 group-hover:opacity-70 transition-opacity" />
-                </Button>
+                  {/* Animated ring */}
+                  <motion.div
+                    className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary via-violet-500 to-primary opacity-75 blur-sm"
+                    animate={{
+                      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                    style={{ backgroundSize: "200% 200%" }}
+                  />
+                  <Button
+                    size="lg"
+                    className="relative group h-16 px-10 text-lg font-bold rounded-2xl bg-gradient-to-r from-primary to-violet-600 hover:from-primary/90 hover:to-violet-600/90 text-white shadow-2xl shadow-primary/25 transition-all duration-300"
+                  >
+                    <Rocket className="w-5 h-5 ms-2 group-hover:rotate-12 transition-transform" />
+                    ابدأ رحلتك مجاناً
+                    <ArrowLeft className="w-5 h-5 me-2 group-hover:-translate-x-1 transition-transform rtl:group-hover:translate-x-1" />
+                  </Button>
+                </motion.div>
               </Link>
 
-              <Button
-                variant="outline"
-                size="lg"
-                className="h-16 px-8 text-lg font-semibold rounded-2xl border-2 hover:bg-accent/50 backdrop-blur-sm group"
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-violet-600 flex items-center justify-center ms-3 group-hover:scale-110 transition-transform">
-                  <Play className="w-4 h-4 text-white ms-0.5" />
-                </div>
-                شاهد العرض التقديمي
-              </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="h-16 px-8 text-lg font-semibold rounded-2xl border-2 hover:bg-accent/50 backdrop-blur-sm group transition-all duration-300"
+                >
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-violet-600 flex items-center justify-center ms-3 group-hover:scale-110 transition-transform">
+                    <Play className="w-4 h-4 text-white ms-0.5" />
+                  </div>
+                  شاهد العرض التقديمي
+                </Button>
+              </motion.div>
             </motion.div>
 
             {/* Social Proof */}
@@ -343,10 +624,14 @@ export default function ArabicHomeClient() {
             >
               <div className="flex items-center gap-2">
                 {[...Array(5)].map((_, i) => (
-                  <Star
+                  <motion.div
                     key={i}
-                    className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                  />
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.9 + i * 0.1 }}
+                  >
+                    <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                  </motion.div>
                 ))}
                 <span className="text-lg font-bold text-foreground ms-2">
                   4.9/5
@@ -356,7 +641,7 @@ export default function ArabicHomeClient() {
                 من 3,241+ تقييم من طلابنا المتفوقين
               </p>
 
-              {/* Avatar stack */}
+              {/* Avatar stack with hover effects */}
               <div className="flex items-center gap-3 mt-2">
                 <div className="flex -space-x-3 rtl:space-x-reverse">
                   {[
@@ -366,18 +651,46 @@ export default function ArabicHomeClient() {
                     "from-orange-500 to-red-500",
                     "from-indigo-500 to-violet-500",
                   ].map((gradient, i) => (
-                    <div
+                    <motion.div
                       key={i}
-                      className={`w-10 h-10 rounded-full bg-gradient-to-br ${gradient} border-2 border-background flex items-center justify-center text-white text-sm font-bold shadow-lg`}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1 + i * 0.1 }}
+                      whileHover={{ scale: 1.2, zIndex: 10 }}
+                      className={`w-10 h-10 rounded-full bg-gradient-to-br ${gradient} border-2 border-background flex items-center justify-center text-white text-sm font-bold shadow-lg cursor-pointer`}
                     >
                       {["أ", "ف", "ن", "م", "س"][i]}
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
                 <span className="text-sm text-muted-foreground">
                   انضم إلى +15,000 طالب
                 </span>
               </div>
+
+              {/* Trust badges */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 }}
+                className="flex flex-wrap justify-center gap-4 mt-6 px-4"
+              >
+                {[
+                  { icon: Shield, text: "آمن 100%" },
+                  { icon: Award, text: "معتمد رسمياً" },
+                  { icon: Users, text: "مجتمع نشط" },
+                ].map((badge, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-card/50 backdrop-blur-sm border border-border/50 text-sm"
+                  >
+                    <badge.icon className="w-4 h-4 text-primary" />
+                    <span className="text-muted-foreground font-medium">
+                      {badge.text}
+                    </span>
+                  </div>
+                ))}
+              </motion.div>
             </motion.div>
 
             {/* Scroll indicator */}
@@ -398,7 +711,7 @@ export default function ArabicHomeClient() {
             </motion.div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* ============================================
           STATS SECTION - Animated Counters
@@ -416,32 +729,28 @@ export default function ArabicHomeClient() {
           >
             {[
               {
-                ref: studentsCounter.ref,
-                count: studentsCounter.count,
+                target: 15247,
                 suffix: "+",
                 label: "طالب متفوق",
                 icon: Users,
                 color: "from-blue-500 to-cyan-500",
               },
               {
-                ref: successCounter.ref,
-                count: successCounter.count,
+                target: 98,
                 suffix: "%",
                 label: "معدل النجاح",
                 icon: TrendingUp,
                 color: "from-green-500 to-emerald-500",
               },
               {
-                ref: lessonsCounter.ref,
-                count: lessonsCounter.count,
+                target: 500,
                 suffix: "+",
                 label: "درس تفاعلي",
                 icon: Video,
                 color: "from-purple-500 to-pink-500",
               },
               {
-                ref: yearsCounter.ref,
-                count: yearsCounter.count,
+                target: 31,
                 suffix: "",
                 label: "عام خبرة",
                 icon: Award,
@@ -450,20 +759,24 @@ export default function ArabicHomeClient() {
             ].map((stat, i) => (
               <motion.div
                 key={i}
-                ref={stat.ref}
-                variants={fadeInUp}
+                variants={animationVariants}
                 className="relative group"
+                whileHover={{ y: -4 }}
               >
-                <div className="p-6 md:p-8 rounded-3xl bg-card border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1">
-                  <div
-                    className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${stat.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg`}
+                <div className="relative p-6 md:p-8 rounded-3xl bg-card border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 overflow-hidden">
+                  {/* Shine effect on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                  </div>
+
+                  <motion.div
+                    className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${stat.color} flex items-center justify-center mb-4 shadow-lg`}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
                   >
                     <stat.icon className="w-7 h-7 text-white" />
-                  </div>
-                  <div className="text-4xl md:text-5xl font-black text-foreground mb-2">
-                    {stat.count.toLocaleString()}
-                    {stat.suffix}
-                  </div>
+                  </motion.div>
+                  <AnimatedCounter target={stat.target} suffix={stat.suffix} />
                   <div className="text-muted-foreground font-medium">
                     {stat.label}
                   </div>
@@ -570,6 +883,7 @@ export default function ArabicHomeClient() {
         <FloatingOrb
           className="w-[400px] h-[400px] bg-primary/20 top-[-10%] left-[-5%]"
           delay={1}
+          reducedMotion={!!prefersReducedMotion}
         />
 
         <div className="container mx-auto px-6 relative">
@@ -756,17 +1070,33 @@ export default function ArabicHomeClient() {
                 color: "from-orange-500 to-red-500",
               },
             ].map((feature, i) => (
-              <motion.div key={i} variants={fadeInUp} className="group">
-                <div className="h-full p-6 rounded-3xl bg-card border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1">
-                  <div
-                    className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg`}
+              <motion.div
+                key={i}
+                variants={animationVariants}
+                className="group"
+                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              >
+                <div className="relative h-full p-6 rounded-3xl bg-card border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 overflow-hidden">
+                  {/* Gradient border on hover */}
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/20 to-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl" />
+
+                  <motion.div
+                    className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4 shadow-lg`}
+                    whileHover={{ scale: 1.1, rotate: -5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
                   >
                     <feature.icon className="w-7 h-7 text-white" />
-                  </div>
+                  </motion.div>
                   <h3 className="text-xl font-bold text-foreground mb-2">
                     {feature.title}
                   </h3>
                   <p className="text-muted-foreground">{feature.description}</p>
+
+                  {/* Learn more link */}
+                  <div className="mt-4 flex items-center text-primary font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span>اكتشف المزيد</span>
+                    <ArrowLeft className="w-4 h-4 me-1 rtl:rotate-180" />
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -781,6 +1111,7 @@ export default function ArabicHomeClient() {
         <FloatingOrb
           className="w-[300px] h-[300px] bg-violet-500/20 bottom-[10%] right-[-5%]"
           delay={3}
+          reducedMotion={!!prefersReducedMotion}
         />
 
         <div className="container mx-auto px-6 relative">
@@ -838,16 +1169,28 @@ export default function ArabicHomeClient() {
                 color: "from-green-500 to-teal-500",
               },
             ].map((testimonial, i) => (
-              <motion.div key={i} variants={fadeInUp} className="group">
-                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                  <CardContent className="p-6">
+              <motion.div
+                key={i}
+                variants={animationVariants}
+                className="group"
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              >
+                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+                  <CardContent className="p-6 relative">
+                    {/* Quote mark decoration */}
+                    <div className="absolute top-4 left-4 text-6xl text-primary/10 font-serif leading-none">
+                      &ldquo;
+                    </div>
+
                     {/* Header */}
-                    <div className="flex items-start gap-4 mb-4">
-                      <div
-                        className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${testimonial.color} flex items-center justify-center text-white text-xl font-bold shadow-lg group-hover:scale-110 transition-transform`}
+                    <div className="flex items-start gap-4 mb-4 relative z-10">
+                      <motion.div
+                        className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${testimonial.color} flex items-center justify-center text-white text-xl font-bold shadow-lg`}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: "spring", stiffness: 300 }}
                       >
                         {testimonial.name.charAt(0)}
-                      </div>
+                      </motion.div>
                       <div>
                         <h4 className="font-bold text-foreground">
                           {testimonial.name}
@@ -858,28 +1201,39 @@ export default function ArabicHomeClient() {
                       </div>
                     </div>
 
-                    {/* Stats */}
+                    {/* Stats with animation */}
                     <div className="flex gap-2 mb-4">
-                      <span className="px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-sm font-bold">
+                      <motion.span
+                        className="px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-sm font-bold"
+                        whileHover={{ scale: 1.05 }}
+                      >
                         {testimonial.improvement} تحسن
-                      </span>
-                      <span className="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-bold">
+                      </motion.span>
+                      <motion.span
+                        className="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-bold"
+                        whileHover={{ scale: 1.05 }}
+                      >
                         {testimonial.score} النتيجة
-                      </span>
+                      </motion.span>
                     </div>
 
                     {/* Quote */}
-                    <blockquote className="text-muted-foreground italic leading-relaxed">
+                    <blockquote className="text-muted-foreground italic leading-relaxed relative z-10">
                       &ldquo;{testimonial.testimonial}&rdquo;
                     </blockquote>
 
-                    {/* Stars */}
+                    {/* Stars with stagger animation */}
                     <div className="flex items-center gap-1 mt-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                        />
+                      {[...Array(5)].map((_, starIndex) => (
+                        <motion.div
+                          key={starIndex}
+                          initial={{ opacity: 0, scale: 0 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.1 * starIndex }}
+                        >
+                          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        </motion.div>
                       ))}
                     </div>
                   </CardContent>
@@ -1022,35 +1376,53 @@ export default function ArabicHomeClient() {
                   question: "هل المنصة مجانية حقاً؟",
                   answer:
                     "نعم، جميع المحتوى التعليمي مجاني بالكامل. هدفنا هو إتاحة التعليم الجيد لجميع الطلاب المصريين.",
+                  icon: Zap,
                 },
                 {
                   question: "هل يمكنني الوصول للدروس دون اتصال بالإنترنت؟",
                   answer:
                     "نعم، يمكنك تحميل الدروس ومشاهدتها دون اتصال. التطبيق يدعم التعلم الغير متصل بالكامل.",
+                  icon: Video,
                 },
                 {
                   question: "كيف يمكنني تتبع تقدم ابني/ابنتي؟",
                   answer:
                     "يوفر التطبيق تقارير مفصلة للأهل تتضمن الوقت المستغرق، الدروس المكتملة، ونتائج الاختبارات.",
+                  icon: BarChart3,
                 },
                 {
                   question: "ماذا لو واجهت مشكلة تقنية؟",
                   answer:
                     "فريق الدعم الفني متاح 24/7 عبر الواتساب والبريد الإلكتروني لحل أي مشكلة فوراً.",
+                  icon: Shield,
                 },
               ].map((faq, index) => (
-                <AccordionItem
+                <motion.div
                   key={index}
-                  value={`faq-${index}`}
-                  className="bg-card rounded-2xl border-0 shadow-sm px-6 data-[state=open]:shadow-lg transition-shadow"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  <AccordionTrigger className="text-right font-bold text-foreground hover:no-underline py-6 text-lg">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-6 leading-relaxed text-base">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
+                  <AccordionItem
+                    value={`faq-${index}`}
+                    className="bg-card rounded-2xl border-0 shadow-sm px-6 data-[state=open]:shadow-lg data-[state=open]:ring-1 data-[state=open]:ring-primary/20 transition-all duration-300 overflow-hidden"
+                  >
+                    <AccordionTrigger className="text-right font-bold text-foreground hover:no-underline py-6 text-lg group">
+                      <div className="flex items-center gap-3 w-full">
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-data-[state=open]:bg-primary group-data-[state=open]:text-white transition-colors">
+                          <faq.icon className="w-5 h-5" />
+                        </div>
+                        <span className="flex-1 text-start">
+                          {faq.question}
+                        </span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground pb-6 leading-relaxed text-base pr-14">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                </motion.div>
               ))}
             </Accordion>
           </motion.div>
@@ -1069,10 +1441,12 @@ export default function ArabicHomeClient() {
         <FloatingOrb
           className="w-[500px] h-[500px] bg-white/10 top-[-20%] right-[-10%]"
           delay={0}
+          reducedMotion={!!prefersReducedMotion}
         />
         <FloatingOrb
           className="w-[400px] h-[400px] bg-white/10 bottom-[-10%] left-[-10%]"
           delay={2}
+          reducedMotion={!!prefersReducedMotion}
         />
 
         <div className="container mx-auto px-6 relative">
@@ -1102,24 +1476,41 @@ export default function ArabicHomeClient() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/ar/signup">
-                <Button
-                  size="lg"
-                  className="group h-16 px-12 text-xl font-bold rounded-2xl bg-white text-primary hover:bg-white/90 shadow-2xl hover:shadow-white/25 transition-all duration-300 hover:scale-105"
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="relative"
                 >
-                  <Zap className="w-6 h-6 ms-2 group-hover:rotate-12 transition-transform" />
-                  سجّل مجاناً الآن
-                  <ArrowLeft className="w-6 h-6 me-2 group-hover:-translate-x-1 rtl:group-hover:translate-x-1 transition-transform" />
-                </Button>
+                  {/* Pulsing glow effect */}
+                  <motion.div
+                    className="absolute -inset-1 rounded-2xl bg-white/50 blur-md"
+                    animate={{ opacity: [0.5, 0.8, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                  <Button
+                    size="lg"
+                    className="relative group h-16 px-12 text-xl font-bold rounded-2xl bg-white text-primary hover:bg-white/90 shadow-2xl transition-all duration-300"
+                  >
+                    <Zap className="w-6 h-6 ms-2 group-hover:rotate-12 transition-transform" />
+                    سجّل مجاناً الآن
+                    <ArrowLeft className="w-6 h-6 me-2 group-hover:-translate-x-1 rtl:group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </motion.div>
               </Link>
               <Link href="/ar/courses">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="h-16 px-10 text-xl font-semibold rounded-2xl border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <Play className="w-6 h-6 ms-2" />
-                  تصفح الدروس
-                </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="h-16 px-10 text-xl font-semibold rounded-2xl border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
+                  >
+                    <Play className="w-6 h-6 ms-2" />
+                    تصفح الدروس
+                  </Button>
+                </motion.div>
               </Link>
             </div>
 

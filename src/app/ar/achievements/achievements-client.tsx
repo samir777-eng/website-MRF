@@ -5,24 +5,15 @@
  * Improved achievement display with filters, progress, and animations
  */
 
-import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Trophy,
-  Star,
-  Zap,
-  Clock,
-  Sparkles,
-  Lock,
-  CheckCircle2,
-  TrendingUp,
-} from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "framer-motion";
+import { CheckCircle2, Clock, Lock, Star, Trophy, Zap } from "lucide-react";
+import { useState } from "react";
 
 // ============================================================================
 // TYPES
@@ -159,17 +150,24 @@ const achievementStats = {
 
 export function AchievementsClient() {
   const [filter, setFilter] = useState<AchievementFilter>("all");
-  const [selectedRarity, setSelectedRarity] = useState<AchievementRarity | "all">("all");
+  const [selectedRarity, setSelectedRarity] = useState<
+    AchievementRarity | "all"
+  >("all");
 
   // Filter achievements
   const filteredAchievements = mockAchievements.filter((achievement) => {
     // Filter by status
     if (filter === "unlocked" && !achievement.unlocked) return false;
     if (filter === "locked" && achievement.unlocked) return false;
-    if (filter === "recent" && (!achievement.unlocked || !achievement.unlockedAt)) return false;
+    if (
+      filter === "recent" &&
+      (!achievement.unlocked || !achievement.unlockedAt)
+    )
+      return false;
 
     // Filter by rarity
-    if (selectedRarity !== "all" && achievement.rarity !== selectedRarity) return false;
+    if (selectedRarity !== "all" && achievement.rarity !== selectedRarity)
+      return false;
 
     return true;
   });
@@ -185,7 +183,7 @@ export function AchievementsClient() {
       : filteredAchievements;
 
   const completionRate = Math.round(
-    (achievementStats.unlocked / achievementStats.total) * 100
+    (achievementStats.unlocked / achievementStats.total) * 100,
   );
 
   return (
@@ -199,9 +197,7 @@ export function AchievementsClient() {
           </h1>
           <Trophy className="w-8 h-8 text-amber-500 fill-amber-500" />
         </div>
-        <p className="text-muted-foreground">
-          اجمع الشارات وأثبت تميزك
-        </p>
+        <p className="text-muted-foreground">اجمع الشارات وأثبت تميزك</p>
       </div>
 
       {/* Stats Card */}
@@ -229,12 +225,11 @@ export function AchievementsClient() {
           <div className="space-y-2">
             <div className="flex items-center justify-between text-sm text-white/90">
               <span>التقدم الإجمالي</span>
-              <span>{achievementStats.unlocked} من {achievementStats.total}</span>
+              <span>
+                {achievementStats.unlocked} من {achievementStats.total}
+              </span>
             </div>
-            <Progress
-              value={completionRate}
-              className="h-3 bg-white/20"
-            />
+            <Progress value={completionRate} className="h-3 bg-white/20" />
           </div>
         </CardContent>
       </Card>
@@ -242,7 +237,10 @@ export function AchievementsClient() {
       {/* Filters */}
       <Card className="glass border-border/50">
         <CardContent className="p-4">
-          <Tabs value={filter} onValueChange={(v) => setFilter(v as AchievementFilter)}>
+          <Tabs
+            value={filter}
+            onValueChange={(v: string) => setFilter(v as AchievementFilter)}
+          >
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="all">الكل</TabsTrigger>
               <TabsTrigger value="unlocked">مفتوح</TabsTrigger>
@@ -293,10 +291,7 @@ export function AchievementsClient() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <AnimatePresence mode="popLayout">
           {sortedAchievements.map((achievement) => (
-            <AchievementCard
-              key={achievement.id}
-              achievement={achievement}
-            />
+            <AchievementCard key={achievement.id} achievement={achievement} />
           ))}
         </AnimatePresence>
       </div>
@@ -309,9 +304,7 @@ export function AchievementsClient() {
             <h3 className="text-xl font-bold text-foreground mb-2">
               لا توجد إنجازات
             </h3>
-            <p className="text-muted-foreground">
-              جرب فلتر مختلف
-            </p>
+            <p className="text-muted-foreground">جرب فلتر مختلف</p>
           </CardContent>
         </Card>
       )}
@@ -366,7 +359,7 @@ function RarityFilterButton({
       className={cn(
         "text-xs",
         colors[rarity],
-        selected && "ring-2 ring-offset-2"
+        selected && "ring-2 ring-offset-2",
       )}
       onClick={onClick}
     >
@@ -418,14 +411,14 @@ function AchievementCard({ achievement }: { achievement: Achievement }) {
         className={cn(
           "relative overflow-hidden border-2 transition-all",
           colors.border,
-          achievement.unlocked ? "bg-card" : "bg-muted/30"
+          achievement.unlocked ? "bg-card" : "bg-muted/30",
         )}
       >
         {/* Gradient Background */}
         <div
           className={cn(
             "absolute inset-0 opacity-50 bg-gradient-to-br",
-            colors.bg
+            colors.bg,
           )}
         />
 
@@ -438,10 +431,13 @@ function AchievementCard({ achievement }: { achievement: Achievement }) {
                   ? { rotate: [0, 10, -10, 0] }
                   : { scale: 1 }
               }
-              transition={{ duration: 2, repeat: achievement.unlocked ? Infinity : 0 }}
+              transition={{
+                duration: 2,
+                repeat: achievement.unlocked ? Infinity : 0,
+              }}
               className={cn(
                 "text-5xl",
-                !achievement.unlocked && "grayscale opacity-40"
+                !achievement.unlocked && "grayscale opacity-40",
               )}
             >
               {achievement.icon}
@@ -456,10 +452,12 @@ function AchievementCard({ achievement }: { achievement: Achievement }) {
 
           {/* Title & Description */}
           <div>
-            <h3 className={cn(
-              "font-bold text-lg mb-1",
-              achievement.unlocked ? colors.icon : "text-muted-foreground"
-            )}>
+            <h3
+              className={cn(
+                "font-bold text-lg mb-1",
+                achievement.unlocked ? colors.icon : "text-muted-foreground",
+              )}
+            >
               {achievement.title}
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -468,20 +466,22 @@ function AchievementCard({ achievement }: { achievement: Achievement }) {
           </div>
 
           {/* Progress Bar (for locked achievements) */}
-          {!achievement.unlocked && achievement.progress !== undefined && achievement.requirement && (
-            <div className="space-y-1">
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span>التقدم</span>
-                <span>
-                  {achievement.progress} / {achievement.requirement}
-                </span>
+          {!achievement.unlocked &&
+            achievement.progress !== undefined &&
+            achievement.requirement && (
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                  <span>التقدم</span>
+                  <span>
+                    {achievement.progress} / {achievement.requirement}
+                  </span>
+                </div>
+                <Progress
+                  value={(achievement.progress / achievement.requirement) * 100}
+                  className="h-2"
+                />
               </div>
-              <Progress
-                value={(achievement.progress / achievement.requirement) * 100}
-                className="h-2"
-              />
-            </div>
-          )}
+            )}
 
           {/* Footer */}
           <div className="flex items-center justify-between pt-2 border-t border-border/50">

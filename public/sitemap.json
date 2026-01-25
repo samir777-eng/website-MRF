@@ -1,0 +1,554 @@
+{
+  "sitemap": {
+    "version": "1.0",
+    "lastModified": "2024-01-20T00:00:00Z",
+    "baseUrl": "https://mrredaelfarouk.com",
+    "defaultLocale": "ar",
+    "supportedLocales": ["ar", "en"],
+    "pages": [
+      {
+        "path": "/",
+        "priority": 1.0,
+        "changeFreq": "weekly",
+        "lastModified": "2024-01-20T00:00:00Z",
+        "locales": {
+          "ar": {
+            "title": "الأستاذ رضا الفاروق - منصة تعليمية للغة العربية",
+            "description": "منصة تعليمية متطورة لتعلم اللغة العربية للمرحلة الثانوية مع نظام تفاعلي وألعاب تعليمية",
+            "keywords": [
+              "تعليم",
+              "لغة عربية",
+              "ثانوية عامة",
+              "نحو",
+              "بلاغة",
+              "أدب"
+            ]
+          },
+          "en": {
+            "title": "Mr. Reda El Farouk - Arabic Language Learning Platform",
+            "description": "Advanced educational platform for learning Arabic language for secondary school with interactive system and educational games",
+            "keywords": [
+              "education",
+              "arabic language",
+              "secondary school",
+              "grammar",
+              "rhetoric",
+              "literature"
+            ]
+          }
+        }
+      },
+      {
+        "path": "/dashboard",
+        "priority": 0.9,
+        "changeFreq": "daily",
+        "lastModified": "2024-01-20T00:00:00Z",
+        "requiresAuth": true,
+        "locales": {
+          "ar": {
+            "title": "لوحة التحكم - تتبع تقدمك التعليمي",
+            "description": "تابع تقدمك في تعلم اللغة العربية، شاهد نقاط الخبرة والإنجازات والمتصدرين",
+            "keywords": ["لوحة تحكم", "تقدم", "نقاط خبرة", "إنجازات", "متصدرين"]
+          },
+          "en": {
+            "title": "Dashboard - Track Your Learning Progress",
+            "description": "Monitor your Arabic language learning progress, view XP points, achievements, and leaderboards",
+            "keywords": [
+              "dashboard",
+              "progress",
+              "xp points",
+              "achievements",
+              "leaderboard"
+            ]
+          }
+        }
+      },
+      {
+        "path": "/grades",
+        "priority": 0.8,
+        "changeFreq": "monthly",
+        "lastModified": "2024-01-20T00:00:00Z",
+        "locales": {
+          "ar": {
+            "title": "الصفوف الدراسية - اختر صفك",
+            "description": "اختر صفك الدراسي للوصول إلى المحتوى التعليمي المناسب لمستواك",
+            "keywords": ["صفوف", "مراحل تعليمية", "ثانوي", "منهج"]
+          },
+          "en": {
+            "title": "Grade Levels - Choose Your Grade",
+            "description": "Select your grade level to access educational content appropriate for your level",
+            "keywords": [
+              "grades",
+              "educational levels",
+              "secondary",
+              "curriculum"
+            ]
+          }
+        },
+        "children": [
+          {
+            "path": "/grades/grade1",
+            "priority": 0.7,
+            "changeFreq": "monthly",
+            "locales": {
+              "ar": {
+                "title": "الصف الأول الثانوي - دروس اللغة العربية",
+                "description": "دروس شاملة في اللغة العربية للصف الأول الثانوي تشمل النحو والبلاغة والأدب",
+                "keywords": [
+                  "أول ثانوي",
+                  "نحو أساسي",
+                  "بلاغة مبسطة",
+                  "أدب عربي"
+                ]
+              },
+              "en": {
+                "title": "First Secondary Grade - Arabic Language Lessons",
+                "description": "Comprehensive Arabic language lessons for first secondary grade including grammar, rhetoric, and literature",
+                "keywords": [
+                  "first secondary",
+                  "basic grammar",
+                  "simplified rhetoric",
+                  "arabic literature"
+                ]
+              }
+            }
+          },
+          {
+            "path": "/grades/grade2",
+            "priority": 0.7,
+            "changeFreq": "monthly",
+            "locales": {
+              "ar": {
+                "title": "الصف الثاني الثانوي - دروس اللغة العربية",
+                "description": "دروس متقدمة في اللغة العربية للصف الثاني الثانوي مع تطبيقات عملية",
+                "keywords": ["ثاني ثانوي", "نحو متقدم", "بلاغة", "نصوص أدبية"]
+              },
+              "en": {
+                "title": "Second Secondary Grade - Arabic Language Lessons",
+                "description": "Advanced Arabic language lessons for second secondary grade with practical applications",
+                "keywords": [
+                  "second secondary",
+                  "advanced grammar",
+                  "rhetoric",
+                  "literary texts"
+                ]
+              }
+            }
+          },
+          {
+            "path": "/grades/grade3",
+            "priority": 0.7,
+            "changeFreq": "monthly",
+            "locales": {
+              "ar": {
+                "title": "الصف الثالث الثانوي - التحضير للثانوية العامة",
+                "description": "دروس شاملة للصف الثالث الثانوي مع التحضير لامتحان الثانوية العامة",
+                "keywords": [
+                  "ثالث ثانوي",
+                  "ثانوية عامة",
+                  "امتحانات",
+                  "مراجعة شاملة"
+                ]
+              },
+              "en": {
+                "title": "Third Secondary Grade - General Secondary Preparation",
+                "description": "Comprehensive lessons for third secondary grade with preparation for general secondary exam",
+                "keywords": [
+                  "third secondary",
+                  "general secondary",
+                  "exams",
+                  "comprehensive review"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "path": "/subjects",
+        "priority": 0.8,
+        "changeFreq": "monthly",
+        "lastModified": "2024-01-20T00:00:00Z",
+        "locales": {
+          "ar": {
+            "title": "المواد الدراسية - تعلم اللغة العربية",
+            "description": "استكشف جميع فروع اللغة العربية من نحو وبلاغة وأدب ونصوص وقراءة",
+            "keywords": ["مواد", "نحو", "بلاغة", "أدب", "نصوص", "قراءة"]
+          },
+          "en": {
+            "title": "Subjects - Learn Arabic Language",
+            "description": "Explore all branches of Arabic language including grammar, rhetoric, literature, texts, and reading",
+            "keywords": [
+              "subjects",
+              "grammar",
+              "rhetoric",
+              "literature",
+              "texts",
+              "reading"
+            ]
+          }
+        },
+        "children": [
+          {
+            "path": "/subjects/grammar",
+            "priority": 0.7,
+            "changeFreq": "weekly",
+            "locales": {
+              "ar": {
+                "title": "النحو العربي - قواعد اللغة العربية",
+                "description": "تعلم قواعد النحو العربي من الأساسيات إلى المستوى المتقدم مع أمثلة تطبيقية",
+                "keywords": [
+                  "نحو",
+                  "إعراب",
+                  "قواعد",
+                  "فاعل",
+                  "مفعول",
+                  "مبتدأ",
+                  "خبر"
+                ]
+              },
+              "en": {
+                "title": "Arabic Grammar - Arabic Language Rules",
+                "description": "Learn Arabic grammar rules from basics to advanced level with practical examples",
+                "keywords": [
+                  "grammar",
+                  "parsing",
+                  "rules",
+                  "subject",
+                  "object",
+                  "predicate"
+                ]
+              }
+            }
+          },
+          {
+            "path": "/subjects/rhetoric",
+            "priority": 0.7,
+            "changeFreq": "weekly",
+            "locales": {
+              "ar": {
+                "title": "البلاغة العربية - فن الكلام الجميل",
+                "description": "اكتشف جمال البلاغة العربية وفنون الكلام من معاني وبيان وبديع",
+                "keywords": [
+                  "بلاغة",
+                  "معاني",
+                  "بيان",
+                  "بديع",
+                  "استعارة",
+                  "كناية",
+                  "مجاز"
+                ]
+              },
+              "en": {
+                "title": "Arabic Rhetoric - The Art of Beautiful Speech",
+                "description": "Discover the beauty of Arabic rhetoric and speech arts including meanings, eloquence, and embellishment",
+                "keywords": [
+                  "rhetoric",
+                  "meanings",
+                  "eloquence",
+                  "embellishment",
+                  "metaphor",
+                  "metonymy"
+                ]
+              }
+            }
+          },
+          {
+            "path": "/subjects/literature",
+            "priority": 0.7,
+            "changeFreq": "weekly",
+            "locales": {
+              "ar": {
+                "title": "الأدب العربي - تاريخ وتطور الأدب",
+                "description": "رحلة عبر تاريخ الأدب العربي من العصر الجاهلي إلى العصر الحديث",
+                "keywords": ["أدب", "شعر", "نثر", "عصور أدبية", "شعراء", "كتاب"]
+              },
+              "en": {
+                "title": "Arabic Literature - History and Development of Literature",
+                "description": "Journey through the history of Arabic literature from pre-Islamic era to modern times",
+                "keywords": [
+                  "literature",
+                  "poetry",
+                  "prose",
+                  "literary eras",
+                  "poets",
+                  "writers"
+                ]
+              }
+            }
+          },
+          {
+            "path": "/subjects/texts",
+            "priority": 0.7,
+            "changeFreq": "weekly",
+            "locales": {
+              "ar": {
+                "title": "النصوص الأدبية - دراسة وتحليل",
+                "description": "دراسة وتحليل النصوص الأدبية المقررة مع الشرح والتفسير",
+                "keywords": ["نصوص", "تحليل", "شرح", "تفسير", "دراسة أدبية"]
+              },
+              "en": {
+                "title": "Literary Texts - Study and Analysis",
+                "description": "Study and analysis of prescribed literary texts with explanation and interpretation",
+                "keywords": [
+                  "texts",
+                  "analysis",
+                  "explanation",
+                  "interpretation",
+                  "literary study"
+                ]
+              }
+            }
+          },
+          {
+            "path": "/subjects/reading",
+            "priority": 0.7,
+            "changeFreq": "weekly",
+            "locales": {
+              "ar": {
+                "title": "القراءة والفهم - تطوير مهارات القراءة",
+                "description": "تطوير مهارات القراءة والفهم والاستيعاب من خلال نصوص متنوعة",
+                "keywords": ["قراءة", "فهم", "استيعاب", "مهارات", "نصوص"]
+              },
+              "en": {
+                "title": "Reading and Comprehension - Developing Reading Skills",
+                "description": "Develop reading, understanding, and comprehension skills through diverse texts",
+                "keywords": [
+                  "reading",
+                  "comprehension",
+                  "understanding",
+                  "skills",
+                  "texts"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "path": "/lessons",
+        "priority": 0.8,
+        "changeFreq": "weekly",
+        "lastModified": "2024-01-20T00:00:00Z",
+        "locales": {
+          "ar": {
+            "title": "الدروس التعليمية - فيديوهات واختبارات",
+            "description": "مجموعة شاملة من الدروس التعليمية بالفيديو مع اختبارات تفاعلية",
+            "keywords": ["دروس", "فيديو", "اختبارات", "تعليم تفاعلي"]
+          },
+          "en": {
+            "title": "Educational Lessons - Videos and Tests",
+            "description": "Comprehensive collection of video lessons with interactive tests",
+            "keywords": ["lessons", "video", "tests", "interactive learning"]
+          }
+        }
+      },
+      {
+        "path": "/profile",
+        "priority": 0.6,
+        "changeFreq": "weekly",
+        "requiresAuth": true,
+        "locales": {
+          "ar": {
+            "title": "الملف الشخصي - إعداداتك وتفضيلاتك",
+            "description": "إدارة ملفك الشخصي وإعداداتك التعليمية وتفضيلاتك",
+            "keywords": ["ملف شخصي", "إعدادات", "تفضيلات", "حساب"]
+          },
+          "en": {
+            "title": "Profile - Your Settings and Preferences",
+            "description": "Manage your personal profile, educational settings, and preferences",
+            "keywords": ["profile", "settings", "preferences", "account"]
+          }
+        }
+      },
+      {
+        "path": "/progress",
+        "priority": 0.7,
+        "changeFreq": "daily",
+        "requiresAuth": true,
+        "locales": {
+          "ar": {
+            "title": "تقرير التقدم - تحليل أدائك التعليمي",
+            "description": "تقرير مفصل عن تقدمك التعليمي وإحصائيات أدائك",
+            "keywords": ["تقدم", "إحصائيات", "أداء", "تحليل", "تقرير"]
+          },
+          "en": {
+            "title": "Progress Report - Analyze Your Educational Performance",
+            "description": "Detailed report on your educational progress and performance statistics",
+            "keywords": [
+              "progress",
+              "statistics",
+              "performance",
+              "analysis",
+              "report"
+            ]
+          }
+        }
+      },
+      {
+        "path": "/achievements",
+        "priority": 0.6,
+        "changeFreq": "weekly",
+        "requiresAuth": true,
+        "locales": {
+          "ar": {
+            "title": "الإنجازات والشارات - اجمع الجوائز",
+            "description": "اعرض إنجازاتك التعليمية واجمع الشارات والجوائز",
+            "keywords": ["إنجازات", "شارات", "جوائز", "تحديات", "مكافآت"]
+          },
+          "en": {
+            "title": "Achievements and Badges - Collect Rewards",
+            "description": "Display your educational achievements and collect badges and rewards",
+            "keywords": [
+              "achievements",
+              "badges",
+              "rewards",
+              "challenges",
+              "prizes"
+            ]
+          }
+        }
+      },
+      {
+        "path": "/leaderboard",
+        "priority": 0.6,
+        "changeFreq": "daily",
+        "locales": {
+          "ar": {
+            "title": "لوحة المتصدرين - تنافس مع الآخرين",
+            "description": "شاهد ترتيبك بين الطلاب وتنافس للوصول إلى القمة",
+            "keywords": ["متصدرين", "ترتيب", "تنافس", "طلاب", "نقاط"]
+          },
+          "en": {
+            "title": "Leaderboard - Compete with Others",
+            "description": "See your ranking among students and compete to reach the top",
+            "keywords": [
+              "leaderboard",
+              "ranking",
+              "compete",
+              "students",
+              "points"
+            ]
+          }
+        }
+      },
+      {
+        "path": "/about",
+        "priority": 0.5,
+        "changeFreq": "monthly",
+        "locales": {
+          "ar": {
+            "title": "عن الأستاذ رضا الفاروق - خبرة 31 عاماً",
+            "description": "تعرف على الأستاذ رضا الفاروق وخبرته الطويلة في تدريس اللغة العربية",
+            "keywords": ["رضا الفاروق", "خبرة", "تدريس", "مدرس", "لغة عربية"]
+          },
+          "en": {
+            "title": "About Mr. Reda El Farouk - 31 Years of Experience",
+            "description": "Learn about Mr. Reda El Farouk and his extensive experience in teaching Arabic language",
+            "keywords": [
+              "Reda El Farouk",
+              "experience",
+              "teaching",
+              "teacher",
+              "arabic language"
+            ]
+          }
+        }
+      },
+      {
+        "path": "/contact",
+        "priority": 0.5,
+        "changeFreq": "monthly",
+        "locales": {
+          "ar": {
+            "title": "اتصل بنا - تواصل معنا",
+            "description": "تواصل معنا للاستفسارات والدعم التقني والمساعدة",
+            "keywords": ["اتصال", "تواصل", "دعم", "مساعدة", "استفسارات"]
+          },
+          "en": {
+            "title": "Contact Us - Get in Touch",
+            "description": "Contact us for inquiries, technical support, and assistance",
+            "keywords": [
+              "contact",
+              "communication",
+              "support",
+              "help",
+              "inquiries"
+            ]
+          }
+        }
+      },
+      {
+        "path": "/components",
+        "priority": 0.3,
+        "changeFreq": "monthly",
+        "locales": {
+          "ar": {
+            "title": "كتالوج المكونات - عرض التصميم",
+            "description": "عرض جميع مكونات التصميم والواجهة المستخدمة في المنصة",
+            "keywords": ["مكونات", "تصميم", "واجهة", "كتالوج"]
+          },
+          "en": {
+            "title": "Components Catalog - Design Showcase",
+            "description": "Showcase of all design components and interface elements used in the platform",
+            "keywords": ["components", "design", "interface", "catalog"]
+          }
+        }
+      }
+    ],
+    "staticFiles": [
+      {
+        "path": "/robots.txt",
+        "priority": 0.1,
+        "changeFreq": "yearly"
+      },
+      {
+        "path": "/sitemap.xml",
+        "priority": 0.1,
+        "changeFreq": "weekly"
+      },
+      {
+        "path": "/manifest.json",
+        "priority": 0.1,
+        "changeFreq": "monthly"
+      }
+    ],
+    "apiEndpoints": [
+      {
+        "path": "/api/auth/login",
+        "method": "POST",
+        "description": "User authentication endpoint"
+      },
+      {
+        "path": "/api/auth/register",
+        "method": "POST",
+        "description": "User registration endpoint"
+      },
+      {
+        "path": "/api/lessons",
+        "method": "GET",
+        "description": "Get lessons list with filtering"
+      },
+      {
+        "path": "/api/lessons/:id",
+        "method": "GET",
+        "description": "Get specific lesson details"
+      },
+      {
+        "path": "/api/quizzes",
+        "method": "GET",
+        "description": "Get quizzes list"
+      },
+      {
+        "path": "/api/progress",
+        "method": "GET",
+        "description": "Get user progress data"
+      },
+      {
+        "path": "/api/leaderboard",
+        "method": "GET",
+        "description": "Get leaderboard rankings"
+      }
+    ]
+  }
+}

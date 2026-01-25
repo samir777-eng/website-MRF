@@ -1,0 +1,15 @@
+
+> mrf-edu-web@0.1.0 start
+> next start
+
+   ▲ Next.js 15.5.4
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.106:3000
+
+ ✓ Starting...
+[Error: ENOENT: no such file or directory, scandir '/Users/samireldirini/Desktop/Website/mrf-edu-web/.next/static'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/Users/samireldirini/Desktop/Website/mrf-edu-web/.next/static'
+}

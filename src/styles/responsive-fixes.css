@@ -1,0 +1,426 @@
+/* Responsive Design Fixes */
+/* Applied globally to prevent horizontal scroll issues */
+
+/* Critical: Prevent horizontal scroll on all browsers including WebKit */
+html {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  position: relative;
+}
+
+/* Base container fixes */
+.container,
+.mx-auto {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Exception: Allow header and navigation to overflow for dropdowns */
+header[role="banner"] .container,
+nav.overflow-visible .container {
+  overflow: visible !important;
+}
+
+/* Prevent all elements from exceeding viewport width */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Allow specific elements to be full width */
+html,
+body,
+#__next,
+.page-bg-yellow,
+.page-bg-purple,
+.page-bg-blue,
+.page-bg-green,
+.min-h-screen {
+  max-width: none !important;
+}
+
+/* WebKit-specific fixes for Safari/iOS */
+@supports (-webkit-touch-callout: none) {
+  body {
+    overflow-x: hidden !important;
+    width: 100vw !important;
+  }
+
+  * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+
+/* Fix for tables */
+table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+thead,
+tbody,
+tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Fix for images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix for cards and content containers */
+.card,
+[class*="Card"] {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Fix for grid layouts */
+.grid {
+  max-width: 100%;
+}
+
+/* Fix for flex layouts */
+.flex {
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 768px) {
+  /* Force all containers to respect viewport width */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Fix for dashboard stats cards */
+  .grid-cols-1,
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Fix for wide content */
+  .w-full {
+    width: 100% !important;
+  }
+
+  /* Fix for text overflow */
+  .text-4xl,
+  .text-5xl,
+  .text-6xl {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+  }
+
+  /* Fix for buttons */
+  button {
+    max-width: 100%;
+  }
+
+  /* Fix for forms */
+  input,
+  textarea,
+  select {
+    max-width: 100%;
+  }
+}
+
+/* Tablet-specific fixes */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Dashboard-specific fixes */
+.dashboard-container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.dashboard-grid {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1025px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Leaderboard table fixes */
+.leaderboard-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.leaderboard-table table {
+  min-width: 600px;
+}
+
+@media (max-width: 768px) {
+  .leaderboard-table table {
+    min-width: 100%;
+    font-size: 0.875rem;
+  }
+
+  .leaderboard-table th,
+  .leaderboard-table td {
+    padding: 0.5rem;
+  }
+}
+
+/* Course cards fixes */
+.course-grid {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .course-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1025px) {
+  .course-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Video player fixes */
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.video-container video,
+.video-container iframe {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+/* Quiz container fixes */
+.quiz-container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.quiz-question {
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+/* Lesson content fixes */
+.lesson-content {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.lesson-content img,
+.lesson-content video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Lecture detail fixes */
+.lecture-detail {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.lecture-sidebar {
+  max-width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .lecture-sidebar {
+    width: 100%;
+  }
+}
+
+/* Prevent horizontal scroll on body */
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Fix for RTL layouts */
+[dir="rtl"] {
+  overflow-x: hidden;
+}
+
+/* Fix for absolute positioned elements */
+.absolute {
+  max-width: none;
+}
+
+/* Fix for fixed positioned elements */
+.fixed {
+  max-width: none;
+}
+
+/* Utility class to force no horizontal scroll */
+.no-horizontal-scroll {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
+
+/* Utility class for responsive padding */
+.responsive-padding {
+  padding-left: clamp(1rem, 3vw, 2rem);
+  padding-right: clamp(1rem, 3vw, 2rem);
+}
+
+/* Fix for charts and graphs */
+.chart-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.chart-container canvas {
+  max-width: 100%;
+}
+
+/* Fix for badges and tags */
+.badge,
+.tag {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Fix for modals */
+.modal-content {
+  max-width: calc(100vw - 2rem);
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+}
+
+/* Fix for dropdowns */
+.dropdown-menu {
+  max-width: calc(100vw - 2rem);
+}
+
+/* Dashboard-specific fixes for all viewports */
+[class*="dashboard"] {
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix for grid layouts that cause horizontal scroll */
+.grid {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.grid > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Fix for flex layouts */
+.flex {
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.flex > * {
+  min-width: 0;
+  flex-shrink: 1;
+}
+
+/* Courses page fixes */
+[href*="/courses"],
+[class*="course"] {
+  max-width: 100% !important;
+}
+
+/* Leaderboard fixes */
+[href*="/leaderboard"],
+[class*="leaderboard"] {
+  max-width: 100% !important;
+  overflow-x: auto;
+}
+
+/* Lecture and Lesson detail fixes */
+[href*="/lectures/"],
+[href*="/lessons/"],
+[class*="lecture"],
+[class*="lesson"] {
+  max-width: 100% !important;
+}
+
+/* Quiz page fixes */
+[href*="/quizzes"],
+[class*="quiz"] {
+  max-width: 100% !important;
+}
+
+/* Additional WebKit-specific fixes for problematic pages */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  /* Dashboard */
+  [href*="/dashboard"] * {
+    max-width: 100vw !important;
+  }
+
+  /* Courses */
+  [href*="/courses"] * {
+    max-width: 100vw !important;
+  }
+
+  /* Prevent any element from causing horizontal scroll */
+  * {
+    max-width: 100vw !important;
+  }
+
+  html, body, #__next, .min-h-screen, [role="main"] {
+    max-width: none !important;
+  }
+
+  /* Exception: Allow header dropdowns to work properly */
+  header .absolute[class*="bg-popover"],
+  nav .absolute[class*="bg-popover"] {
+    max-width: max-content !important;
+  }
+}
+

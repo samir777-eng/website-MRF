@@ -1,0 +1,384 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "تخطي إلى المحتوى الرئيسي" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - link "تخطي إلى التنقل" [ref=e3] [cursor=pointer]:
+    - /url: "#navigation"
+  - banner:
+    - navigation "التنقل الرئيسي" [ref=e4]:
+      - generic [ref=e6]:
+        - link "الأستاذ رضا الفاروق منصة التعليم الرقمي" [ref=e8] [cursor=pointer]:
+          - /url: /ar
+          - img [ref=e10] [cursor=pointer]
+          - generic [ref=e13] [cursor=pointer]:
+            - generic [ref=e14] [cursor=pointer]: الأستاذ رضا الفاروق
+            - generic [ref=e15] [cursor=pointer]: منصة التعليم الرقمي
+        - generic [ref=e16]:
+          - link "الرئيسية" [ref=e17] [cursor=pointer]:
+            - /url: /ar
+            - img [ref=e18] [cursor=pointer]
+            - generic [ref=e21] [cursor=pointer]: الرئيسية
+          - button "التعلم" [ref=e23]:
+            - img [ref=e24]
+            - generic [ref=e27]: التعلم
+            - img [ref=e28]
+          - button "الموارد" [ref=e32]:
+            - img [ref=e33]
+            - generic [ref=e35]: الموارد
+            - img [ref=e36]
+          - button "التحديات" [ref=e39]:
+            - img [ref=e40]
+            - generic [ref=e46]: التحديات
+            - img [ref=e47]
+        - generic [ref=e49]:
+          - generic [ref=e50]:
+            - link "تسجيل الدخول" [ref=e51] [cursor=pointer]:
+              - /url: /ar/login
+              - button "تسجيل الدخول" [ref=e52]:
+                - img
+                - generic [ref=e53]: تسجيل الدخول
+            - link "إنشاء حساب جديد" [ref=e54] [cursor=pointer]:
+              - /url: /ar/signup
+              - button "إنشاء حساب جديد" [ref=e55]:
+                - img
+                - generic [ref=e56]: إنشاء حساب
+          - button "التبديل إلى الوضع الداكن" [ref=e58] [cursor=pointer]:
+            - img [ref=e60] [cursor=pointer]
+            - generic [ref=e66] [cursor=pointer]: تبديل المظهر
+  - generic [ref=e67]:
+    - main "المحتوى الرئيسي" [ref=e68]:
+      - generic [ref=e69]:
+        - generic:
+          - generic:
+            - img
+            - generic: اسحب للتحديث
+        - generic [ref=e71]:
+          - generic [ref=e74]:
+            - generic [ref=e75]:
+              - generic [ref=e76]:
+                - generic [ref=e77]: أ
+                - img [ref=e79]
+              - generic [ref=e81]:
+                - heading "أهلاً بعودتك، أحمد! 👋" [level=1] [ref=e82]:
+                  - text: أهلاً بعودتك، أحمد!
+                  - generic [ref=e83]: 👋
+                - paragraph [ref=e84]:
+                  - img [ref=e85]
+                  - text: مستعد لتطوير مهاراتك في اللغة العربية؟
+            - generic [ref=e88]:
+              - generic [ref=e89]:
+                - img [ref=e90]
+                - generic [ref=e96]: المستوى 1
+              - generic [ref=e97]:
+                - img [ref=e98]
+                - generic [ref=e100]: ٠ نقطة
+              - generic [ref=e101]:
+                - img [ref=e102]
+                - generic [ref=e104]: سلسلة 0 أيام
+          - generic [ref=e105]:
+            - generic [ref=e106]:
+              - heading "إحصائياتك السريعة" [level=2] [ref=e107]
+              - generic [ref=e108]:
+                - generic [ref=e110]:
+                  - generic [ref=e111]:
+                    - img [ref=e113]
+                    - generic [ref=e115]:
+                      - img [ref=e116]
+                      - text: "12"
+                  - generic [ref=e119]:
+                    - generic [ref=e120]: ٣ درس
+                    - generic [ref=e121]: الدروس المكتملة
+                - generic [ref=e125]:
+                  - generic [ref=e126]:
+                    - img [ref=e128]
+                    - generic [ref=e136]:
+                      - img [ref=e137]
+                      - text: "8"
+                  - generic [ref=e140]:
+                    - generic [ref=e141]: ٢ اختبار
+                    - generic [ref=e142]: الاختبارات المنجزة
+                - generic [ref=e146]:
+                  - generic [ref=e147]:
+                    - img [ref=e149]
+                    - generic [ref=e152]:
+                      - img [ref=e153]
+                      - text: "15"
+                  - generic [ref=e156]:
+                    - generic [ref=e157]: ١٣ ساعة
+                    - generic [ref=e158]: ساعات الدراسة
+                - generic [ref=e161]:
+                  - generic [ref=e162]:
+                    - img [ref=e164]
+                    - generic [ref=e168]:
+                      - img [ref=e169]
+                      - text: "5"
+                  - generic [ref=e172]:
+                    - generic [ref=e173]: ٧%
+                    - generic [ref=e174]: معدل النجاح
+                - generic [ref=e177]:
+                  - generic [ref=e178]:
+                    - img [ref=e180]
+                    - generic [ref=e186]:
+                      - img [ref=e187]
+                      - text: "3"
+                  - generic [ref=e190]:
+                    - generic [ref=e191]: ١ إنجاز
+                    - generic [ref=e192]: الإنجازات
+                - generic [ref=e195]:
+                  - generic [ref=e196]:
+                    - img [ref=e198]
+                    - generic [ref=e200]:
+                      - img [ref=e201]
+                      - text: "450"
+                  - generic [ref=e204]:
+                    - generic [ref=e205]: ٧٠٤ XP
+                    - generic [ref=e206]: نقاط الخبرة
+                - generic [ref=e209]:
+                  - generic [ref=e210]:
+                    - img [ref=e212]
+                    - generic [ref=e215]:
+                      - img [ref=e216]
+                      - text: "2"
+                  - generic [ref=e219]:
+                    - generic [ref=e220]: "#٠"
+                    - generic [ref=e221]: الترتيب
+                - generic [ref=e224]:
+                  - generic [ref=e225]:
+                    - img [ref=e227]
+                    - generic [ref=e230]:
+                      - img [ref=e231]
+                      - text: "1"
+                  - generic [ref=e234]:
+                    - generic [ref=e235]: ١ يوم
+                    - generic [ref=e236]: أيام متتالية
+            - status "جاري التحميل" [ref=e244]:
+              - generic [ref=e246]: جاري التحميل...
+            - status "جاري التحميل" [ref=e310]:
+              - generic [ref=e312]: جاري التحميل...
+            - status "جاري التحميل" [ref=e363]:
+              - generic [ref=e365]: جاري التحميل...
+            - generic [ref=e366]:
+              - generic [ref=e367]:
+                - generic [ref=e368]:
+                  - generic [ref=e370]:
+                    - heading "المهام اليومية 1/3" [level=3] [ref=e371]:
+                      - img [ref=e372]
+                      - text: المهام اليومية
+                      - generic [ref=e376]: 1/3
+                    - paragraph [ref=e377]: أكمل هذه التحديات لتحصل على نقاط إضافية!
+                  - generic [ref=e379]:
+                    - generic [ref=e380]:
+                      - generic [ref=e381]:
+                        - img [ref=e383]
+                        - generic [ref=e386]:
+                          - heading "أكمل درساً واحداً" [level=4] [ref=e387]
+                          - paragraph [ref=e388]: 50 نقطة
+                      - generic [ref=e389]:
+                        - generic [ref=e390]: "%100"
+                        - progressbar [ref=e391]
+                    - generic [ref=e393]:
+                      - generic [ref=e396]:
+                        - heading "تدرب على 10 كلمات مفردات" [level=4] [ref=e397]
+                        - paragraph [ref=e398]: 30 نقطة
+                      - generic [ref=e399]:
+                        - generic [ref=e400]: "%70"
+                        - progressbar [ref=e401]
+                    - generic [ref=e403]:
+                      - generic [ref=e406]:
+                        - heading "خذ اختباراً تدريبياً" [level=4] [ref=e407]
+                        - paragraph [ref=e408]: 40 نقطة
+                      - generic [ref=e409]:
+                        - generic [ref=e410]: "%0"
+                        - progressbar [ref=e411]
+                - generic [ref=e413]:
+                  - generic [ref=e415]:
+                    - heading "تابع التعلم" [level=3] [ref=e416]:
+                      - img [ref=e417]
+                      - text: تابع التعلم
+                    - paragraph [ref=e419]: تابع من حيث توقفت واكسب النقاط!
+                  - generic [ref=e421]:
+                    - generic [ref=e422]:
+                      - generic [ref=e423]:
+                        - heading "النحو العربي - الدرس 8" [level=3] [ref=e424]
+                        - paragraph [ref=e425]: أنماط تصريف الأفعال
+                        - generic [ref=e427]:
+                          - img [ref=e428]
+                          - text: +75 نقطة عند الإكمال
+                      - generic [ref=e430]:
+                        - generic [ref=e431]: "%75"
+                        - generic [ref=e432]: مكتمل
+                    - progressbar [ref=e433]
+                    - button "تابع الدرس واكسب النقاط" [ref=e435]:
+                      - img
+                      - text: تابع الدرس واكسب النقاط
+                      - img
+                - generic [ref=e436]:
+                  - generic [ref=e437]:
+                    - heading "الإنجازات الأخيرة" [level=3] [ref=e438]:
+                      - img [ref=e439]
+                      - text: الإنجازات الأخيرة
+                    - paragraph [ref=e445]: معالم التعلم والمكافآت الخاصة بك
+                  - generic [ref=e447]:
+                    - generic [ref=e449]:
+                      - generic [ref=e450]: 🎯
+                      - generic [ref=e451]:
+                        - heading "الخطوات الأولى" [level=4] [ref=e452]
+                        - paragraph [ref=e453]: أكمل درسك الأول
+                      - img [ref=e454]
+                    - generic [ref=e458]:
+                      - generic [ref=e459]: 🔥
+                      - generic [ref=e460]:
+                        - heading "محارب الأسبوع" [level=4] [ref=e461]
+                        - paragraph [ref=e462]: حافظ على سلسلة 7 أيام
+                      - img [ref=e463]
+                    - generic [ref=e467]:
+                      - generic [ref=e468]: 📚
+                      - generic [ref=e469]:
+                        - heading "أستاذ النحو" [level=4] [ref=e470]
+                        - paragraph [ref=e471]: احصل على 90%+ في 5 اختبارات نحو
+                      - img [ref=e472]
+                    - generic [ref=e476]:
+                      - generic [ref=e477]: ⚡
+                      - generic [ref=e478]:
+                        - heading "قارئ سريع" [level=4] [ref=e479]
+                        - paragraph [ref=e480]: أكمل 10 تمارين قراءة
+                - generic [ref=e481]:
+                  - generic [ref=e483]:
+                    - img [ref=e485]
+                    - generic [ref=e488]: "24"
+                    - generic [ref=e489]: درس مكتمل
+                  - generic [ref=e491]:
+                    - img [ref=e493]
+                    - generic [ref=e495]: "0"
+                    - generic [ref=e496]: سلسلة أيام
+                  - generic [ref=e498]:
+                    - img [ref=e500]
+                    - generic [ref=e503]: 2.5س
+                    - generic [ref=e504]: هذا الأسبوع
+                  - generic [ref=e506]:
+                    - img [ref=e508]
+                    - generic [ref=e511]: "%89"
+                    - generic [ref=e512]: متوسط النتيجة
+              - generic [ref=e513]:
+                - generic [ref=e514]:
+                  - heading "مكافأة السلسلة!" [level=3] [ref=e517]:
+                    - img [ref=e518]
+                    - text: مكافأة السلسلة!
+                  - generic [ref=e521]:
+                    - generic [ref=e522]: 🔥
+                    - generic [ref=e523]: "0"
+                    - generic [ref=e524]: أيام متتالية!
+                    - button "احصل على 100 نقطة مكافأة" [ref=e525]:
+                      - img
+                      - text: احصل على 100 نقطة
+                - generic [ref=e526]:
+                  - heading "إجراءات سريعة" [level=3] [ref=e528]:
+                    - img [ref=e529]
+                    - text: إجراءات سريعة
+                  - generic [ref=e531]:
+                    - button "ابدأ درساً جديداً" [ref=e532]:
+                      - img
+                      - text: ابدأ درساً جديداً
+                    - button "خذ اختباراً تدريبياً" [ref=e533]:
+                      - img
+                      - text: خذ اختباراً تدريبياً
+                    - button "راجع المفردات" [ref=e534]:
+                      - img
+                      - text: راجع المفردات
+                    - button "عرض جميع الإنجازات" [ref=e535]:
+                      - img
+                      - text: عرض جميع الإنجازات
+                - generic [ref=e536]:
+                  - heading "التنقل" [level=3] [ref=e538]
+                  - generic [ref=e539]:
+                    - link "🏠 الرئيسية" [ref=e540] [cursor=pointer]:
+                      - /url: /ar
+                      - generic [ref=e541] [cursor=pointer]: 🏠
+                      - generic [ref=e542] [cursor=pointer]: الرئيسية
+                    - link "📚 الدورات" [ref=e543] [cursor=pointer]:
+                      - /url: /ar/courses
+                      - generic [ref=e544] [cursor=pointer]: 📚
+                      - generic [ref=e545] [cursor=pointer]: الدورات
+                    - link "🧠 الاختبارات" [ref=e546] [cursor=pointer]:
+                      - /url: /ar/quizzes
+                      - generic [ref=e547] [cursor=pointer]: 🧠
+                      - generic [ref=e548] [cursor=pointer]: الاختبارات
+                    - link "👤 الملف الشخصي" [ref=e549] [cursor=pointer]:
+                      - /url: /ar/profile
+                      - generic [ref=e550] [cursor=pointer]: 👤
+                      - generic [ref=e551] [cursor=pointer]: الملف الشخصي
+                    - link "🏆 لوحة المتصدرين" [ref=e552] [cursor=pointer]:
+                      - /url: /ar/leaderboard
+                      - generic [ref=e553] [cursor=pointer]: 🏆
+                      - generic [ref=e554] [cursor=pointer]: لوحة المتصدرين
+    - contentinfo "تذييل الصفحة" [ref=e555]:
+      - generic [ref=e556]:
+        - generic [ref=e557]:
+          - generic [ref=e558]:
+            - generic [ref=e559]:
+              - generic [ref=e561]: ر.ف
+              - generic [ref=e562]: الأستاذ رضا الفاروق
+            - paragraph [ref=e563]: منصة التعليم الرقمي الرائدة في مصر
+          - navigation "روابط سريعة" [ref=e564]:
+            - heading "روابط سريعة" [level=3] [ref=e565]
+            - list [ref=e566]:
+              - listitem [ref=e567]:
+                - link "الرئيسية" [ref=e568] [cursor=pointer]:
+                  - /url: /ar
+              - listitem [ref=e569]:
+                - link "عن الأستاذ" [ref=e570] [cursor=pointer]:
+                  - /url: /ar/about
+              - listitem [ref=e571]:
+                - link "الدورات" [ref=e572] [cursor=pointer]:
+                  - /url: /ar/courses
+              - listitem [ref=e573]:
+                - link "المحاضرات" [ref=e574] [cursor=pointer]:
+                  - /url: /ar/lessons
+              - listitem [ref=e575]:
+                - link "المساعدة" [ref=e576] [cursor=pointer]:
+                  - /url: /ar/help
+          - navigation "روابط قانونية" [ref=e577]:
+            - heading "معلومات قانونية" [level=3] [ref=e578]
+            - list [ref=e579]:
+              - listitem [ref=e580]:
+                - link "سياسة الخصوصية" [ref=e581] [cursor=pointer]:
+                  - /url: /ar/privacy
+              - listitem [ref=e582]:
+                - link "الشروط والأحكام" [ref=e583] [cursor=pointer]:
+                  - /url: /ar/terms
+              - listitem [ref=e584]:
+                - link "اتصل بنا" [ref=e585] [cursor=pointer]:
+                  - /url: /ar/contact
+        - paragraph [ref=e587]: © 2024 جميع الحقوق محفوظة - الأستاذ رضا الفاروق
+  - generic [ref=e588]:
+    - generic:
+      - button "تصفح الدروس":
+        - img
+        - generic: تصفح الدروس
+      - button "المحاضرات":
+        - img
+        - generic: المحاضرات
+      - button "الاختبارات":
+        - img
+        - generic: الاختبارات
+    - button "فتح القائمة السريعة" [ref=e589]:
+      - img [ref=e590]
+  - region "Notifications (F8)":
+    - list
+  - status [ref=e591]
+  - alert [ref=e592]
+  - generic [ref=e597] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e598] [cursor=pointer]:
+      - img [ref=e599] [cursor=pointer]
+    - generic [ref=e602] [cursor=pointer]:
+      - button "Open issues overlay" [ref=e603] [cursor=pointer]:
+        - generic [ref=e604] [cursor=pointer]:
+          - generic [ref=e605] [cursor=pointer]: "0"
+          - generic [ref=e606] [cursor=pointer]: "1"
+        - generic [ref=e607] [cursor=pointer]: Issue
+      - button "Collapse issues badge" [ref=e608] [cursor=pointer]:
+        - img [ref=e609] [cursor=pointer]
+  - alert [ref=e611]
+```

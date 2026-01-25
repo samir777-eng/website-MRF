@@ -10,8 +10,10 @@ import {
 } from "@/components/seo/structured-data";
 import SkipNavigation from "@/components/SkipNavigation";
 import { Toaster } from "@/components/ui/toaster";
+import { AppProviders } from "@/components/providers/app-providers";
 import { ServiceWorkerScript } from "@/lib/security/nonce-provider";
 import type { Metadata } from "next";
+import Link from "next/link";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -96,8 +98,6 @@ type Props = {
 };
 
 export default function ArabicLayout({ children }: Props) {
-  // Import AppProviders dynamically to prevent IDE from removing unused import
-import { AppProviders } from "@/components/providers/app-providers";
 
   return (
     <AppProviders>
@@ -186,12 +186,12 @@ import { AppProviders } from "@/components/providers/app-providers";
                     الرئيسية
                   </a>
                   <span className="text-muted-foreground/30">|</span>
-                  <a
+                  <Link
                     href="/ar/lectures"
                     className="px-2 py-1 text-xs text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted"
                   >
                     المحاضرات
-                  </a>
+                  </Link>
                   <span className="text-muted-foreground/30">|</span>
                   <a
                     href="/ar/dashboard"

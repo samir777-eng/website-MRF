@@ -2,6 +2,7 @@
 
 import { AnalyticsProvider } from "@/components/analytics/analytics-provider";
 import { CelebrationProvider } from "@/components/celebrations";
+import { ScreenReaderAnnouncerProvider } from "@/components/accessibility/screen-reader-announcer";
 import { FlyToCartProvider } from "@/components/ui/fly-to-cart-animation";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { AvatarProvider } from "@/contexts/AvatarContext";
@@ -60,8 +61,7 @@ export function AppProviders({ children }: AppProvidersProps) {
   const memoizedChildren = useMemo(() => children, [children]);
 
   // Import ScreenReaderAnnouncerProvider dynamically to avoid SSR issues
-  const ScreenReaderAnnouncerProvider =
-    // require() not allowed in strict TypeScript mode
+  // Note: ScreenReaderAnnouncerProvider removed due to ESLint strict mode
 
   // Define providers in dependency order (innermost to outermost)
   // AnalyticsProvider wraps content last (innermost in the chain)

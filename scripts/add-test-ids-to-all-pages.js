@@ -5,8 +5,8 @@
  * across all client component pages
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 // Map of pages to their expected buttons, links, and forms
 const pageConfigurations = {

@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useFocusTrap } from "@/hooks/use-focus-trap";
 import { LEVELS } from "@/types/gamification";
 import { Gift, Sparkles, Star, TrendingUp, Trophy, X, Zap } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 interface LevelUpAnimationProps {
   newLevel: number;
@@ -28,6 +28,11 @@ export function LevelUpAnimation({
   const previousLevelInfo =
     LEVELS.find((l) => l.level === previousLevel) || LEVELS[0];
 
+  const handleClose = useCallback(() => {
+    setIsVisible(false);
+    setTimeout(onClose, 300);
+  }, [onClose]);
+
   // Focus trap for level up modal
   const modalRef = useFocusTrap(isVisible, {
     returnFocus: true,
@@ -45,12 +50,7 @@ export function LevelUpAnimation({
     }, 5000);
 
     return () => clearTimeout(timer);
-  }, []);
-
-  const handleClose = () => {
-    setIsVisible(false);
-    setTimeout(onClose, 300);
-  };
+  }, [handleClose]);
 
   return (
     <>
@@ -226,7 +226,7 @@ export function LevelUpAnimation({
                     </div>
                     <p className="text-sm text-muted-foreground text-center">
                       {(LEVELS[newLevel].minXp - totalXp).toLocaleString(
-                        "ar-EG"
+                        "ar-EG",
                       )}{" "}
                       XP متبقية
                     </p>
@@ -239,7 +239,7 @@ export function LevelUpAnimation({
                 onClick={handleClose}
                 className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-lg py-6"
               >
-                <Sparkles className="w-5 h-5 ml-2" />
+                <Sparkles className="w-5 h-5 ms-2" />
                 رائع! استمر في التقدم
               </Button>
 
@@ -286,7 +286,7 @@ export function useLevelUp() {
   const triggerLevelUp = (
     newLevel: number,
     previousLevel: number,
-    totalXp: number
+    totalXp: number,
   ) => {
     setLevelUpData({ newLevel, previousLevel, totalXp });
     setShowLevelUp(true);

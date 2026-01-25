@@ -36,21 +36,21 @@ export default function AchievementDisplay({
 }: AchievementDisplayProps) {
   const { userStats, unlockedAchievements } = useGamification();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [showShareModal, setShowShareModal] = useState<string | null>(null);
+  const [_showShareModal, _setShowShareModal] = useState<string | null>(null);
 
   // Filter achievements by category
   const filteredAchievements = ACHIEVEMENTS.filter(
     (achievement) =>
-      selectedCategory === "all" || achievement.category === selectedCategory
+      selectedCategory === "all" || achievement.category === selectedCategory,
   );
 
   // Separate unlocked and locked achievements
   const unlockedAchievementsList = filteredAchievements.filter((achievement) =>
-    unlockedAchievements.includes(achievement.id)
+    unlockedAchievements.includes(achievement.id),
   );
 
   const lockedAchievements = filteredAchievements.filter(
-    (achievement) => !unlockedAchievements.includes(achievement.id)
+    (achievement) => !unlockedAchievements.includes(achievement.id),
   );
 
   // Get category icon
@@ -102,7 +102,7 @@ export default function AchievementDisplay({
       navigator.clipboard.writeText(shareText);
       alert("تم نسخ الإنجاز للمشاركة!");
     }
-    setShowShareModal(null);
+    _setShowShareModal(null);
   };
 
   // Compact variant for navigation or sidebar
@@ -169,7 +169,7 @@ export default function AchievementDisplay({
           {["learning", "streak", "social", "mastery", "special"].map(
             (category) => {
               const count = ACHIEVEMENTS.filter(
-                (a) => a.category === category
+                (a) => a.category === category,
               ).length;
               const categoryNames = {
                 learning: "التعلم",
@@ -194,7 +194,7 @@ export default function AchievementDisplay({
                   {count})
                 </Button>
               );
-            }
+            },
           )}
         </div>
 
@@ -224,13 +224,13 @@ export default function AchievementDisplay({
                     className={getAchievementRarityColor(achievement.rarity)}
                   >
                     {getRarityIcon(achievement.rarity)}
-                    <span className="mr-1">{achievement.rarity}</span>
+                    <span className="me-1">{achievement.rarity}</span>
                   </Badge>
                   <Badge variant="outline">+{achievement.xpReward} XP</Badge>
                 </div>
 
                 <div className="flex items-center justify-center">
-                  <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
+                  <CheckCircle className="w-5 h-5 text-green-600 me-2" />
                   <span className="text-sm font-medium text-green-600">
                     مكتمل
                   </span>
@@ -243,7 +243,7 @@ export default function AchievementDisplay({
                     size="sm"
                     className="w-full"
                   >
-                    <Share2 className="w-4 h-4 mr-2" />
+                    <Share2 className="w-4 h-4 me-2" />
                     مشاركة
                   </Button>
                 )}
@@ -273,7 +273,7 @@ export default function AchievementDisplay({
                 <div className="flex items-center justify-between">
                   <Badge variant="outline" className="opacity-60">
                     {getRarityIcon(achievement.rarity)}
-                    <span className="mr-1">{achievement.rarity}</span>
+                    <span className="me-1">{achievement.rarity}</span>
                   </Badge>
                   <Badge variant="outline" className="opacity-60">
                     +{achievement.xpReward} XP
@@ -322,7 +322,7 @@ export default function AchievementDisplay({
             <span className="text-muted-foreground">التقدم الإجمالي</span>
             <span className="font-medium">
               {Math.round(
-                (unlockedAchievements.length / ACHIEVEMENTS.length) * 100
+                (unlockedAchievements.length / ACHIEVEMENTS.length) * 100,
               )}
               %
             </span>

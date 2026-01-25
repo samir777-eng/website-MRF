@@ -11,9 +11,8 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { ScaleIn } from "@/lib/animations/lightweight-motion";
 import { Trophy, CheckCircle, Clock, Zap } from "@/components/ui/icons";
-import { Flame, Calendar, Target } from "lucide-react";
+import { Flame, Target } from "lucide-react";
 
 interface DailyStreakProps {
   currentStreak?: number;
@@ -232,7 +231,7 @@ export function DailyStreak({
         {/* Action Button */}
         {!todayCompleted && (
           <Button className="w-full">
-            <Zap className="w-4 h-4 mr-2 rtl:mr-0 rtl:ml-2" />
+            <Zap className="w-4 h-4 me-2" />
             ابدأ درساً الآن
           </Button>
         )}

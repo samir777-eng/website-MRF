@@ -7,7 +7,6 @@ import {
   Circle,
   ClipboardList,
   FileText,
-  Play,
   Video,
 } from "lucide-react";
 
@@ -42,7 +41,7 @@ const steps: {
 
 function getStepStatus(
   step: LectureStep,
-  progress: LectureProgress
+  progress: LectureProgress,
 ): "completed" | "current" | "locked" {
   switch (step) {
     case "pre-quiz":
@@ -72,7 +71,7 @@ export function LectureProgressTracker({
       <div
         className={cn(
           "flex items-center justify-between",
-          compact ? "gap-2" : "gap-4"
+          compact ? "gap-2" : "gap-4",
         )}
       >
         {steps.map((step, index) => {
@@ -87,9 +86,11 @@ export function LectureProgressTracker({
                 <div
                   className={cn(
                     "absolute top-1/2 -translate-y-1/2 h-0.5 w-full -right-1/2",
-                    status === "completed" || getStepStatus(steps[index - 1].id, progress) === "completed"
+                    status === "completed" ||
+                      getStepStatus(steps[index - 1].id, progress) ===
+                        "completed"
                       ? "bg-green-500"
-                      : "bg-border"
+                      : "bg-border",
                   )}
                   style={{ zIndex: 0 }}
                 />
@@ -108,7 +109,7 @@ export function LectureProgressTracker({
                     "bg-blue-500 text-white shadow-lg shadow-blue-500/30 ring-4 ring-blue-500/20",
                   status === "locked" &&
                     "bg-muted text-muted-foreground cursor-not-allowed",
-                  isActive && "ring-4 ring-primary/30"
+                  isActive && "ring-4 ring-primary/30",
                 )}
               >
                 {status === "completed" ? (
@@ -127,7 +128,7 @@ export function LectureProgressTracker({
                     "mt-2 text-xs font-medium text-center",
                     status === "completed" && "text-green-600",
                     status === "current" && "text-blue-600",
-                    status === "locked" && "text-muted-foreground"
+                    status === "locked" && "text-muted-foreground",
                   )}
                 >
                   {step.label}
@@ -147,4 +148,3 @@ export function LectureProgressTracker({
 }
 
 export default LectureProgressTracker;
-

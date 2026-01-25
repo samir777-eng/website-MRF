@@ -15,7 +15,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Target,
   Trophy,
-  Star,
   Clock,
   CheckCircle,
   Gift,
@@ -223,15 +222,9 @@ export function QuestsPanel({ className }: QuestsPanelProps) {
               className="flex-1"
               onClick={() => setActiveTab(tab)}
             >
-              {tab === "daily" && (
-                <Calendar className="w-4 h-4 mr-1 rtl:mr-0 rtl:ml-1" />
-              )}
-              {tab === "weekly" && (
-                <Clock className="w-4 h-4 mr-1 rtl:mr-0 rtl:ml-1" />
-              )}
-              {tab === "achievement" && (
-                <Trophy className="w-4 h-4 mr-1 rtl:mr-0 rtl:ml-1" />
-              )}
+              {tab === "daily" && <Calendar className="w-4 h-4 me-1" />}
+              {tab === "weekly" && <Clock className="w-4 h-4 me-1" />}
+              {tab === "achievement" && <Trophy className="w-4 h-4 me-1" />}
               {getTypeLabel(tab)}
             </Button>
           ))}
@@ -367,7 +360,7 @@ export function QuestsPanel({ className }: QuestsPanelProps) {
         {/* Quick Actions */}
         <div className="pt-2 border-t">
           <Button variant="outline" size="sm" className="w-full">
-            <Gift className="w-4 h-4 mr-2 rtl:mr-0 rtl:ml-2" />
+            <Gift className="w-4 h-4 me-2" />
             عرض جميع المكافآت
           </Button>
         </div>

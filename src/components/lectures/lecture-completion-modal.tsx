@@ -1,6 +1,5 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,15 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import {
-  Award,
-  ChevronLeft,
-  Gift,
-  Sparkles,
-  Star,
-  Trophy,
-  Zap,
-} from "lucide-react";
+import { Award, ChevronLeft, Sparkles, Star, Trophy, Zap } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -80,7 +71,7 @@ export function LectureCompletionModal({
                     "w-4 h-4",
                     i % 3 === 0 && "text-yellow-500",
                     i % 3 === 1 && "text-blue-500",
-                    i % 3 === 2 && "text-purple-500"
+                    i % 3 === 2 && "text-purple-500",
                   )}
                 />
               </div>
@@ -153,7 +144,7 @@ export function LectureCompletionModal({
                 size="lg"
               >
                 المحاضرة التالية: {nextLectureTitle}
-                <ChevronLeft className="w-5 h-5 mr-2" />
+                <ChevronLeft className="w-5 h-5 me-2" />
               </Button>
             </Link>
           )}
@@ -167,4 +158,3 @@ export function LectureCompletionModal({
 }
 
 export default LectureCompletionModal;
-

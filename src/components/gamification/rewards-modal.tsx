@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { FadeIn, ScaleIn } from "@/lib/animations/lightweight-motion";
+import { ScaleIn } from "@/lib/animations/lightweight-motion";
 import {
   Trophy,
   Star,
@@ -19,7 +19,6 @@ import {
   Crown,
   Medal,
   Sparkles,
-  X,
   Share2,
 } from "lucide-react";
 // Removed canvas-confetti dependency for bundle size optimization
@@ -248,7 +247,7 @@ export function RewardsModal({
           {/* Actions */}
           <div className="flex gap-3">
             <Button variant="outline" className="flex-1" onClick={shareReward}>
-              <Share2 className="w-4 h-4 mr-2 rtl:mr-0 rtl:ml-2" />
+              <Share2 className="w-4 h-4 me-2" />
               مشاركة
             </Button>
 

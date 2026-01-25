@@ -11,6 +11,7 @@ import {
   Trophy,
   Zap,
 } from "@/components/ui/icons";
+import { useFocusTrap } from "@/hooks/use-focus-trap";
 import { ScaleIn } from "@/lib/animations/lightweight-motion";
 import { Award, Check, Crown, Medal } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
@@ -48,7 +49,7 @@ export function AchievementCard({
   hapticFeedback = true,
 }: AchievementCardProps) {
   const [copied, setCopied] = useState(false);
-  const [isPressed, setIsPressed] = useState(false);
+  const [_isPressed, setIsPressed] = useState(false);
   const [isLongPress, setIsLongPress] = useState(false);
   const longPressTimer = useRef<NodeJS.Timeout | null>(null);
 
@@ -64,11 +65,11 @@ export function AchievementCard({
         navigator.vibrate(patterns[intensity]);
       }
     },
-    [hapticFeedback]
+    [hapticFeedback],
   );
 
   // Touch handlers for mobile interactions
-  const handleTouchStart = useCallback(() => {
+  const _handleTouchStart = useCallback(() => {
     setIsPressed(true);
     simulateHaptic("light");
 
@@ -82,7 +83,7 @@ export function AchievementCard({
     }
   }, [simulateHaptic, onLongPress]);
 
-  const handleTouchEnd = useCallback(() => {
+  const _handleTouchEnd = useCallback(() => {
     setIsPressed(false);
     setIsLongPress(false);
 
@@ -156,7 +157,7 @@ export function AchievementCard({
       await navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
+    } catch (_err) {
       // Failed to copy text - could show error toast here
     }
   };
@@ -269,12 +270,12 @@ export function AchievementCard({
             >
               {copied ? (
                 <>
-                  <Check className="w-4 h-4 mr-2 rtl:mr-0 rtl:ml-2" />
+                  <Check className="w-4 h-4 me-2" />
                   تم النسخ
                 </>
               ) : (
                 <>
-                  <Copy className="w-4 h-4 mr-2 rtl:mr-0 rtl:ml-2" />
+                  <Copy className="w-4 h-4 me-2" />
                   نسخ النص
                 </>
               )}
@@ -286,12 +287,12 @@ export function AchievementCard({
               className="flex-1"
               onClick={onShare}
             >
-              <Share2 className="w-4 h-4 mr-2 rtl:mr-0 rtl:ml-2" />
+              <Share2 className="w-4 h-4 me-2" />
               مشاركة
             </Button>
 
             <Button size="sm" className="flex-1" onClick={onDownload}>
-              <Download className="w-4 h-4 mr-2 rtl:mr-0 rtl:ml-2" />
+              <Download className="w-4 h-4 me-2" />
               تحميل
             </Button>
           </div>
@@ -327,9 +328,6 @@ export function AchievementShareModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
-  // Import dynamically to avoid IDE auto-removal
-  const { useFocusTrap } = require("@/hooks/use-focus-trap");
-
   const modalRef = useFocusTrap(isOpen, {
     returnFocus: true,
     onEscape: onClose,

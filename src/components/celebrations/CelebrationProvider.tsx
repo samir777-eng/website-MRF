@@ -72,7 +72,7 @@ interface CelebrationContextType {
   showXPGain: (
     amount: number,
     multiplier?: number,
-    position?: { x: number; y: number }
+    position?: { x: number; y: number },
   ) => void;
 
   // Level Up
@@ -85,7 +85,7 @@ interface CelebrationContextType {
     description: string,
     icon?: string,
     rarity?: string,
-    xpReward?: number
+    xpReward?: number,
   ) => void;
   hideAchievement: () => void;
 
@@ -102,7 +102,7 @@ interface CelebrationContextType {
 
   // Effects
   triggerConfetti: (
-    type?: "default" | "gold" | "celebration" | "fireworks" | "stars"
+    type?: "default" | "gold" | "celebration" | "fireworks" | "stars",
   ) => void;
   triggerScreenShake: () => void;
   showPerfectScore: () => void;
@@ -212,7 +212,7 @@ class CelebrationSoundSystem {
     frequency: number,
     duration: number,
     type: OscillatorType = "sine",
-    volumeMultiplier: number = 1
+    volumeMultiplier: number = 1,
   ) {
     if (!this.enabled) return;
     const ctx = this.getContext();
@@ -232,11 +232,11 @@ class CelebrationSoundSystem {
       gainNode.gain.setValueAtTime(0, ctx.currentTime);
       gainNode.gain.linearRampToValueAtTime(
         finalVolume,
-        ctx.currentTime + 0.02
+        ctx.currentTime + 0.02,
       );
       gainNode.gain.exponentialRampToValueAtTime(
         0.001,
-        ctx.currentTime + duration
+        ctx.currentTime + duration,
       );
 
       oscillator.start(ctx.currentTime);
@@ -280,11 +280,11 @@ class CelebrationSoundSystem {
     this.playTone(784 * rarityMultiplier, 0.1, "sine", 0.8);
     setTimeout(
       () => this.playTone(988 * rarityMultiplier, 0.1, "sine", 0.8),
-      100
+      100,
     );
     setTimeout(
       () => this.playTone(1175 * rarityMultiplier, 0.25, "sine", 0.9),
-      200
+      200,
     );
   }
 
@@ -320,7 +320,7 @@ const soundSystem = new CelebrationSoundSystem();
 // ============================================================================
 
 const CelebrationContext = createContext<CelebrationContextType | undefined>(
-  undefined
+  undefined,
 );
 
 export function CelebrationProvider({ children }: { children: ReactNode }) {
@@ -369,7 +369,7 @@ export function CelebrationProvider({ children }: { children: ReactNode }) {
         return updated;
       });
     },
-    []
+    [],
   );
 
   // ============================================================================
@@ -380,7 +380,7 @@ export function CelebrationProvider({ children }: { children: ReactNode }) {
     (
       amount: number,
       multiplier?: number,
-      position?: { x: number; y: number }
+      position?: { x: number; y: number },
     ) => {
       // Create multiple staggered particles for more visual impact
       const particleCount = multiplier && multiplier > 1 ? 3 : 2;
@@ -416,12 +416,12 @@ export function CelebrationProvider({ children }: { children: ReactNode }) {
         setState((prev) => ({
           ...prev,
           xpParticles: prev.xpParticles.filter(
-            (p) => !newParticles.find((np) => np.id === p.id)
+            (p) => !newParticles.find((np) => np.id === p.id),
           ),
         }));
       }, 1800);
     },
-    [particleId, settings.hapticEnabled]
+    [particleId, settings.hapticEnabled],
   );
 
   // ============================================================================
@@ -442,7 +442,7 @@ export function CelebrationProvider({ children }: { children: ReactNode }) {
       triggerHaptic("success", settings.hapticEnabled);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [settings.hapticEnabled]
+    [settings.hapticEnabled],
   );
 
   const hideLevelUp = useCallback(() => {
@@ -462,7 +462,7 @@ export function CelebrationProvider({ children }: { children: ReactNode }) {
       description: string,
       icon: string = "trophy",
       rarity: string = "common",
-      xpReward?: number
+      xpReward?: number,
     ) => {
       setState((prev) => ({
         ...prev,
@@ -488,7 +488,7 @@ export function CelebrationProvider({ children }: { children: ReactNode }) {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [settings.hapticEnabled]
+    [settings.hapticEnabled],
   );
 
   const hideAchievement = useCallback(() => {
@@ -520,7 +520,7 @@ export function CelebrationProvider({ children }: { children: ReactNode }) {
       setTimeout(() => hideStreak(), 3500);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [settings.hapticEnabled]
+    [settings.hapticEnabled],
   );
 
   const hideStreak = useCallback(() => {
@@ -559,7 +559,7 @@ export function CelebrationProvider({ children }: { children: ReactNode }) {
         multiplier >= 3 ? "heavy" : multiplier >= 2 ? "medium" : "light";
       triggerHaptic(hapticType, settings.hapticEnabled);
     },
-    [settings.hapticEnabled]
+    [settings.hapticEnabled],
   );
 
   const hideCombo = useCallback(() => {
@@ -627,20 +627,20 @@ export function CelebrationProvider({ children }: { children: ReactNode }) {
         | "gold"
         | "celebration"
         | "fireworks"
-        | "stars" = "default"
+        | "stars" = "default",
     ) => {
       const configs = {
         default: {
           particleCount: 100,
           spread: 70,
           origin: { y: 0.6 },
-          colors: CELEBRATION_COLORS.confetti,
+          colors: [...CELEBRATION_COLORS.confetti],
         },
         gold: {
           particleCount: 150,
           spread: 100,
           origin: { y: 0.5 },
-          colors: CELEBRATION_COLORS.sparkle,
+          colors: [...CELEBRATION_COLORS.sparkle],
           shapes: ["circle", "square"] as confetti.Shape[],
           scalar: 1.2,
         },
@@ -675,7 +675,7 @@ export function CelebrationProvider({ children }: { children: ReactNode }) {
           particleCount: 80,
           spread: 90,
           origin: { y: 0.6 },
-          colors: CELEBRATION_COLORS.sparkle,
+          colors: [...CELEBRATION_COLORS.sparkle],
           shapes: ["star"] as confetti.Shape[],
           scalar: 1.5,
           ticks: 200,
@@ -688,19 +688,19 @@ export function CelebrationProvider({ children }: { children: ReactNode }) {
       if (type === "fireworks") {
         setTimeout(
           () => confetti({ ...configs.fireworks, origin: { x: 0.3, y: 0.4 } }),
-          200
+          200,
         );
         setTimeout(
           () => confetti({ ...configs.fireworks, origin: { x: 0.7, y: 0.4 } }),
-          400
+          400,
         );
         setTimeout(
           () => confetti({ ...configs.fireworks, origin: { x: 0.5, y: 0.3 } }),
-          600
+          600,
         );
       }
     },
-    []
+    [],
   );
 
   // ============================================================================

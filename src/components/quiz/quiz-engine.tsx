@@ -540,7 +540,7 @@ export function QuizEngine({ quiz }: QuizEngineProps) {
               {/* Explanation */}
               {showExplanation && (
                 <FadeIn
-                  className={`p-4 rounded-lg border-l-4 ${
+                  className={`p-4 rounded-lg border-s-4 ${
                     isCorrect
                       ? "bg-green-50 dark:bg-green-950 border-green-500"
                       : "bg-red-50 dark:bg-red-950 border-red-500"

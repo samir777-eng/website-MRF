@@ -153,6 +153,7 @@ export function RedeemLectureModal({
 
               return (
                 <button
+                  type="button"
                   key={bundle.id}
                   onClick={() => setSelectedBundle(bundle.id)}
                   className={`w-full p-4 rounded-lg border-2 transition-all text-end ${

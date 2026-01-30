@@ -436,7 +436,7 @@ function LeaderboardContent() {
                     {/* Progress indicator */}
                     <div
                       className="absolute top-1/2 -translate-y-1/2 w-5 h-5 bg-white rounded-full shadow-lg border-2 border-amber-500 transition-all duration-500"
-                      style={{ right: `calc(${progressToNext}% - 10px)` }}
+                      style={{ insetInlineEnd: `calc(${progressToNext}% - 10px)` }}
                     />
                   </div>
                   <div className="flex justify-between mt-2 text-xs">

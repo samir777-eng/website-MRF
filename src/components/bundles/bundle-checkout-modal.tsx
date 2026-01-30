@@ -127,7 +127,6 @@ export function BundleCheckoutModal({
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
-     
     >
       <Card className="max-w-lg w-full max-h-[90vh] overflow-y-auto">
         <CardContent className="p-6 space-y-6">

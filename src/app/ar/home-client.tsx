@@ -302,21 +302,6 @@ function UrgencyBanner() {
   if (dismissed) return null;
 
   return (
-<<<<<<< Updated upstream
-    <motion.div
-      initial={{ height: 0, opacity: 0 }}
-      animate={{ height: "auto", opacity: 1 }}
-      className="bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white py-2 px-4"
-    >
-      <div className="container mx-auto flex items-center justify-center gap-4 text-sm">
-        <Clock className="w-4 h-4 animate-pulse" />
-        <span className="font-bold">عرض خاص ينتهي خلال:</span>
-        <div className="flex items-center gap-1 font-mono font-bold bg-black/20 px-2 py-1 rounded">
-          <span>{String(timeLeft.hours).padStart(2, "0")}</span>:
-          <span>{String(timeLeft.minutes).padStart(2, "0")}</span>:
-          <span>{String(timeLeft.seconds).padStart(2, "0")}</span>
-        </div>
-=======
     <div className="bg-gradient-to-r from-primary via-violet-600 to-primary text-white py-2.5 px-4 relative">
       <div className="container mx-auto flex items-center justify-center gap-3 text-sm">
         <Sparkles className="w-4 h-4" />
@@ -330,7 +315,6 @@ function UrgencyBanner() {
           ابدأ مجاناً
           <ArrowLeft className="w-3 h-3 rtl:-scale-x-100" />
         </Link>
->>>>>>> Stashed changes
         <button
           onClick={() => setDismissed(true)}
           className="absolute start-4 hover:bg-white/20 p-1 rounded transition-colors"
@@ -978,13 +962,8 @@ export default function ArabicHomeClient() {
                     className={`h-24 bg-gradient-to-br ${item.color} relative`}
                   >
                     <div className="absolute inset-0 bg-black/10" />
-<<<<<<< Updated upstream
-                    <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-card to-transparent" />
-                    <div className="absolute top-4 right-4 w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-2xl font-black">
-=======
                     <div className="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-card to-transparent" />
                     <div className="absolute top-4 end-4 w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-2xl font-black">
->>>>>>> Stashed changes
                       {item.icon}
                     </div>
                   </div>

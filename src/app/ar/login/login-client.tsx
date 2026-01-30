@@ -102,7 +102,6 @@ export default function LoginClient() {
   return (
     <div
       className="min-h-screen flex items-center justify-center page-bg-blue p-4"
-     
     >
       <div className="w-full max-w-md">
         {/* Logo and Title */}

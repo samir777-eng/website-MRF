@@ -67,7 +67,6 @@ function AchievementsContent() {
 
   return (
     <div
-     
       className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 pb-24"
     >
       <div className="container mx-auto px-4 py-8 max-w-5xl space-y-6">

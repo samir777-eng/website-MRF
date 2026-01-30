@@ -1234,7 +1234,6 @@ export default function SignupClient() {
     return (
       <div
         className="min-h-screen bg-background flex items-center justify-center p-4"
-       
       >
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}

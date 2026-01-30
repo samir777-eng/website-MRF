@@ -32,7 +32,7 @@ export function WelcomeStep() {
               whileTap={{ scale: 0.95 }}
               className="w-20 h-20 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-2xl group-hover:bg-white transition-colors"
             >
-              <Play className="w-10 h-10 text-primary fill-primary mr-[-4px]" />
+              <Play className="w-10 h-10 text-primary fill-primary me-[-4px]" />
             </motion.div>
 
             {/* Video Info Overlay */}

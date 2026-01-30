@@ -420,7 +420,7 @@ export function Header() {
               </SheetTrigger>
               <SheetContent
                 side={locale === "ar" ? "left" : "right"}
-                className="w-80 p-0 border-l border-white/10 glass-panel"
+                className="w-80 p-0 border-s border-white/10 glass-panel"
               >
                 {/* Mobile Menu Header - User Profile */}
                 <div className="p-6 bg-gradient-to-br from-primary to-violet-800 relative overflow-hidden">

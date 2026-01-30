@@ -270,6 +270,7 @@ export function SearchModal() {
                   const Icon = typeIcons[result.type];
                   return (
                     <button
+                      type="button"
                       key={`${result.type}-${result.id}`}
                       onClick={() => handleResultClick(result)}
                       className={cn(

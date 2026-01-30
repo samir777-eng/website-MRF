@@ -158,7 +158,7 @@ export function OnboardingFlow({
             <Button
               onClick={handleNext}
               disabled={isValidating}
-              className="bg-premium-gradient gap-2 mr-auto"
+              className="bg-premium-gradient gap-2 me-auto"
               size="lg"
             >
               {isValidating

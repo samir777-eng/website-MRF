@@ -176,7 +176,6 @@ function HomeworkContent() {
     return (
       <div
         className="min-h-screen page-bg-purple flex items-center justify-center p-6"
-       
       >
         <Card className="max-w-md w-full">
           <CardContent className="p-8 text-center space-y-6">
@@ -379,7 +378,6 @@ function HomeworkContent() {
                 value={String(answers[currentQ.id] ?? "")}
                 onChange={(e) => handleAnswer(currentQ.id, e.target.value)}
                 className="min-h-32"
-               
               />
             )}
           </CardContent>

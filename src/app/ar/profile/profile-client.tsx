@@ -86,6 +86,7 @@ export default function ProfileClient() {
                   {profileData.name.charAt(0)}
                 </div>
                 <button
+                  type="button"
                   onClick={() =>
                     toast({
                       title: "قريباً",

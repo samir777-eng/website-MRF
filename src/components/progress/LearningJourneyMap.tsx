@@ -155,7 +155,7 @@ export function LearningJourneyMap() {
         <CardContent className="p-6">
           <div className="relative">
             {/* Path Line */}
-            <div className="absolute right-[2.75rem] top-8 bottom-8 w-1 bg-gradient-to-b from-success-500 via-primary to-muted" />
+            <div className="absolute end-[2.75rem] top-8 bottom-8 w-1 bg-gradient-to-b from-success-500 via-primary to-muted" />
 
             {/* Milestones */}
             <div className="space-y-8">

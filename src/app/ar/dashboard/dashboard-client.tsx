@@ -172,7 +172,6 @@ function DashboardContent() {
 
   const content = (
     <div
-      dir="rtl"
       className="min-h-screen bg-background pb-24 relative overflow-hidden"
     >
       {/* Background Decorative Elements */}

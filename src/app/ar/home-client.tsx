@@ -184,7 +184,7 @@ function LiveActivityIndicator() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="fixed bottom-24 left-6 z-40 hidden md:block"
+      className="fixed bottom-24 start-6 z-40 hidden md:block"
     >
       <AnimatePresence mode="wait">
         <motion.div
@@ -225,7 +225,7 @@ function StickyCTABar({ show }: { show: boolean }) {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-primary via-violet-600 to-primary py-3 px-4 shadow-lg"
+          className="fixed top-16 inset-x-0 z-40 bg-gradient-to-r from-primary via-violet-600 to-primary py-3 px-4 shadow-lg"
         >
           <div className="container mx-auto flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 text-white">
@@ -240,7 +240,7 @@ function StickyCTABar({ show }: { show: boolean }) {
                 className="bg-white text-primary hover:bg-white/90 font-bold px-6 shadow-md hover:shadow-lg transition-all"
               >
                 سجّل الآن
-                <ArrowLeft className="w-4 h-4 me-1 rtl:rotate-180" />
+                <ArrowLeft className="w-4 h-4 me-1 rtl:-scale-x-100" />
               </Button>
             </Link>
           </div>
@@ -266,7 +266,7 @@ function ScrollToTopButton({ show }: { show: boolean }) {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-6 left-6 z-40 w-12 h-12 rounded-full bg-primary text-white shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center"
+          className="fixed bottom-6 start-6 z-40 w-12 h-12 rounded-full bg-primary text-white shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center"
           aria-label="العودة للأعلى"
         >
           <ArrowUp className="w-5 h-5" />
@@ -317,7 +317,7 @@ function UrgencyBanner() {
         </div>
         <button
           onClick={() => setDismissed(true)}
-          className="absolute left-4 hover:bg-white/20 p-1 rounded transition-colors"
+          className="absolute start-4 hover:bg-white/20 p-1 rounded transition-colors"
           aria-label="إغلاق"
         >
           <X className="w-4 h-4" />
@@ -337,7 +337,7 @@ function MobileFloatingCTA({ show }: { show: boolean }) {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-gradient-to-t from-background via-background to-transparent md:hidden"
+          className="fixed bottom-20 inset-x-0 z-40 p-4 bg-gradient-to-t from-background via-background to-transparent md:hidden"
         >
           <Link href="/ar/signup" className="block">
             <Button
@@ -393,7 +393,7 @@ export default function ArabicHomeClient() {
   }
 
   return (
-    <div className="min-h-screen overflow-x-hidden" dir="rtl">
+    <div className="min-h-screen overflow-x-hidden">
       {/* Urgency Banner */}
       <UrgencyBanner />
 
@@ -1095,7 +1095,7 @@ export default function ArabicHomeClient() {
                   {/* Learn more link */}
                   <div className="mt-4 flex items-center text-primary font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity">
                     <span>اكتشف المزيد</span>
-                    <ArrowLeft className="w-4 h-4 me-1 rtl:rotate-180" />
+                    <ArrowLeft className="w-4 h-4 me-1 rtl:-scale-x-100" />
                   </div>
                 </div>
               </motion.div>
@@ -1178,7 +1178,7 @@ export default function ArabicHomeClient() {
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
                   <CardContent className="p-6 relative">
                     {/* Quote mark decoration */}
-                    <div className="absolute top-4 left-4 text-6xl text-primary/10 font-serif leading-none">
+                    <div className="absolute top-4 start-4 text-6xl text-primary/10 font-serif leading-none">
                       &ldquo;
                     </div>
 
@@ -1305,7 +1305,7 @@ export default function ArabicHomeClient() {
 
               {/* Platform */}
               <div className="p-8 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 relative">
-                <div className="absolute top-4 left-4 px-3 py-1 bg-green-500 rounded-full text-white text-sm font-bold">
+                <div className="absolute top-4 start-4 px-3 py-1 bg-green-500 rounded-full text-white text-sm font-bold">
                   الأفضل
                 </div>
                 <div className="text-center mb-8">
@@ -1418,7 +1418,7 @@ export default function ArabicHomeClient() {
                         </span>
                       </div>
                     </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground pb-6 leading-relaxed text-base pr-14">
+                    <AccordionContent className="text-muted-foreground pb-6 leading-relaxed text-base pe-14">
                       {faq.answer}
                     </AccordionContent>
                   </AccordionItem>

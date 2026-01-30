@@ -102,7 +102,6 @@ export function Navigation() {
     <nav
       ref={navRef}
       className="fixed top-0 inset-x-0 z-[9999] w-full glass transition-all duration-300 border-b-0 overflow-visible"
-      dir="rtl"
     >
       <div
         className="container mx-auto px-4 overflow-visible"
@@ -209,7 +208,7 @@ export function Navigation() {
 
                     {/* Dropdown Menu */}
                     {accountDropdownOpen && (
-                      <div className="absolute left-0 mt-2 w-56 bg-popover border border-border rounded-xl shadow-xl py-2 z-50">
+                      <div className="absolute end-0 mt-2 w-56 bg-popover border border-border rounded-xl shadow-xl py-2 z-50">
                         {/* User Info */}
                         <div className="px-4 py-3 border-b border-border">
                           <p className="font-medium text-foreground">

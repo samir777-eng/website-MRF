@@ -26,12 +26,6 @@ nav.overflow-visible .container {
   overflow: visible !important;
 }
 
-/* Prevent all elements from exceeding viewport width */
-* {
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
 /* Allow specific elements to be full width */
 html,
 body,
@@ -49,11 +43,6 @@ body,
   body {
     overflow-x: hidden !important;
     width: 100vw !important;
-  }
-
-  * {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
   }
 }
 
@@ -86,31 +75,12 @@ img {
   overflow-x: hidden;
 }
 
-/* Fix for grid layouts */
-.grid {
-  max-width: 100%;
-}
-
-/* Fix for flex layouts */
-.flex {
-  max-width: 100%;
-  flex-wrap: wrap;
-}
-
 /* Mobile-specific fixes */
 @media (max-width: 768px) {
-  /* Force all containers to respect viewport width */
+  /* Fix for containers on small screens */
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-
-  /* Fix for dashboard stats cards */
-  .grid-cols-1,
-  .grid-cols-2,
-  .grid-cols-3,
-  .grid-cols-4 {
-    grid-template-columns: 1fr;
   }
 
   /* Fix for wide content */
@@ -341,86 +311,7 @@ body {
   max-width: calc(100vw - 2rem);
 }
 
-/* Dashboard-specific fixes for all viewports */
-[class*="dashboard"] {
-  max-width: 100vw !important;
-  overflow-x: hidden !important;
-}
-
-/* Fix for grid layouts that cause horizontal scroll */
-.grid {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
+/* Grid children should respect container */
 .grid > * {
   min-width: 0;
-  max-width: 100%;
 }
-
-/* Fix for flex layouts */
-.flex {
-  max-width: 100%;
-  flex-wrap: wrap;
-}
-
-.flex > * {
-  min-width: 0;
-  flex-shrink: 1;
-}
-
-/* Courses page fixes */
-[href*="/courses"],
-[class*="course"] {
-  max-width: 100% !important;
-}
-
-/* Leaderboard fixes */
-[href*="/leaderboard"],
-[class*="leaderboard"] {
-  max-width: 100% !important;
-  overflow-x: auto;
-}
-
-/* Lecture and Lesson detail fixes */
-[href*="/lectures/"],
-[href*="/lessons/"],
-[class*="lecture"],
-[class*="lesson"] {
-  max-width: 100% !important;
-}
-
-/* Quiz page fixes */
-[href*="/quizzes"],
-[class*="quiz"] {
-  max-width: 100% !important;
-}
-
-/* Additional WebKit-specific fixes for problematic pages */
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  /* Dashboard */
-  [href*="/dashboard"] * {
-    max-width: 100vw !important;
-  }
-
-  /* Courses */
-  [href*="/courses"] * {
-    max-width: 100vw !important;
-  }
-
-  /* Prevent any element from causing horizontal scroll */
-  * {
-    max-width: 100vw !important;
-  }
-
-  html, body, #__next, .min-h-screen, [role="main"] {
-    max-width: none !important;
-  }
-
-  /* Exception: Allow header dropdowns to work properly */
-  header .absolute[class*="bg-popover"],
-  nav .absolute[class*="bg-popover"] {
-    max-width: max-content !important;
-  }
-}
-

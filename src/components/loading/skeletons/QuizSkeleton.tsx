@@ -9,7 +9,7 @@ import { EnhancedSkeleton } from "../EnhancedSkeleton";
 
 export function QuizSkeleton() {
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-4 md:px-6 py-6 md:py-8 space-y-6">
         {/* Quiz Header */}
         <div className="p-6 rounded-xl border border-border bg-card space-y-4">

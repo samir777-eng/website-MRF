@@ -415,7 +415,7 @@ export default function LecturesPage() {
 
   return (
     <TooltipProvider delayDuration={200}>
-      <div className="min-h-screen bg-background pb-24" dir="rtl">
+      <div className="min-h-screen bg-background pb-24">
         <div className="container mx-auto px-4 py-8 max-w-4xl">
           {/* Breadcrumbs */}
           <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
@@ -426,7 +426,7 @@ export default function LecturesPage() {
               <Home className="w-4 h-4" />
               <span>الرئيسية</span>
             </Link>
-            <ChevronLeft className="w-4 h-4 rtl:rotate-180" />
+            <ChevronLeft className="w-4 h-4 rtl:-scale-x-100" />
             <span className="text-foreground font-medium">المحاضرات</span>
           </nav>
 

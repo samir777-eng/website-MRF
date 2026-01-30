@@ -68,7 +68,7 @@ export function ProfileCard({
     <div className={cn("rounded-lg border bg-card overflow-hidden", className)}>
       <div className="relative h-24 bg-gradient-to-r from-blue-600 to-purple-600">
         {rank && rank <= 3 && (
-          <div className="absolute top-2 left-2">
+          <div className="absolute top-2 start-2">
             <Badge variant="secondary" className="flex items-center gap-1">
               <Trophy className="w-4 h-4 text-yellow-500" />
               #{rank}

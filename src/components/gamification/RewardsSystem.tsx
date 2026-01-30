@@ -488,7 +488,7 @@ export default function RewardsSystem({
             >
               {/* Equipped Badge */}
               {item.equipped && (
-                <div className="absolute -top-2 -left-2 bg-amber-500 text-black text-xs font-bold px-2 py-1 rounded-full">
+                <div className="absolute -top-2 -start-2 bg-amber-500 text-black text-xs font-bold px-2 py-1 rounded-full">
                   مُفعّل ✓
                 </div>
               )}
@@ -721,7 +721,7 @@ export default function RewardsSystem({
                   <CardContent className="p-8 text-center relative">
                     <button
                       onClick={dismissCelebration}
-                      className="absolute top-2 left-2 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                      className="absolute top-2 start-2 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                       aria-label="إغلاق"
                     >
                       <span className="text-white text-lg">✕</span>

@@ -6,7 +6,7 @@ import { Brain, Sparkles, Target, TrendingUp } from "lucide-react";
 
 export default function AdaptiveLearningPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 dark:from-slate-900 dark:via-purple-900 dark:to-blue-900" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 dark:from-slate-900 dark:via-purple-900 dark:to-blue-900">
       <div className="container mx-auto px-6 py-8 space-y-8">
         {/* Header */}
         <div className="text-center space-y-4">

@@ -9,7 +9,7 @@ import { EnhancedSkeleton, SkeletonListItem as _SkeletonListItem } from "./Enhan
 
 export function LessonsListSkeleton() {
   return (
-    <div className="space-y-6 p-4 md:p-6" dir="rtl">
+    <div className="space-y-6 p-4 md:p-6">
       {/* Header with Lecture Info */}
       <div className="p-6 rounded-xl border border-border bg-card space-y-3">
         <EnhancedSkeleton variant="text" width="250px" height="28px" />

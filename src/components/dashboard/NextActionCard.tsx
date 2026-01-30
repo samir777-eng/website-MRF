@@ -97,7 +97,7 @@ export function NextActionCard({
     >
       {/* Top gradient accent */}
       <div
-        className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${config.borderGradient}`}
+        className={`absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r ${config.borderGradient}`}
       />
 
       {/* Background pattern */}

@@ -105,7 +105,7 @@ export function LessonCard({ lesson }: LessonCardProps) {
         </div>
 
         {/* Top Badges */}
-        <div className="absolute top-4 right-4 flex flex-col gap-2">
+        <div className="absolute top-4 end-4 flex flex-col gap-2">
           {lesson.completed && (
             <Badge className="bg-green-500 text-white border-0 shadow-lg">
               <CheckCircle className="w-3 h-3 ms-1" />
@@ -118,13 +118,13 @@ export function LessonCard({ lesson }: LessonCardProps) {
         </div>
 
         {/* Duration Badge */}
-        <div className="absolute bottom-4 right-4 flex items-center gap-2 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm">
+        <div className="absolute bottom-4 end-4 flex items-center gap-2 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm">
           <Clock className="w-4 h-4" />
           {lesson.duration}
         </div>
 
         {/* Video Count */}
-        <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm">
+        <div className="absolute bottom-4 start-4 flex items-center gap-2 bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm">
           <Video className="w-4 h-4" />
           {lesson.videoCount} فيديو
         </div>

@@ -586,7 +586,7 @@ export function VideoPlayer({
       {/* Controls */}
       <div
         className={cn(
-          "absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-all duration-300",
+          "absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-all duration-300",
           showControls || !isPlaying
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-5"
@@ -793,7 +793,7 @@ export function VideoPlayer({
 
       {/* Title Overlay */}
       {title && (
-        <div className="absolute top-4 left-4 right-4">
+        <div className="absolute top-4 inset-x-4">
           <h3 className="text-white font-semibold text-lg drop-shadow-lg">
             {title}
           </h3>

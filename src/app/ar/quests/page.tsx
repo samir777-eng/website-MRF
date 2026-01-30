@@ -73,7 +73,7 @@ export default function QuestsPage() {
   }, 0);
 
   return (
-    <div dir="rtl" className="min-h-screen page-bg-purple">
+    <div className="min-h-screen page-bg-purple">
       <div className="container mx-auto px-6 py-8 space-y-8">
         {/* Header */}
         <div className="text-center space-y-4">

@@ -15,7 +15,7 @@ import {
 
 export function ProfileSkeleton() {
   return (
-    <div className="space-y-6 p-4 md:p-6" dir="rtl">
+    <div className="space-y-6 p-4 md:p-6">
       {/* Profile Header Card */}
       <div className="p-6 rounded-xl border border-border bg-card">
         <div className="flex flex-col md:flex-row items-center gap-6">
@@ -23,7 +23,7 @@ export function ProfileSkeleton() {
           <SkeletonAvatar size="xl" className="w-24 h-24" />
 
           {/* User Info */}
-          <div className="flex-1 space-y-3 text-center md:text-right">
+          <div className="flex-1 space-y-3 text-center md:text-end">
             <EnhancedSkeleton variant="text" width="180px" height="28px" className="mx-auto md:mx-0" />
             <EnhancedSkeleton variant="text" width="140px" height="16px" className="mx-auto md:mx-0" />
             

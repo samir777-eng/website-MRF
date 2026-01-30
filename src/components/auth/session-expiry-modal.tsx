@@ -67,7 +67,7 @@ export function SessionExpiryModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={() => {}}>
-      <DialogContent dir="rtl" className="sm:max-w-md text-center">
+      <DialogContent className="sm:max-w-md text-center">
         <DialogHeader className="space-y-4">
           {/* Warning Icon with animated ring */}
           <div className="mx-auto relative">

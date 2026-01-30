@@ -10,7 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 // Profile page skeleton
 export function ProfileSkeleton() {
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl" dir="rtl">
+    <div className="container mx-auto px-4 py-8 max-w-4xl">
       <Skeleton className="h-9 w-40 mb-6" />
       
       <div className="grid gap-6">
@@ -60,7 +60,7 @@ export function ProfileSkeleton() {
 // Shop/Store page skeleton
 export function ShopSkeleton() {
   return (
-    <div className="container mx-auto px-4 py-8" dir="rtl">
+    <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <Skeleton className="h-9 w-32 mb-2" />
         <Skeleton className="h-5 w-64" />
@@ -109,7 +109,7 @@ export function ShopSkeleton() {
 // Leaderboard page skeleton
 export function LeaderboardSkeleton() {
   return (
-    <div className="container mx-auto px-4 py-8" dir="rtl">
+    <div className="container mx-auto px-4 py-8">
       <div className="mb-8 text-center">
         <Skeleton className="h-9 w-48 mx-auto mb-2" />
         <Skeleton className="h-5 w-64 mx-auto" />
@@ -145,7 +145,7 @@ export function LeaderboardSkeleton() {
 // Courses page skeleton
 export function CoursesSkeleton() {
   return (
-    <div className="container mx-auto px-4 py-8" dir="rtl">
+    <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <Skeleton className="h-9 w-32 mb-2" />
         <Skeleton className="h-5 w-64" />
@@ -188,7 +188,7 @@ export function CoursesSkeleton() {
 // Generic page skeleton
 export function GenericPageSkeleton() {
   return (
-    <div className="container mx-auto px-4 py-8" dir="rtl">
+    <div className="container mx-auto px-4 py-8">
       <Skeleton className="h-9 w-48 mb-4" />
       <Skeleton className="h-5 w-full max-w-2xl mb-8" />
       

@@ -105,7 +105,7 @@ export default function SalesPointsPage() {
   const governorates = Array.from(new Set(SALES_POINTS.map(p => p.governorate)));
 
   return (
-    <div className="min-h-screen page-bg-green" dir="rtl">
+    <div className="min-h-screen page-bg-green">
       <div className="container mx-auto px-6 py-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -142,7 +142,7 @@ export default function SalesPointsPage() {
           <CardContent className="p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="relative">
-                <Search className="absolute right-3 top-3 w-5 h-5 text-muted-foreground" />
+                <Search className="absolute end-3 top-3 w-5 h-5 text-muted-foreground" />
                 <Input
                   placeholder="ابحث عن منفذ بيع..."
                   value={searchQuery}

@@ -179,7 +179,7 @@ export function LeaderboardClient() {
   const [users, setUsers] = useState(mockUsers);
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6 p-4 md:p-6" dir="rtl">
+    <div className="max-w-4xl mx-auto space-y-6 p-4 md:p-6">
       {/* Header */}
       <div className="text-center space-y-2">
         <div className="flex items-center justify-center gap-3">
@@ -400,7 +400,7 @@ function LeaderboardItem({
       </div>
 
       {/* XP Display */}
-      <div className="text-left flex-shrink-0">
+      <div className="text-start flex-shrink-0">
         <motion.div
           key={user.xp}
           initial={{ scale: 1.2, opacity: 0 }}

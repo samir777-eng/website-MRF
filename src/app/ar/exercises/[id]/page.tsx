@@ -309,7 +309,7 @@ export default function ExercisePage() {
                     <div className="p-6 bg-green-100 dark:bg-green-900/20 rounded-lg mb-4">
                       <div className="flex items-start gap-3">
                         <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                        <div className="text-right">
+                        <div className="text-end">
                           <h3 className="font-bold mb-2">
                             تم فتح الواجب المنزلي!
                           </h3>

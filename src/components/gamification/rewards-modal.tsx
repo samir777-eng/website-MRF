@@ -173,10 +173,10 @@ export function RewardsModal({
                 {/* Sparkle Effects */}
                 {showCelebration && (
                   <>
-                    <div className="absolute -top-2 -right-2 animate-spin">
+                    <div className="absolute -top-2 -end-2 animate-spin">
                       <Sparkles className="w-6 h-6 text-yellow-400" />
                     </div>
-                    <div className="absolute -bottom-2 -left-2 animate-spin">
+                    <div className="absolute -bottom-2 -start-2 animate-spin">
                       <Sparkles className="w-4 h-4 text-blue-400" />
                     </div>
                   </>

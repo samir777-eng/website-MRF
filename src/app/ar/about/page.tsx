@@ -19,7 +19,7 @@ import {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen page-bg-blue" dir="rtl">
+    <div className="min-h-screen page-bg-blue">
       <div className="container mx-auto px-6 py-8 space-y-8">
         {/* Hero Section */}
         <div className="text-center space-y-6">
@@ -27,7 +27,7 @@ export default function AboutPage() {
             <div className="w-40 h-40 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center shadow-2xl">
               <GraduationCap className="w-20 h-20 text-white" />
             </div>
-            <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center shadow-xl">
+            <div className="absolute -bottom-2 -end-2 w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center shadow-xl">
               <Award className="w-8 h-8 text-white" />
             </div>
           </div>

@@ -109,7 +109,7 @@ export function PerformanceBreakdown() {
               انقر على أي عمود لمزيد من التفاصيل
             </CardDescription>
           </div>
-          <div className="text-right">
+          <div className="text-end">
             <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               {averageScore}%
             </div>

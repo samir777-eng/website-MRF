@@ -101,7 +101,7 @@ export function DebugPanel({ isVisible, onToggle }: DebugPanelProps) {
     return (
       <Button
         onClick={onToggle}
-        className="fixed bottom-4 right-4 z-50 bg-purple-600 hover:bg-purple-700"
+        className="fixed bottom-4 end-4 z-50 bg-purple-600 hover:bg-purple-700"
         size="sm"
       >
         🐛 Debug

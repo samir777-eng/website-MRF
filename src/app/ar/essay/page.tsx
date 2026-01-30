@@ -116,7 +116,7 @@ export default function EssayWritingPage() {
     : SAMPLE_ESSAYS.filter(e => e.type === selectedType);
 
   return (
-    <div className="min-h-screen page-bg-green" dir="rtl">
+    <div className="min-h-screen page-bg-green">
       <div className="container mx-auto px-6 py-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -153,7 +153,7 @@ export default function EssayWritingPage() {
         </div>
 
         {/* Main Content */}
-        <Tabs defaultValue="examples" dir="rtl">
+        <Tabs defaultValue="examples">
           <TabsList className="grid w-full grid-cols-3 mb-8">
             <TabsTrigger value="examples">أمثلة نموذجية</TabsTrigger>
             <TabsTrigger value="tips">نصائح الكتابة</TabsTrigger>

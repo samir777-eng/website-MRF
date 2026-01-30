@@ -9,7 +9,7 @@ import { EnhancedSkeleton } from "../EnhancedSkeleton";
 
 export function LeaderboardSkeleton() {
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 md:px-6 py-6 md:py-8 space-y-8">
         {/* Page Header */}
         <div className="text-center space-y-4">
@@ -80,7 +80,7 @@ export function LeaderboardSkeleton() {
                     height="100px"
                     className="mx-auto"
                   />
-                  <div className="absolute -top-2 -right-2">
+                  <div className="absolute -top-2 -end-2">
                     <EnhancedSkeleton variant="circular" width="32px" height="32px" />
                   </div>
                 </div>
@@ -140,7 +140,7 @@ export function LeaderboardSkeleton() {
                 <EnhancedSkeleton variant="text" width="40%" height="20px" />
                 <EnhancedSkeleton variant="text" width="30%" height="16px" />
               </div>
-              <div className="text-right space-y-2">
+              <div className="text-end space-y-2">
                 <EnhancedSkeleton variant="text" width="80px" height="28px" />
                 <EnhancedSkeleton variant="text" width="60px" height="16px" />
               </div>
@@ -188,7 +188,7 @@ export function LeaderboardSkeleton() {
                 </div>
 
                 {/* XP Score */}
-                <div className="text-right space-y-1">
+                <div className="text-end space-y-1">
                   <EnhancedSkeleton variant="text" width="80px" height="28px" />
                   <EnhancedSkeleton variant="text" width="60px" height="14px" />
                 </div>

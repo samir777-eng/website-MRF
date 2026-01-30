@@ -229,7 +229,7 @@ export default function ArabicCoursesClient() {
   };
 
   return (
-    <div className="min-h-screen page-bg-blue" dir="rtl">
+    <div className="min-h-screen page-bg-blue">
       <div className="container mx-auto px-6 py-8">
         {/* Header */}
         <div className="mb-12 text-center">
@@ -597,7 +597,7 @@ export default function ArabicCoursesClient() {
                         </div>
                       </div>
                     </div>
-                    <div className="text-left">
+                    <div className="text-start">
                       <div className="text-2xl font-bold text-green-600">
                         {course.price}
                       </div>

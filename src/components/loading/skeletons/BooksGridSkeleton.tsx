@@ -9,7 +9,7 @@ import { EnhancedSkeleton } from "../EnhancedSkeleton";
 
 export function BooksGridSkeleton() {
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 md:px-6 py-6 md:py-8 space-y-6">
         {/* Page Header */}
         <div className="space-y-4">
@@ -63,7 +63,7 @@ export function BooksGridSkeleton() {
                 />
                 
                 {/* Badge */}
-                <div className="absolute top-3 right-3">
+                <div className="absolute top-3 end-3">
                   <EnhancedSkeleton
                     variant="rectangular"
                     width="60px"

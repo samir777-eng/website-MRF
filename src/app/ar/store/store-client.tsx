@@ -125,7 +125,7 @@ function StoreContent() {
   return (
     <div
       className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-24"
-      dir="rtl"
+     
     >
       <div className="container mx-auto px-4 py-8 max-w-6xl space-y-6">
         {/* Header */}
@@ -351,7 +351,7 @@ function BundlesTab() {
               }`}
             >
               {bundle.popular && (
-                <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center py-2 text-sm font-bold">
+                <div className="absolute top-0 inset-x-0 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center py-2 text-sm font-bold">
                   <Crown className="w-4 h-4 inline-block ms-1" />
                   الأكثر شعبية
                 </div>
@@ -495,7 +495,7 @@ function BooksTab() {
             السلة
             {getCartItemCount() > 0 && (
               <Badge
-                className={`absolute -top-2 -right-2 bg-red-500 text-xs ${
+                className={`absolute -top-2 -end-2 bg-red-500 text-xs ${
                   cartBounce ? "animate-bounce scale-125" : ""
                 }`}
               >
@@ -512,7 +512,7 @@ function BooksTab() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
             <div className="md:col-span-2">
               <div className="relative">
-                <Search className="absolute right-3 top-3 w-4 h-4 text-muted-foreground" />
+                <Search className="absolute end-3 top-3 w-4 h-4 text-muted-foreground" />
                 <Input
                   placeholder="ابحث عن كتاب..."
                   value={searchQuery}

@@ -18,7 +18,7 @@ export function LoadingBar() {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed top-0 left-0 right-0 z-50 h-1 bg-primary"
+          className="fixed top-0 inset-x-0 z-50 h-1 bg-primary"
           initial={{ scaleX: 0, transformOrigin: "right" }}
           animate={{ scaleX: 1, transformOrigin: "right" }}
           exit={{ scaleX: 0, transformOrigin: "left" }}

@@ -18,7 +18,7 @@ function DailyQuestsCardComponent() {
 
   return (
     <Card className="border-0 shadow-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white overflow-hidden relative">
-      <div className="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 -translate-x-16" />
+      <div className="absolute top-0 start-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 -translate-x-16" />
       <CardHeader>
         <CardTitle className="text-xl md:text-2xl font-bold leading-tight tracking-tight flex items-center gap-2 md:gap-3">
           <Target className="w-6 h-6 md:w-7 md:h-7" />
@@ -64,7 +64,7 @@ const QuestItem = memo(function QuestItem({ quest }: { quest: DailyQuest }) {
           <p className="text-emerald-100 text-sm">{quest.reward}</p>
         </div>
       </div>
-      <div className="text-left">
+      <div className="text-start">
         <div className="text-sm font-semibold mb-1">%{quest.progress}</div>
         <Progress value={quest.progress} className="w-24 h-2 bg-white/20" />
       </div>

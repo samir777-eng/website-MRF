@@ -13,7 +13,7 @@ import {
 
 export function HomepageSkeleton() {
   return (
-    <div className="min-h-screen" dir="rtl">
+    <div className="min-h-screen">
       {/* Hero Section Skeleton */}
       <div className="container mx-auto px-6 py-16 md:py-24">
         <div className="text-center max-w-4xl mx-auto space-y-6">

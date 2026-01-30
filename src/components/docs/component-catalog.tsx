@@ -166,7 +166,7 @@ export function ComponentCatalog({
             <CardHeader>
               <CardTitle className="text-lg">Components</CardTitle>
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Search className="absolute start-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input
                   placeholder="Search components..."
                   value={searchTerm}
@@ -184,7 +184,7 @@ export function ComponentCatalog({
                     <button
                       key={category}
                       onClick={() => setSelectedCategory(category)}
-                      className={`w-full text-left px-2 py-1 rounded text-sm capitalize ${
+                      className={`w-full text-start px-2 py-1 rounded text-sm capitalize ${
                         selectedCategory === category
                           ? "bg-blue-100 text-blue-700"
                           : "hover:bg-gray-100"
@@ -208,7 +208,7 @@ export function ComponentCatalog({
                     <button
                       key={component.id}
                       onClick={() => setSelectedComponent(component)}
-                      className={`w-full text-left p-3 rounded border ${
+                      className={`w-full text-start p-3 rounded border ${
                         selectedComponent?.id === component.id
                           ? "border-blue-200 bg-blue-50"
                           : "border-gray-200 hover:border-gray-300"

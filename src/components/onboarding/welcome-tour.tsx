@@ -74,7 +74,7 @@ export function WelcomeTour() {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="max-w-2xl" dir="rtl">
+      <DialogContent className="max-w-2xl">
         <DialogHeader>
           <DialogTitle>{step.title}</DialogTitle>
           <DialogDescription>{step.description}</DialogDescription>

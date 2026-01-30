@@ -89,8 +89,8 @@ function NextLectureCardComponent() {
   return (
     <Card className={`border-0 shadow-xl bg-gradient-to-br ${step.color} text-white overflow-hidden relative`}>
       {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-40 h-40 bg-white/5 rounded-full -translate-y-20 -translate-x-20" />
-      <div className="absolute bottom-0 right-0 w-32 h-32 bg-white/5 rounded-full translate-y-16 translate-x-16" />
+      <div className="absolute top-0 start-0 w-40 h-40 bg-white/5 rounded-full -translate-y-20 -translate-x-20" />
+      <div className="absolute bottom-0 end-0 w-32 h-32 bg-white/5 rounded-full translate-y-16 translate-x-16" />
 
       <CardContent className="p-6 relative z-10">
         <div className="flex flex-col gap-4">

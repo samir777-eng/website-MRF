@@ -134,7 +134,7 @@ export default function SubscriptionPage() {
                   )}
                 </div>
                 {user.subscriptionEndDate && (
-                  <div className="text-left">
+                  <div className="text-start">
                     <p className="text-sm text-muted-foreground">
                       تاريخ الانتهاء
                     </p>

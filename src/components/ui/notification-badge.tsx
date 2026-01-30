@@ -111,7 +111,7 @@ export function NotificationBadge() {
         sideOffset={8}
         className="w-80 z-[200] shadow-2xl border rounded-xl overflow-hidden backdrop-blur-xl bg-white/95 dark:bg-zinc-900/95"
       >
-        <div dir="rtl">
+        <div>
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-border/50">
             <h3 className="font-semibold text-foreground">الإشعارات</h3>

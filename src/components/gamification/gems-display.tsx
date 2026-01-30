@@ -84,7 +84,7 @@ export function GemsEarnedAnimation({ amount, onComplete }: { amount: number; on
       initial={{ opacity: 0, scale: 0.5, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.5, y: -20 }}
-      className="fixed top-20 right-4 z-50 flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-3 rounded-xl shadow-2xl"
+      className="fixed top-20 end-4 z-50 flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-3 rounded-xl shadow-2xl"
     >
       <Sparkles className="text-yellow-300" size={24} />
       <span className="text-white font-bold text-lg">+{amount}</span>

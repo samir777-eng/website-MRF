@@ -74,7 +74,7 @@ export function SimplifiedDashboard() {
   const hiddenQuestsCount = mockDailyQuests.length - 3;
 
   return (
-    <div dir="rtl" className="max-w-5xl mx-auto space-y-6 p-4 md:p-6">
+    <div className="max-w-5xl mx-auto space-y-6 p-4 md:p-6">
       {/* 1. NEXT ACTION CARD - Most Prominent */}
       <section>
         <h2 className="text-lg font-bold text-foreground mb-3 flex items-center gap-2">

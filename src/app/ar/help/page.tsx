@@ -151,7 +151,7 @@ function HelpContent() {
   };
 
   return (
-    <div className="min-h-screen page-bg-blue" dir="rtl">
+    <div className="min-h-screen page-bg-blue">
       <div className="container mx-auto px-6 py-8 space-y-8">
         {/* Header */}
         <div className="text-center space-y-4">
@@ -240,7 +240,7 @@ function HelpContent() {
               <CardContent className="p-6">
                 <div className="flex flex-col md:flex-row gap-4">
                   <div className="flex-1 relative">
-                    <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                    <Search className="absolute end-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
                     <input
                       type="text"
                       placeholder="ابحث في الأسئلة الشائعة..."
@@ -276,13 +276,13 @@ function HelpContent() {
                   <CardContent className="p-0">
                     <button
                       onClick={() => toggleFAQ(faq.id)}
-                      className="w-full p-6 text-right flex items-center justify-between hover:bg-muted/30 transition-colors"
+                      className="w-full p-6 text-end flex items-center justify-between hover:bg-muted/30 transition-colors"
                     >
                       <div className="flex items-center gap-4 flex-1">
                         <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center flex-shrink-0">
                           <HelpCircle className="w-5 h-5 text-white" />
                         </div>
-                        <div className="text-right flex-1">
+                        <div className="text-end flex-1">
                           <h3 className="font-bold text-foreground mb-1">
                             {faq.question}
                           </h3>

@@ -172,13 +172,13 @@ function DashboardContent() {
 
   const content = (
     <div
-      dir="rtl"
+     
       className="min-h-screen bg-background pb-24 relative overflow-hidden"
     >
       {/* Background Decorative Elements */}
-      <div className="absolute top-0 left-0 w-full h-96 bg-gradient-primary opacity-5 rounded-b-[3rem] -z-10" />
-      <div className="absolute top-20 right-0 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl -z-10 animate-pulse-gentle" />
-      <div className="absolute top-40 left-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -z-10 animate-float" />
+      <div className="absolute top-0 start-0 w-full h-96 bg-gradient-primary opacity-5 rounded-b-[3rem] -z-10" />
+      <div className="absolute top-20 end-0 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl -z-10 animate-pulse-gentle" />
+      <div className="absolute top-40 start-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -z-10 animate-float" />
 
       <div className="container mx-auto px-4 py-8 max-w-5xl space-y-8 animate-fade-in">
         {/* Header - Welcome */}
@@ -233,7 +233,7 @@ function DashboardContent() {
 
         {/* Continue Learning */}
         <Card className="border-0 bg-gradient-card shadow-glass animate-slide-up [animation-delay:200ms] overflow-hidden relative">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-primary" />
+          <div className="absolute top-0 start-0 w-full h-1 bg-gradient-primary" />
           <CardContent className="p-6">
             <div className="flex items-start justify-between gap-6">
               <div className="flex-1">
@@ -373,7 +373,7 @@ function DashboardContent() {
               </Link>
             </div>
             <div className="flex items-center gap-5 p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 to-orange-500/5 border border-amber-500/10 relative overflow-hidden group hover:border-amber-500/30 transition-colors duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+              <div className="absolute top-0 end-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white font-bold text-2xl shadow-glow-sm group-hover:scale-110 transition-transform duration-300">
                 #12
               </div>

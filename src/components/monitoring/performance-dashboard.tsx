@@ -129,7 +129,7 @@ export function PerformanceDashboard({
 
   if (!isVisible) {
     return (
-      <div className={`fixed bottom-4 right-4 z-50 ${className}`}>
+      <div className={`fixed bottom-4 end-4 z-50 ${className}`}>
         <Button
           onClick={() => setIsVisible(true)}
           variant="outline"
@@ -145,7 +145,7 @@ export function PerformanceDashboard({
 
   return (
     <div
-      className={`fixed bottom-4 right-4 z-50 w-96 max-h-[80vh] overflow-y-auto ${className}`}
+      className={`fixed bottom-4 end-4 z-50 w-96 max-h-[80vh] overflow-y-auto ${className}`}
     >
       <Card className="shadow-xl">
         <CardHeader className="pb-3">

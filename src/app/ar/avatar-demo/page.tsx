@@ -17,7 +17,7 @@ export default function AvatarDemoPage() {
   const { config, ownedParts } = useAvatar();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-950 dark:to-purple-950" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-950 dark:to-purple-950">
       {/* Header */}
       <header className="sticky top-0 z-40 backdrop-blur-lg bg-white/80 dark:bg-gray-900/80 border-b border-gray-200/50 dark:border-gray-800/50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -63,7 +63,7 @@ export default function AvatarDemoPage() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsCustomizerOpen(true)}
-              className="absolute -bottom-2 -right-2 w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg"
+              className="absolute -bottom-2 -end-2 w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg"
             >
               <Palette className="w-6 h-6 text-white" />
             </motion.button>

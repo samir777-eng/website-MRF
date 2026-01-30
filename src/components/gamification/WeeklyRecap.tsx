@@ -135,12 +135,12 @@ export function WeeklyRecap({ isOpen, onClose, weekData }: WeeklyRecapProps) {
             exit={{ scale: 0.8, opacity: 0 }}
             className="relative w-full max-w-md overflow-hidden rounded-3xl bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
-            dir="rtl"
+           
           >
             {/* Close button */}
             <button
               onClick={handleSkip}
-              className="absolute top-4 left-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              className="absolute top-4 start-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
             >
               <X className="w-5 h-5 text-white" />
             </button>
@@ -148,7 +148,7 @@ export function WeeklyRecap({ isOpen, onClose, weekData }: WeeklyRecapProps) {
             {/* Skip button */}
             <button
               onClick={handleSkip}
-              className="absolute top-4 right-4 z-10 text-sm text-white/60 hover:text-white transition-colors"
+              className="absolute top-4 end-4 z-10 text-sm text-white/60 hover:text-white transition-colors"
             >
               تخطي
             </button>
@@ -199,8 +199,8 @@ export function WeeklyRecap({ isOpen, onClose, weekData }: WeeklyRecapProps) {
             </div>
 
             {/* Decorative elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-pink-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+            <div className="absolute top-0 end-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 start-0 w-48 h-48 bg-pink-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
           </motion.div>
         </motion.div>
       )}
@@ -594,7 +594,7 @@ function SummarySlide({
               <Trophy className="w-6 h-6 text-yellow-400" />
               <span>ترتيبك</span>
             </div>
-            <div className="text-left">
+            <div className="text-start">
               <span className="text-2xl font-bold">#{data.rank}</span>
               {data.rankChange && data.rankChange > 0 && (
                 <span className="text-green-400 text-sm me-2">

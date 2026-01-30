@@ -615,7 +615,7 @@ export default function SignupClient() {
       {/* Desktop */}
       <div className="hidden md:flex items-center justify-between relative">
         {/* Progress line */}
-        <div className="absolute top-6 left-0 right-0 h-0.5 bg-muted mx-16">
+        <div className="absolute top-6 inset-x-0 h-0.5 bg-muted mx-16">
           <motion.div
             className="h-full bg-gradient-to-r from-indigo-500 to-purple-500"
             initial={{ width: "0%" }}
@@ -1094,7 +1094,7 @@ export default function SignupClient() {
                 type="button"
                 variant="destructive"
                 size="icon"
-                className="absolute top-2 right-2"
+                className="absolute top-2 end-2"
                 onClick={(e) => {
                   e.stopPropagation();
                   removeImage();
@@ -1234,7 +1234,7 @@ export default function SignupClient() {
     return (
       <div
         className="min-h-screen bg-background flex items-center justify-center p-4"
-        dir="rtl"
+       
       >
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
@@ -1260,7 +1260,7 @@ export default function SignupClient() {
   }
 
   return (
-    <div className="min-h-screen bg-background py-8 px-4" dir="rtl">
+    <div className="min-h-screen bg-background py-8 px-4">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6">

@@ -463,7 +463,7 @@ export default function LeaderboardDisplay({
                   </div>
                 </div>
 
-                <div className="text-right">
+                <div className="text-end">
                   <div className="font-bold text-foreground">
                     {getCategoryValue(entry).toLocaleString()}
                   </div>
@@ -596,7 +596,7 @@ export default function LeaderboardDisplay({
                   </div>
                 </div>
 
-                <div className="text-right">
+                <div className="text-end">
                   <div className="text-2xl font-bold text-foreground">
                     {getCategoryValue(entry).toLocaleString()}
                   </div>

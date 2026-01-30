@@ -407,7 +407,7 @@ function LessonContent() {
                           </Button>
                           {showSettings && (
                             <div
-                              className="absolute bottom-full right-0 mb-2 bg-black/90 rounded-lg p-3 min-w-[150px]"
+                              className="absolute bottom-full end-0 mb-2 bg-black/90 rounded-lg p-3 min-w-[150px]"
                               role="menu"
                             >
                               <div className="text-sm space-y-2">
@@ -416,7 +416,7 @@ function LessonContent() {
                                   (speed) => (
                                     <button
                                       key={speed}
-                                      className={`block w-full text-right px-2 py-1 rounded hover:bg-white/20 ${playbackSpeed === speed ? "bg-white/20" : ""}`}
+                                      className={`block w-full text-end px-2 py-1 rounded hover:bg-white/20 ${playbackSpeed === speed ? "bg-white/20" : ""}`}
                                       onClick={(e) => {
                                         e.stopPropagation();
                                         setPlaybackSpeed(

@@ -102,7 +102,7 @@ export default function LoginClient() {
   return (
     <div
       className="min-h-screen flex items-center justify-center page-bg-blue p-4"
-      dir="rtl"
+     
     >
       <div className="w-full max-w-md">
         {/* Logo and Title */}
@@ -142,7 +142,7 @@ export default function LoginClient() {
                   البريد الإلكتروني أو رقم الهاتف
                 </Label>
                 <div className="relative">
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                  <div className="absolute end-3 top-1/2 -translate-y-1/2 text-muted-foreground">
                     {formData.emailOrPhone.includes("@") ? (
                       <Mail className="w-5 h-5" />
                     ) : (
@@ -173,7 +173,7 @@ export default function LoginClient() {
               <div className="space-y-2">
                 <Label htmlFor="password">كلمة المرور</Label>
                 <div className="relative">
-                  <Lock className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <Lock className="absolute end-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
@@ -190,7 +190,7 @@ export default function LoginClient() {
                     type="button"
                     variant="ghost"
                     size="icon"
-                    className="absolute left-1 top-1/2 -translate-y-1/2 hover:bg-transparent h-11 w-11 min-h-[44px] min-w-[44px]"
+                    className="absolute start-1 top-1/2 -translate-y-1/2 hover:bg-transparent h-11 w-11 min-h-[44px] min-w-[44px]"
                     onClick={() => setShowPassword(!showPassword)}
                     disabled={isLoading}
                     aria-label={

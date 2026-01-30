@@ -113,7 +113,7 @@ export default function PreQuizPage() {
   if (state === "intro") {
     const attemptsLeft = preQuizData.maxAttempts - preQuizData.currentAttempts;
     return (
-      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-24" dir="rtl">
+      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-24">
         <div className="container mx-auto px-4 py-8">
           <Link href={`/ar/lectures/${lectureId}`} className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft className="h-4 w-4" />
@@ -179,7 +179,7 @@ export default function PreQuizPage() {
     }
 
     return (
-      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-24" dir="rtl">
+      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-24">
         <div className="container mx-auto px-4 py-8">
           <Card className="max-w-2xl mx-auto border-0 shadow-xl">
             <CardContent className="p-8 text-center space-y-6">
@@ -233,7 +233,7 @@ export default function PreQuizPage() {
   const quizProgress = ((currentQuestion + 1) / preQuizData.questions.length) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-24" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-24">
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-6">
           <span className="text-sm text-muted-foreground">سؤال {currentQuestion + 1} من {preQuizData.questions.length}</span>
@@ -251,7 +251,7 @@ export default function PreQuizPage() {
 
             <div className="space-y-3">
               {question.options.map((option, index) => (
-                <button key={index} onClick={() => selectAnswer(index)} className={`w-full p-4 rounded-lg border-2 text-right transition-all ${selectedAnswer === index ? "border-primary bg-primary/10" : "border-border hover:border-primary/50"}`}>
+                <button key={index} onClick={() => selectAnswer(index)} className={`w-full p-4 rounded-lg border-2 text-end transition-all ${selectedAnswer === index ? "border-primary bg-primary/10" : "border-border hover:border-primary/50"}`}>
                   <div className="flex items-center gap-3">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${selectedAnswer === index ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}>
                       {String.fromCharCode(1571 + index)}

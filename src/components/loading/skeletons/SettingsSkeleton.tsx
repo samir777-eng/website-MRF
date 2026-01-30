@@ -9,7 +9,7 @@ import { EnhancedSkeleton } from "../EnhancedSkeleton";
 
 export function SettingsSkeleton() {
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 md:px-6 py-6 md:py-8">
         <div className="max-w-5xl mx-auto space-y-6">
           {/* Page Header */}

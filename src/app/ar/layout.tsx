@@ -218,7 +218,7 @@ export default function ArabicLayout({ children }: Props) {
 
               {/* Bottom Row - Copyright + Legal */}
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 pt-3 border-t border-border/30">
-                <p className="text-xs text-muted-foreground/60 text-center md:text-right">
+                <p className="text-xs text-muted-foreground/60 text-center md:text-end">
                   © {new Date().getFullYear()} جميع الحقوق محفوظة - الأستاذ رضا
                   الفاروق
                 </p>

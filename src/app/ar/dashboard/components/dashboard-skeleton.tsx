@@ -178,7 +178,7 @@ export const QuickActionsSkeleton = memo(function QuickActionsSkeleton() {
 export const DashboardSkeleton = memo(function DashboardSkeleton() {
   return (
     <div
-      dir="rtl"
+     
       className="min-h-screen bg-background dark:bg-zinc-950 pb-24 lg:pb-8"
     >
       <div className="container mx-auto px-4 md:px-6 py-8 space-y-8">

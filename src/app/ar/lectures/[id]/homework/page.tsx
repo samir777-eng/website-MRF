@@ -176,7 +176,7 @@ function HomeworkContent() {
     return (
       <div
         className="min-h-screen page-bg-purple flex items-center justify-center p-6"
-        dir="rtl"
+       
       >
         <Card className="max-w-md w-full">
           <CardContent className="p-8 text-center space-y-6">
@@ -205,7 +205,7 @@ function HomeworkContent() {
   // Intro state
   if (state === "intro") {
     return (
-      <div className="min-h-screen page-bg-purple py-8" dir="rtl">
+      <div className="min-h-screen page-bg-purple py-8">
         <div className="container mx-auto px-6 max-w-2xl">
           <Link href={`/ar/lectures/${lectureId}`}>
             <Button variant="ghost" size="sm" className="mb-6">
@@ -257,7 +257,7 @@ function HomeworkContent() {
   // Results state
   if (state === "results") {
     return (
-      <div className="min-h-screen page-bg-purple py-8" dir="rtl">
+      <div className="min-h-screen page-bg-purple py-8">
         <div className="container mx-auto px-6 max-w-2xl">
           <Card>
             <CardContent className="p-8 text-center space-y-6">
@@ -321,7 +321,7 @@ function HomeworkContent() {
 
   // Working state - answering questions
   return (
-    <div className="min-h-screen page-bg-purple py-8" dir="rtl">
+    <div className="min-h-screen page-bg-purple py-8">
       <div className="container mx-auto px-6 max-w-2xl">
         {/* Progress Header */}
         <div className="mb-6">
@@ -379,7 +379,7 @@ function HomeworkContent() {
                 value={String(answers[currentQ.id] ?? "")}
                 onChange={(e) => handleAnswer(currentQ.id, e.target.value)}
                 className="min-h-32"
-                dir="rtl"
+               
               />
             )}
           </CardContent>

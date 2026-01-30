@@ -62,7 +62,7 @@ export function LeaderboardWidget() {
                 <div className="text-sm text-muted-foreground">ترتيبك الحالي</div>
               </div>
             </div>
-            <div className="text-left">
+            <div className="text-start">
               <div className="text-lg font-bold text-yellow-600">+{currentUserRank.weeklyXP} XP</div>
               <div className="text-sm text-muted-foreground">هذا الأسبوع</div>
             </div>
@@ -118,7 +118,7 @@ export function LeaderboardWidget() {
               </div>
 
               {/* XP */}
-              <div className="text-left flex-shrink-0">
+              <div className="text-start flex-shrink-0">
                 <div className="font-bold text-primary">{user.xp.toLocaleString()}</div>
                 <div className="text-xs text-muted-foreground">XP</div>
               </div>

@@ -36,7 +36,7 @@ export function WelcomeStep() {
             </motion.div>
 
             {/* Video Info Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
               <Badge className="bg-white/20 text-white border-0 mb-2">
                 30 ثانية
               </Badge>

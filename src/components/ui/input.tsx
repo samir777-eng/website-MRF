@@ -27,7 +27,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           "focus:placeholder:opacity-60",
           "disabled:cursor-not-allowed disabled:opacity-60",
           "transition-all duration-200",
-          isLTRInput ? "text-left direction-ltr" : "text-start",
+          isLTRInput ? "text-start direction-ltr" : "text-start",
           className,
         )}
         ref={ref}

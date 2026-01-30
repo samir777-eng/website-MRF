@@ -138,7 +138,7 @@ export function AvatarCustomizer({
             exit={{ scale: 0.9, y: 20 }}
             className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
-            dir="rtl"
+           
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
@@ -277,20 +277,20 @@ export function AvatarCustomizer({
 
                           {part.rarity !== "free" && (
                             <div
-                              className={`absolute top-1 right-1 px-1.5 py-0.5 rounded text-[10px] font-medium ${getRarityColor(part.rarity)}`}
+                              className={`absolute top-1 end-1 px-1.5 py-0.5 rounded text-[10px] font-medium ${getRarityColor(part.rarity)}`}
                             >
                               {getRarityLabel(part.rarity)}
                             </div>
                           )}
 
                           {equipped && (
-                            <div className="absolute top-1 left-1 w-5 h-5 bg-purple-500 rounded-full flex items-center justify-center shadow-lg">
+                            <div className="absolute top-1 start-1 w-5 h-5 bg-purple-500 rounded-full flex items-center justify-center shadow-lg">
                               <Check className="w-3 h-3 text-white" />
                             </div>
                           )}
 
                           {!owned && (
-                            <div className="absolute bottom-1 left-1 flex items-center gap-1">
+                            <div className="absolute bottom-1 start-1 flex items-center gap-1">
                               {part.unlockMethod === "gems" ? (
                                 <div className="flex items-center gap-0.5 bg-purple-100 dark:bg-purple-900/50 px-1.5 py-0.5 rounded text-[10px]">
                                   <Gem className="w-3 h-3 text-purple-500" />
@@ -361,7 +361,7 @@ export function AvatarCustomizer({
                               )}
                             </button>
                           ) : (
-                            <div className="text-sm text-gray-500 dark:text-gray-400 text-left bg-gray-100 dark:bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
+                            <div className="text-sm text-gray-500 dark:text-gray-400 text-start bg-gray-100 dark:bg-gray-800 px-4 py-2 rounded-lg flex items-center gap-2">
                               <Lock className="w-4 h-4" />
                               {reason}
                             </div>

@@ -62,7 +62,7 @@ export function ActivateLectureModal({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-md" dir="rtl">
+      <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Play className="w-5 h-5 text-primary" />

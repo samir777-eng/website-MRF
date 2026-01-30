@@ -222,7 +222,7 @@ export default function AnnouncementsPage() {
   };
 
   return (
-    <div className="min-h-screen page-bg-blue" dir="rtl">
+    <div className="min-h-screen page-bg-blue">
       <div className="container mx-auto px-6 py-8 space-y-8">
         {/* Header */}
         <div className="text-center space-y-4">

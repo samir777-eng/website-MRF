@@ -173,7 +173,7 @@ export function PullToRefresh({
     >
       {/* Pull-to-refresh indicator */}
       <div
-        className="absolute left-0 right-0 flex justify-center pointer-events-none z-50"
+        className="absolute inset-x-0 flex justify-center pointer-events-none z-50"
         style={{
           top: Math.max(pullDistance - 60, -60),
           transition: pullState === "idle" ? "top 300ms ease-out" : "none",

@@ -161,7 +161,7 @@ function PostQuizContent() {
     return (
       <div
         className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-24"
-        dir="rtl"
+       
       >
         <div className="container mx-auto px-4 py-8">
           <Link
@@ -242,7 +242,7 @@ function PostQuizContent() {
     return (
       <div
         className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-24"
-        dir="rtl"
+       
       >
         <div className="container mx-auto px-4 py-8">
           <Card className="max-w-2xl mx-auto border-0 shadow-xl">
@@ -330,7 +330,7 @@ function PostQuizContent() {
   return (
     <div
       className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-24"
-      dir="rtl"
+     
     >
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-6">
@@ -358,7 +358,7 @@ function PostQuizContent() {
                 <button
                   key={index}
                   onClick={() => selectAnswer(index)}
-                  className={`w-full p-4 rounded-lg border-2 text-right transition-all ${selectedAnswer === index ? "border-primary bg-primary/10" : "border-border hover:border-primary/50"}`}
+                  className={`w-full p-4 rounded-lg border-2 text-end transition-all ${selectedAnswer === index ? "border-primary bg-primary/10" : "border-border hover:border-primary/50"}`}
                 >
                   <div className="flex items-center gap-3">
                     <div

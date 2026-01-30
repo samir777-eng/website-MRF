@@ -1125,8 +1125,8 @@ function AchievementToast({
           animate={{ x: 0, opacity: 1, scale: 1 }}
           exit={{ x: 400, opacity: 0, scale: 0.9 }}
           transition={{ type: "spring", damping: 25, stiffness: 200 }}
-          className="fixed top-20 left-4 z-[350] w-80"
-          dir="rtl"
+          className="fixed top-20 start-4 z-[350] w-80"
+         
         >
           <div
             className={`bg-white dark:bg-gray-900 ${config.border} border rounded-2xl shadow-xl backdrop-blur-sm overflow-hidden`}
@@ -1138,7 +1138,7 @@ function AchievementToast({
               {/* Close button */}
               <button
                 onClick={onClose}
-                className="absolute top-3 left-3 p-1.5 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                className="absolute top-3 start-3 p-1.5 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
               >
                 <X className="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" />
               </button>
@@ -1233,7 +1233,7 @@ function StreakAnimation({
                 <Flame className="w-8 h-8 text-white drop-shadow-sm" />
               </motion.div>
 
-              <div className="text-right">
+              <div className="text-end">
                 <p className="text-sm font-semibold text-orange-600 dark:text-orange-400">
                   {milestone ? "🎉 إنجاز السلسلة!" : "سلسلة أيام"}
                 </p>
@@ -1310,8 +1310,8 @@ function ComboDisplay({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 60 }}
           transition={{ type: "spring", damping: 20 }}
-          className="fixed top-32 left-4 z-[300]"
-          dir="rtl"
+          className="fixed top-32 start-4 z-[300]"
+         
         >
           <div
             className={`${config.bg} ${config.border} border rounded-xl shadow-lg backdrop-blur-sm overflow-hidden`}
@@ -1370,8 +1370,8 @@ function ComboBreakAnimation({ show }: { show: boolean }) {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 60 }}
           transition={{ type: "spring", damping: 20 }}
-          className="fixed top-32 left-4 z-[300]"
-          dir="rtl"
+          className="fixed top-32 start-4 z-[300]"
+         
         >
           <motion.div
             animate={{ x: [-3, 3, -3, 3, 0] }}

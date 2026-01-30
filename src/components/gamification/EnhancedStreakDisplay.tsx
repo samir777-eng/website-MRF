@@ -341,7 +341,7 @@ function BadgeStreak({
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className="absolute -top-1 -right-1 bg-blue-500 rounded-full p-1 shadow-lg"
+          className="absolute -top-1 -end-1 bg-blue-500 rounded-full p-1 shadow-lg"
         >
           <Shield className="w-3 h-3 text-white" />
         </motion.div>
@@ -352,7 +352,7 @@ function BadgeStreak({
         <motion.div
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ repeat: Infinity, duration: 0.5 }}
-          className="absolute -top-1 -right-1 bg-yellow-400 rounded-full p-1 shadow-lg"
+          className="absolute -top-1 -end-1 bg-yellow-400 rounded-full p-1 shadow-lg"
         >
           <span className="text-xs">⚠️</span>
         </motion.div>
@@ -435,7 +435,7 @@ function CardStreak({
             >
               <Flame className="w-12 h-12 fill-yellow-200 drop-shadow-lg" />
               {days >= 100 && (
-                <Crown className="absolute -top-2 -right-2 w-6 h-6 text-yellow-300 drop-shadow-lg" />
+                <Crown className="absolute -top-2 -end-2 w-6 h-6 text-yellow-300 drop-shadow-lg" />
               )}
             </motion.div>
             <div>

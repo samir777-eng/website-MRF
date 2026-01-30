@@ -66,7 +66,7 @@ export function ThreadList({ initialCategory, gradeLevel }: ThreadListProps) {
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
           <Search
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+            className="absolute end-3 top-1/2 -translate-y-1/2 text-muted-foreground"
             size={20}
           />
           <input

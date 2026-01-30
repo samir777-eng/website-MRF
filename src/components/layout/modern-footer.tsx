@@ -23,9 +23,9 @@ export default function ModernFooter() {
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10 dark:opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-primary/20 to-violet-600/20"></div>
-        <div className="absolute top-10 left-10 w-32 h-32 bg-primary rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-violet-500 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 start-0 w-full h-full bg-gradient-to-r from-primary/20 to-violet-600/20"></div>
+        <div className="absolute top-10 start-10 w-32 h-32 bg-primary rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 end-10 w-40 h-40 bg-violet-500 rounded-full blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-4 py-16 relative z-10">

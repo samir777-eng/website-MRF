@@ -228,7 +228,7 @@ export function QuizEngine({ quiz }: QuizEngineProps) {
             <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
               تعليمات الاختبار
             </h4>
-            <ul className="text-sm text-blue-700 dark:text-blue-300 text-right space-y-1">
+            <ul className="text-sm text-blue-700 dark:text-blue-300 text-end space-y-1">
               <li>• اقرأ كل سؤال بعناية قبل الإجابة</li>
               <li>• يمكنك العودة لتعديل إجاباتك</li>
               <li>• ستحصل على تفسير لكل إجابة</li>
@@ -410,7 +410,7 @@ export function QuizEngine({ quiz }: QuizEngineProps) {
                     <Button
                       key={index}
                       variant={selectedAnswer === index ? "default" : "outline"}
-                      className="w-full text-right justify-start h-auto p-4 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                      className="w-full text-end justify-start h-auto p-4 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                       onClick={() => selectAnswer(index)}
                       onKeyDown={(e) => {
                         if (e.key === "ArrowDown" || e.key === "ArrowLeft") {

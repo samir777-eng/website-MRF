@@ -23,7 +23,7 @@ function DashboardSidebarComponent({ currentStreak }: DashboardSidebarProps) {
     <div className="space-y-6">
       {/* Streak Reward Card */}
       <Card className="border-0 shadow-xl bg-gradient-to-br from-orange-400 to-red-500 text-white overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-24 h-24 bg-white/10 rounded-full -translate-y-12 -translate-x-12" />
+        <div className="absolute top-0 start-0 w-24 h-24 bg-white/10 rounded-full -translate-y-12 -translate-x-12" />
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Flame className="w-5 h-5" />

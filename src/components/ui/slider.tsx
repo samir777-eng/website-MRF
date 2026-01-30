@@ -22,7 +22,7 @@ const Slider = React.forwardRef<
     {...props}
   >
     <SliderPrimitive.Track className="relative h-2 w-full grow overflow-hidden rounded-full bg-muted">
-      <SliderPrimitive.Range className="absolute h-full bg-primary rtl:right-0 rtl:left-auto" />
+      <SliderPrimitive.Range className="absolute h-full bg-primary start-0" />
     </SliderPrimitive.Track>
     <SliderPrimitive.Thumb className="relative block h-6 w-6 rounded-full border-2 border-primary bg-background shadow-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 before:absolute before:inset-[-10px] before:rounded-full" />
   </SliderPrimitive.Root>

@@ -63,7 +63,7 @@ export default function ForgotPasswordPage() {
     return (
       <div
         className="min-h-screen flex items-center justify-center page-bg-blue p-4"
-        dir="rtl"
+       
       >
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
@@ -94,7 +94,7 @@ export default function ForgotPasswordPage() {
                 <p className="font-medium text-foreground">{emailOrPhone}</p>
               </div>
 
-              <div className="space-y-3 text-sm text-muted-foreground text-right">
+              <div className="space-y-3 text-sm text-muted-foreground text-end">
                 <p className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
                   تحقق من صندوق الوارد أو الرسائل النصية
@@ -136,7 +136,7 @@ export default function ForgotPasswordPage() {
   return (
     <div
       className="min-h-screen flex items-center justify-center page-bg-blue p-4"
-      dir="rtl"
+     
     >
       <div className="w-full max-w-md">
         {/* Logo and Title */}
@@ -176,7 +176,7 @@ export default function ForgotPasswordPage() {
                   البريد الإلكتروني أو رقم الهاتف
                 </Label>
                 <div className="relative">
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                  <div className="absolute end-3 top-1/2 -translate-y-1/2 text-muted-foreground">
                     {emailOrPhone.includes("@") ? (
                       <Mail className="w-5 h-5" />
                     ) : (

@@ -31,7 +31,7 @@ export default function CelebrationsDemoPage() {
   const [showSettings, setShowSettings] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background pb-24" dir="rtl">
+    <div className="min-h-screen bg-background pb-24">
       <div className="container mx-auto px-4 py-8 space-y-8">
         {/* Header */}
         <div className="text-center space-y-4">

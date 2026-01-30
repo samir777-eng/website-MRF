@@ -17,7 +17,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" dir="rtl">
+    <div className="min-h-screen flex items-center justify-center p-4">
       <div className="text-center max-w-md">
         <div className="mb-8">
           <div className="flex justify-center mb-4">
@@ -30,7 +30,7 @@ export default function Error({
             عذراً، حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.
           </p>
           {process.env.NODE_ENV === "development" && (
-            <div className="mt-4 p-4 bg-muted rounded-lg text-right text-sm">
+            <div className="mt-4 p-4 bg-muted rounded-lg text-end text-sm">
               <p className="font-mono text-destructive">{error.message}</p>
             </div>
           )}

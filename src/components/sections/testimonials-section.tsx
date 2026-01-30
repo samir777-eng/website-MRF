@@ -64,7 +64,7 @@ export function TestimonialsSection() {
   const [selectedVideo, setSelectedVideo] = useState<Testimonial | null>(null);
 
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden" dir="rtl">
+    <section className="relative py-20 md:py-32 overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-success-500/5 rounded-full blur-3xl" />
@@ -169,7 +169,7 @@ function TestimonialCard({
           </button>
 
           {/* Score badge */}
-          <div className="absolute top-4 right-4 bg-success-500 text-white px-3 py-1.5 rounded-lg shadow-lg font-bold text-sm">
+          <div className="absolute top-4 end-4 bg-success-500 text-white px-3 py-1.5 rounded-lg shadow-lg font-bold text-sm">
             {testimonial.score}%
           </div>
         </div>
@@ -193,7 +193,7 @@ function TestimonialCard({
 
           {/* Quote */}
           <div className="relative">
-            <Quote className="w-6 h-6 text-primary/20 absolute -top-2 -right-2" />
+            <Quote className="w-6 h-6 text-primary/20 absolute -top-2 -end-2" />
             <p className="text-sm text-muted-foreground leading-relaxed pe-4">
               {testimonial.quote}
             </p>
@@ -239,7 +239,7 @@ function VideoModal({
       >
         <button
           onClick={onClose}
-          className="absolute -top-12 left-0 text-white hover:text-gray-300 text-lg font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded px-2 py-1"
+          className="absolute -top-12 start-0 text-white hover:text-gray-300 text-lg font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded px-2 py-1"
           aria-label="إغلاق نافذة الفيديو"
         >
           ✕ إغلاق

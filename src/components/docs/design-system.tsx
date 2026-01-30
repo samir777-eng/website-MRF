@@ -302,7 +302,7 @@ export function DesignSystem() {
                       {type.usage}
                     </div>
                   </div>
-                  <div className="text-right space-y-1">
+                  <div className="text-end space-y-1">
                     <div className="text-sm font-mono">
                       {type.size} / {type.lineHeight}
                     </div>
@@ -365,7 +365,7 @@ export function DesignSystem() {
                       </div>
                     </div>
                   </div>
-                  <div className="text-right">
+                  <div className="text-end">
                     <div className="font-mono text-sm">{spacing.value}</div>
                     <div className="text-sm text-gray-500">
                       {spacing.pixels}

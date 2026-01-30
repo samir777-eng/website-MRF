@@ -9,7 +9,7 @@ import { EnhancedSkeleton, SkeletonText } from "../EnhancedSkeleton";
 
 export function AboutSkeleton() {
   return (
-    <div className="min-h-screen" dir="rtl">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-primary/10">
         <div className="container mx-auto px-6 md:px-8">

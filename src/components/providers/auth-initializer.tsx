@@ -94,7 +94,7 @@ export function AuthInitializer({ children }: AuthInitializerProps) {
 
       {/* Token Expiry Warning */}
       {showExpiryWarning && (
-        <div className="fixed top-4 right-4 z-50 max-w-sm">
+        <div className="fixed top-4 end-4 z-50 max-w-sm">
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 shadow-lg">
             <div className="flex items-start">
               <div className="flex-shrink-0">
@@ -164,7 +164,7 @@ export function AuthDebugPanel() {
       {/* Debug toggle button */}
       <button
         onClick={() => setIsVisible(!isVisible)}
-        className="fixed bottom-4 left-4 z-50 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 transition-colors"
+        className="fixed bottom-4 start-4 z-50 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 transition-colors"
         title="Toggle Auth Debug Panel"
       >
         🔐
@@ -172,7 +172,7 @@ export function AuthDebugPanel() {
 
       {/* Debug panel */}
       {isVisible && (
-        <div className="fixed bottom-16 left-4 z-50 bg-white border border-gray-200 rounded-lg shadow-xl p-4 max-w-sm">
+        <div className="fixed bottom-16 start-4 z-50 bg-white border border-gray-200 rounded-lg shadow-xl p-4 max-w-sm">
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-900">Auth Debug</h3>
             <AuthDebugInfo />

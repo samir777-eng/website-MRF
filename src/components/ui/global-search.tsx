@@ -126,7 +126,7 @@ export function GlobalSearch() {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="max-w-2xl p-0" dir="rtl">
+      <DialogContent className="max-w-2xl p-0">
         <div className="flex items-center gap-3 p-4 border-b">
           <Search className="w-5 h-5 text-muted-foreground" />
           <Input
@@ -153,7 +153,7 @@ export function GlobalSearch() {
                 <button
                   key={index}
                   onClick={() => setQuery(search)}
-                  className="w-full text-right p-2 hover:bg-muted rounded text-sm"
+                  className="w-full text-end p-2 hover:bg-muted rounded text-sm"
                 >
                   {search}
                 </button>
@@ -170,7 +170,7 @@ export function GlobalSearch() {
                     key={result.id}
                     onClick={() => handleSelect(result)}
                     className={cn(
-                      "w-full flex items-center gap-3 p-3 rounded-lg text-right transition-colors",
+                      "w-full flex items-center gap-3 p-3 rounded-lg text-end transition-colors",
                       index === selectedIndex
                         ? "bg-primary/10 text-primary"
                         : "hover:bg-muted"

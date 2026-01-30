@@ -145,7 +145,7 @@ export function AchievementUnlock({
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: 400, opacity: 0 }}
           transition={{ type: "spring", damping: 20, stiffness: 200 }}
-          className="fixed top-20 left-4 z-[200] max-w-sm"
+          className="fixed top-20 start-4 z-[200] max-w-sm"
         >
           <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl p-1 shadow-2xl">
             <div className="bg-white dark:bg-gray-900 rounded-lg p-4 flex items-center gap-4">
@@ -239,7 +239,7 @@ export function ComboAnimation({ multiplier, show }: ComboProps) {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -50 }}
-          className="fixed top-32 left-4 z-[150]"
+          className="fixed top-32 start-4 z-[150]"
         >
           <motion.div
             animate={{ scale: [1, 1.1, 1] }}

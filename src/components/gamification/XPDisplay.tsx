@@ -126,7 +126,7 @@ export default function XPDisplay({
                 <CardContent className="p-8 text-center relative">
                   <button
                     onClick={() => setShowLevelUp(false)}
-                    className="absolute top-2 left-2 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                    className="absolute top-2 start-2 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                     aria-label="إغلاق"
                   >
                     <span className="text-white text-lg">✕</span>

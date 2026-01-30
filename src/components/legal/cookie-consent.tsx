@@ -103,10 +103,10 @@ export function CookieConsent() {
 
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-t shadow-lg"
+      className="fixed bottom-0 inset-x-0 z-50 bg-background/95 backdrop-blur-sm border-t shadow-lg"
       role="dialog"
       aria-label="إعدادات ملفات تعريف الارتباط"
-      dir="rtl"
+     
     >
       <div className="container mx-auto px-4 py-6 max-w-6xl">
         {!showDetails ? (

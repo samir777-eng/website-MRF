@@ -109,7 +109,7 @@ export function LectureProgressSummary() {
             value={(data.xpEarned / data.totalXpAvailable) * 100} 
             className="h-2" 
           />
-          <p className="text-xs text-muted-foreground mt-1 text-left">
+          <p className="text-xs text-muted-foreground mt-1 text-start">
             من أصل {data.totalXpAvailable.toLocaleString("ar-EG")} XP متاحة
           </p>
         </div>

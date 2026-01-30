@@ -17,7 +17,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
     <nav
       aria-label="مسار التنقل"
       className={cn("flex items-center gap-2 text-sm", className)}
-      dir="rtl"
+     
     >
       <Link
         href="/ar"

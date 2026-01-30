@@ -86,7 +86,7 @@ export function RedeemLectureModal({
   if (redeemSuccess) {
     return (
       <Dialog open={isOpen} onOpenChange={handleClose}>
-        <DialogContent className="sm:max-w-md" dir="rtl">
+        <DialogContent className="sm:max-w-md">
           <div className="text-center py-6 space-y-4">
             <div className="w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto">
               <CheckCircle className="w-8 h-8 text-green-600" />
@@ -124,7 +124,7 @@ export function RedeemLectureModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-lg" dir="rtl">
+      <DialogContent className="sm:max-w-lg">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-purple-600" />
@@ -155,7 +155,7 @@ export function RedeemLectureModal({
                 <button
                   key={bundle.id}
                   onClick={() => setSelectedBundle(bundle.id)}
-                  className={`w-full p-4 rounded-lg border-2 transition-all text-right ${
+                  className={`w-full p-4 rounded-lg border-2 transition-all text-end ${
                     isSelected
                       ? "border-purple-500 bg-purple-50 dark:bg-purple-950/20"
                       : "border-border hover:border-primary/50"

@@ -158,7 +158,7 @@ export default function NotificationsPage() {
   };
 
   return (
-    <div dir="rtl" className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-24">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 pb-24">
       <div className="container mx-auto px-4 py-8 max-w-3xl space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">

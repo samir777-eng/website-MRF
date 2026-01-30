@@ -18,7 +18,7 @@ import { CURRENT_LESSON, TEXT } from "../dashboard-data";
 function ContinueLearningCardComponent() {
   return (
     <Card className="border-0 shadow-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white overflow-hidden relative">
-      <div className="absolute top-0 left-0 w-40 h-40 bg-white/5 rounded-full -translate-y-20 -translate-x-20" />
+      <div className="absolute top-0 start-0 w-40 h-40 bg-white/5 rounded-full -translate-y-20 -translate-x-20" />
       <CardHeader>
         <CardTitle className="text-2xl flex items-center gap-2">
           <Play className="w-6 h-6" />
@@ -43,7 +43,7 @@ function ContinueLearningCardComponent() {
                 </Badge>
               </div>
             </div>
-            <div className="text-left">
+            <div className="text-start">
               <div className="text-3xl font-bold mb-1">
                 %{CURRENT_LESSON.progress}
               </div>

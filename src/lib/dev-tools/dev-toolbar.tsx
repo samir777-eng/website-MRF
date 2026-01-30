@@ -75,7 +75,7 @@ export function DevToolbar({
       <>
         <Button
           onClick={toggleToolbar}
-          className="fixed bottom-4 left-4 z-50 bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
+          className="fixed bottom-4 start-4 z-50 bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
           size="sm"
         >
           🛠️ Dev
@@ -95,7 +95,7 @@ export function DevToolbar({
 
   return (
     <>
-      <Card className="fixed bottom-4 left-4 z-50 w-80 shadow-lg">
+      <Card className="fixed bottom-4 start-4 z-50 w-80 shadow-lg">
         <CardContent className="p-3">
           <div className="flex items-center justify-between mb-3">
             <h3 className="font-semibold text-sm">🛠️ Developer Toolbar</h3>

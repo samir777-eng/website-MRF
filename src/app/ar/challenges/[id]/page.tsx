@@ -288,7 +288,7 @@ export default function ChallengeDetailPage() {
                 <button
                   key={index}
                   onClick={() => selectAnswer(index)}
-                  className={`w-full p-4 rounded-lg border-2 text-right transition-all ${
+                  className={`w-full p-4 rounded-lg border-2 text-end transition-all ${
                     selectedAnswer === index
                       ? "border-primary bg-primary/10"
                       : "border-border hover:border-primary/50"

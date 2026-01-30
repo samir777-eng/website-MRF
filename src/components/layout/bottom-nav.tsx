@@ -95,7 +95,7 @@ export function BottomNav() {
       className={`fixed bottom-0 inset-x-0 z-50 lg:hidden transition-transform duration-300 ${
         isVisible ? "translate-y-0" : "translate-y-full"
       }`}
-      dir="rtl"
+     
     >
       {/* Gradient overlay */}
       <div className="absolute inset-x-0 bottom-full h-8 bg-gradient-to-t from-background to-transparent pointer-events-none" />

@@ -103,7 +103,7 @@ export function DailyStreak({
             <div className="w-24 h-24 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center">
               <Flame className="h-12 w-12 text-white" />
             </div>
-            <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
+            <div className="absolute -bottom-2 -end-2 w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
               <span className="text-white text-sm font-bold">
                 {currentStreak}
               </span>

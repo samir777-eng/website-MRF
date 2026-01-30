@@ -93,7 +93,7 @@ export function CompactLessonCard({ lesson }: CompactLessonCardProps) {
                 </div>
               </div>
               {lesson.completed && (
-                <div className="absolute top-2 right-2">
+                <div className="absolute top-2 end-2">
                   <CheckCircle className="w-5 h-5 text-white fill-green-500" />
                 </div>
               )}

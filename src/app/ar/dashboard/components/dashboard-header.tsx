@@ -24,7 +24,7 @@ function DashboardHeaderComponent({
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
                 أ
               </div>
-              <div className="absolute -bottom-1 -left-1 w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center">
+              <div className="absolute -bottom-1 -start-1 w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center">
                 <Crown className="w-3 h-3 text-yellow-800" />
               </div>
             </div>

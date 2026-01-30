@@ -88,7 +88,7 @@ export function VirtualizedCourseList({
               </div>
             </div>
           </div>
-          <div className="text-left">
+          <div className="text-start">
             <div className="text-2xl font-bold text-green-600">
               {course.price}
             </div>

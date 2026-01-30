@@ -238,7 +238,7 @@ export function DailyQuestionCard({ onComplete }: DailyQuestionProps) {
               onClick={() => !isSubmitted && setSelectedAnswer(index)}
               disabled={isSubmitted}
               className={`
-                w-full p-4 rounded-lg border-2 text-right transition-all
+                w-full p-4 rounded-lg border-2 text-end transition-all
                 ${
                   selectedAnswer === index
                     ? isSubmitted

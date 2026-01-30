@@ -187,7 +187,7 @@ function VideoPlayerContent() {
     return (
       <div
         className="min-h-screen page-bg-purple flex items-center justify-center p-6"
-        dir="rtl"
+       
       >
         <Card className="max-w-md w-full">
           <CardContent className="p-8 text-center space-y-6">
@@ -239,7 +239,7 @@ function VideoPlayerContent() {
     return (
       <div
         className="min-h-screen page-bg-purple flex items-center justify-center p-6"
-        dir="rtl"
+       
       >
         <Card className="max-w-md w-full">
           <CardContent className="p-8 text-center space-y-6">
@@ -292,9 +292,9 @@ function VideoPlayerContent() {
 
   // Main video player
   return (
-    <div className="min-h-screen bg-black" dir="rtl">
+    <div className="min-h-screen bg-black">
       {/* Header */}
-      <div className="bg-gradient-to-b from-black/80 to-transparent absolute top-0 left-0 right-0 z-10 p-4">
+      <div className="bg-gradient-to-b from-black/80 to-transparent absolute top-0 inset-x-0 z-10 p-4">
         <div className="flex items-center justify-between">
           <Link href={`/ar/lectures/${lectureId}`}>
             <Button
@@ -340,7 +340,7 @@ function VideoPlayerContent() {
         </div>
 
         {/* Video Controls */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6">
+        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6">
           <div className="max-w-5xl mx-auto mb-4">
             <div className="flex items-center gap-3 text-white text-sm mb-2">
               <span>{formatTime(currentTime)}</span>

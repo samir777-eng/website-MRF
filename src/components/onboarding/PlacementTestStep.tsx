@@ -239,7 +239,7 @@ export function PlacementTestStep() {
                     whileTap={{ scale: 0.98 }}
                     onClick={() => handleSelectAnswer(index)}
                     className={cn(
-                      "w-full p-4 rounded-xl border-2 text-right transition-all",
+                      "w-full p-4 rounded-xl border-2 text-end transition-all",
                       "hover:shadow-md",
                       selectedAnswers[currentQuestion.id] === index
                         ? "border-primary bg-primary/10 shadow-lg shadow-primary/20"

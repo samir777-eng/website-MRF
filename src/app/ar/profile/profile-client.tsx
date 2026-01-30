@@ -72,7 +72,7 @@ export default function ProfileClient() {
 
   return (
     <div
-      dir="rtl"
+     
       className="min-h-screen bg-gradient-to-b from-background via-muted/30 to-background pb-24"
     >
       <div className="container mx-auto px-4 py-6 max-w-4xl space-y-6">
@@ -92,14 +92,14 @@ export default function ProfileClient() {
                       description: "سيتم إضافة هذه الميزة قريباً",
                     })
                   }
-                  className="absolute bottom-0 left-0 w-8 h-8 rounded-full bg-white text-indigo-600 flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+                  className="absolute bottom-0 start-0 w-8 h-8 rounded-full bg-white text-indigo-600 flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
                 >
                   <Camera className="w-4 h-4" />
                 </button>
               </div>
 
               {/* Info */}
-              <div className="flex-1 text-center md:text-right">
+              <div className="flex-1 text-center md:text-end">
                 <h1 className="text-2xl font-bold mb-1">{profileData.name}</h1>
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-white/80 text-sm">
                   <span className="flex items-center gap-1">

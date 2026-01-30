@@ -69,7 +69,7 @@ export function StudentPerformanceCard({ student, rank, showDetails: _showDetail
         </div>
 
         {/* Stats */}
-        <div className="text-left">
+        <div className="text-start">
           <p className="text-sm font-medium text-purple-400">{student.totalXP.toLocaleString("ar-EG")} XP</p>
           <div className="flex items-center gap-1 text-sm">
             {trendIcons[student.trend]}
@@ -78,7 +78,7 @@ export function StudentPerformanceCard({ student, rank, showDetails: _showDetail
         </div>
 
         {/* Accuracy */}
-        <div className="w-16 text-left">
+        <div className="w-16 text-start">
           <div className="text-sm font-bold text-white">{student.accuracy}%</div>
           <div className="w-full h-1.5 bg-gray-700 rounded-full overflow-hidden">
             <div
@@ -107,7 +107,7 @@ export function StudentCompactCard({ student }: { student: StudentSummary }) {
           {student.name.charAt(0)}
         </div>
         {isActive && (
-          <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-900" />
+          <div className="absolute -bottom-0.5 -end-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-900" />
         )}
       </div>
       <div className="flex-1 min-w-0">

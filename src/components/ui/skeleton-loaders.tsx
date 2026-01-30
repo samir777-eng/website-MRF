@@ -70,7 +70,7 @@ export function LeaderboardEntrySkeleton() {
           <Skeleton className="h-4 w-24" />
         </div>
       </div>
-      <div className="text-right space-y-2">
+      <div className="text-end space-y-2">
         <Skeleton className="h-5 w-16" />
         <Skeleton className="h-4 w-12" />
       </div>
@@ -215,7 +215,7 @@ export function VideoPlayerSkeleton() {
       <div className="absolute inset-0 flex items-center justify-center">
         <Skeleton className="h-16 w-16 rounded-full" />
       </div>
-      <div className="absolute bottom-0 left-0 right-0 p-4 space-y-2">
+      <div className="absolute bottom-0 inset-x-0 p-4 space-y-2">
         <Skeleton className="h-1 w-full" />
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">

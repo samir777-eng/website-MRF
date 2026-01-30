@@ -122,7 +122,7 @@ export function LivesPurchaseModal({
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
-      dir="rtl"
+     
     >
       <Card className="max-w-lg w-full max-h-[90vh] overflow-y-auto">
         <CardContent className="p-6 space-y-6">
@@ -167,14 +167,14 @@ export function LivesPurchaseModal({
                 <button
                   key={pkg.id}
                   onClick={() => setSelectedPackage(pkg.id)}
-                  className={`relative p-4 rounded-xl border-2 transition-all text-right ${
+                  className={`relative p-4 rounded-xl border-2 transition-all text-end ${
                     selectedPackage === pkg.id
                       ? "border-rose-500 bg-rose-50 dark:bg-rose-900/10"
                       : "border-border hover:border-rose-300"
                   }`}
                 >
                   {pkg.popular && (
-                    <Badge className="absolute -top-2 left-4 bg-gradient-to-r from-purple-600 to-pink-600">
+                    <Badge className="absolute -top-2 start-4 bg-gradient-to-r from-purple-600 to-pink-600">
                       <Sparkles className="w-3 h-3 ms-1" />
                       الأكثر شعبية
                     </Badge>
@@ -191,7 +191,7 @@ export function LivesPurchaseModal({
                       </div>
                       <span className="font-bold text-lg">{pkg.lives} روح</span>
                     </div>
-                    <div className="text-left">
+                    <div className="text-start">
                       <div className="flex items-center gap-2">
                         <Coins className="w-4 h-4 text-yellow-500" />
                         <span className="font-bold">{pkg.coinsPrice}</span>

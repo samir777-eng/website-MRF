@@ -35,7 +35,7 @@ export default function DistributorPage() {
   };
 
   return (
-    <div className="min-h-screen page-bg-blue" dir="rtl">
+    <div className="min-h-screen page-bg-blue">
       <div className="container mx-auto px-6 py-8">
         {/* Hero */}
         <div className="text-center mb-12">

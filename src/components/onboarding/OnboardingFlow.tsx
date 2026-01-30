@@ -95,10 +95,10 @@ export function OnboardingFlow({
         "min-h-screen bg-gradient-to-b from-background to-muted/20",
         className
       )}
-      dir="rtl"
+     
     >
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
+      <div className="fixed top-0 inset-x-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
         <div className="max-w-3xl mx-auto p-4">
           <div className="flex items-center justify-between mb-2">
             <h3 className="text-sm font-medium text-foreground">
@@ -130,7 +130,7 @@ export function OnboardingFlow({
       </div>
 
       {/* Navigation Footer */}
-      <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-border">
+      <div className="fixed bottom-0 inset-x-0 bg-background/95 backdrop-blur-sm border-t border-border">
         <div className="max-w-3xl mx-auto p-4">
           <div className="flex items-center justify-between gap-4">
             {/* Back Button */}

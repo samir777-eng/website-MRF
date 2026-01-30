@@ -24,7 +24,7 @@ export default function CartClient() {
 
   if (!cart || cart.items.length === 0) {
     return (
-      <div className="min-h-screen page-bg-blue" dir="rtl">
+      <div className="min-h-screen page-bg-blue">
         <div className="container mx-auto px-6 py-8">
           <div className="text-center py-16">
             <ShoppingCart className="w-24 h-24 mx-auto text-muted-foreground mb-6" />
@@ -51,7 +51,7 @@ export default function CartClient() {
   const totalItems = cart.items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <div className="min-h-screen page-bg-blue" dir="rtl">
+    <div className="min-h-screen page-bg-blue">
       <div className="container mx-auto px-6 py-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2">سلة التسوق</h1>
@@ -136,7 +136,7 @@ export default function CartClient() {
                         </div>
 
                         {/* Price */}
-                        <div className="text-left">
+                        <div className="text-start">
                           <p className="text-2xl font-bold text-primary">
                             {item.price * item.quantity} جنيه
                           </p>

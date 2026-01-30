@@ -116,7 +116,7 @@ export function QuizCard({
                 <Button
                   variant="outline"
                   className={cn(
-                    "w-full p-4 h-auto text-right justify-start text-wrap",
+                    "w-full p-4 h-auto text-end justify-start text-wrap",
                     "hover:bg-muted/50 transition-all duration-200",
                     isSelected && !hasAnswered && "ring-2 ring-primary-500",
                     showCorrect &&

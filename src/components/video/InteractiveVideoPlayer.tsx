@@ -522,7 +522,7 @@ export function InteractiveVideoPlayer({
                                 }
                               }}
                               className={`
-                          w-full p-4 rounded-lg border-2 text-right transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
+                          w-full p-4 rounded-lg border-2 text-end transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
                           ${
                             selectedAnswer === index
                               ? "border-purple-600 bg-purple-100 dark:bg-purple-900/20"
@@ -636,7 +636,7 @@ export function InteractiveVideoPlayer({
         )}
 
         {/* Video Controls */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-4">
           {/* Progress Bar */}
           <div className="mb-3">
             <input

@@ -258,7 +258,7 @@ export default function HomeworkPage() {
                 أحسنت! عمل ممتاز
               </p>
 
-              <div className="p-6 bg-background rounded-lg mb-8 text-right">
+              <div className="p-6 bg-background rounded-lg mb-8 text-end">
                 <h3 className="font-bold mb-3 flex items-center gap-2">
                   <BookOpen className="w-5 h-5 text-blue-600" />
                   ملاحظات المعلم:

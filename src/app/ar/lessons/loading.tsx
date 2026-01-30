@@ -8,7 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function LessonsLoading() {
   return (
-    <div className="container mx-auto px-4 py-8" dir="rtl">
+    <div className="container mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
         <Skeleton className="h-8 w-32 mb-2" />

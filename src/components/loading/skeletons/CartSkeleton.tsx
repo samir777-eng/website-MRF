@@ -9,7 +9,7 @@ import { EnhancedSkeleton } from "../EnhancedSkeleton";
 
 export function CartSkeleton() {
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 md:px-6 py-6 md:py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items - 2/3 width */}

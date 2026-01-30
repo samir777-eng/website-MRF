@@ -266,7 +266,7 @@ function ScrollToTopButton({ show }: { show: boolean }) {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-6 left-6 z-40 w-12 h-12 rounded-full bg-primary text-white shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center"
+          className="fixed bottom-6 start-6 z-40 w-12 h-12 rounded-full bg-primary text-white shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center"
           aria-label="العودة للأعلى"
         >
           <ArrowUp className="w-5 h-5" />
@@ -302,6 +302,7 @@ function UrgencyBanner() {
   if (dismissed) return null;
 
   return (
+<<<<<<< Updated upstream
     <motion.div
       initial={{ height: 0, opacity: 0 }}
       animate={{ height: "auto", opacity: 1 }}
@@ -315,9 +316,24 @@ function UrgencyBanner() {
           <span>{String(timeLeft.minutes).padStart(2, "0")}</span>:
           <span>{String(timeLeft.seconds).padStart(2, "0")}</span>
         </div>
+=======
+    <div className="bg-gradient-to-r from-primary via-violet-600 to-primary text-white py-2.5 px-4 relative">
+      <div className="container mx-auto flex items-center justify-center gap-3 text-sm">
+        <Sparkles className="w-4 h-4" />
+        <span className="font-bold">
+          سجّل الآن واحصل على جميع الدروس مجاناً — انضم لأكثر من 15,000 طالب!
+        </span>
+        <Link
+          href="/ar/signup"
+          className="inline-flex items-center gap-1 px-3 py-1 bg-white/20 hover:bg-white/30 rounded-full text-xs font-bold transition-colors"
+        >
+          ابدأ مجاناً
+          <ArrowLeft className="w-3 h-3 rtl:-scale-x-100" />
+        </Link>
+>>>>>>> Stashed changes
         <button
           onClick={() => setDismissed(true)}
-          className="absolute left-4 hover:bg-white/20 p-1 rounded transition-colors"
+          className="absolute start-4 hover:bg-white/20 p-1 rounded transition-colors"
           aria-label="إغلاق"
         >
           <X className="w-4 h-4" />
@@ -857,7 +873,7 @@ export default function ArabicHomeClient() {
                       >
                         <item.icon className="w-12 h-12 text-white" />
                       </div>
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-card border-2 border-primary flex items-center justify-center text-primary font-bold shadow-lg">
+                      <div className="absolute -top-2 -end-2 w-8 h-8 rounded-full bg-card border-2 border-primary flex items-center justify-center text-primary font-bold shadow-lg">
                         {item.step}
                       </div>
                     </div>
@@ -962,8 +978,13 @@ export default function ArabicHomeClient() {
                     className={`h-24 bg-gradient-to-br ${item.color} relative`}
                   >
                     <div className="absolute inset-0 bg-black/10" />
+<<<<<<< Updated upstream
                     <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-card to-transparent" />
                     <div className="absolute top-4 right-4 w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-2xl font-black">
+=======
+                    <div className="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-card to-transparent" />
+                    <div className="absolute top-4 end-4 w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-2xl font-black">
+>>>>>>> Stashed changes
                       {item.icon}
                     </div>
                   </div>
@@ -1178,7 +1199,7 @@ export default function ArabicHomeClient() {
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
                   <CardContent className="p-6 relative">
                     {/* Quote mark decoration */}
-                    <div className="absolute top-4 left-4 text-6xl text-primary/10 font-serif leading-none">
+                    <div className="absolute top-4 start-4 text-6xl text-primary/10 font-serif leading-none">
                       &ldquo;
                     </div>
 
@@ -1305,7 +1326,7 @@ export default function ArabicHomeClient() {
 
               {/* Platform */}
               <div className="p-8 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 relative">
-                <div className="absolute top-4 left-4 px-3 py-1 bg-green-500 rounded-full text-white text-sm font-bold">
+                <div className="absolute top-4 start-4 px-3 py-1 bg-green-500 rounded-full text-white text-sm font-bold">
                   الأفضل
                 </div>
                 <div className="text-center mb-8">

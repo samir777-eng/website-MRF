@@ -102,7 +102,7 @@ export function LevelUpAnimation({
             {/* Close Button */}
             <button
               onClick={handleClose}
-              className="absolute top-4 left-4 p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="absolute top-4 start-4 p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               aria-label="إغلاق"
             >
               <X className="w-5 h-5" />

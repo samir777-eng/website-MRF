@@ -65,7 +65,7 @@ export default function SettingsPage() {
 
   return (
     <div
-      dir="rtl"
+     
       className="min-h-screen bg-gradient-to-b from-background via-muted/30 to-background pb-24"
     >
       <div className="container mx-auto px-4 py-6 max-w-3xl space-y-6">

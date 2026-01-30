@@ -314,7 +314,7 @@ function DayCell({ day, onClick }: { day: DayData; onClick: () => void }) {
     >
       {day.date}
       {day.hasActivity && (
-        <CheckCircle className="w-3 h-3 absolute -top-1 -right-1 text-success-500 fill-success-500" />
+        <CheckCircle className="w-3 h-3 absolute -top-1 -end-1 text-success-500 fill-success-500" />
       )}
     </motion.button>
   );

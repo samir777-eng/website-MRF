@@ -95,15 +95,15 @@ export function HeroSection() {
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      dir="rtl"
+     
       suppressHydrationWarning
     >
       {/* Enhanced Animated Gradient Background - optimized for mobile */}
       {/* Enhanced Animated Gradient Background */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 dark:to-primary/10" />
-        <div className="absolute top-0 right-0 p-32 md:p-40 bg-primary/20 rounded-full blur-[100px] opacity-20 -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 p-32 md:p-40 bg-violet-500/20 rounded-full blur-[100px] opacity-20 translate-y-1/2 -translate-x-1/2" />
+        <div className="absolute top-0 end-0 p-32 md:p-40 bg-primary/20 rounded-full blur-[100px] opacity-20 -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 start-0 p-32 md:p-40 bg-violet-500/20 rounded-full blur-[100px] opacity-20 translate-y-1/2 -translate-x-1/2" />
       </div>
 
       <div className="relative z-10 container mx-auto px-6 py-24">
@@ -185,7 +185,7 @@ export function HeroSection() {
                 >
                   <button
                     onClick={() => setShowVideo(false)}
-                    className="absolute -top-12 left-0 text-white hover:text-gray-300 text-lg font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded px-2 py-1"
+                    className="absolute -top-12 start-0 text-white hover:text-gray-300 text-lg font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded px-2 py-1"
                     aria-label="إغلاق نافذة الفيديو"
                   >
                     ✕ إغلاق

@@ -125,7 +125,7 @@ const currentProgress = 36; // percentage
 
 export function LearningJourneyMap() {
   return (
-    <div className="space-y-8" dir="rtl">
+    <div className="space-y-8">
       {/* Header */}
       <div className="text-center space-y-2">
         <h2 className="text-3xl font-bold text-foreground">رحلتك التعليمية</h2>
@@ -231,7 +231,7 @@ function MilestoneItem({
 
         {/* Completion Badge */}
         {isCompleted && (
-          <div className="absolute -top-1 -right-1 w-6 h-6 bg-success-500 rounded-full flex items-center justify-center">
+          <div className="absolute -top-1 -end-1 w-6 h-6 bg-success-500 rounded-full flex items-center justify-center">
             <CheckCircle className="w-4 h-4 text-white" />
           </div>
         )}

@@ -97,7 +97,7 @@ export function Header() {
                   ر
                 </span>
               </div>
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center shadow-sm ring-2 ring-background">
+              <div className="absolute -bottom-1 -end-1 w-4 h-4 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center shadow-sm ring-2 ring-background">
                 <span className="text-[8px] text-white font-bold">ف</span>
               </div>
             </div>
@@ -425,7 +425,7 @@ export function Header() {
                 {/* Mobile Menu Header - User Profile */}
                 <div className="p-6 bg-gradient-to-br from-primary to-violet-800 relative overflow-hidden">
                   <div className="absolute inset-0 bg-[url('/patterns/grid.svg')] opacity-10"></div>
-                  <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+                  <div className="absolute -bottom-10 -end-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
 
                   <div className="relative z-10 flex items-center gap-4">
                     <AvatarDisplay

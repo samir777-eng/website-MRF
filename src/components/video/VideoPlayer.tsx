@@ -358,7 +358,7 @@ export default function VideoPlayer({
       </video>
 
       {/* Bookmarks Overlay */}
-      <div className="absolute top-0 left-0 right-0 h-1">
+      <div className="absolute top-0 inset-x-0 h-1">
         {bookmarks.map((bookmark, index) => (
           <div
             key={index}
@@ -371,7 +371,7 @@ export default function VideoPlayer({
       </div>
 
       {/* Chapter Markers */}
-      <div className="absolute top-2 left-0 right-0 h-1">
+      <div className="absolute top-2 inset-x-0 h-1">
         {chapters.map((chapter, index) => (
           <div
             key={index}
@@ -413,7 +413,7 @@ export default function VideoPlayer({
         )}
 
         {/* Top Controls */}
-        <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
+        <div className="absolute top-4 inset-x-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             {!isOnline && (
               <Badge className="bg-orange-600 text-white">
@@ -502,7 +502,7 @@ export default function VideoPlayer({
         </div>
 
         {/* Bottom Controls */}
-        <div className="absolute bottom-0 left-0 right-0 p-4">
+        <div className="absolute bottom-0 inset-x-0 p-4">
           {/* Progress Bar */}
           <div className="mb-4">
             <div className="relative">
@@ -624,7 +624,7 @@ export default function VideoPlayer({
 
                 {showSettings && (
                   <div
-                    className="absolute bottom-full right-0 mb-2 bg-black/90 backdrop-blur-sm rounded-xl p-4 min-w-48"
+                    className="absolute bottom-full end-0 mb-2 bg-black/90 backdrop-blur-sm rounded-xl p-4 min-w-48"
                     role="menu"
                     aria-label="إعدادات الفيديو"
                   >

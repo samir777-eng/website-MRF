@@ -161,7 +161,7 @@ export function SearchModal() {
 
   return (
     <Dialog open={isOpen} onOpenChange={closeSearch}>
-      <DialogContent className="max-w-3xl p-0 gap-0" dir="rtl">
+      <DialogContent className="max-w-3xl p-0 gap-0">
         <DialogHeader className="sr-only">
           <DialogTitle>البحث</DialogTitle>
         </DialogHeader>
@@ -273,7 +273,7 @@ export function SearchModal() {
                       key={`${result.type}-${result.id}`}
                       onClick={() => handleResultClick(result)}
                       className={cn(
-                        "w-full text-right p-3 rounded-lg transition-colors",
+                        "w-full text-end p-3 rounded-lg transition-colors",
                         "hover:bg-muted/50 focus:bg-muted/50 focus:outline-none",
                         index === selectedIndex && "bg-muted/50"
                       )}
@@ -364,7 +364,7 @@ export function SearchModal() {
                         <button
                           key={index}
                           onClick={() => handleRecentSearchClick(search)}
-                          className="w-full text-right p-2 rounded-lg hover:bg-muted/50 transition-colors text-sm"
+                          className="w-full text-end p-2 rounded-lg hover:bg-muted/50 transition-colors text-sm"
                         >
                           {search}
                         </button>

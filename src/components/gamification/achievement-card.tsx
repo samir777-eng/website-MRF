@@ -190,7 +190,7 @@ export function AchievementCard({
                 </div>
 
                 {/* Rarity Indicator */}
-                <div className="absolute -top-2 -right-2">
+                <div className="absolute -top-2 -end-2">
                   <Badge
                     className={`bg-gradient-to-r ${getRarityGradient(achievement.rarity)} text-white border-0 text-sm px-2 py-1`}
                   >
@@ -298,16 +298,16 @@ export function AchievementCard({
           </div>
 
           {/* Decorative Elements */}
-          <div className="absolute top-4 left-4 opacity-20">
+          <div className="absolute top-4 start-4 opacity-20">
             <Star className="w-6 h-6 text-yellow-400" />
           </div>
-          <div className="absolute top-4 right-4 opacity-20">
+          <div className="absolute top-4 end-4 opacity-20">
             <Trophy className="w-6 h-6 text-yellow-400" />
           </div>
-          <div className="absolute bottom-4 left-4 opacity-20">
+          <div className="absolute bottom-4 start-4 opacity-20">
             <Medal className="w-6 h-6 text-yellow-400" />
           </div>
-          <div className="absolute bottom-4 right-4 opacity-20">
+          <div className="absolute bottom-4 end-4 opacity-20">
             <Crown className="w-6 h-6 text-yellow-400" />
           </div>
         </CardContent>

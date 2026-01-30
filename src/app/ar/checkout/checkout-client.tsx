@@ -53,7 +53,7 @@ export default function CheckoutClient() {
 
   if (!cart || cart.items.length === 0) {
     return (
-      <div className="min-h-screen page-bg-blue" dir="rtl">
+      <div className="min-h-screen page-bg-blue">
         <div className="container mx-auto px-6 py-8">
           <div className="text-center py-16">
             <ShoppingCart className="w-24 h-24 mx-auto text-muted-foreground mb-6" />
@@ -78,7 +78,7 @@ export default function CheckoutClient() {
 
   if (orderPlaced) {
     return (
-      <div className="min-h-screen page-bg-blue" dir="rtl">
+      <div className="min-h-screen page-bg-blue">
         <div className="container mx-auto px-6 py-8">
           <div className="max-w-2xl mx-auto text-center py-16">
             <div className="w-24 h-24 bg-green-100 dark:bg-green-950/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -126,7 +126,7 @@ export default function CheckoutClient() {
   };
 
   return (
-    <div className="min-h-screen page-bg-blue" dir="rtl">
+    <div className="min-h-screen page-bg-blue">
       <div className="container mx-auto px-6 py-8">
         {/* Header */}
         <div className="mb-8">

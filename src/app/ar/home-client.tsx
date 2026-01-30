@@ -19,7 +19,6 @@ import {
   Brain,
   CheckCircle,
   ChevronDown,
-  Clock,
   Crown,
   GraduationCap,
   Play,
@@ -36,7 +35,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState, useRef, useCallback, useMemo } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import {
   motion,
   useInView,
@@ -151,70 +150,6 @@ function FloatingOrb({
     />
   );
 }
-
-// Live activity indicator component
-function LiveActivityIndicator() {
-  const [activity, setActivity] = useState({ count: 0, name: "" });
-
-  const activities = useMemo(
-    () => [
-      { name: "أحمد من القاهرة", action: "انضم للمنصة" },
-      { name: "فاطمة من الإسكندرية", action: "أكملت درساً" },
-      { name: "محمد من الجيزة", action: "حقق شارة جديدة" },
-      { name: "نور من المنصورة", action: "انضم للمنصة" },
-      { name: "سارة من طنطا", action: "أكملت اختباراً" },
-    ],
-    [],
-  );
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const randomActivity =
-        activities[Math.floor(Math.random() * activities.length)];
-      setActivity({
-        count: Math.floor(Math.random() * 50) + 10,
-        name: randomActivity.name,
-      });
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [activities]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="fixed bottom-24 left-6 z-40 hidden md:block"
-    >
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activity.name}
-          initial={{ opacity: 0, x: -20, scale: 0.9 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          exit={{ opacity: 0, x: 20, scale: 0.9 }}
-          className="flex items-center gap-3 px-4 py-3 bg-card/95 backdrop-blur-md border border-border/50 rounded-2xl shadow-lg"
-        >
-          <div className="relative">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white font-bold">
-              {activity.name?.charAt(0) || "م"}
-            </div>
-            <span className="absolute -top-1 -right-1 flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
-            </span>
-          </div>
-          <div className="text-sm">
-            <p className="font-semibold text-foreground">
-              {activity.name || "طالب جديد"}
-            </p>
-            <p className="text-muted-foreground text-xs">انضم للمنصة الآن</p>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-    </motion.div>
-  );
-}
-
 // Sticky CTA Bar component
 function StickyCTABar({ show }: { show: boolean }) {
   return (
@@ -225,7 +160,7 @@ function StickyCTABar({ show }: { show: boolean }) {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-primary via-violet-600 to-primary py-3 px-4 shadow-lg"
+          className="fixed top-0 inset-x-0 z-50 bg-gradient-to-r from-primary via-violet-600 to-primary py-3 px-4 shadow-lg"
         >
           <div className="container mx-auto flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 text-white">
@@ -240,7 +175,7 @@ function StickyCTABar({ show }: { show: boolean }) {
                 className="bg-white text-primary hover:bg-white/90 font-bold px-6 shadow-md hover:shadow-lg transition-all"
               >
                 سجّل الآن
-                <ArrowLeft className="w-4 h-4 me-1 rtl:rotate-180" />
+                <ArrowLeft className="w-4 h-4 me-1 rtl:-scale-x-100" />
               </Button>
             </Link>
           </div>
@@ -276,45 +211,26 @@ function ScrollToTopButton({ show }: { show: boolean }) {
   );
 }
 
-// Urgency banner component
-function UrgencyBanner() {
-  const [timeLeft, setTimeLeft] = useState({
-    hours: 23,
-    minutes: 59,
-    seconds: 59,
-  });
+// Promotional banner component (static — no fake countdown)
+function PromoBanner() {
   const [dismissed, setDismissed] = useState(false);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
-        if (prev.minutes > 0)
-          return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
-        if (prev.hours > 0)
-          return { hours: prev.hours - 1, minutes: 59, seconds: 59 };
-        return { hours: 23, minutes: 59, seconds: 59 };
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
 
   if (dismissed) return null;
 
   return (
-    <motion.div
-      initial={{ height: 0, opacity: 0 }}
-      animate={{ height: "auto", opacity: 1 }}
-      className="bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white py-2 px-4"
-    >
-      <div className="container mx-auto flex items-center justify-center gap-4 text-sm">
-        <Clock className="w-4 h-4 animate-pulse" />
-        <span className="font-bold">عرض خاص ينتهي خلال:</span>
-        <div className="flex items-center gap-1 font-mono font-bold bg-black/20 px-2 py-1 rounded">
-          <span>{String(timeLeft.hours).padStart(2, "0")}</span>:
-          <span>{String(timeLeft.minutes).padStart(2, "0")}</span>:
-          <span>{String(timeLeft.seconds).padStart(2, "0")}</span>
-        </div>
+    <div className="bg-gradient-to-r from-primary via-violet-600 to-primary text-white py-2.5 px-4 relative">
+      <div className="container mx-auto flex items-center justify-center gap-3 text-sm">
+        <Sparkles className="w-4 h-4" />
+        <span className="font-bold">
+          سجّل الآن واحصل على جميع الدروس مجاناً — انضم لأكثر من 15,000 طالب!
+        </span>
+        <Link
+          href="/ar/signup"
+          className="inline-flex items-center gap-1 px-3 py-1 bg-white/20 hover:bg-white/30 rounded-full text-xs font-bold transition-colors"
+        >
+          ابدأ مجاناً
+          <ArrowLeft className="w-3 h-3 rtl:rotate-180" />
+        </Link>
         <button
           onClick={() => setDismissed(true)}
           className="absolute left-4 hover:bg-white/20 p-1 rounded transition-colors"
@@ -323,11 +239,9 @@ function UrgencyBanner() {
           <X className="w-4 h-4" />
         </button>
       </div>
-    </motion.div>
+    </div>
   );
 }
-
-// Mobile floating CTA button
 function MobileFloatingCTA({ show }: { show: boolean }) {
   return (
     <AnimatePresence>
@@ -337,7 +251,7 @@ function MobileFloatingCTA({ show }: { show: boolean }) {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-gradient-to-t from-background via-background to-transparent md:hidden"
+          className="fixed bottom-0 inset-x-0 z-50 p-4 bg-gradient-to-t from-background via-background to-transparent md:hidden"
         >
           <Link href="/ar/signup" className="block">
             <Button
@@ -393,15 +307,12 @@ export default function ArabicHomeClient() {
   }
 
   return (
-    <div className="min-h-screen overflow-x-hidden" dir="rtl">
-      {/* Urgency Banner */}
-      <UrgencyBanner />
+    <div className="min-h-screen overflow-x-hidden">
+      {/* Promotional Banner */}
+      <PromoBanner />
 
       {/* Sticky CTA Bar */}
       <StickyCTABar show={showStickyCTA} />
-
-      {/* Live Activity Indicator */}
-      <LiveActivityIndicator />
 
       {/* Scroll to Top Button */}
       <ScrollToTopButton show={showScrollTop} />
@@ -716,7 +627,7 @@ export default function ArabicHomeClient() {
       {/* ============================================
           STATS SECTION - Animated Counters
           ============================================ */}
-      <section className="py-20 relative overflow-hidden">
+      <section className="py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
 
         <div className="container mx-auto px-6 relative">
@@ -790,7 +701,7 @@ export default function ArabicHomeClient() {
       {/* ============================================
           HOW IT WORKS - Modern Step Process
           ============================================ */}
-      <section className="py-24 relative">
+      <section className="py-16 md:py-24 relative">
         <div className="container mx-auto px-6">
           <motion.div
             variants={fadeInUp}
@@ -879,7 +790,7 @@ export default function ArabicHomeClient() {
       {/* ============================================
           GRADE SELECTION - Bento Style Cards
           ============================================ */}
-      <section className="py-24 bg-muted/30 relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-muted/30 relative overflow-hidden">
         <FloatingOrb
           className="w-[400px] h-[400px] bg-primary/20 top-[-10%] left-[-5%]"
           delay={1}
@@ -962,7 +873,7 @@ export default function ArabicHomeClient() {
                     className={`h-24 bg-gradient-to-br ${item.color} relative`}
                   >
                     <div className="absolute inset-0 bg-black/10" />
-                    <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-card to-transparent" />
+                    <div className="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-card to-transparent" />
                     <div className="absolute top-4 right-4 w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-2xl font-black">
                       {item.icon}
                     </div>
@@ -1017,7 +928,7 @@ export default function ArabicHomeClient() {
       {/* ============================================
           FEATURES - Bento Grid Layout
           ============================================ */}
-      <section className="py-24 relative">
+      <section className="py-16 md:py-24 relative">
         <div className="container mx-auto px-6">
           <motion.div
             variants={fadeInUp}
@@ -1095,7 +1006,7 @@ export default function ArabicHomeClient() {
                   {/* Learn more link */}
                   <div className="mt-4 flex items-center text-primary font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity">
                     <span>اكتشف المزيد</span>
-                    <ArrowLeft className="w-4 h-4 me-1 rtl:rotate-180" />
+                    <ArrowLeft className="w-4 h-4 me-1 rtl:-scale-x-100" />
                   </div>
                 </div>
               </motion.div>
@@ -1107,7 +1018,7 @@ export default function ArabicHomeClient() {
       {/* ============================================
           TESTIMONIALS - Modern Cards
           ============================================ */}
-      <section className="py-24 bg-muted/30 relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-muted/30 relative overflow-hidden">
         <FloatingOrb
           className="w-[300px] h-[300px] bg-violet-500/20 bottom-[10%] right-[-5%]"
           delay={3}
@@ -1247,7 +1158,7 @@ export default function ArabicHomeClient() {
       {/* ============================================
           COMPARISON SECTION
           ============================================ */}
-      <section className="py-24 relative">
+      <section className="py-16 md:py-24 relative">
         <div className="container mx-auto px-6">
           <motion.div
             variants={fadeInUp}
@@ -1346,7 +1257,7 @@ export default function ArabicHomeClient() {
       {/* ============================================
           FAQ SECTION
           ============================================ */}
-      <section className="py-24 bg-muted/30 relative">
+      <section className="py-16 md:py-24 bg-muted/30 relative">
         <div className="container mx-auto px-6">
           <motion.div
             variants={fadeInUp}
@@ -1408,7 +1319,7 @@ export default function ArabicHomeClient() {
                     value={`faq-${index}`}
                     className="bg-card rounded-2xl border-0 shadow-sm px-6 data-[state=open]:shadow-lg data-[state=open]:ring-1 data-[state=open]:ring-primary/20 transition-all duration-300 overflow-hidden"
                   >
-                    <AccordionTrigger className="text-right font-bold text-foreground hover:no-underline py-6 text-lg group">
+                    <AccordionTrigger className="text-end font-bold text-foreground hover:no-underline py-6 text-lg group">
                       <div className="flex items-center gap-3 w-full">
                         <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-data-[state=open]:bg-primary group-data-[state=open]:text-white transition-colors">
                           <faq.icon className="w-5 h-5" />
@@ -1418,7 +1329,7 @@ export default function ArabicHomeClient() {
                         </span>
                       </div>
                     </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground pb-6 leading-relaxed text-base pr-14">
+                    <AccordionContent className="text-muted-foreground pb-6 leading-relaxed text-base pe-14">
                       {faq.answer}
                     </AccordionContent>
                   </AccordionItem>
@@ -1432,7 +1343,7 @@ export default function ArabicHomeClient() {
       {/* ============================================
           FINAL CTA - Dramatic
           ============================================ */}
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-20 md:py-32 relative overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-violet-600 to-primary">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItSDI0di0yaDEyem0wLTRWMjhIMjR2MmgxMnptLTItMjJoMnYxMmgtMlY4em0tOCAwaDJ2MTJoLTJWOHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30" />

@@ -2,6 +2,13 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { NotificationBadge } from "@/components/ui/notification-badge";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import {
@@ -24,18 +31,20 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 export function Navigation() {
   const [mounted, setMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
-  const accountDropdownRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen((prev) => !prev);
+  }, []);
 
   // Handle mounting and auth check
   useEffect(() => {
@@ -44,31 +53,32 @@ export function Navigation() {
     setIsAuthenticated(!!user);
   }, []);
 
-  // Close dropdown on click outside
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        accountDropdownRef.current &&
-        !accountDropdownRef.current.contains(e.target as Node)
-      ) {
-        setAccountDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  // Close on escape
+  // Close mobile menu on escape
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setAccountDropdownOpen(false);
         setIsMenuOpen(false);
       }
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
+
+  // Mobile menu focus management
+  useEffect(() => {
+    if (isMenuOpen && mobileMenuRef.current) {
+      // Focus the first link in the mobile menu when it opens
+      const firstLink = mobileMenuRef.current.querySelector<HTMLElement>(
+        "a, button"
+      );
+      if (firstLink) {
+        firstLink.focus();
+      }
+    } else if (!isMenuOpen && menuButtonRef.current) {
+      // Return focus to the hamburger button when menu closes
+      menuButtonRef.current.focus();
+    }
+  }, [isMenuOpen]);
 
   const isActive = (href: string) => {
     if (href === "/ar") return pathname === "/ar";
@@ -102,7 +112,7 @@ export function Navigation() {
     <nav
       ref={navRef}
       className="fixed top-0 inset-x-0 z-[9999] w-full glass transition-all duration-300 border-b-0 overflow-visible"
-      dir="rtl"
+     
     >
       <div
         className="container mx-auto px-4 overflow-visible"
@@ -185,86 +195,76 @@ export function Navigation() {
                   {/* Notifications */}
                   <NotificationBadge />
 
-                  {/* Account Dropdown */}
-                  <div
-                    className="relative overflow-visible"
-                    ref={accountDropdownRef}
-                    style={{ overflow: "visible" }}
-                  >
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="flex items-center gap-1 px-2"
-                      onClick={() =>
-                        setAccountDropdownOpen(!accountDropdownOpen)
-                      }
-                    >
-                      <div className="w-7 h-7 rounded-full bg-gradient-primary flex items-center justify-center">
-                        <User className="w-3.5 h-3.5 text-white" />
-                      </div>
-                      <ChevronDown
-                        className={`w-3.5 h-3.5 transition-transform ${accountDropdownOpen ? "rotate-180" : ""}`}
-                      />
-                    </Button>
-
-                    {/* Dropdown Menu */}
-                    {accountDropdownOpen && (
-                      <div className="absolute left-0 mt-2 w-56 bg-popover border border-border rounded-xl shadow-xl py-2 z-50">
-                        {/* User Info */}
-                        <div className="px-4 py-3 border-b border-border">
-                          <p className="font-medium text-foreground">
-                            أحمد محمد
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            الصف الثالث الثانوي
-                          </p>
-                          <div className="flex items-center gap-2 mt-2">
-                            <Badge variant="secondary" className="text-xs">
-                              <Award className="w-3 h-3 ms-1" />
-                              المستوى 12
-                            </Badge>
-                          </div>
+                  {/* Account Dropdown — Radix UI for proper a11y */}
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="flex items-center gap-1 px-2"
+                      >
+                        <div className="w-7 h-7 rounded-full bg-gradient-primary flex items-center justify-center">
+                          <User className="w-3.5 h-3.5 text-white" />
                         </div>
+                        <ChevronDown className="w-3.5 h-3.5 transition-transform" />
+                      </Button>
+                    </DropdownMenuTrigger>
 
-                        {/* Menu Items */}
-                        <div className="py-1">
-                          {accountMenuItems.map((item) => {
-                            const Icon = item.icon;
-                            return (
-                              <Link
-                                key={item.href}
-                                href={item.href}
-                                className="flex items-center gap-3 px-4 py-2 text-sm text-foreground hover:bg-muted/50 transition-colors"
-                                onClick={() => setAccountDropdownOpen(false)}
-                              >
-                                <Icon className="w-4 h-4 text-muted-foreground" />
-                                {item.label}
-                              </Link>
-                            );
-                          })}
-                        </div>
-
-                        {/* Logout */}
-                        <div className="border-t border-border pt-1 mt-1">
-                          <button
-                            onClick={handleLogout}
-                            className="flex items-center gap-3 px-4 py-2 text-sm text-red-500 hover:bg-red-500/10 w-full transition-colors"
-                          >
-                            <LogOut className="w-4 h-4" />
-                            تسجيل الخروج
-                          </button>
+                    <DropdownMenuContent align="start" className="w-56">
+                      {/* User Info */}
+                      <div className="px-4 py-3 border-b border-border">
+                        <p className="font-medium text-foreground">
+                          أحمد محمد
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          الصف الثالث الثانوي
+                        </p>
+                        <div className="flex items-center gap-2 mt-2">
+                          <Badge variant="secondary" className="text-xs">
+                            <Award className="w-3 h-3 ms-1" />
+                            المستوى 12
+                          </Badge>
                         </div>
                       </div>
-                    )}
-                  </div>
+
+                      {/* Menu Items */}
+                      {accountMenuItems.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <DropdownMenuItem key={item.href} asChild>
+                            <Link
+                              href={item.href}
+                              className="flex items-center gap-3 cursor-pointer"
+                            >
+                              <Icon className="w-4 h-4 text-muted-foreground" />
+                              {item.label}
+                            </Link>
+                          </DropdownMenuItem>
+                        );
+                      })}
+
+                      {/* Logout */}
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem
+                        onClick={handleLogout}
+                        className="text-red-500 focus:text-red-500 focus:bg-red-500/10 cursor-pointer"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        تسجيل الخروج
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
 
                   {/* Mobile Menu Button */}
                   <Button
+                    ref={menuButtonRef}
                     variant="ghost"
                     size="icon"
                     className="md:hidden"
                     onClick={toggleMenu}
                     aria-label={isMenuOpen ? "إغلاق القائمة" : "فتح القائمة"}
+                    aria-expanded={isMenuOpen}
+                    aria-controls="mobile-menu"
                   >
                     {isMenuOpen ? (
                       <X className="w-5 h-5" />
@@ -324,7 +324,12 @@ export function Navigation() {
 
         {/* Mobile Menu - Only show after mount and when authenticated */}
         {mounted && isMenuOpen && isAuthenticated && (
-          <div className="md:hidden border-t border-border py-4 space-y-2">
+          <div
+            id="mobile-menu"
+            ref={mobileMenuRef}
+            role="menu"
+            className="md:hidden border-t border-border py-4 space-y-2"
+          >
             {authNavItems.map((item) => {
               const Icon = item.icon;
               const active = isActive(item.href);
@@ -332,6 +337,7 @@ export function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  role="menuitem"
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
                     active
                       ? "bg-gradient-primary text-white shadow-glow-sm"
@@ -352,6 +358,7 @@ export function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  role="menuitem"
                   className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -361,6 +368,7 @@ export function Navigation() {
               );
             })}
             <button
+              role="menuitem"
               onClick={handleLogout}
               className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-red-500 hover:bg-red-500/10 w-full transition-colors"
             >

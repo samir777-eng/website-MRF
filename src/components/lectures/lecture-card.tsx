@@ -14,6 +14,7 @@ import {
   Play,
   ShoppingCart,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { ActivateLectureModal } from "./activate-lecture-modal";
@@ -140,10 +141,12 @@ export function LectureCard({
       {/* Thumbnail */}
       <div className="relative aspect-video bg-muted">
         {thumbnail ? (
-          <img
+          <Image
             src={thumbnail}
             alt={title}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-primary/5">

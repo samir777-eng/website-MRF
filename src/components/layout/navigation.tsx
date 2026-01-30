@@ -209,7 +209,7 @@ export function Navigation() {
                         <div className="w-7 h-7 rounded-full bg-gradient-primary flex items-center justify-center">
                           <User className="w-3.5 h-3.5 text-white" />
                         </div>
-                        <ChevronDown className="w-3.5 h-3.5 transition-transform data-[state=open]:rotate-180" />
+                        <ChevronDown className="w-3.5 h-3.5 transition-transform group-data-[state=open]:rotate-180" />
                       </Button>
                     </DropdownMenuTrigger>
 

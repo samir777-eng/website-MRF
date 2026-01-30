@@ -151,6 +151,7 @@ export function GlobalSearch() {
               </div>
               {recentSearches.map((search, index) => (
                 <button
+                  type="button"
                   key={index}
                   onClick={() => setQuery(search)}
                   className="w-full text-end p-2 hover:bg-muted rounded text-sm"

@@ -363,6 +363,7 @@ export function SearchModal() {
                     <div className="space-y-1">
                       {recentSearches.map((search, index) => (
                         <button
+                          type="button"
                           key={index}
                           onClick={() => handleRecentSearchClick(search)}
                           className="w-full text-end p-2 rounded-lg hover:bg-muted/50 transition-colors text-sm"

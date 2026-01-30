@@ -165,6 +165,7 @@ export function LivesPurchaseModal({
             <div className="grid gap-3">
               {livesPackages.map((pkg) => (
                 <button
+                  type="button"
                   key={pkg.id}
                   onClick={() => setSelectedPackage(pkg.id)}
                   className={`relative p-4 rounded-xl border-2 transition-all text-end ${

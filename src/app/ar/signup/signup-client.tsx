@@ -1232,9 +1232,7 @@ export default function SignupClient() {
   // Success state
   if (isComplete) {
     return (
-      <div
-        className="min-h-screen bg-background flex items-center justify-center p-4"
-      >
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}

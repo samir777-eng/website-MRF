@@ -174,9 +174,7 @@ function HomeworkContent() {
   // Locked state
   if (homework.isLocked) {
     return (
-      <div
-        className="min-h-screen page-bg-purple flex items-center justify-center p-6"
-      >
+      <div className="min-h-screen page-bg-purple flex items-center justify-center p-6">
         <Card className="max-w-md w-full">
           <CardContent className="p-8 text-center space-y-6">
             <div className="w-20 h-20 bg-orange-100 dark:bg-orange-900/20 rounded-full flex items-center justify-center mx-auto">

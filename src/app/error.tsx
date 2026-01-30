@@ -17,7 +17,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div dir="rtl" className="min-h-screen flex items-center justify-center p-4">
       <div className="text-center max-w-md">
         <div className="mb-8">
           <div className="flex justify-center mb-4">

@@ -139,6 +139,7 @@ export function WeeklyRecap({ isOpen, onClose, weekData }: WeeklyRecapProps) {
           >
             {/* Close button */}
             <button
+              type="button"
               onClick={handleSkip}
               className="absolute top-4 start-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
             >
@@ -147,6 +148,7 @@ export function WeeklyRecap({ isOpen, onClose, weekData }: WeeklyRecapProps) {
 
             {/* Skip button */}
             <button
+              type="button"
               onClick={handleSkip}
               className="absolute top-4 end-4 z-10 text-sm text-white/60 hover:text-white transition-colors"
             >

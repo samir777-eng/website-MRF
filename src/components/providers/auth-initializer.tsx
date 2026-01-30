@@ -163,6 +163,7 @@ export function AuthDebugPanel() {
     <>
       {/* Debug toggle button */}
       <button
+        type="button"
         onClick={() => setIsVisible(!isVisible)}
         className="fixed bottom-4 start-4 z-50 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 transition-colors"
         title="Toggle Auth Debug Panel"

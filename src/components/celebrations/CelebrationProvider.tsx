@@ -1138,7 +1138,7 @@ function AchievementToast({
               {/* Close button */}
               <button
                 onClick={onClose}
-                className="absolute top-3 start-3 p-1.5 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                className="absolute top-3 end-3 p-1.5 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
               >
                 <X className="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" />
               </button>

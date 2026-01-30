@@ -65,7 +65,11 @@ export function Navigation() {
   }, []);
 
   // Mobile menu focus management
+  const previousIsMenuOpenRef = useRef(isMenuOpen);
   useEffect(() => {
+    const wasOpen = previousIsMenuOpenRef.current;
+    previousIsMenuOpenRef.current = isMenuOpen;
+
     if (isMenuOpen && mobileMenuRef.current) {
       // Focus the first link in the mobile menu when it opens
       const firstLink = mobileMenuRef.current.querySelector<HTMLElement>(
@@ -74,8 +78,8 @@ export function Navigation() {
       if (firstLink) {
         firstLink.focus();
       }
-    } else if (!isMenuOpen && menuButtonRef.current) {
-      // Return focus to the hamburger button when menu closes
+    } else if (wasOpen && !isMenuOpen && menuButtonRef.current) {
+      // Return focus to the hamburger button only when menu actually closes
       menuButtonRef.current.focus();
     }
   }, [isMenuOpen]);
@@ -112,7 +116,6 @@ export function Navigation() {
     <nav
       ref={navRef}
       className="fixed top-0 inset-x-0 z-[9999] w-full glass transition-all duration-300 border-b-0 overflow-visible"
-     
     >
       <div
         className="container mx-auto px-4 overflow-visible"
@@ -201,12 +204,12 @@ export function Navigation() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="flex items-center gap-1 px-2"
+                        className="group flex items-center gap-1 px-2"
                       >
                         <div className="w-7 h-7 rounded-full bg-gradient-primary flex items-center justify-center">
                           <User className="w-3.5 h-3.5 text-white" />
                         </div>
-                        <ChevronDown className="w-3.5 h-3.5 transition-transform" />
+                        <ChevronDown className="w-3.5 h-3.5 transition-transform data-[state=open]:rotate-180" />
                       </Button>
                     </DropdownMenuTrigger>
 
@@ -324,58 +327,63 @@ export function Navigation() {
 
         {/* Mobile Menu - Only show after mount and when authenticated */}
         {mounted && isMenuOpen && isAuthenticated && (
-          <div
+          <nav
             id="mobile-menu"
             ref={mobileMenuRef}
-            role="menu"
+            aria-label="القائمة الرئيسية"
             className="md:hidden border-t border-border py-4 space-y-2"
           >
-            {authNavItems.map((item) => {
-              const Icon = item.icon;
-              const active = isActive(item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  role="menuitem"
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
-                    active
-                      ? "bg-gradient-primary text-white shadow-glow-sm"
-                      : "text-muted-foreground hover:text-primary hover:bg-white/5"
-                  }`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Icon className="w-5 h-5" />
-                  {item.label}
-                </Link>
-              );
-            })}
+            <ul className="space-y-2">
+              {authNavItems.map((item) => {
+                const Icon = item.icon;
+                const active = isActive(item.href);
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                        active
+                          ? "bg-gradient-primary text-white shadow-glow-sm"
+                          : "text-muted-foreground hover:text-primary hover:bg-white/5"
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <Icon className="w-5 h-5" />
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
 
             <div className="border-t border-border my-2" />
-            {accountMenuItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  role="menuitem"
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
+            <ul className="space-y-2">
+              {accountMenuItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <Icon className="w-5 h-5" />
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-red-500 hover:bg-red-500/10 w-full transition-colors"
                 >
-                  <Icon className="w-5 h-5" />
-                  {item.label}
-                </Link>
-              );
-            })}
-            <button
-              role="menuitem"
-              onClick={handleLogout}
-              className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-red-500 hover:bg-red-500/10 w-full transition-colors"
-            >
-              <LogOut className="w-5 h-5" />
-              تسجيل الخروج
-            </button>
-          </div>
+                  <LogOut className="w-5 h-5" />
+                  تسجيل الخروج
+                </button>
+              </li>
+            </ul>
+          </nav>
         )}
       </div>
     </nav>

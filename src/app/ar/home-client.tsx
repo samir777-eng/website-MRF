@@ -229,11 +229,11 @@ function PromoBanner() {
           className="inline-flex items-center gap-1 px-3 py-1 bg-white/20 hover:bg-white/30 rounded-full text-xs font-bold transition-colors"
         >
           ابدأ مجاناً
-          <ArrowLeft className="w-3 h-3 rtl:rotate-180" />
+          <ArrowLeft className="w-3 h-3 rtl:-scale-x-100" />
         </Link>
         <button
           onClick={() => setDismissed(true)}
-          className="absolute left-4 hover:bg-white/20 p-1 rounded transition-colors"
+          className="absolute end-4 hover:bg-white/20 p-1 rounded transition-colors"
           aria-label="إغلاق"
         >
           <X className="w-4 h-4" />

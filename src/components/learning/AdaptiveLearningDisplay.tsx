@@ -76,7 +76,7 @@ export default function AdaptiveLearningDisplay({
     const recs = generateRecommendations(
       learningProfile,
       reviewItems,
-      mockRecentPerformance
+      mockRecentPerformance,
     );
     setRecommendations(recs);
   }, [reviewItems, learningProfile]);
@@ -470,7 +470,7 @@ export default function AdaptiveLearningDisplay({
                   </div>
                   <Progress value={accuracy} className="h-2" />
                 </div>
-              )
+              ),
             )}
           </CardContent>
         </Card>

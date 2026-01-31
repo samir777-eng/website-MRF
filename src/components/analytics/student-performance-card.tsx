@@ -11,7 +11,11 @@ interface StudentPerformanceCardProps {
   showDetails?: boolean;
 }
 
-export function StudentPerformanceCard({ student, rank, showDetails: _showDetails = false }: StudentPerformanceCardProps) {
+export function StudentPerformanceCard({
+  student,
+  rank,
+  showDetails: _showDetails = false,
+}: StudentPerformanceCardProps) {
   const trendIcons = {
     improving: <TrendingUp className="text-green-400" size={16} />,
     stable: <Minus className="text-gray-400" size={16} />,
@@ -38,12 +42,17 @@ export function StudentPerformanceCard({ student, rank, showDetails: _showDetail
       >
         {/* Rank */}
         {rank && (
-          <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
-            rank === 1 ? "bg-yellow-500 text-black" :
-            rank === 2 ? "bg-gray-400 text-black" :
-            rank === 3 ? "bg-amber-700 text-white" :
-            "bg-gray-700 text-gray-300"
-          }`}>
+          <div
+            className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
+              rank === 1
+                ? "bg-yellow-500 text-black"
+                : rank === 2
+                  ? "bg-gray-400 text-black"
+                  : rank === 3
+                    ? "bg-amber-700 text-white"
+                    : "bg-gray-700 text-gray-300"
+            }`}
+          >
             {rank}
           </div>
         )}
@@ -70,22 +79,30 @@ export function StudentPerformanceCard({ student, rank, showDetails: _showDetail
 
         {/* Stats */}
         <div className="text-left">
-          <p className="text-sm font-medium text-purple-400">{student.totalXP.toLocaleString("ar-EG")} XP</p>
+          <p className="text-sm font-medium text-purple-400">
+            {student.totalXP.toLocaleString("ar-EG")} XP
+          </p>
           <div className="flex items-center gap-1 text-sm">
             {trendIcons[student.trend]}
-            <span className={trendColors[student.trend]}>{trendLabels[student.trend]}</span>
+            <span className={trendColors[student.trend]}>
+              {trendLabels[student.trend]}
+            </span>
           </div>
         </div>
 
         {/* Accuracy */}
         <div className="w-16 text-left">
-          <div className="text-sm font-bold text-white">{student.accuracy}%</div>
+          <div className="text-sm font-bold text-white">
+            {student.accuracy}%
+          </div>
           <div className="w-full h-1.5 bg-gray-700 rounded-full overflow-hidden">
             <div
               className={`h-full rounded-full ${
-                student.accuracy >= 85 ? "bg-green-500" :
-                student.accuracy >= 70 ? "bg-yellow-500" :
-                "bg-red-500"
+                student.accuracy >= 85
+                  ? "bg-green-500"
+                  : student.accuracy >= 70
+                    ? "bg-yellow-500"
+                    : "bg-red-500"
               }`}
               style={{ width: `${student.accuracy}%` }}
             />
@@ -98,7 +115,8 @@ export function StudentPerformanceCard({ student, rank, showDetails: _showDetail
 
 // Compact version for lists
 export function StudentCompactCard({ student }: { student: StudentSummary }) {
-  const isActive = Date.now() - new Date(student.lastActiveAt).getTime() < 24 * 60 * 60 * 1000;
+  const isActive =
+    Date.now() - new Date(student.lastActiveAt).getTime() < 24 * 60 * 60 * 1000;
 
   return (
     <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-800/50 transition-colors">
@@ -118,4 +136,3 @@ export function StudentCompactCard({ student }: { student: StudentSummary }) {
     </div>
   );
 }
-

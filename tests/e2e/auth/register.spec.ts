@@ -23,7 +23,7 @@ test.describe("Registration Flow", () => {
 
     // Check submit button is in Arabic
     await expect(
-      page.getByRole("button", { name: /إنشاء حساب|تسجيل/ })
+      page.getByRole("button", { name: /إنشاء حساب|تسجيل/ }),
     ).toBeVisible();
   });
 
@@ -46,13 +46,13 @@ test.describe("Registration Flow", () => {
     // Should have visual indication of selection
     const parent = grade2Option.locator("..").first();
     const classes = await parent.getAttribute("class");
-    
+
     // Check for any selection indicator class
     expect(
       classes?.includes("selected") ||
-      classes?.includes("active") ||
-      classes?.includes("border-primary") ||
-      classes?.includes("bg-primary")
+        classes?.includes("active") ||
+        classes?.includes("border-primary") ||
+        classes?.includes("bg-primary"),
     ).toBeTruthy();
   });
 
@@ -91,7 +91,7 @@ test.describe("Registration Flow", () => {
 
     // First focusable element should be focused
     const activeElement = await page.evaluate(
-      () => document.activeElement?.tagName
+      () => document.activeElement?.tagName,
     );
     expect(["INPUT", "BUTTON", "A", "SELECT"]).toContain(activeElement);
   });
@@ -102,10 +102,10 @@ test.describe("Registration Flow", () => {
     await inputs.focus();
 
     const outlineWidth = await inputs.evaluate(
-      (el) => window.getComputedStyle(el).outlineWidth
+      (el) => window.getComputedStyle(el).outlineWidth,
     );
     const boxShadow = await inputs.evaluate(
-      (el) => window.getComputedStyle(el).boxShadow
+      (el) => window.getComputedStyle(el).boxShadow,
     );
 
     const hasFocusIndicator =
@@ -121,10 +121,10 @@ test.describe("Registration Flow", () => {
     await page.setViewportSize({ width: 375, height: 667 });
 
     const scrollWidth = await page.evaluate(
-      () => document.documentElement.scrollWidth
+      () => document.documentElement.scrollWidth,
     );
     const clientWidth = await page.evaluate(
-      () => document.documentElement.clientWidth
+      () => document.documentElement.clientWidth,
     );
 
     expect(scrollWidth).toBeLessThanOrEqual(clientWidth + 5);
@@ -144,4 +144,3 @@ test.describe("Registration Flow", () => {
     }
   });
 });
-

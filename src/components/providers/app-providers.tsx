@@ -58,11 +58,11 @@ interface AppProvidersProps {
  */
 function composeProviders(
   providers: Array<React.ComponentType<{ children: React.ReactNode }>>,
-  children: React.ReactNode
+  children: React.ReactNode,
 ): React.ReactNode {
   return providers.reduceRight(
     (acc, Provider) => <Provider>{acc}</Provider>,
-    children
+    children,
   );
 }
 

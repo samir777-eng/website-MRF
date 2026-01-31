@@ -109,14 +109,17 @@ export async function checkARIALandmarks(page: Page) {
 /**
  * Check that error messages are announced to screen readers
  */
-export async function checkErrorAnnouncement(page: Page, errorSelector: string) {
+export async function checkErrorAnnouncement(
+  page: Page,
+  errorSelector: string,
+) {
   const errorMessage = page.locator(errorSelector);
 
   const role = await errorMessage.getAttribute("role");
   const ariaLive = await errorMessage.getAttribute("aria-live");
 
   expect(
-    role === "alert" || ariaLive === "polite" || ariaLive === "assertive"
+    role === "alert" || ariaLive === "polite" || ariaLive === "assertive",
   ).toBe(true);
 }
 
@@ -129,10 +132,10 @@ export async function checkFocusVisible(page: Page, selector: string) {
 
   // Check that focus ring is visible
   const outlineWidth = await element.evaluate(
-    (el) => window.getComputedStyle(el).outlineWidth
+    (el) => window.getComputedStyle(el).outlineWidth,
   );
   const boxShadow = await element.evaluate(
-    (el) => window.getComputedStyle(el).boxShadow
+    (el) => window.getComputedStyle(el).boxShadow,
   );
 
   // Either outline or box-shadow should indicate focus
@@ -166,12 +169,11 @@ export async function checkSkipNavigation(page: Page) {
  */
 export async function checkNoHorizontalScroll(page: Page) {
   const scrollWidth = await page.evaluate(
-    () => document.documentElement.scrollWidth
+    () => document.documentElement.scrollWidth,
   );
   const clientWidth = await page.evaluate(
-    () => document.documentElement.clientWidth
+    () => document.documentElement.clientWidth,
   );
 
   expect(scrollWidth).toBeLessThanOrEqual(clientWidth + 5); // 5px tolerance
 }
-

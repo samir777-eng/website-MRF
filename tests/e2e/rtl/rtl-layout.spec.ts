@@ -82,7 +82,7 @@ test.describe("RTL Layout Verification", () => {
 
       const label = page.locator("label").first();
       const textAlign = await label.evaluate(
-        (el) => window.getComputedStyle(el).textAlign
+        (el) => window.getComputedStyle(el).textAlign,
       );
 
       // In RTL, text should be right-aligned or start (which resolves to right)
@@ -110,7 +110,7 @@ test.describe("RTL Layout Verification", () => {
 
       const emailInput = page.getByLabel("البريد الإلكتروني");
       const direction = await emailInput.evaluate(
-        (el) => window.getComputedStyle(el).direction
+        (el) => window.getComputedStyle(el).direction,
       );
 
       expect(direction).toBe("rtl");
@@ -121,7 +121,7 @@ test.describe("RTL Layout Verification", () => {
 
       const emailInput = page.getByLabel("البريد الإلكتروني");
       const textAlign = await emailInput.evaluate(
-        (el) => window.getComputedStyle(el).textAlign
+        (el) => window.getComputedStyle(el).textAlign,
       );
 
       expect(textAlign).toMatch(/right|start/);
@@ -154,7 +154,7 @@ test.describe("RTL Layout Verification", () => {
           if (dropdownBox && triggerBox) {
             // In RTL, dropdown should align to the right side of trigger
             expect(dropdownBox.x + dropdownBox.width).toBeGreaterThanOrEqual(
-              triggerBox.x
+              triggerBox.x,
             );
           }
         }
@@ -189,4 +189,3 @@ test.describe("RTL Layout Verification", () => {
     });
   });
 });
-

@@ -529,7 +529,7 @@ export const SHOP_ITEMS: ShopItem[] = [
 
 // Helper: Get gem reward for achievement rarity
 export function getGemRewardForRarity(
-  rarity: "common" | "rare" | "epic" | "legendary"
+  rarity: "common" | "rare" | "epic" | "legendary",
 ): number {
   const rewards = {
     common: GEM_REWARDS.ACHIEVEMENT_COMMON,
@@ -548,7 +548,7 @@ export function getShopItem(itemId: string): ShopItem | undefined {
 // Helper: Get shop items by category
 export function getShopItemsByCategory(category: ShopItemCategory): ShopItem[] {
   return SHOP_ITEMS.filter(
-    (item) => item.category === category && item.isActive
+    (item) => item.category === category && item.isActive,
   ).sort((a, b) => a.sortOrder - b.sortOrder);
 }
 
@@ -1712,7 +1712,7 @@ export const ACHIEVEMENTS_DATA: (Achievement & {
 
 // Helper: Get rarity color
 export function getRarityColor(
-  rarity: "common" | "rare" | "epic" | "legendary"
+  rarity: "common" | "rare" | "epic" | "legendary",
 ): string {
   const colors = {
     common: "gray",
@@ -1725,7 +1725,7 @@ export function getRarityColor(
 
 // Helper: Get rarity display name
 export function getRarityName(
-  rarity: "common" | "rare" | "epic" | "legendary"
+  rarity: "common" | "rare" | "epic" | "legendary",
 ): { en: string; ar: string } {
   const names = {
     common: { en: "Common", ar: "عادي" },

@@ -36,7 +36,7 @@ let lectureSettingsGetter: (lectureId: string) => LectureSettings | null;
  */
 export function initializeLifeService(
   accessStore: Map<string, LectureAccess>,
-  settingsGetter: (lectureId: string) => LectureSettings | null
+  settingsGetter: (lectureId: string) => LectureSettings | null,
 ) {
   lectureAccessStore = accessStore;
   lectureSettingsGetter = settingsGetter;
@@ -51,7 +51,7 @@ export function initializeLifeService(
  */
 export function useLife(
   request: UseLifeRequest,
-  userId: string
+  userId: string,
 ): UseLifeResponse {
   const { lectureAccessId } = request;
 
@@ -103,7 +103,7 @@ export function useLife(
   if (access.activationDate) {
     const activationDate = new Date(access.activationDate);
     const livesExpireAt = new Date(
-      activationDate.getTime() + settings.livesExpiryDays * 24 * 60 * 60 * 1000
+      activationDate.getTime() + settings.livesExpiryDays * 24 * 60 * 60 * 1000,
     );
     if (new Date() > livesExpireAt) {
       return {
@@ -157,7 +157,7 @@ export function useLife(
  */
 export function purchaseLife(
   request: PurchaseLifeRequest,
-  userId: string
+  userId: string,
 ): PurchaseLifeResponse {
   const { lectureAccessId, paymentType } = request;
 
@@ -319,6 +319,6 @@ export function getUserLifePurchases(userId: string): LifePurchase[] {
     }
   }
   return purchases.sort(
-    (a, b) => b.purchasedAt.getTime() - a.purchasedAt.getTime()
+    (a, b) => b.purchasedAt.getTime() - a.purchasedAt.getTime(),
   );
 }

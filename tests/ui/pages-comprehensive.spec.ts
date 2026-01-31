@@ -95,7 +95,7 @@ test.describe("Comprehensive Page Tests - Every Element", () => {
 
       test("footer is visible", async ({ page }) => {
         await page.evaluate(() =>
-          window.scrollTo(0, document.body.scrollHeight)
+          window.scrollTo(0, document.body.scrollHeight),
         );
         const footer = page.locator("footer").first();
         if ((await footer.count()) > 0) {
@@ -178,7 +178,7 @@ test.describe("Comprehensive Page Tests - Every Element", () => {
         for (let i = 0; i < Math.min(count, 10); i++) {
           const img = images.nth(i);
           const loaded = await img.evaluate(
-            (el) => (el as HTMLImageElement).complete
+            (el) => (el as HTMLImageElement).complete,
           );
           if (loaded) {
             expect(loaded).toBeTruthy();
@@ -216,8 +216,8 @@ test.describe("Comprehensive Page Tests - Every Element", () => {
         const headings = await page.locator("h1, h2, h3, h4, h5, h6").all();
         const levels = await Promise.all(
           headings.map((h) =>
-            h.evaluate((el) => parseInt(el.tagName.substring(1)))
-          )
+            h.evaluate((el) => parseInt(el.tagName.substring(1))),
+          ),
         );
 
         // Check no huge jumps (like h1 to h4)
@@ -238,7 +238,7 @@ test.describe("Comprehensive Page Tests - Every Element", () => {
       test("text alignment is correct for RTL", async ({ page }) => {
         const body = page.locator("body");
         const direction = await body.evaluate(
-          (el) => window.getComputedStyle(el).direction
+          (el) => window.getComputedStyle(el).direction,
         );
         expect(direction).toBe("rtl");
       });
@@ -253,10 +253,12 @@ test.describe("Comprehensive Page Tests - Every Element", () => {
       test("interactive elements are keyboard accessible", async ({ page }) => {
         await page.keyboard.press("Tab");
         const focused = await page.evaluate(
-          () => document.activeElement?.tagName
+          () => document.activeElement?.tagName,
         );
         expect(
-          ["A", "BUTTON", "INPUT", "SELECT", "TEXTAREA"].includes(focused || "")
+          ["A", "BUTTON", "INPUT", "SELECT", "TEXTAREA"].includes(
+            focused || "",
+          ),
         ).toBeTruthy();
       });
 
@@ -307,7 +309,7 @@ test.describe("Comprehensive Page Tests - Every Element", () => {
         await page.setViewportSize({ width: 375, height: 667 });
         await page.goto(pagePath);
         const scrollWidth = await page.evaluate(
-          () => document.body.scrollWidth
+          () => document.body.scrollWidth,
         );
         expect(scrollWidth).toBeLessThanOrEqual(380);
       });

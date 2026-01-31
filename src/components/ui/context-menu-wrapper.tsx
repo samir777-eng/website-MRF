@@ -22,7 +22,10 @@ interface ContextMenuWrapperProps {
   actions: ContextAction[];
 }
 
-export function ContextMenuWrapper({ children, actions }: ContextMenuWrapperProps) {
+export function ContextMenuWrapper({
+  children,
+  actions,
+}: ContextMenuWrapperProps) {
   return (
     <ContextMenu>
       <ContextMenuTrigger asChild>{children}</ContextMenuTrigger>
@@ -31,7 +34,9 @@ export function ContextMenuWrapper({ children, actions }: ContextMenuWrapperProp
           <div key={index}>
             <ContextMenuItem
               onClick={action.onClick}
-              className={action.variant === "destructive" ? "text-destructive" : ""}
+              className={
+                action.variant === "destructive" ? "text-destructive" : ""
+              }
             >
               <div className="flex items-center justify-between w-full gap-4">
                 <div className="flex items-center gap-2">
@@ -52,4 +57,3 @@ export function ContextMenuWrapper({ children, actions }: ContextMenuWrapperProp
     </ContextMenu>
   );
 }
-

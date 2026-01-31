@@ -42,7 +42,8 @@ export function EnhancedSkeleton({
 
   const style: React.CSSProperties = {};
   if (width) style.width = typeof width === "number" ? `${width}px` : width;
-  if (height) style.height = typeof height === "number" ? `${height}px` : height;
+  if (height)
+    style.height = typeof height === "number" ? `${height}px` : height;
 
   return (
     <div
@@ -50,7 +51,7 @@ export function EnhancedSkeleton({
         "bg-muted",
         variantClasses[variant],
         animationClasses[animation],
-        className
+        className,
       )}
       style={style}
       aria-hidden="true"
@@ -105,7 +106,7 @@ export function SkeletonCard({
     <div
       className={cn(
         "p-4 rounded-xl border border-border bg-card space-y-4",
-        className
+        className,
       )}
       {...props}
     >
@@ -114,7 +115,9 @@ export function SkeletonCard({
       )}
 
       <div className="space-y-3">
-        {hasTitle && <EnhancedSkeleton variant="text" width="75%" height="20px" />}
+        {hasTitle && (
+          <EnhancedSkeleton variant="text" width="75%" height="20px" />
+        )}
 
         {hasDescription && (
           <div className="space-y-2">
@@ -125,8 +128,16 @@ export function SkeletonCard({
 
         {hasActions && (
           <div className="flex gap-2 pt-2">
-            <EnhancedSkeleton variant="rectangular" width="100px" height="36px" />
-            <EnhancedSkeleton variant="rectangular" width="80px" height="36px" />
+            <EnhancedSkeleton
+              variant="rectangular"
+              width="100px"
+              height="36px"
+            />
+            <EnhancedSkeleton
+              variant="rectangular"
+              width="80px"
+              height="36px"
+            />
           </div>
         )}
       </div>
@@ -190,7 +201,7 @@ export function SkeletonStatCard({ className }: { className?: string }) {
     <div
       className={cn(
         "p-4 rounded-xl border border-border bg-card space-y-3",
-        className
+        className,
       )}
     >
       <div className="flex items-center justify-between">
@@ -222,7 +233,7 @@ export function SkeletonListItem({
     <div
       className={cn(
         "flex items-center gap-3 p-3 rounded-lg border border-border bg-card",
-        className
+        className,
       )}
     >
       {hasAvatar && <SkeletonAvatar size="md" />}
@@ -234,7 +245,9 @@ export function SkeletonListItem({
         )}
       </div>
 
-      {hasTrailing && <EnhancedSkeleton variant="text" width="48px" height="24px" />}
+      {hasTrailing && (
+        <EnhancedSkeleton variant="text" width="48px" height="24px" />
+      )}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback } from 'react';
-import { offlineVideoManager } from '@/lib/offline-video';
+import { useState, useEffect, useCallback } from "react";
+import { offlineVideoManager } from "@/lib/offline-video";
 
 interface UseOfflineVideoReturn {
   isVideoAvailable: boolean;
@@ -18,7 +18,7 @@ interface UseOfflineVideoReturn {
 export function useOfflineVideo(
   videoId: string,
   originalUrl: string,
-  title: string
+  title: string,
 ): UseOfflineVideoReturn {
   const [isVideoAvailable, setIsVideoAvailable] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
@@ -40,15 +40,15 @@ export function useOfflineVideo(
         setVideoUrl(originalUrl);
       }
     } catch (err) {
-      console.error('Error checking video availability:', err);
-      setError('فشل في التحقق من توفر الفيديو');
+      console.error("Error checking video availability:", err);
+      setError("فشل في التحقق من توفر الفيديو");
     }
   }, [videoId, originalUrl]);
 
   // Download video for offline viewing
   const downloadVideo = useCallback(async () => {
     if (!offlineVideoManager.isOnline()) {
-      setError('يجب الاتصال بالإنترنت لتحميل الفيديو');
+      setError("يجب الاتصال بالإنترنت لتحميل الفيديو");
       return;
     }
 
@@ -59,7 +59,7 @@ export function useOfflineVideo(
     try {
       // Simulate download progress (in real app, you'd track actual progress)
       const progressInterval = setInterval(() => {
-        setDownloadProgress(prev => {
+        setDownloadProgress((prev) => {
           if (prev >= 90) {
             clearInterval(progressInterval);
             return 90;
@@ -69,21 +69,20 @@ export function useOfflineVideo(
       }, 200);
 
       await offlineVideoManager.downloadVideo(videoId, originalUrl, title);
-      
+
       clearInterval(progressInterval);
       setDownloadProgress(100);
-      
+
       // Update video availability
       await checkVideoAvailability();
-      
+
       setTimeout(() => {
         setIsDownloading(false);
         setDownloadProgress(0);
       }, 1000);
-      
     } catch (err) {
-      console.error('Error downloading video:', err);
-      setError('فشل في تحميل الفيديو');
+      console.error("Error downloading video:", err);
+      setError("فشل في تحميل الفيديو");
       setIsDownloading(false);
       setDownloadProgress(0);
     }
@@ -97,8 +96,8 @@ export function useOfflineVideo(
       setVideoUrl(originalUrl);
       await updateCacheSize();
     } catch (err) {
-      console.error('Error removing video:', err);
-      setError('فشل في حذف الفيديو');
+      console.error("Error removing video:", err);
+      setError("فشل في حذف الفيديو");
     }
   }, [videoId, originalUrl]);
 
@@ -108,7 +107,7 @@ export function useOfflineVideo(
       const size = await offlineVideoManager.getCacheSize();
       setCacheSize(size);
     } catch (err) {
-      console.error('Error getting cache size:', err);
+      console.error("Error getting cache size:", err);
     }
   }, []);
 
@@ -118,13 +117,13 @@ export function useOfflineVideo(
     const handleOffline = () => setIsOnline(false);
 
     setIsOnline(navigator.onLine);
-    
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
 
     return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
     };
   }, []);
 
@@ -143,22 +142,28 @@ export function useOfflineVideo(
     removeVideo,
     isOnline,
     cacheSize,
-    error
+    error,
   };
 }
 
 // Hook for managing video progress
 export function useVideoProgress(videoId: string) {
-  const [progress, setProgress] = useState<{ currentTime: number; duration: number } | null>(null);
+  const [progress, setProgress] = useState<{
+    currentTime: number;
+    duration: number;
+  } | null>(null);
 
-  const saveProgress = useCallback(async (currentTime: number, duration: number) => {
-    try {
-      await offlineVideoManager.saveProgress(videoId, currentTime, duration);
-      setProgress({ currentTime, duration });
-    } catch (err) {
-      console.error('Error saving progress:', err);
-    }
-  }, [videoId]);
+  const saveProgress = useCallback(
+    async (currentTime: number, duration: number) => {
+      try {
+        await offlineVideoManager.saveProgress(videoId, currentTime, duration);
+        setProgress({ currentTime, duration });
+      } catch (err) {
+        console.error("Error saving progress:", err);
+      }
+    },
+    [videoId],
+  );
 
   const loadProgress = useCallback(async () => {
     try {
@@ -166,11 +171,11 @@ export function useVideoProgress(videoId: string) {
       if (savedProgress) {
         setProgress({
           currentTime: savedProgress.currentTime,
-          duration: savedProgress.duration
+          duration: savedProgress.duration,
         });
       }
     } catch (err) {
-      console.error('Error loading progress:', err);
+      console.error("Error loading progress:", err);
     }
   }, [videoId]);
 
@@ -181,7 +186,7 @@ export function useVideoProgress(videoId: string) {
   return {
     progress,
     saveProgress,
-    loadProgress
+    loadProgress,
   };
 }
 
@@ -193,7 +198,7 @@ export function useOfflineLessons() {
 
   const preloadLessons = useCallback(async (lessonIds: string[]) => {
     if (!offlineVideoManager.isOnline()) {
-      console.log('Cannot preload lessons while offline');
+      console.log("Cannot preload lessons while offline");
       return;
     }
 
@@ -206,18 +211,17 @@ export function useOfflineLessons() {
         await offlineVideoManager.downloadVideo(
           lessonId,
           `/videos/lesson-${lessonId}.mp4`,
-          `درس ${lessonId}`
+          `درس ${lessonId}`,
         );
-        
+
         setPreloadProgress(((i + 1) / lessonIds.length) * 100);
       }
 
       // Update cached lessons list
       const allCached = await offlineVideoManager.getAllCachedVideos();
-      setCachedLessons(allCached.map(video => video.id));
-      
+      setCachedLessons(allCached.map((video) => video.id));
     } catch (err) {
-      console.error('Error preloading lessons:', err);
+      console.error("Error preloading lessons:", err);
     } finally {
       setIsPreloading(false);
     }
@@ -226,9 +230,9 @@ export function useOfflineLessons() {
   const updateCachedLessons = useCallback(async () => {
     try {
       const allCached = await offlineVideoManager.getAllCachedVideos();
-      setCachedLessons(allCached.map(video => video.id));
+      setCachedLessons(allCached.map((video) => video.id));
     } catch (err) {
-      console.error('Error updating cached lessons:', err);
+      console.error("Error updating cached lessons:", err);
     }
   }, []);
 
@@ -241,6 +245,6 @@ export function useOfflineLessons() {
     preloadProgress,
     cachedLessons,
     preloadLessons,
-    updateCachedLessons
+    updateCachedLessons,
   };
 }

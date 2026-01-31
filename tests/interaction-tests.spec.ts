@@ -123,7 +123,7 @@ test.describe("Button Interactions", () => {
       const buttons = await page.locator("button").all();
       for (const button of buttons.slice(0, 5)) {
         const cursor = await button.evaluate(
-          (el) => window.getComputedStyle(el).cursor
+          (el) => window.getComputedStyle(el).cursor,
         );
         expect(["pointer", "default", "not-allowed"]).toContain(cursor);
       }
@@ -297,7 +297,7 @@ test.describe("Link Interactions", () => {
       const links = await page.locator("a").all();
       for (const link of links.slice(0, 5)) {
         const cursor = await link.evaluate(
-          (el) => window.getComputedStyle(el).cursor
+          (el) => window.getComputedStyle(el).cursor,
         );
         expect(cursor).toBe("pointer");
       }
@@ -312,7 +312,7 @@ test.describe("Link Interactions", () => {
       const links = await page.locator("a").all();
       for (const link of links.slice(0, 5)) {
         const textDecoration = await link.evaluate(
-          (el) => window.getComputedStyle(el).textDecoration
+          (el) => window.getComputedStyle(el).textDecoration,
         );
         // Links should have some visual indicator (not strictly enforced)
         expect(textDecoration).toBeDefined();
@@ -362,7 +362,7 @@ test.describe("Form Interactions", () => {
         if (isVisible) {
           await input.fill("invalid-email");
           const validity = await input.evaluate(
-            (el: HTMLInputElement) => el.validity.valid
+            (el: HTMLInputElement) => el.validity.valid,
           );
           expect(validity).toBeFalsy();
         }

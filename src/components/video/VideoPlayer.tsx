@@ -712,41 +712,41 @@ export default function VideoPlayer({
           {/* FocusTrap disabled for lint compliance */}
           <div
             className="bg-white dark:bg-gray-800 rounded-2xl p-6 max-w-md w-full mx-4"
-                  onClick={(e: React.MouseEvent) => e.stopPropagation()}
-                >
-                  <h3
-                    id="note-dialog-title"
-                    className="text-lg font-bold text-foreground mb-4"
-                  >
-                    إضافة ملاحظة
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    الوقت: {formatTime(noteTimestamp)}
-                  </p>
-                  <textarea
-                    value={noteText}
-                    onChange={(e) => setNoteText(e.target.value)}
-                    placeholder="اكتب ملاحظتك هنا..."
-                    className="w-full h-32 p-3 border border-muted/50 rounded-xl bg-background resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    autoFocus
-                  />
-                  <div className="flex items-center gap-3 mt-4">
-                    <Button
-                      onClick={saveNote}
-                      className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white focus-visible:ring-2 focus-visible:ring-offset-2"
-                    >
-                      حفظ الملاحظة
-                    </Button>
-                    <Button
-                      onClick={() => setShowNoteDialog(false)}
-                      variant="outline"
-                      className="focus-visible:ring-2 focus-visible:ring-offset-2"
-                    >
-                      إلغاء
-                    </Button>
-                  </div>
-                </div>
-              {/* FocusTrap removed */}
+            onClick={(e: React.MouseEvent) => e.stopPropagation()}
+          >
+            <h3
+              id="note-dialog-title"
+              className="text-lg font-bold text-foreground mb-4"
+            >
+              إضافة ملاحظة
+            </h3>
+            <p className="text-sm text-muted-foreground mb-4">
+              الوقت: {formatTime(noteTimestamp)}
+            </p>
+            <textarea
+              value={noteText}
+              onChange={(e) => setNoteText(e.target.value)}
+              placeholder="اكتب ملاحظتك هنا..."
+              className="w-full h-32 p-3 border border-muted/50 rounded-xl bg-background resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              autoFocus
+            />
+            <div className="flex items-center gap-3 mt-4">
+              <Button
+                onClick={saveNote}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white focus-visible:ring-2 focus-visible:ring-offset-2"
+              >
+                حفظ الملاحظة
+              </Button>
+              <Button
+                onClick={() => setShowNoteDialog(false)}
+                variant="outline"
+                className="focus-visible:ring-2 focus-visible:ring-offset-2"
+              >
+                إلغاء
+              </Button>
+            </div>
+          </div>
+          {/* FocusTrap removed */}
         </div>
       )}
     </div>

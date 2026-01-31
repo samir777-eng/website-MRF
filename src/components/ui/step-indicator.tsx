@@ -25,7 +25,7 @@ export function StepIndicator({
       <div
         className={cn(
           "flex",
-          vertical ? "flex-col gap-4" : "items-center justify-between"
+          vertical ? "flex-col gap-4" : "items-center justify-between",
         )}
       >
         {steps.map((step, index) => {
@@ -37,15 +37,12 @@ export function StepIndicator({
           return (
             <div
               key={index}
-              className={cn(
-                "flex items-center",
-                vertical ? "gap-4" : "flex-1"
-              )}
+              className={cn("flex items-center", vertical ? "gap-4" : "flex-1")}
             >
               <div
                 className={cn(
                   "flex items-center",
-                  vertical ? "flex-row gap-4" : "flex-col"
+                  vertical ? "flex-row gap-4" : "flex-col",
                 )}
               >
                 <div
@@ -54,7 +51,7 @@ export function StepIndicator({
                     isCompleted && "bg-primary text-primary-foreground",
                     isCurrent &&
                       "bg-primary text-primary-foreground ring-4 ring-primary/20",
-                    isUpcoming && "bg-muted text-muted-foreground"
+                    isUpcoming && "bg-muted text-muted-foreground",
                   )}
                 >
                   {isCompleted ? (
@@ -63,13 +60,15 @@ export function StepIndicator({
                     <span className="text-sm">{stepNumber}</span>
                   )}
                 </div>
-                <div className={cn(vertical ? "text-start" : "mt-3 text-center")}>
+                <div
+                  className={cn(vertical ? "text-start" : "mt-3 text-center")}
+                >
                   <div
                     className={cn(
                       "text-sm font-medium",
                       isCompleted && "text-foreground",
                       isCurrent && "text-primary",
-                      isUpcoming && "text-muted-foreground"
+                      isUpcoming && "text-muted-foreground",
                     )}
                   >
                     {step.label}
@@ -85,10 +84,8 @@ export function StepIndicator({
                 <div
                   className={cn(
                     "transition-all",
-                    vertical
-                      ? "w-0.5 h-8 ms-5 bg-border"
-                      : "flex-1 h-0.5 mx-3",
-                    isCompleted ? "bg-primary" : "bg-muted"
+                    vertical ? "w-0.5 h-8 ms-5 bg-border" : "flex-1 h-0.5 mx-3",
+                    isCompleted ? "bg-primary" : "bg-muted",
                   )}
                 />
               )}
@@ -99,4 +96,3 @@ export function StepIndicator({
     </div>
   );
 }
-

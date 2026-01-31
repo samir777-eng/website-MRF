@@ -29,27 +29,27 @@ export function BottomNav() {
 
   // Navigation items - Max 4 items for optimal mobile UX
   const navItems: NavItem[] = [
-    { 
-      href: "/ar/dashboard", 
-      label: "الرئيسية", 
+    {
+      href: "/ar/dashboard",
+      label: "الرئيسية",
       icon: Home,
       haptic: "light",
     },
-    { 
-      href: "/ar/lectures", 
-      label: "الدروس", 
+    {
+      href: "/ar/lectures",
+      label: "الدروس",
       icon: Video,
       haptic: "light",
     },
-    { 
-      href: "/ar/achievements", 
-      label: "التقدم", 
+    {
+      href: "/ar/achievements",
+      label: "التقدم",
       icon: Trophy,
       haptic: "light",
     },
-    { 
-      href: "/ar/profile", 
-      label: "أنا", 
+    {
+      href: "/ar/profile",
+      label: "أنا",
       icon: User,
       haptic: "light",
     },
@@ -81,7 +81,9 @@ export function BottomNav() {
   }, [lastScrollY]);
 
   // Trigger haptic feedback with proper pattern
-  const triggerHaptic = (pattern: "light" | "medium" | "heavy" | "selection" = "light") => {
+  const triggerHaptic = (
+    pattern: "light" | "medium" | "heavy" | "selection" = "light",
+  ) => {
     HapticManager.trigger(pattern);
   };
 
@@ -113,29 +115,35 @@ export function BottomNav() {
                   href={item.href}
                   onClick={() => triggerHaptic(item.haptic)}
                   className={`flex flex-col items-center justify-center flex-1 py-2 px-2 rounded-xl transition-all duration-200 ${
-                    active ? "text-primary scale-105" : "text-muted-foreground hover:text-foreground"
+                    active
+                      ? "text-primary scale-105"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                   aria-label={item.label}
                   aria-current={active ? "page" : undefined}
                 >
                   <div
                     className={`relative flex items-center justify-center w-11 h-11 rounded-xl transition-all duration-200 ${
-                      active 
-                        ? "bg-primary/10 shadow-lg shadow-primary/20" 
+                      active
+                        ? "bg-primary/10 shadow-lg shadow-primary/20"
                         : "hover:bg-muted/50"
                     }`}
                   >
-                    <Icon className={`w-6 h-6 transition-all ${
-                      active ? "text-primary" : "text-current"
-                    }`} />
+                    <Icon
+                      className={`w-6 h-6 transition-all ${
+                        active ? "text-primary" : "text-current"
+                      }`}
+                    />
                     {/* Active indicator dot */}
                     {active && (
                       <span className="absolute -bottom-1 w-1 h-1 bg-primary rounded-full" />
                     )}
                   </div>
-                  <span className={`text-[11px] mt-1 font-medium transition-all ${
-                    active ? "text-primary" : "text-current"
-                  }`}>
+                  <span
+                    className={`text-[11px] mt-1 font-medium transition-all ${
+                      active ? "text-primary" : "text-current"
+                    }`}
+                  >
                     {item.label}
                   </span>
                 </Link>

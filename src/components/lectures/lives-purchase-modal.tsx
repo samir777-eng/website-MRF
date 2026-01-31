@@ -56,10 +56,10 @@ export function LivesPurchaseModal({
   userCoins = 150,
 }: LivesPurchaseModalProps) {
   const [selectedPackage, setSelectedPackage] = useState<string | null>(
-    "life-3"
+    "life-3",
   );
   const [paymentMethod, setPaymentMethod] = useState<"coins" | "money">(
-    "coins"
+    "coins",
   );
   const [isPurchasing, setIsPurchasing] = useState(false);
   const [purchaseSuccess, setPurchaseSuccess] = useState(false);
@@ -110,7 +110,7 @@ export function LivesPurchaseModal({
                     key={i}
                     className="w-8 h-8 text-rose-500 fill-rose-500 animate-pulse"
                   />
-                )
+                ),
               )}
             </div>
           </CardContent>

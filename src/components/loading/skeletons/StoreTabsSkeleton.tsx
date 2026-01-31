@@ -5,7 +5,10 @@
  * Loading state for store page with tabs and product grids
  */
 
-import { EnhancedSkeleton, SkeletonCard as _SkeletonCard } from "../EnhancedSkeleton";
+import {
+  EnhancedSkeleton,
+  SkeletonCard as _SkeletonCard,
+} from "../EnhancedSkeleton";
 
 export function StoreTabsSkeleton() {
   return (
@@ -73,7 +76,10 @@ export function StoreTabsSkeleton() {
         {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {Array.from({ length: 9 }).map((_, i) => (
-            <div key={i} className="p-6 rounded-xl border border-border bg-card space-y-4">
+            <div
+              key={i}
+              className="p-6 rounded-xl border border-border bg-card space-y-4"
+            >
               {/* Product Image */}
               <EnhancedSkeleton
                 variant="rectangular"
@@ -103,8 +109,16 @@ export function StoreTabsSkeleton() {
               <div className="space-y-2">
                 {Array.from({ length: 3 }).map((_, j) => (
                   <div key={j} className="flex items-center gap-2">
-                    <EnhancedSkeleton variant="circular" width="16px" height="16px" />
-                    <EnhancedSkeleton variant="text" width="70%" height="14px" />
+                    <EnhancedSkeleton
+                      variant="circular"
+                      width="16px"
+                      height="16px"
+                    />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="70%"
+                      height="14px"
+                    />
                   </div>
                 ))}
               </div>

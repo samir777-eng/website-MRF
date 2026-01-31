@@ -5,7 +5,10 @@
  * Loading state for lessons page with lesson cards
  */
 
-import { EnhancedSkeleton, SkeletonListItem as _SkeletonListItem } from "./EnhancedSkeleton";
+import {
+  EnhancedSkeleton,
+  SkeletonListItem as _SkeletonListItem,
+} from "./EnhancedSkeleton";
 
 export function LessonsListSkeleton() {
   return (
@@ -33,7 +36,7 @@ export function LessonsListSkeleton() {
       {/* Lessons List */}
       <div className="space-y-3">
         <EnhancedSkeleton variant="text" width="150px" height="20px" />
-        
+
         {Array.from({ length: 8 }).map((_, i) => (
           <div
             key={i}

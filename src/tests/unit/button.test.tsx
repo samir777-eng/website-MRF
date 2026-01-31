@@ -25,7 +25,7 @@ describe("Button Component", () => {
       render(
         <Button asChild>
           <a href="/test">Link Button</a>
-        </Button>
+        </Button>,
       );
       const link = screen.getByRole("link");
       expect(link).toBeInTheDocument();
@@ -110,7 +110,7 @@ describe("Button Component", () => {
       render(
         <Button disabled onClick={handleClick}>
           Disabled
-        </Button>
+        </Button>,
       );
       const button = screen.getByRole("button");
       fireEvent.click(button);
@@ -197,7 +197,7 @@ describe("Button Component", () => {
         <Button>
           <span>🔍</span>
           Search
-        </Button>
+        </Button>,
       );
       expect(screen.getByText("Search")).toBeInTheDocument();
       expect(screen.getByText("🔍")).toBeInTheDocument();
@@ -207,7 +207,7 @@ describe("Button Component", () => {
       render(
         <Button size="icon" aria-label="Search">
           🔍
-        </Button>
+        </Button>,
       );
       const button = screen.getByRole("button", { name: /search/i });
       expect(button).toBeInTheDocument();

@@ -48,7 +48,7 @@ self.addEventListener("install", (event) => {
       })
       .catch((error) => {
         console.error("Service Worker: Failed to cache static assets", error);
-      })
+      }),
   );
 });
 
@@ -66,13 +66,13 @@ self.addEventListener("activate", (event) => {
               console.log("Service Worker: Deleting old cache", cacheName);
               return caches.delete(cacheName);
             }
-          })
+          }),
         );
       })
       .then(() => {
         console.log("Service Worker: Activated");
         return self.clients.claim();
-      })
+      }),
   );
 });
 
@@ -190,7 +190,7 @@ async function handlePageRequest(request) {
       {
         status: 200,
         headers: { "Content-Type": "text/html; charset=utf-8" },
-      }
+      },
     );
   }
 }
@@ -227,7 +227,7 @@ async function handleAPIRequest(request) {
       {
         status: 503,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   }
 }
@@ -258,7 +258,7 @@ async function handleImageRequest(request) {
       {
         status: 200,
         headers: { "Content-Type": "image/svg+xml" },
-      }
+      },
     );
   }
 }
@@ -472,7 +472,7 @@ self.addEventListener("push", (event) => {
   };
 
   event.waitUntil(
-    self.registration.showNotification("منصة الأستاذ رضا الفاروق", options)
+    self.registration.showNotification("منصة الأستاذ رضا الفاروق", options),
   );
 });
 

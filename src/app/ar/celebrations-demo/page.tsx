@@ -226,7 +226,7 @@ export default function CelebrationsDemoPage() {
                       "أكمل أول درس",
                       "star",
                       "common",
-                      25
+                      25,
                     )
                   }
                 >
@@ -241,7 +241,7 @@ export default function CelebrationsDemoPage() {
                       "احصل على 5 درجات كاملة",
                       "target",
                       "rare",
-                      100
+                      100,
                     )
                   }
                 >
@@ -256,7 +256,7 @@ export default function CelebrationsDemoPage() {
                       "أكمل 50 درس",
                       "award",
                       "epic",
-                      250
+                      250,
                     )
                   }
                 >
@@ -271,7 +271,7 @@ export default function CelebrationsDemoPage() {
                       "100 يوم متتالي!",
                       "crown",
                       "legendary",
-                      500
+                      500,
                     )
                   }
                 >
@@ -591,7 +591,7 @@ export default function CelebrationsDemoPage() {
                     "أكملت 10 دروس هذا الأسبوع!",
                     "award",
                     "rare",
-                    100
+                    100,
                   );
                 }, 2500);
               }}

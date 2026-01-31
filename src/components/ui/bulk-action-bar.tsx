@@ -30,7 +30,7 @@ export function BulkActionBar({
         "fixed bottom-6 left-1/2 -translate-x-1/2 z-50",
         "bg-background border rounded-lg shadow-lg p-4",
         "flex items-center gap-4",
-        className
+        className,
       )}
     >
       <div className="flex items-center gap-2">

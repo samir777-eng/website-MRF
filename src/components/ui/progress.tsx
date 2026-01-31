@@ -23,8 +23,9 @@ const sizeStyles = {
 type ProgressVariant = keyof typeof variantStyles;
 type ProgressSize = keyof typeof sizeStyles;
 
-interface ProgressProps
-  extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> {
+interface ProgressProps extends React.ComponentPropsWithoutRef<
+  typeof ProgressPrimitive.Root
+> {
   variant?: ProgressVariant;
   size?: ProgressSize;
   /** Show label with percentage above the bar */
@@ -50,7 +51,7 @@ const Progress = React.forwardRef<
       showPercentageInside = false,
       ...props
     },
-    ref
+    ref,
   ) => {
     const max = props.max ?? 100;
 
@@ -73,14 +74,14 @@ const Progress = React.forwardRef<
         value={sanitizedValue}
         className={cn(
           "relative w-full overflow-hidden rounded-full bg-muted",
-          sizeStyles[size]
+          sizeStyles[size],
         )}
         {...props}
       >
         <ProgressPrimitive.Indicator
           className={cn(
             "h-full rounded-full transition-all duration-300 ease-out",
-            variantStyles[variant]
+            variantStyles[variant],
           )}
           style={{
             width: `${percentage}%`,
@@ -109,7 +110,7 @@ const Progress = React.forwardRef<
         {progressBar}
       </div>
     );
-  }
+  },
 );
 Progress.displayName = ProgressPrimitive.Root.displayName;
 

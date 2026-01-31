@@ -17,10 +17,10 @@ test.describe("Tablet Responsive Design", () => {
 
     test("should not have horizontal scroll", async ({ page }) => {
       const scrollWidth = await page.evaluate(
-        () => document.documentElement.scrollWidth
+        () => document.documentElement.scrollWidth,
       );
       const clientWidth = await page.evaluate(
-        () => document.documentElement.clientWidth
+        () => document.documentElement.clientWidth,
       );
 
       expect(scrollWidth).toBeLessThanOrEqual(clientWidth + 5);
@@ -35,7 +35,7 @@ test.describe("Tablet Responsive Design", () => {
     test("should have readable font sizes", async ({ page }) => {
       const body = page.locator("body");
       const fontSize = await body.evaluate(
-        (el) => window.getComputedStyle(el).fontSize
+        (el) => window.getComputedStyle(el).fontSize,
       );
 
       expect(parseInt(fontSize)).toBeGreaterThanOrEqual(14);
@@ -84,10 +84,10 @@ test.describe("Tablet Responsive Design", () => {
 
     test("should not have horizontal scroll", async ({ page }) => {
       const scrollWidth = await page.evaluate(
-        () => document.documentElement.scrollWidth
+        () => document.documentElement.scrollWidth,
       );
       const clientWidth = await page.evaluate(
-        () => document.documentElement.clientWidth
+        () => document.documentElement.clientWidth,
       );
 
       expect(scrollWidth).toBeLessThanOrEqual(clientWidth + 5);
@@ -142,10 +142,10 @@ test.describe("Tablet Responsive Design", () => {
       await page.goto("/ar");
 
       const scrollWidth = await page.evaluate(
-        () => document.documentElement.scrollWidth
+        () => document.documentElement.scrollWidth,
       );
       const clientWidth = await page.evaluate(
-        () => document.documentElement.clientWidth
+        () => document.documentElement.clientWidth,
       );
 
       expect(scrollWidth).toBeLessThanOrEqual(clientWidth + 5);
@@ -160,4 +160,3 @@ test.describe("Tablet Responsive Design", () => {
     });
   });
 });
-

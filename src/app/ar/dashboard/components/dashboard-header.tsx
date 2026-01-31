@@ -88,4 +88,3 @@ const StatBadge = memo(function StatBadge({
 });
 
 export const DashboardHeader = memo(DashboardHeaderComponent);
-

@@ -33,5 +33,4 @@ export function GradualBlur({
   );
 }
 
-
 export default GradualBlur;

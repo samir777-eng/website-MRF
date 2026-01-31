@@ -92,7 +92,7 @@ const DialogContent = ({ className, children, dir }: DialogContentProps) => {
       dir={dir}
       className={cn(
         "relative bg-background border rounded-lg shadow-lg p-6 max-h-[90vh] overflow-y-auto",
-        className
+        className,
       )}
     >
       {children}
@@ -105,7 +105,7 @@ const DialogHeader = ({ className, children }: DialogHeaderProps) => {
     <div
       className={cn(
         "flex flex-col space-y-1.5 text-center sm:text-start mb-4",
-        className
+        className,
       )}
     >
       {children}
@@ -118,7 +118,7 @@ const DialogTitle = ({ className, children }: DialogTitleProps) => {
     <h2
       className={cn(
         "text-lg font-semibold leading-none tracking-tight",
-        className
+        className,
       )}
     >
       {children}
@@ -142,7 +142,7 @@ const DialogFooter = ({ className, children }: DialogFooterProps) => {
     <div
       className={cn(
         "flex flex-col-reverse sm:flex-row sm:justify-end gap-2 mt-4",
-        className
+        className,
       )}
     >
       {children}

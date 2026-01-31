@@ -2,7 +2,11 @@
 
 import { useCallback } from "react";
 import { useToast } from "@/hooks/useToast";
-import { parseAPIError, isRetriableError, ERROR_MESSAGES } from "@/lib/utils/error-messages";
+import {
+  parseAPIError,
+  isRetriableError,
+  ERROR_MESSAGES,
+} from "@/lib/utils/error-messages";
 
 interface ErrorHandlerOptions {
   showToast?: boolean;
@@ -14,7 +18,11 @@ interface ErrorHandlerOptions {
  * Custom hook for consistent error handling with toast notifications
  */
 export function useErrorHandler() {
-  const { error: showErrorToast, success: showSuccessToast, warning: showWarningToast } = useToast();
+  const {
+    error: showErrorToast,
+    success: showSuccessToast,
+    warning: showWarningToast,
+  } = useToast();
 
   /**
    * Handle an error with optional toast notification
@@ -22,7 +30,7 @@ export function useErrorHandler() {
   const handleError = useCallback(
     (error: unknown, options: ErrorHandlerOptions = {}) => {
       const { showToast = true, onError, retryAction } = options;
-      
+
       const message = parseAPIError(error);
       const canRetry = isRetriableError(error);
 
@@ -43,7 +51,7 @@ export function useErrorHandler() {
 
       return { message, canRetry };
     },
-    [showErrorToast, showWarningToast]
+    [showErrorToast, showWarningToast],
   );
 
   /**
@@ -54,7 +62,7 @@ export function useErrorHandler() {
       const message = customMessage || ERROR_MESSAGES[messageKey] || messageKey;
       showSuccessToast("نجاح", message);
     },
-    [showSuccessToast]
+    [showSuccessToast],
   );
 
   /**
@@ -63,25 +71,25 @@ export function useErrorHandler() {
   const withErrorHandling = useCallback(
     async <T>(
       operation: () => Promise<T>,
-      options: ErrorHandlerOptions & { 
+      options: ErrorHandlerOptions & {
         successMessage?: keyof typeof ERROR_MESSAGES;
         loadingMessage?: string;
-      } = {}
+      } = {},
     ): Promise<{ success: boolean; data?: T; error?: string }> => {
       try {
         const result = await operation();
-        
+
         if (options.successMessage) {
           handleSuccess(options.successMessage);
         }
-        
+
         return { success: true, data: result };
       } catch (error) {
         const { message } = handleError(error, options);
         return { success: false, error: message };
       }
     },
-    [handleError, handleSuccess]
+    [handleError, handleSuccess],
   );
 
   return {

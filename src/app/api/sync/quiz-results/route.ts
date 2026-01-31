@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
           error: "Invalid data",
           details: validation.error.issues,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
     }
 
     console.log(
-      `📥 Quiz results synced: ${syncResults.synced} entries, ${syncResults.duplicates} duplicates`
+      `📥 Quiz results synced: ${syncResults.synced} entries, ${syncResults.duplicates} duplicates`,
     );
 
     return NextResponse.json({
@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
     console.error("Sync quiz results error:", error);
     return NextResponse.json(
       { success: false, error: "Failed to sync quiz results" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -107,7 +107,7 @@ export async function GET(request: NextRequest) {
 
     // Get all results
     const allResults = Array.from(quizResultsStore.values()).sort(
-      (a, b) => b.completedAt - a.completedAt
+      (a, b) => b.completedAt - a.completedAt,
     );
 
     return NextResponse.json({
@@ -118,7 +118,7 @@ export async function GET(request: NextRequest) {
     console.error("Get quiz results error:", error);
     return NextResponse.json(
       { success: false, error: "Failed to get quiz results" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

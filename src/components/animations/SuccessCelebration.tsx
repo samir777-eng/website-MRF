@@ -1,26 +1,28 @@
 "use client";
 
 import { CELEBRATION_COLORS } from "@/lib/design-tokens";
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, Trophy, Star, Zap } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle, Trophy, Star, Zap } from "lucide-react";
 
 interface SuccessCelebrationProps {
   show: boolean;
   message?: string;
-  type?: 'achievement' | 'level-up' | 'quiz-complete' | 'lesson-complete';
+  type?: "achievement" | "level-up" | "quiz-complete" | "lesson-complete";
   xpGained?: number;
   onComplete?: () => void;
 }
 
-export function SuccessCelebration({ 
-  show, 
-  message = 'أحسنت!', 
-  type = 'achievement',
+export function SuccessCelebration({
+  show,
+  message = "أحسنت!",
+  type = "achievement",
   xpGained,
-  onComplete 
+  onComplete,
 }: SuccessCelebrationProps) {
-  const [confetti, setConfetti] = useState<Array<{ id: number; x: number; y: number; color: string; rotation: number }>>([]);
+  const [confetti, setConfetti] = useState<
+    Array<{ id: number; x: number; y: number; color: string; rotation: number }>
+  >([]);
 
   useEffect(() => {
     if (show) {
@@ -29,13 +31,16 @@ export function SuccessCelebration({
         id: i,
         x: Math.random() * window.innerWidth,
         y: -20,
-        color: CELEBRATION_COLORS.confetti[Math.floor(Math.random() * CELEBRATION_COLORS.confetti.length)],
-        rotation: Math.random() * 360
+        color:
+          CELEBRATION_COLORS.confetti[
+            Math.floor(Math.random() * CELEBRATION_COLORS.confetti.length)
+          ],
+        rotation: Math.random() * 360,
       }));
       setConfetti(newConfetti);
 
       // Trigger haptic feedback
-      if ('vibrate' in navigator) {
+      if ("vibrate" in navigator) {
         navigator.vibrate([50, 100, 50]);
       }
 
@@ -50,12 +55,12 @@ export function SuccessCelebration({
 
   const getIcon = () => {
     switch (type) {
-      case 'achievement':
+      case "achievement":
         return Trophy;
-      case 'level-up':
+      case "level-up":
         return Zap;
-      case 'quiz-complete':
-      case 'lesson-complete':
+      case "quiz-complete":
+      case "lesson-complete":
         return CheckCircle;
       default:
         return Star;
@@ -66,16 +71,16 @@ export function SuccessCelebration({
 
   const getGradient = () => {
     switch (type) {
-      case 'achievement':
-        return 'from-yellow-500 to-orange-500';
-      case 'level-up':
-        return 'from-purple-500 to-pink-500';
-      case 'quiz-complete':
-        return 'from-green-500 to-emerald-500';
-      case 'lesson-complete':
-        return 'from-blue-500 to-cyan-500';
+      case "achievement":
+        return "from-yellow-500 to-orange-500";
+      case "level-up":
+        return "from-purple-500 to-pink-500";
+      case "quiz-complete":
+        return "from-green-500 to-emerald-500";
+      case "lesson-complete":
+        return "from-blue-500 to-cyan-500";
       default:
-        return 'from-blue-500 to-purple-500';
+        return "from-blue-500 to-purple-500";
     }
   };
 
@@ -92,24 +97,24 @@ export function SuccessCelebration({
             onClick={onComplete}
           >
             {/* Confetti */}
-            {confetti.map(particle => (
+            {confetti.map((particle) => (
               <motion.div
                 key={particle.id}
                 className="absolute w-3 h-3 rounded-sm"
-                style={{ 
+                style={{
                   backgroundColor: particle.color,
                   left: particle.x,
-                  top: particle.y
+                  top: particle.y,
                 }}
                 initial={{ y: -20, opacity: 1, rotate: particle.rotation }}
                 animate={{
                   y: window.innerHeight + 20,
                   opacity: [1, 1, 0],
-                  rotate: particle.rotation + 720
+                  rotate: particle.rotation + 720,
                 }}
                 transition={{
                   duration: 3,
-                  ease: "easeIn"
+                  ease: "easeIn",
                 }}
               />
             ))}
@@ -124,7 +129,9 @@ export function SuccessCelebration({
               onClick={(e) => e.stopPropagation()}
             >
               {/* Glow Effect */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${getGradient()} opacity-20 rounded-3xl blur-xl`} />
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${getGradient()} opacity-20 rounded-3xl blur-xl`}
+              />
 
               {/* Content */}
               <div className="relative z-10 text-center">
@@ -156,8 +163,7 @@ export function SuccessCelebration({
                     transition={{ delay: 0.4, type: "spring" }}
                     className="inline-flex items-center gap-2 bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 px-6 py-3 rounded-full font-bold text-xl mb-4"
                   >
-                    <Zap className="w-6 h-6" />
-                    +{xpGained} XP
+                    <Zap className="w-6 h-6" />+{xpGained} XP
                   </motion.div>
                 )}
 
@@ -202,7 +208,15 @@ export function SuccessCelebration({
 }
 
 // Floating XP Animation
-export function FloatingXP({ value, show, onComplete }: { value: number; show: boolean; onComplete?: () => void }) {
+export function FloatingXP({
+  value,
+  show,
+  onComplete,
+}: {
+  value: number;
+  show: boolean;
+  onComplete?: () => void;
+}) {
   useEffect(() => {
     if (show) {
       const timer = setTimeout(() => {
@@ -223,8 +237,7 @@ export function FloatingXP({ value, show, onComplete }: { value: number; show: b
           className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none"
         >
           <div className="flex items-center gap-2 bg-purple-600 text-white px-6 py-3 rounded-full font-bold text-2xl shadow-2xl">
-            <Zap className="w-6 h-6" />
-            +{value} XP
+            <Zap className="w-6 h-6" />+{value} XP
           </div>
         </motion.div>
       )}
@@ -233,10 +246,18 @@ export function FloatingXP({ value, show, onComplete }: { value: number; show: b
 }
 
 // Level Up Animation
-export function LevelUpAnimation({ show, level, onComplete }: { show: boolean; level: number; onComplete?: () => void }) {
+export function LevelUpAnimation({
+  show,
+  level,
+  onComplete,
+}: {
+  show: boolean;
+  level: number;
+  onComplete?: () => void;
+}) {
   useEffect(() => {
     if (show) {
-      if ('vibrate' in navigator) {
+      if ("vibrate" in navigator) {
         navigator.vibrate([100, 50, 100, 50, 200]);
       }
       const timer = setTimeout(() => {

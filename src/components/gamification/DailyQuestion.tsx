@@ -118,7 +118,7 @@ export function DailyQuestionCard({ onComplete }: DailyQuestionProps) {
         dailyQuestionStreak: prev.dailyQuestionStreak + 1,
         longestStreak: Math.max(
           prev.longestStreak,
-          prev.dailyQuestionStreak + 1
+          prev.dailyQuestionStreak + 1,
         ),
         lastDailyQuestionDate: new Date(),
         totalQuestionsAnswered: prev.totalQuestionsAnswered + 1,

@@ -154,7 +154,7 @@ export function NotificationCenter() {
 
   const markAsRead = (id: string) => {
     setNotifications((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, read: true } : n))
+      prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
     );
   };
 
@@ -218,7 +218,7 @@ export function NotificationCenter() {
                   key={notification.id}
                   className={cn(
                     "flex items-start gap-3 p-3 cursor-pointer transition-colors",
-                    !notification.read && "bg-primary/5 dark:bg-primary/10"
+                    !notification.read && "bg-primary/5 dark:bg-primary/10",
                   )}
                   onClick={() => markAsRead(notification.id)}
                 >
@@ -226,7 +226,7 @@ export function NotificationCenter() {
                     className={cn(
                       "w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0",
                       config.bgColor,
-                      config.textColor
+                      config.textColor,
                     )}
                   >
                     <Icon className="w-5 h-5" />

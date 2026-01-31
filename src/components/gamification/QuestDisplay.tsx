@@ -79,7 +79,7 @@ export default function QuestDisplay({
           };
         }
         return quest;
-      })
+      }),
     );
   };
 

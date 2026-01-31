@@ -1,5 +1,5 @@
-import { useAuth } from '@/contexts/AuthContext';
-import type { GradeLevel } from '@/types/lecture';
+import { useAuth } from "@/contexts/AuthContext";
+import type { GradeLevel } from "@/types/lecture";
 
 export function useAccessControl() {
   const { user, isAuthenticated } = useAuth();
@@ -18,7 +18,7 @@ export function useAccessControl() {
    */
   const hasActiveSubscription = (): boolean => {
     if (!user) return false;
-    return user.subscriptionStatus === 'active';
+    return user.subscriptionStatus === "active";
   };
 
   /**
@@ -26,7 +26,7 @@ export function useAccessControl() {
    */
   const isSubscriptionExpired = (): boolean => {
     if (!user) return true;
-    return user.subscriptionStatus === 'expired';
+    return user.subscriptionStatus === "expired";
   };
 
   /**
@@ -34,7 +34,7 @@ export function useAccessControl() {
    */
   const isInTrial = (): boolean => {
     if (!user) return false;
-    return user.subscriptionStatus === 'trial';
+    return user.subscriptionStatus === "trial";
   };
 
   /**
@@ -62,56 +62,70 @@ export function useAccessControl() {
    * Check if user can access a lecture
    */
   const canAccessLecture = (lectureGrade: GradeLevel): boolean => {
-    return isAuthenticated && canAccessGrade(lectureGrade) && hasActiveSubscription();
+    return (
+      isAuthenticated && canAccessGrade(lectureGrade) && hasActiveSubscription()
+    );
   };
 
   /**
    * Check if user can access a quiz
    */
   const canAccessQuiz = (quizGrade: GradeLevel): boolean => {
-    return isAuthenticated && canAccessGrade(quizGrade) && hasActiveSubscription();
+    return (
+      isAuthenticated && canAccessGrade(quizGrade) && hasActiveSubscription()
+    );
   };
 
   /**
    * Check if user can access a lesson
    */
   const canAccessLesson = (lessonGrade: GradeLevel): boolean => {
-    return isAuthenticated && canAccessGrade(lessonGrade) && hasActiveSubscription();
+    return (
+      isAuthenticated && canAccessGrade(lessonGrade) && hasActiveSubscription()
+    );
   };
 
   /**
    * Check if user can access an exercise
    */
   const canAccessExercise = (exerciseGrade: GradeLevel): boolean => {
-    return isAuthenticated && canAccessGrade(exerciseGrade) && hasActiveSubscription();
+    return (
+      isAuthenticated &&
+      canAccessGrade(exerciseGrade) &&
+      hasActiveSubscription()
+    );
   };
 
   /**
    * Check if user can access homework
    */
   const canAccessHomework = (homeworkGrade: GradeLevel): boolean => {
-    return isAuthenticated && canAccessGrade(homeworkGrade) && hasActiveSubscription();
+    return (
+      isAuthenticated &&
+      canAccessGrade(homeworkGrade) &&
+      hasActiveSubscription()
+    );
   };
 
   /**
    * Check if user is a student
    */
   const isStudent = (): boolean => {
-    return user?.role === 'student';
+    return user?.role === "student";
   };
 
   /**
    * Check if user is a teacher
    */
   const isTeacher = (): boolean => {
-    return user?.role === 'teacher';
+    return user?.role === "teacher";
   };
 
   /**
    * Check if user is an admin
    */
   const isAdmin = (): boolean => {
-    return user?.role === 'admin';
+    return user?.role === "admin";
   };
 
   /**
@@ -119,48 +133,47 @@ export function useAccessControl() {
    */
   const getAccessDenialReason = (contentGrade: GradeLevel): string => {
     if (!isAuthenticated) {
-      return 'يجب تسجيل الدخول للوصول إلى هذا المحتوى';
+      return "يجب تسجيل الدخول للوصول إلى هذا المحتوى";
     }
-    
+
     if (!canAccessGrade(contentGrade)) {
-      return 'هذا المحتوى غير متاح لصفك الدراسي';
+      return "هذا المحتوى غير متاح لصفك الدراسي";
     }
-    
+
     if (!hasActiveSubscription()) {
       if (isSubscriptionExpired()) {
-        return 'اشتراكك منتهي. يرجى تجديد الاشتراك للمتابعة';
+        return "اشتراكك منتهي. يرجى تجديد الاشتراك للمتابعة";
       }
-      return 'يتطلب هذا المحتوى اشتراكاً نشطاً';
+      return "يتطلب هذا المحتوى اشتراكاً نشطاً";
     }
-    
-    return 'غير مصرح بالوصول';
+
+    return "غير مصرح بالوصول";
   };
 
   return {
     // Grade access
     canAccessGrade,
-    
+
     // Subscription
     hasActiveSubscription,
     isSubscriptionExpired,
     isInTrial,
     getDaysUntilExpiry,
     isSubscriptionExpiringSoon,
-    
+
     // Content access
     canAccessLecture,
     canAccessQuiz,
     canAccessLesson,
     canAccessExercise,
     canAccessHomework,
-    
+
     // Roles
     isStudent,
     isTeacher,
     isAdmin,
-    
+
     // Utilities
     getAccessDenialReason,
   };
 }
-

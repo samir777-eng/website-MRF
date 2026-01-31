@@ -41,7 +41,7 @@ export function Carousel({
     (index: number) => {
       if (emblaApi) emblaApi.scrollTo(index);
     },
-    [emblaApi]
+    [emblaApi],
   );
 
   const onSelect = useCallback(() => {
@@ -136,7 +136,7 @@ export function Carousel({
                 "h-2.5 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                 index === selectedIndex
                   ? "w-8 bg-primary"
-                  : "w-2.5 bg-muted hover:bg-muted-foreground/50"
+                  : "w-2.5 bg-muted hover:bg-muted-foreground/50",
               )}
             />
           ))}

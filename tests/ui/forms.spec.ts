@@ -139,7 +139,7 @@ test.describe("Form UI Tests - Complete Coverage", () => {
         const hasLabel =
           (await page.locator(`label[for="${passwordId}"]`).count()) > 0;
         expect(
-          hasLabel || !!passwordAriaLabel || !!passwordPlaceholder
+          hasLabel || !!passwordAriaLabel || !!passwordPlaceholder,
         ).toBeTruthy();
       } else {
         expect(!!passwordAriaLabel || !!passwordPlaceholder).toBeTruthy();
@@ -218,7 +218,7 @@ test.describe("Form UI Tests - Complete Coverage", () => {
     test("password strength indicator updates", async ({ page }) => {
       const passwordInput = page.locator('input[type="password"]').first();
       const strengthIndicator = page.locator(
-        '[class*="strength"], [class*="قوة"]'
+        '[class*="strength"], [class*="قوة"]',
       );
 
       if ((await strengthIndicator.count()) > 0) {
@@ -266,7 +266,7 @@ test.describe("Form UI Tests - Complete Coverage", () => {
 
         // Check for suggestions dropdown
         const suggestions = page.locator(
-          '[role="listbox"], .suggestions, .autocomplete'
+          '[role="listbox"], .suggestions, .autocomplete',
         );
 
         if ((await suggestions.count()) > 0) {
@@ -437,7 +437,7 @@ test.describe("Form UI Tests - Complete Coverage", () => {
       await page.waitForTimeout(500);
 
       const errorRegion = page.locator(
-        '[role="alert"], [aria-live="assertive"]'
+        '[role="alert"], [aria-live="assertive"]',
       );
 
       if ((await errorRegion.count()) > 0) {
@@ -449,7 +449,7 @@ test.describe("Form UI Tests - Complete Coverage", () => {
       await page.goto("/ar/auth/register");
 
       const requiredInputs = page.locator(
-        'input[required], input[aria-required="true"]'
+        'input[required], input[aria-required="true"]',
       );
       const count = await requiredInputs.count();
 
@@ -466,14 +466,14 @@ test.describe("Form UI Tests - Complete Coverage", () => {
       await page.keyboard.press("Tab");
 
       const focused = await page.evaluate(
-        () => document.activeElement?.tagName
+        () => document.activeElement?.tagName,
       );
 
       // Accept common focusable elements including links and textareas
       expect(
         ["INPUT", "BUTTON", "SELECT", "A", "TEXTAREA", "BODY"].includes(
-          focused || ""
-        )
+          focused || "",
+        ),
       ).toBeTruthy();
     });
   });
@@ -541,7 +541,7 @@ test.describe("Form UI Tests - Complete Coverage", () => {
       const form = page.locator("form").first();
 
       const direction = await form.evaluate(
-        (el) => window.getComputedStyle(el).direction
+        (el) => window.getComputedStyle(el).direction,
       );
 
       expect(direction).toBe("rtl");
@@ -553,7 +553,7 @@ test.describe("Form UI Tests - Complete Coverage", () => {
       const label = page.locator("label").first();
 
       const textAlign = await label.evaluate(
-        (el) => window.getComputedStyle(el).textAlign
+        (el) => window.getComputedStyle(el).textAlign,
       );
 
       expect(["right", "start"].includes(textAlign)).toBeTruthy();

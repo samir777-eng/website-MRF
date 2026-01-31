@@ -1,11 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { rateLimit, getResetTime } from '@/lib/security/rate-limiter';
-import { consumeEnergySchema } from '@/lib/gamification/server-types';
-import { consumeEnergy } from '@/lib/gamification/server-utils';
+import { NextRequest, NextResponse } from "next/server";
+import { rateLimit, getResetTime } from "@/lib/security/rate-limiter";
+import { consumeEnergySchema } from "@/lib/gamification/server-types";
+import { consumeEnergy } from "@/lib/gamification/server-utils";
 
 /**
  * POST /api/gamification/energy
- * 
+ *
  * Consume energy for an action.
  * Server-side validated to prevent energy manipulation.
  */
@@ -17,24 +17,24 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: 'طلبات كثيرة جداً. يرجى المحاولة لاحقاً.',
+          error: "طلبات كثيرة جداً. يرجى المحاولة لاحقاً.",
           retryAfter,
         },
         {
           status: 429,
-          headers: { 'Retry-After': retryAfter.toString() },
-        }
+          headers: { "Retry-After": retryAfter.toString() },
+        },
       );
     }
 
     // Get user ID from auth cookie/session
-    const authToken = request.cookies.get('auth-token')?.value;
-    const userId = authToken ? extractUserIdFromToken(authToken) : 'demo-user';
-    
+    const authToken = request.cookies.get("auth-token")?.value;
+    const userId = authToken ? extractUserIdFromToken(authToken) : "demo-user";
+
     if (!userId) {
       return NextResponse.json(
-        { success: false, error: 'غير مصرح. يرجى تسجيل الدخول.' },
-        { status: 401 }
+        { success: false, error: "غير مصرح. يرجى تسجيل الدخول." },
+        { status: 401 },
       );
     }
 
@@ -46,10 +46,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: 'بيانات غير صالحة',
+          error: "بيانات غير صالحة",
           errors: validation.error.flatten().fieldErrors,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -60,13 +60,13 @@ export async function POST(request: NextRequest) {
 
     if (!result.success) {
       return NextResponse.json(
-        { 
-          success: false, 
+        {
+          success: false,
           error: result.error,
           currentEnergy: result.currentEnergy,
           timeToNextEnergy: result.timeToNextEnergy,
         },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -76,12 +76,11 @@ export async function POST(request: NextRequest) {
       currentEnergy: result.currentEnergy,
       timeToNextEnergy: result.timeToNextEnergy,
     });
-
   } catch (error) {
-    console.error('Consume energy error:', error);
+    console.error("Consume energy error:", error);
     return NextResponse.json(
-      { success: false, error: 'حدث خطأ. يرجى المحاولة مرة أخرى.' },
-      { status: 500 }
+      { success: false, error: "حدث خطأ. يرجى المحاولة مرة أخرى." },
+      { status: 500 },
     );
   }
 }
@@ -90,9 +89,8 @@ export async function POST(request: NextRequest) {
  * Extract user ID from auth token
  */
 function extractUserIdFromToken(token: string): string | null {
-  if (token.startsWith('mock-jwt-token-')) {
-    return 'user-1';
+  if (token.startsWith("mock-jwt-token-")) {
+    return "user-1";
   }
-  return 'demo-user';
+  return "demo-user";
 }
-

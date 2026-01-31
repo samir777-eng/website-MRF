@@ -51,7 +51,7 @@ interface GamificationContextType {
           lessonId?: string;
           quizId?: string;
           score?: number;
-        }
+        },
   ) => Promise<void>;
   levelInfo: ReturnType<typeof getProgressToNextLevel>;
 
@@ -60,7 +60,7 @@ interface GamificationContextType {
   timeToNextEnergy: number;
   canPerformAction: (action: keyof typeof ENERGY_CONFIG.ENERGY_COST) => boolean;
   consumeEnergy: (
-    action: keyof typeof ENERGY_CONFIG.ENERGY_COST
+    action: keyof typeof ENERGY_CONFIG.ENERGY_COST,
   ) => Promise<boolean>;
 
   // Achievements
@@ -76,7 +76,7 @@ interface GamificationContextType {
   incrementQuizzesTaken: (
     quizId: string,
     score: number,
-    perfect: boolean
+    perfect: boolean,
   ) => Promise<void>;
   addNote: () => Promise<void>;
   addBookmark: () => Promise<void>;
@@ -85,7 +85,7 @@ interface GamificationContextType {
   gems: number;
   purchaseItem: (
     itemId: string,
-    quantity?: number
+    quantity?: number,
   ) => Promise<{
     success: boolean;
     error?: string;
@@ -98,7 +98,7 @@ interface GamificationContextType {
 }
 
 const GamificationContext = createContext<GamificationContextType | undefined>(
-  undefined
+  undefined,
 );
 
 interface GamificationProviderProps {
@@ -132,7 +132,7 @@ export function GamificationProviderServer({
   const [currentEnergy, setCurrentEnergy] = useState(ENERGY_CONFIG.MAX_ENERGY);
   const [timeToNextEnergy, setTimeToNextEnergy] = useState(0);
   const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>(
-    []
+    [],
   );
   const [newAchievements, setNewAchievements] = useState<Achievement[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -200,7 +200,7 @@ export function GamificationProviderServer({
       action: keyof typeof XP_ACTIONS,
       contextOrAmount?:
         | number
-        | { lessonId?: string; quizId?: string; score?: number }
+        | { lessonId?: string; quizId?: string; score?: number },
     ) => {
       // Handle legacy number argument (ignored in server version)
       const context =
@@ -217,7 +217,7 @@ export function GamificationProviderServer({
         // Handle new achievements
         if (result.newAchievements && result.newAchievements.length > 0) {
           const newlyUnlocked = ACHIEVEMENTS.filter((a) =>
-            result.newAchievements!.includes(a.id)
+            result.newAchievements!.includes(a.id),
           );
           setNewAchievements((prev) => [...prev, ...newlyUnlocked]);
           setUnlockedAchievements((prev) => [
@@ -234,7 +234,7 @@ export function GamificationProviderServer({
         console.error("Failed to award XP:", result.error);
       }
     },
-    []
+    [],
   );
 
   // Energy system
@@ -243,12 +243,12 @@ export function GamificationProviderServer({
       const cost = ENERGY_CONFIG.ENERGY_COST[action];
       return currentEnergy >= cost;
     },
-    [currentEnergy]
+    [currentEnergy],
   );
 
   const consumeEnergy = useCallback(
     async (
-      action: keyof typeof ENERGY_CONFIG.ENERGY_COST
+      action: keyof typeof ENERGY_CONFIG.ENERGY_COST,
     ): Promise<boolean> => {
       const result = await apiConsumeEnergy(action);
 
@@ -262,7 +262,7 @@ export function GamificationProviderServer({
         return false;
       }
     },
-    []
+    [],
   );
 
   // Update streak
@@ -287,7 +287,7 @@ export function GamificationProviderServer({
         lessonsCompleted: prev.lessonsCompleted + 1,
       }));
     },
-    [addXP]
+    [addXP],
   );
 
   const incrementQuizzesTaken = useCallback(
@@ -300,7 +300,7 @@ export function GamificationProviderServer({
         perfectScores: perfect ? prev.perfectScores + 1 : prev.perfectScores,
       }));
     },
-    [addXP]
+    [addXP],
   );
 
   const addNote = useCallback(async () => {
@@ -340,9 +340,8 @@ export function GamificationProviderServer({
   const purchaseItem = useCallback(
     async (itemId: string, quantity: number = 1) => {
       try {
-        const { purchaseItem: apiPurchase } = await import(
-          "@/lib/gamification/api-client"
-        );
+        const { purchaseItem: apiPurchase } =
+          await import("@/lib/gamification/api-client");
         const result = await apiPurchase(itemId, quantity);
         if (result.success && result.newBalance !== undefined) {
           setGems(result.newBalance);
@@ -360,7 +359,7 @@ export function GamificationProviderServer({
         };
       }
     },
-    []
+    [],
   );
 
   // Load gems on mount
@@ -403,7 +402,7 @@ export function useGamificationServer() {
   const context = useContext(GamificationContext);
   if (context === undefined) {
     throw new Error(
-      "useGamificationServer must be used within a GamificationProviderServer"
+      "useGamificationServer must be used within a GamificationProviderServer",
     );
   }
   return context;

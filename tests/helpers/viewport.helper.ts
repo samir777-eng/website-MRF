@@ -45,7 +45,7 @@ export async function setLargeDesktopViewport(page: Page) {
  */
 export async function testOnAllViewports(
   page: Page,
-  testFn: (page: Page, viewportName: string) => Promise<void>
+  testFn: (page: Page, viewportName: string) => Promise<void>,
 ) {
   for (const [name, size] of Object.entries(viewports)) {
     await page.setViewportSize(size);
@@ -77,4 +77,3 @@ export async function isDesktopViewport(page: Page): Promise<boolean> {
   const viewportSize = page.viewportSize();
   return viewportSize ? viewportSize.width >= 1024 : false;
 }
-

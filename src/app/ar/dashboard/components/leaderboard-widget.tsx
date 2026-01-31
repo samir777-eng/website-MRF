@@ -18,7 +18,14 @@ interface LeaderboardUser {
 
 // Mock leaderboard data
 const topUsers: LeaderboardUser[] = [
-  { id: "1", name: "أحمد محمد", xp: 15420, rank: 1, rankChange: 0, isCurrentUser: true },
+  {
+    id: "1",
+    name: "أحمد محمد",
+    xp: 15420,
+    rank: 1,
+    rankChange: 0,
+    isCurrentUser: true,
+  },
   { id: "2", name: "فاطمة علي", xp: 14890, rank: 2, rankChange: 1 },
   { id: "3", name: "محمد حسن", xp: 13750, rank: 3, rankChange: -1 },
   { id: "4", name: "سارة أحمد", xp: 12800, rank: 4, rankChange: 2 },
@@ -58,18 +65,30 @@ export function LeaderboardWidget() {
                 <Crown className="w-6 h-6 text-white" />
               </div>
               <div>
-                <div className="text-2xl font-bold text-foreground">#{currentUserRank.rank}</div>
-                <div className="text-sm text-muted-foreground">ترتيبك الحالي</div>
+                <div className="text-2xl font-bold text-foreground">
+                  #{currentUserRank.rank}
+                </div>
+                <div className="text-sm text-muted-foreground">
+                  ترتيبك الحالي
+                </div>
               </div>
             </div>
             <div className="text-left">
-              <div className="text-lg font-bold text-yellow-600">+{currentUserRank.weeklyXP} XP</div>
+              <div className="text-lg font-bold text-yellow-600">
+                +{currentUserRank.weeklyXP} XP
+              </div>
               <div className="text-sm text-muted-foreground">هذا الأسبوع</div>
             </div>
           </div>
           <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
             <TrendingUp className="w-4 h-4 text-green-600" />
-            <span>أفضل من <strong className="text-foreground">{currentUserRank.percentile}%</strong> من الطلاب</span>
+            <span>
+              أفضل من{" "}
+              <strong className="text-foreground">
+                {currentUserRank.percentile}%
+              </strong>{" "}
+              من الطلاب
+            </span>
           </div>
         </div>
 
@@ -93,17 +112,24 @@ export function LeaderboardWidget() {
                 ) : user.rank === 3 ? (
                   <span className="text-2xl">🥉</span>
                 ) : (
-                  <span className="text-lg font-bold text-muted-foreground">#{user.rank}</span>
+                  <span className="text-lg font-bold text-muted-foreground">
+                    #{user.rank}
+                  </span>
                 )}
               </div>
 
               {/* Avatar */}
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold ${
-                user.rank === 1 ? "bg-gradient-to-br from-yellow-400 to-orange-500" :
-                user.rank === 2 ? "bg-gradient-to-br from-gray-300 to-gray-400" :
-                user.rank === 3 ? "bg-gradient-to-br from-orange-300 to-orange-500" :
-                "bg-gradient-to-br from-blue-400 to-purple-500"
-              }`}>
+              <div
+                className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold ${
+                  user.rank === 1
+                    ? "bg-gradient-to-br from-yellow-400 to-orange-500"
+                    : user.rank === 2
+                      ? "bg-gradient-to-br from-gray-300 to-gray-400"
+                      : user.rank === 3
+                        ? "bg-gradient-to-br from-orange-300 to-orange-500"
+                        : "bg-gradient-to-br from-blue-400 to-purple-500"
+                }`}
+              >
                 {user.name.charAt(0)}
               </div>
 
@@ -119,14 +145,20 @@ export function LeaderboardWidget() {
 
               {/* XP */}
               <div className="text-left flex-shrink-0">
-                <div className="font-bold text-primary">{user.xp.toLocaleString()}</div>
+                <div className="font-bold text-primary">
+                  {user.xp.toLocaleString()}
+                </div>
                 <div className="text-xs text-muted-foreground">XP</div>
               </div>
 
               {/* Rank Change */}
               {user.rankChange !== undefined && user.rankChange !== 0 && (
-                <div className={`text-xs font-semibold ${user.rankChange > 0 ? "text-green-600" : "text-red-600"}`}>
-                  {user.rankChange > 0 ? `↑${user.rankChange}` : `↓${Math.abs(user.rankChange)}`}
+                <div
+                  className={`text-xs font-semibold ${user.rankChange > 0 ? "text-green-600" : "text-red-600"}`}
+                >
+                  {user.rankChange > 0
+                    ? `↑${user.rankChange}`
+                    : `↓${Math.abs(user.rankChange)}`}
                 </div>
               )}
             </div>
@@ -144,4 +176,3 @@ export function LeaderboardWidget() {
     </Card>
   );
 }
-

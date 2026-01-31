@@ -9,22 +9,24 @@ Enhanced mobile interactions with haptic feedback, swipe gestures, and pull-to-r
 Unified haptic feedback manager with multiple patterns and settings persistence.
 
 ```tsx
-import { HapticManager, useHaptics } from '@/lib/haptics';
+import { HapticManager, useHaptics } from "@/lib/haptics";
 
 // Direct usage
-HapticManager.trigger('success');
-HapticManager.trigger('error');
-HapticManager.trigger('selection');
+HapticManager.trigger("success");
+HapticManager.trigger("error");
+HapticManager.trigger("selection");
 
 // React hook
 function MyComponent() {
   const { trigger, enabled, toggle } = useHaptics();
-  
+
   return (
-    <button onClick={() => {
-      trigger('selection');
-      // Handle click
-    }}>
+    <button
+      onClick={() => {
+        trigger("selection");
+        // Handle click
+      }}
+    >
       Click me
     </button>
   );
@@ -48,19 +50,19 @@ function MyComponent() {
 Touch-based swipe detection with configurable thresholds and callbacks.
 
 ```tsx
-import { useSwipeable } from '@/lib/swipe-gestures';
+import { useSwipeable } from "@/lib/swipe-gestures";
 
 function SwipeableComponent() {
   const handlers = useSwipeable({
-    onSwipeLeft: () => console.log('Swiped left!'),
-    onSwipeRight: () => console.log('Swiped right!'),
-    onSwipeUp: () => console.log('Swiped up!'),
-    onSwipeDown: () => console.log('Swiped down!'),
+    onSwipeLeft: () => console.log("Swiped left!"),
+    onSwipeRight: () => console.log("Swiped right!"),
+    onSwipeUp: () => console.log("Swiped up!"),
+    onSwipeDown: () => console.log("Swiped down!"),
     threshold: 50, // Min distance in pixels
     hapticFeedback: true,
     trackMouse: false, // Touch only
   });
-  
+
   return <div {...handlers}>Swipe me!</div>;
 }
 ```
@@ -70,23 +72,19 @@ function SwipeableComponent() {
 For lesson/page navigation:
 
 ```tsx
-import { useNavigationSwipe } from '@/lib/swipe-gestures';
-import { useRouter } from 'next/navigation';
+import { useNavigationSwipe } from "@/lib/swipe-gestures";
+import { useRouter } from "next/navigation";
 
 function LessonPage({ lessonId, previousId, nextId }: Props) {
   const router = useRouter();
-  
+
   const handlers = useNavigationSwipe(
     () => nextId && router.push(`/ar/lessons/${nextId}`),
     () => previousId && router.push(`/ar/lessons/${previousId}`),
-    { threshold: 100 }
+    { threshold: 100 },
   );
-  
-  return (
-    <div {...handlers}>
-      {/* Lesson content */}
-    </div>
-  );
+
+  return <div {...handlers}>{/* Lesson content */}</div>;
 }
 ```
 
@@ -95,11 +93,11 @@ function LessonPage({ lessonId, previousId, nextId }: Props) {
 For image/content carousels:
 
 ```tsx
-import { useCarouselSwipe } from '@/lib/swipe-gestures';
+import { useCarouselSwipe } from "@/lib/swipe-gestures";
 
 function ImageCarousel({ images }: Props) {
   const { currentIndex, handlers } = useCarouselSwipe(images.length);
-  
+
   return (
     <div {...handlers}>
       <img src={images[currentIndex]} alt="Slide" />
@@ -113,14 +111,14 @@ function ImageCarousel({ images }: Props) {
 Smooth pull-to-refresh with rubber band effect.
 
 ```tsx
-import { PullToRefresh } from '@/components/mobile/PullToRefresh';
+import { PullToRefresh } from "@/components/mobile/PullToRefresh";
 
 function DashboardPage() {
   const handleRefresh = async () => {
-    await fetch('/api/dashboard/refresh');
+    await fetch("/api/dashboard/refresh");
     // Update data
   };
-  
+
   return (
     <PullToRefresh onRefresh={handleRefresh} threshold={80}>
       {/* Page content */}
@@ -142,14 +140,14 @@ function DashboardPage() {
 ### Enhanced Button with Haptic
 
 ```tsx
-import { Button } from '@/components/ui/button';
-import { HapticManager } from '@/lib/haptics';
+import { Button } from "@/components/ui/button";
+import { HapticManager } from "@/lib/haptics";
 
 function HapticButton({ children, onClick, ...props }: ButtonProps) {
   return (
     <Button
       onClick={(e) => {
-        HapticManager.trigger('selection');
+        HapticManager.trigger("selection");
         onClick?.(e);
       }}
       {...props}
@@ -163,23 +161,21 @@ function HapticButton({ children, onClick, ...props }: ButtonProps) {
 ### Swipeable Card
 
 ```tsx
-import { Swipeable } from '@/lib/swipe-gestures';
-import { useState } from 'react';
+import { Swipeable } from "@/lib/swipe-gestures";
+import { useState } from "react";
 
 function SwipeableCard() {
   const [dismissed, setDismissed] = useState(false);
-  
+
   if (dismissed) return null;
-  
+
   return (
     <Swipeable
       onSwipeLeft={() => setDismissed(true)}
-      onSwipeRight={() => console.log('Liked!')}
+      onSwipeRight={() => console.log("Liked!")}
       threshold={100}
     >
-      <div className="card">
-        {/* Card content */}
-      </div>
+      <div className="card">{/* Card content */}</div>
     </Swipeable>
   );
 }
@@ -188,22 +184,22 @@ function SwipeableCard() {
 ### Lesson Navigation
 
 ```tsx
-import { useNavigationSwipe } from '@/lib/swipe-gestures';
+import { useNavigationSwipe } from "@/lib/swipe-gestures";
 
 function LessonViewer({ lesson, navigation }: Props) {
   const swipeHandlers = useNavigationSwipe(
     navigation.goNext,
     navigation.goPrevious,
-    { 
+    {
       threshold: 100,
-      disabled: navigation.isLastLesson && !navigation.hasNext
-    }
+      disabled: navigation.isLastLesson && !navigation.hasNext,
+    },
   );
-  
+
   return (
     <div {...swipeHandlers} className="lesson-container">
       <LessonContent lesson={lesson} />
-      
+
       {/* Visual indicators */}
       <div className="fixed bottom-4 left-0 right-0 flex justify-center gap-2">
         {navigation.hasPrevious && (
@@ -223,14 +219,14 @@ function LessonViewer({ lesson, navigation }: Props) {
 ### Haptic Feedback Toggle
 
 ```tsx
-import { useHaptics } from '@/lib/haptics';
-import { Switch } from '@/components/ui/switch';
+import { useHaptics } from "@/lib/haptics";
+import { Switch } from "@/components/ui/switch";
 
 function SettingsPage() {
   const { enabled, toggle, supported } = useHaptics();
-  
+
   if (!supported) return null;
-  
+
   return (
     <div className="settings-item">
       <label>ردود فعل اللمس</label>
@@ -247,16 +243,16 @@ function SettingsPage() {
 Prevent rapid-fire gestures:
 
 ```tsx
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef } from "react";
 
 function useDebouncedSwipe(callback: () => void, delay = 300) {
   const timeoutRef = useRef<NodeJS.Timeout>();
-  
+
   return useCallback(() => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
-    
+
     timeoutRef.current = setTimeout(() => {
       callback();
     }, delay);
@@ -269,11 +265,11 @@ function useDebouncedSwipe(callback: () => void, delay = 300) {
 Limit gesture frequency:
 
 ```tsx
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef } from "react";
 
 function useThrottledGesture(callback: () => void, limit = 500) {
   const inThrottle = useRef(false);
-  
+
   return useCallback(() => {
     if (!inThrottle.current) {
       callback();
@@ -334,7 +330,7 @@ function NavigationControls() {
     <>
       {/* Swipe gesture for touch */}
       <div {...swipeHandlers}>Content</div>
-      
+
       {/* Buttons for accessibility */}
       <div className="flex gap-2 mt-4">
         <Button onClick={goPrevious}>السابق</Button>
@@ -350,18 +346,18 @@ function NavigationControls() {
 ### Haptic Feedback
 
 ```tsx
-describe('HapticManager', () => {
-  it('triggers vibration when enabled', () => {
-    const vibrateSpy = jest.spyOn(navigator, 'vibrate');
+describe("HapticManager", () => {
+  it("triggers vibration when enabled", () => {
+    const vibrateSpy = jest.spyOn(navigator, "vibrate");
     HapticManager.enable();
-    HapticManager.trigger('selection');
+    HapticManager.trigger("selection");
     expect(vibrateSpy).toHaveBeenCalledWith([5]);
   });
-  
-  it('does not vibrate when disabled', () => {
-    const vibrateSpy = jest.spyOn(navigator, 'vibrate');
+
+  it("does not vibrate when disabled", () => {
+    const vibrateSpy = jest.spyOn(navigator, "vibrate");
     HapticManager.disable();
-    HapticManager.trigger('selection');
+    HapticManager.trigger("selection");
     expect(vibrateSpy).not.toHaveBeenCalled();
   });
 });
@@ -370,19 +366,23 @@ describe('HapticManager', () => {
 ### Swipe Gestures
 
 ```tsx
-describe('useSwipeable', () => {
-  it('detects left swipe', () => {
+describe("useSwipeable", () => {
+  it("detects left swipe", () => {
     const onSwipeLeft = jest.fn();
     const { result } = renderHook(() =>
-      useSwipeable({ onSwipeLeft, threshold: 50 })
+      useSwipeable({ onSwipeLeft, threshold: 50 }),
     );
-    
+
     // Simulate touch events
     act(() => {
-      result.current.onTouchStart({ touches: [{ clientX: 100, clientY: 100 }] });
-      result.current.onTouchEnd({ changedTouches: [{ clientX: 0, clientY: 100 }] });
+      result.current.onTouchStart({
+        touches: [{ clientX: 100, clientY: 100 }],
+      });
+      result.current.onTouchEnd({
+        changedTouches: [{ clientX: 0, clientY: 100 }],
+      });
     });
-    
+
     expect(onSwipeLeft).toHaveBeenCalled();
   });
 });
@@ -394,10 +394,10 @@ describe('useSwipeable', () => {
 
 ```typescript
 // Check support before using
-if ('vibrate' in navigator) {
+if ("vibrate" in navigator) {
   navigator.vibrate([10, 50, 10]);
 } else {
-  console.log('Vibration API not supported');
+  console.log("Vibration API not supported");
 }
 ```
 
@@ -406,7 +406,7 @@ if ('vibrate' in navigator) {
 All modern mobile browsers support touch events. Fallback to mouse events for testing:
 
 ```typescript
-const isTouchDevice = 'ontouchstart' in window;
+const isTouchDevice = "ontouchstart" in window;
 ```
 
 ## Future Enhancements (Phase 3+)

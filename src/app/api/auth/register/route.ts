@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { rateLimit, getResetTime } from '@/lib/security/rate-limiter';
-import { registerSchema } from '@/lib/validation/auth-schemas';
+import { NextRequest, NextResponse } from "next/server";
+import { rateLimit, getResetTime } from "@/lib/security/rate-limiter";
+import { registerSchema } from "@/lib/validation/auth-schemas";
 
 /**
  * POST /api/auth/register
@@ -14,15 +14,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: 'محاولات كثيرة جداً. يرجى المحاولة لاحقاً.',
+          error: "محاولات كثيرة جداً. يرجى المحاولة لاحقاً.",
           retryAfter,
         },
         {
           status: 429,
           headers: {
-            'Retry-After': retryAfter.toString(),
+            "Retry-After": retryAfter.toString(),
           },
-        }
+        },
       );
     }
 
@@ -34,10 +34,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: 'بيانات غير صالحة',
+          error: "بيانات غير صالحة",
           errors: validation.error.flatten().fieldErrors,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -54,68 +54,67 @@ export async function POST(request: NextRequest) {
 
     // Mock registration (REMOVE IN PRODUCTION)
     // Check if email already exists (mock)
-    if (email === 'existing@example.com') {
+    if (email === "existing@example.com") {
       return NextResponse.json(
         {
           success: false,
-          error: 'البريد الإلكتروني مستخدم بالفعل',
+          error: "البريد الإلكتروني مستخدم بالفعل",
         },
-        { status: 409 }
+        { status: 409 },
       );
     }
 
     // Check if phone already exists (mock)
-    if (phone === '01234567890') {
+    if (phone === "01234567890") {
       return NextResponse.json(
         {
           success: false,
-          error: 'رقم الهاتف مستخدم بالفعل',
+          error: "رقم الهاتف مستخدم بالفعل",
         },
-        { status: 409 }
+        { status: 409 },
       );
     }
 
     // Mock successful registration
-    const userId = 'user-' + Date.now();
-    const token = 'mock-jwt-token-' + Date.now();
+    const userId = "user-" + Date.now();
+    const token = "mock-jwt-token-" + Date.now();
 
     const response = NextResponse.json(
       {
         success: true,
-        message: 'تم إنشاء الحساب بنجاح',
+        message: "تم إنشاء الحساب بنجاح",
         user: {
           id: userId,
           name,
           email,
           phone,
           grade,
-          role: 'student',
+          role: "student",
           verified: false,
         },
         requiresVerification: true,
       },
-      { status: 201 }
+      { status: 201 },
     );
 
     // Set secure cookie
-    response.cookies.set('auth-token', token, {
+    response.cookies.set("auth-token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
       maxAge: 24 * 60 * 60, // 1 day
-      path: '/',
+      path: "/",
     });
 
     return response;
   } catch (error) {
-    console.error('Registration error:', error);
+    console.error("Registration error:", error);
     return NextResponse.json(
       {
         success: false,
-        error: 'حدث خطأ أثناء إنشاء الحساب. يرجى المحاولة مرة أخرى.',
+        error: "حدث خطأ أثناء إنشاء الحساب. يرجى المحاولة مرة أخرى.",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
-

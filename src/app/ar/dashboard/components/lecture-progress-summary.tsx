@@ -63,7 +63,9 @@ export function LectureProgressSummary() {
         <div className="mb-6">
           <div className="flex items-center justify-between text-sm mb-2">
             <span className="text-muted-foreground">التقدم الإجمالي</span>
-            <span className="font-bold text-emerald-600">{data.overallProgress}%</span>
+            <span className="font-bold text-emerald-600">
+              {data.overallProgress}%
+            </span>
           </div>
           <Progress value={data.overallProgress} className="h-3" />
         </div>
@@ -72,7 +74,9 @@ export function LectureProgressSummary() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
           <div className="p-3 bg-amber-500/10 rounded-lg text-center">
             <FileQuestion className="w-5 h-5 text-amber-600 mx-auto mb-1" />
-            <div className="text-lg font-bold text-amber-600">{data.stepStats.preQuizPassed}</div>
+            <div className="text-lg font-bold text-amber-600">
+              {data.stepStats.preQuizPassed}
+            </div>
             <div className="text-xs text-muted-foreground">اختبار قبلي</div>
           </div>
           <div className="p-3 bg-blue-500/10 rounded-lg text-center">
@@ -84,12 +88,16 @@ export function LectureProgressSummary() {
           </div>
           <div className="p-3 bg-purple-500/10 rounded-lg text-center">
             <ClipboardList className="w-5 h-5 text-purple-600 mx-auto mb-1" />
-            <div className="text-lg font-bold text-purple-600">{data.stepStats.postQuizPassed}</div>
+            <div className="text-lg font-bold text-purple-600">
+              {data.stepStats.postQuizPassed}
+            </div>
             <div className="text-xs text-muted-foreground">اختبار بعدي</div>
           </div>
           <div className="p-3 bg-green-500/10 rounded-lg text-center">
             <BookOpen className="w-5 h-5 text-green-600 mx-auto mb-1" />
-            <div className="text-lg font-bold text-green-600">{data.stepStats.homeworkCompleted}</div>
+            <div className="text-lg font-bold text-green-600">
+              {data.stepStats.homeworkCompleted}
+            </div>
             <div className="text-xs text-muted-foreground">واجبات</div>
           </div>
         </div>
@@ -105,9 +113,9 @@ export function LectureProgressSummary() {
               {data.xpEarned.toLocaleString("ar-EG")} XP
             </span>
           </div>
-          <Progress 
-            value={(data.xpEarned / data.totalXpAvailable) * 100} 
-            className="h-2" 
+          <Progress
+            value={(data.xpEarned / data.totalXpAvailable) * 100}
+            className="h-2"
           />
           <p className="text-xs text-muted-foreground mt-1 text-left">
             من أصل {data.totalXpAvailable.toLocaleString("ar-EG")} XP متاحة
@@ -117,4 +125,3 @@ export function LectureProgressSummary() {
     </Card>
   );
 }
-

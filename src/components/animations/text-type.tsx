@@ -35,12 +35,9 @@ export function TextType({
   return (
     <span className={cn(className)}>
       {displayedText}
-      {currentIndex < text.length && (
-        <span className="animate-pulse">|</span>
-      )}
+      {currentIndex < text.length && <span className="animate-pulse">|</span>}
     </span>
   );
 }
-
 
 export default TextType;

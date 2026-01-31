@@ -58,7 +58,7 @@ test.describe("Comprehensive Accessibility Tests", () => {
       test("all interactive elements keyboard accessible", async ({ page }) => {
         const focusable = await page
           .locator(
-            'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])',
           )
           .count();
         expect(focusable).toBeGreaterThan(0);
@@ -69,7 +69,7 @@ test.describe("Comprehensive Accessibility Tests", () => {
         for (let i = 0; i < 10; i++) {
           await page.keyboard.press("Tab");
           const focused = await page.evaluate(
-            () => document.activeElement?.tagName
+            () => document.activeElement?.tagName,
           );
           if (focused) elements.push(focused);
         }
@@ -95,7 +95,7 @@ test.describe("Comprehensive Accessibility Tests", () => {
         if ((await button.count()) > 0) {
           await button.focus();
           const tagBefore = await page.evaluate(
-            () => document.activeElement?.tagName
+            () => document.activeElement?.tagName,
           );
           expect(tagBefore).toBe("BUTTON");
         }
@@ -143,12 +143,12 @@ test.describe("Comprehensive Accessibility Tests", () => {
               (await page.locator(`label[for="${id}"]`).count()) > 0;
             // Allow inputs with label, aria-label, aria-labelledby, or placeholder
             expect(
-              hasLabel || !!ariaLabel || !!ariaLabelledBy || !!placeholder
+              hasLabel || !!ariaLabel || !!ariaLabelledBy || !!placeholder,
             ).toBeTruthy();
           } else {
             // For inputs without ID, accept aria-label, aria-labelledby, or placeholder
             expect(
-              !!ariaLabel || !!ariaLabelledBy || !!placeholder
+              !!ariaLabel || !!ariaLabelledBy || !!placeholder,
             ).toBeTruthy();
           }
         }
@@ -308,13 +308,13 @@ test.describe("Comprehensive Accessibility Tests", () => {
         await page.keyboard.press("Tab");
         await page.keyboard.press("Tab");
         const focused = await page.evaluate(
-          () => document.activeElement?.tagName
+          () => document.activeElement?.tagName,
         );
         // Accept common focusable elements
         expect(
           ["A", "BUTTON", "INPUT", "SELECT", "TEXTAREA", "BODY"].includes(
-            focused || ""
-          )
+            focused || "",
+          ),
         ).toBeTruthy();
       });
 
@@ -386,7 +386,7 @@ test.describe("Comprehensive Accessibility Tests", () => {
       // Forms
       test("required fields marked", async ({ page }) => {
         const required = page.locator(
-          'input[required], input[aria-required="true"]'
+          'input[required], input[aria-required="true"]',
         );
         const count = await required.count();
         if (count > 0) {

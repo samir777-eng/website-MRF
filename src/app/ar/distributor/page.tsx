@@ -1,37 +1,37 @@
 "use client";
 
-import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Users, 
-  TrendingUp, 
-  DollarSign, 
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import {
+  Users,
+  TrendingUp,
+  DollarSign,
   Award,
   CheckCircle2,
   Phone,
   Mail,
   MapPin,
-  Building
-} from 'lucide-react';
+  Building,
+} from "lucide-react";
 
 export default function DistributorPage() {
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    governorate: '',
-    city: '',
-    experience: '',
-    message: '',
+    name: "",
+    phone: "",
+    email: "",
+    governorate: "",
+    city: "",
+    experience: "",
+    message: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('تم إرسال طلبك بنجاح! سنتواصل معك قريباً');
+    alert("تم إرسال طلبك بنجاح! سنتواصل معك قريباً");
   };
 
   return (
@@ -42,7 +42,8 @@ export default function DistributorPage() {
           <Badge className="mb-4 bg-primary">فرصة عمل مميزة</Badge>
           <h1 className="text-4xl font-bold mb-4">كن موزعاً لمنتجاتنا</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            انضم إلى شبكة موزعينا واحصل على دخل إضافي من خلال توزيع كتب ومنتجات الأستاذ رضا الفاروق
+            انضم إلى شبكة موزعينا واحصل على دخل إضافي من خلال توزيع كتب ومنتجات
+            الأستاذ رضا الفاروق
           </p>
         </div>
 
@@ -105,11 +106,11 @@ export default function DistributorPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               {[
-                'خبرة في مجال التوزيع أو المبيعات (مفضل)',
-                'القدرة على التواصل مع المدارس والمراكز التعليمية',
-                'امتلاك وسيلة نقل (مفضل)',
-                'الالتزام بمعايير الجودة والخدمة',
-                'التواجد في محافظات مصر',
+                "خبرة في مجال التوزيع أو المبيعات (مفضل)",
+                "القدرة على التواصل مع المدارس والمراكز التعليمية",
+                "امتلاك وسيلة نقل (مفضل)",
+                "الالتزام بمعايير الجودة والخدمة",
+                "التواجد في محافظات مصر",
               ].map((req, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
@@ -126,10 +127,10 @@ export default function DistributorPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               {[
-                { step: 1, text: 'قدم طلب الانضمام من خلال النموذج' },
-                { step: 2, text: 'سنتواصل معك لمناقشة التفاصيل' },
-                { step: 3, text: 'احصل على المنتجات بأسعار خاصة' },
-                { step: 4, text: 'قم بالتوزيع واحصل على عمولتك' },
+                { step: 1, text: "قدم طلب الانضمام من خلال النموذج" },
+                { step: 2, text: "سنتواصل معك لمناقشة التفاصيل" },
+                { step: 3, text: "احصل على المنتجات بأسعار خاصة" },
+                { step: 4, text: "قم بالتوزيع واحصل على عمولتك" },
               ].map((item) => (
                 <div key={item.step} className="flex items-start gap-4">
                   <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center flex-shrink-0 font-bold">
@@ -158,7 +159,9 @@ export default function DistributorPage() {
                   <Input
                     id="name"
                     value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                     required
                     placeholder="أدخل اسمك الكامل"
                   />
@@ -169,7 +172,9 @@ export default function DistributorPage() {
                   <Input
                     id="phone"
                     value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
                     required
                     placeholder="01xxxxxxxxx"
                   />
@@ -181,7 +186,9 @@ export default function DistributorPage() {
                     id="email"
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                     placeholder="example@email.com"
                   />
                 </div>
@@ -191,7 +198,9 @@ export default function DistributorPage() {
                   <Input
                     id="governorate"
                     value={formData.governorate}
-                    onChange={(e) => setFormData({...formData, governorate: e.target.value})}
+                    onChange={(e) =>
+                      setFormData({ ...formData, governorate: e.target.value })
+                    }
                     required
                     placeholder="المحافظة"
                   />
@@ -202,7 +211,9 @@ export default function DistributorPage() {
                   <Input
                     id="city"
                     value={formData.city}
-                    onChange={(e) => setFormData({...formData, city: e.target.value})}
+                    onChange={(e) =>
+                      setFormData({ ...formData, city: e.target.value })
+                    }
                     required
                     placeholder="المدينة"
                   />
@@ -213,7 +224,9 @@ export default function DistributorPage() {
                   <Input
                     id="experience"
                     value={formData.experience}
-                    onChange={(e) => setFormData({...formData, experience: e.target.value})}
+                    onChange={(e) =>
+                      setFormData({ ...formData, experience: e.target.value })
+                    }
                     placeholder="عدد سنوات الخبرة"
                   />
                 </div>
@@ -224,7 +237,9 @@ export default function DistributorPage() {
                 <textarea
                   id="message"
                   value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
                   className="w-full p-3 border rounded-md min-h-[120px]"
                   placeholder="أخبرنا المزيد عن نفسك وخبرتك..."
                 />
@@ -255,8 +270,12 @@ export default function DistributorPage() {
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary" />
                 <div>
-                  <div className="text-sm text-muted-foreground">البريد الإلكتروني</div>
-                  <div className="font-medium">distributor@mrredaelfarouk.com</div>
+                  <div className="text-sm text-muted-foreground">
+                    البريد الإلكتروني
+                  </div>
+                  <div className="font-medium">
+                    distributor@mrredaelfarouk.com
+                  </div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -273,4 +292,3 @@ export default function DistributorPage() {
     </div>
   );
 }
-

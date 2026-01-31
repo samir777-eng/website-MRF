@@ -6,7 +6,16 @@
 
 import { WeeklyRecap } from "@/components/gamification/WeeklyRecap";
 import { motion } from "framer-motion";
-import { ArrowLeft, BarChart3, Calendar, ChevronDown, Flame, Sparkles, Trophy, Zap } from "lucide-react";
+import {
+  ArrowLeft,
+  BarChart3,
+  Calendar,
+  ChevronDown,
+  Flame,
+  Sparkles,
+  Trophy,
+  Zap,
+} from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -79,10 +88,14 @@ const WEEK_SCENARIOS = {
 
 export default function WeeklyRecapDemoPage() {
   const [isRecapOpen, setIsRecapOpen] = useState(false);
-  const [selectedScenario, setSelectedScenario] = useState<keyof typeof WEEK_SCENARIOS>("great");
+  const [selectedScenario, setSelectedScenario] =
+    useState<keyof typeof WEEK_SCENARIOS>("great");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-950 dark:to-purple-950" dir="rtl">
+    <div
+      className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-950 dark:to-purple-950"
+      dir="rtl"
+    >
       {/* Header */}
       <header className="sticky top-0 z-40 backdrop-blur-lg bg-white/80 dark:bg-gray-900/80 border-b border-gray-200/50 dark:border-gray-800/50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -128,11 +141,17 @@ export default function WeeklyRecapDemoPage() {
           <div className="relative">
             <select
               value={selectedScenario}
-              onChange={(e) => setSelectedScenario(e.target.value as keyof typeof WEEK_SCENARIOS)}
+              onChange={(e) =>
+                setSelectedScenario(
+                  e.target.value as keyof typeof WEEK_SCENARIOS,
+                )
+              }
               className="w-full p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl appearance-none text-lg font-medium"
             >
               {Object.entries(WEEK_SCENARIOS).map(([key, { name }]) => (
-                <option key={key} value={key}>{name}</option>
+                <option key={key} value={key}>
+                  {name}
+                </option>
               ))}
             </select>
             <ChevronDown className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -145,13 +164,17 @@ export default function WeeklyRecapDemoPage() {
             <StatPreview
               icon={<Zap className="w-5 h-5" />}
               label="XP مكتسب"
-              value={WEEK_SCENARIOS[selectedScenario].data.xpEarned.toLocaleString("ar-EG")}
+              value={WEEK_SCENARIOS[
+                selectedScenario
+              ].data.xpEarned.toLocaleString("ar-EG")}
               color="yellow"
             />
             <StatPreview
               icon={<Flame className="w-5 h-5" />}
               label="أيام السلسلة"
-              value={WEEK_SCENARIOS[selectedScenario].data.streakDays.toLocaleString("ar-EG")}
+              value={WEEK_SCENARIOS[
+                selectedScenario
+              ].data.streakDays.toLocaleString("ar-EG")}
               color="orange"
             />
             <StatPreview
@@ -163,7 +186,9 @@ export default function WeeklyRecapDemoPage() {
             <StatPreview
               icon={<Calendar className="w-5 h-5" />}
               label="أيام نشاط"
-              value={WEEK_SCENARIOS[selectedScenario].data.daysActive.toLocaleString("ar-EG")}
+              value={WEEK_SCENARIOS[
+                selectedScenario
+              ].data.daysActive.toLocaleString("ar-EG")}
               color="blue"
             />
           </div>
@@ -228,15 +253,20 @@ function StatPreview({
   color: "yellow" | "orange" | "purple" | "blue";
 }) {
   const colorClasses = {
-    yellow: "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400",
-    orange: "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
-    purple: "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
+    yellow:
+      "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400",
+    orange:
+      "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
+    purple:
+      "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
     blue: "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
   };
 
   return (
     <div className="p-4 bg-white dark:bg-gray-800/50 rounded-xl shadow-sm">
-      <div className={`w-10 h-10 ${colorClasses[color]} rounded-lg flex items-center justify-center mb-3`}>
+      <div
+        className={`w-10 h-10 ${colorClasses[color]} rounded-lg flex items-center justify-center mb-3`}
+      >
         {icon}
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-400">{label}</p>
@@ -257,9 +287,12 @@ function FeatureCard({
   color: "purple" | "orange" | "yellow";
 }) {
   const colorClasses = {
-    purple: "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
-    orange: "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
-    yellow: "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400",
+    purple:
+      "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
+    orange:
+      "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
+    yellow:
+      "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400",
   };
 
   return (
@@ -268,7 +301,9 @@ function FeatureCard({
       animate={{ opacity: 1, y: 0 }}
       className="p-6 bg-white dark:bg-gray-800/50 rounded-xl shadow-lg"
     >
-      <div className={`w-14 h-14 ${colorClasses[color]} rounded-xl flex items-center justify-center mb-4`}>
+      <div
+        className={`w-14 h-14 ${colorClasses[color]} rounded-xl flex items-center justify-center mb-4`}
+      >
         {icon}
       </div>
       <h3 className="font-bold text-lg mb-2">{title}</h3>
@@ -276,4 +311,3 @@ function FeatureCard({
     </motion.div>
   );
 }
-

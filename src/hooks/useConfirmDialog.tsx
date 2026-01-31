@@ -1,6 +1,12 @@
 "use client";
 
-import { useState, useCallback, createContext, useContext, ReactNode } from "react";
+import {
+  useState,
+  useCallback,
+  createContext,
+  useContext,
+  ReactNode,
+} from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -24,20 +30,27 @@ interface ConfirmDialogContextType {
   confirm: (options: ConfirmDialogOptions) => Promise<boolean>;
 }
 
-const ConfirmDialogContext = createContext<ConfirmDialogContextType | null>(null);
+const ConfirmDialogContext = createContext<ConfirmDialogContextType | null>(
+  null,
+);
 
 export function ConfirmDialogProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [options, setOptions] = useState<ConfirmDialogOptions | null>(null);
-  const [resolveRef, setResolveRef] = useState<((value: boolean) => void) | null>(null);
+  const [resolveRef, setResolveRef] = useState<
+    ((value: boolean) => void) | null
+  >(null);
 
-  const confirm = useCallback((opts: ConfirmDialogOptions): Promise<boolean> => {
-    return new Promise((resolve) => {
-      setOptions(opts);
-      setResolveRef(() => resolve);
-      setIsOpen(true);
-    });
-  }, []);
+  const confirm = useCallback(
+    (opts: ConfirmDialogOptions): Promise<boolean> => {
+      return new Promise((resolve) => {
+        setOptions(opts);
+        setResolveRef(() => resolve);
+        setIsOpen(true);
+      });
+    },
+    [],
+  );
 
   const handleConfirm = useCallback(() => {
     setIsOpen(false);
@@ -88,7 +101,9 @@ export function ConfirmDialogProvider({ children }: { children: ReactNode }) {
 export function useConfirmDialog() {
   const context = useContext(ConfirmDialogContext);
   if (!context) {
-    throw new Error("useConfirmDialog must be used within a ConfirmDialogProvider");
+    throw new Error(
+      "useConfirmDialog must be used within a ConfirmDialogProvider",
+    );
   }
   return context;
 }
@@ -97,15 +112,20 @@ export function useConfirmDialog() {
 export function useSimpleConfirm() {
   const [isOpen, setIsOpen] = useState(false);
   const [options, setOptions] = useState<ConfirmDialogOptions | null>(null);
-  const [resolveRef, setResolveRef] = useState<((value: boolean) => void) | null>(null);
+  const [resolveRef, setResolveRef] = useState<
+    ((value: boolean) => void) | null
+  >(null);
 
-  const confirm = useCallback((opts: ConfirmDialogOptions): Promise<boolean> => {
-    return new Promise((resolve) => {
-      setOptions(opts);
-      setResolveRef(() => resolve);
-      setIsOpen(true);
-    });
-  }, []);
+  const confirm = useCallback(
+    (opts: ConfirmDialogOptions): Promise<boolean> => {
+      return new Promise((resolve) => {
+        setOptions(opts);
+        setResolveRef(() => resolve);
+        setIsOpen(true);
+      });
+    },
+    [],
+  );
 
   const handleConfirm = useCallback(() => {
     setIsOpen(false);
@@ -138,9 +158,8 @@ export function useSimpleConfirm() {
         </AlertDialogContent>
       </AlertDialog>
     ),
-    [isOpen, options, handleConfirm, handleCancel]
+    [isOpen, options, handleConfirm, handleCancel],
   );
 
   return { confirm, ConfirmDialog };
 }
-

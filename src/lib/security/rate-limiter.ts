@@ -17,7 +17,7 @@ const rateLimitMap = new Map<string, RateLimitRecord>();
 export function rateLimit(
   request: NextRequest,
   limit: number = 5,
-  windowMs: number = 60000
+  windowMs: number = 60000,
 ): boolean {
   // Get client IP address
   // Note: request.ip is not available in all Next.js environments
@@ -72,7 +72,7 @@ function cleanupOldEntries() {
  */
 export function getRemainingRequests(
   request: NextRequest,
-  limit: number = 5
+  limit: number = 5,
 ): number {
   const ip =
     request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||

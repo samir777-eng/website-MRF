@@ -172,7 +172,7 @@ export default function RewardsSystem({
         const timeSinceLastRegen =
           now.getTime() - prev.lastHeartRegen.getTime();
         const heartsToAdd = Math.floor(
-          timeSinceLastRegen / (prev.heartRegenTime * 60 * 1000)
+          timeSinceLastRegen / (prev.heartRegenTime * 60 * 1000),
         );
 
         if (heartsToAdd > 0) {
@@ -258,7 +258,7 @@ export default function RewardsSystem({
 
       // Mark as owned
       setRewardItems((prev) =>
-        prev.map((i) => (i.id === itemId ? { ...i, owned: true } : i))
+        prev.map((i) => (i.id === itemId ? { ...i, owned: true } : i)),
       );
 
       // Show celebration
@@ -302,7 +302,7 @@ export default function RewardsSystem({
             return { ...i, equipped: false };
           }
           return i;
-        })
+        }),
       );
 
       const isNowEquipped = !item.equipped;
@@ -393,7 +393,7 @@ export default function RewardsSystem({
 
   // Filter items by category
   const filteredItems = rewardItems.filter(
-    (item) => selectedCategory === "all" || item.type === selectedCategory
+    (item) => selectedCategory === "all" || item.type === selectedCategory,
   );
 
   // Compact variant for navigation
@@ -703,7 +703,7 @@ export default function RewardsSystem({
         celebrations.map((celebration) => {
           const dismissCelebration = () =>
             setCelebrations((prev) =>
-              prev.filter((c) => c.id !== celebration.id)
+              prev.filter((c) => c.id !== celebration.id),
             );
           return (
             <div
@@ -718,35 +718,35 @@ export default function RewardsSystem({
                 className="border-0 shadow-2xl bg-gradient-to-br from-yellow-400 to-orange-500 text-white max-w-md mx-4 rounded-lg"
                 onClick={(e: React.MouseEvent) => e.stopPropagation()}
               >
-                  <CardContent className="p-8 text-center relative">
-                    <button
-                      onClick={dismissCelebration}
-                      className="absolute top-2 left-2 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                      aria-label="إغلاق"
-                    >
-                      <span className="text-white text-lg">✕</span>
-                    </button>
-                    <div
-                      className="text-6xl mb-4 animate-bounce"
+                <CardContent className="p-8 text-center relative">
+                  <button
+                    onClick={dismissCelebration}
+                    className="absolute top-2 left-2 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                    aria-label="إغلاق"
+                  >
+                    <span className="text-white text-lg">✕</span>
+                  </button>
+                  <div
+                    className="text-6xl mb-4 animate-bounce"
+                    aria-hidden="true"
+                  >
+                    {celebration.icon}
+                  </div>
+                  <h2
+                    id={`celebration-title-${celebration.id}`}
+                    className="text-3xl font-bold mb-2"
+                  >
+                    {celebration.title}
+                  </h2>
+                  <p className="text-xl">{celebration.message}</p>
+                  <div className="mt-4">
+                    <PartyPopper
+                      className="w-8 h-8 mx-auto animate-pulse"
                       aria-hidden="true"
-                    >
-                      {celebration.icon}
-                    </div>
-                    <h2
-                      id={`celebration-title-${celebration.id}`}
-                      className="text-3xl font-bold mb-2"
-                    >
-                      {celebration.title}
-                    </h2>
-                    <p className="text-xl">{celebration.message}</p>
-                    <div className="mt-4">
-                      <PartyPopper
-                        className="w-8 h-8 mx-auto animate-pulse"
-                        aria-hidden="true"
-                      />
-                    </div>
-                  </CardContent>
-                </div>
+                    />
+                  </div>
+                </CardContent>
+              </div>
             </div>
           );
         })}

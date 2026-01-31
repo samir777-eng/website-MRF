@@ -76,7 +76,7 @@ export function SessionExpiryModal({
                 "w-20 h-20 rounded-full flex items-center justify-center",
                 "bg-gradient-to-br from-amber-100 to-amber-200",
                 "dark:from-amber-900/30 dark:to-amber-800/30",
-                "shadow-lg shadow-amber-500/20"
+                "shadow-lg shadow-amber-500/20",
               )}
             >
               <Clock className="w-10 h-10 text-amber-600 dark:text-amber-400" />
@@ -134,7 +134,7 @@ export function SessionExpiryModal({
             disabled={isRefreshing}
             className={cn(
               "flex-1 bg-gradient-to-r from-blue-600 to-purple-600",
-              "hover:from-blue-700 hover:to-purple-700 text-white"
+              "hover:from-blue-700 hover:to-purple-700 text-white",
             )}
             size="lg"
           >

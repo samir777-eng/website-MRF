@@ -71,7 +71,7 @@ export async function awardXP(
     lessonId?: string;
     quizId?: string;
     score?: number;
-  }
+  },
 ): Promise<AwardXPResult> {
   try {
     const response = await fetch(`${API_BASE}/award-xp`, {
@@ -194,7 +194,7 @@ export async function updateStreak(): Promise<StreakResult> {
  * Consume energy for an action
  */
 export async function consumeEnergy(
-  action: keyof typeof ENERGY_CONFIG.ENERGY_COST
+  action: keyof typeof ENERGY_CONFIG.ENERGY_COST,
 ): Promise<EnergyResult> {
   try {
     const response = await fetch(`${API_BASE}/energy`, {
@@ -309,7 +309,7 @@ export async function getGems(): Promise<GemsResult> {
  */
 export async function purchaseItem(
   itemId: string,
-  quantity: number = 1
+  quantity: number = 1,
 ): Promise<PurchaseResult> {
   try {
     const response = await fetch(`${API_BASE}/gems?operation=spend`, {
@@ -351,7 +351,7 @@ export async function purchaseItem(
  * Get shop items, optionally filtered by category
  */
 export async function getShopItems(
-  category?: "power-ups" | "cosmetics" | "content" | "bundles"
+  category?: "power-ups" | "cosmetics" | "content" | "bundles",
 ): Promise<ShopItemsResult> {
   try {
     const url = category

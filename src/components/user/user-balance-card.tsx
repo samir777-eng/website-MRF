@@ -77,7 +77,9 @@ export function UserBalanceCard({
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">العملات</p>
-                <p className="text-xl font-bold">{coins.toLocaleString("ar-EG")}</p>
+                <p className="text-xl font-bold">
+                  {coins.toLocaleString("ar-EG")}
+                </p>
               </div>
             </div>
 
@@ -91,7 +93,9 @@ export function UserBalanceCard({
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground">المحفظة</p>
-                    <p className="text-xl font-bold">{walletBalance.toLocaleString("ar-EG")} جنيه</p>
+                    <p className="text-xl font-bold">
+                      {walletBalance.toLocaleString("ar-EG")} جنيه
+                    </p>
                   </div>
                 </div>
               </>
@@ -135,4 +139,3 @@ export function InlineBalance({
     </Link>
   );
 }
-

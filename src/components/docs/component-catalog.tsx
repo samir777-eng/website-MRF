@@ -69,7 +69,7 @@ export function ComponentCatalog({
       component.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       component.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
       component.tags.some((tag) =>
-        tag.toLowerCase().includes(searchTerm.toLowerCase())
+        tag.toLowerCase().includes(searchTerm.toLowerCase()),
       );
 
     const matchesCategory =
@@ -85,7 +85,7 @@ export function ComponentCatalog({
 
   const renderComponent = (
     example: ComponentExample,
-    variant?: ComponentVariant
+    variant?: ComponentVariant,
   ) => {
     const props = variant
       ? { ...example.props, ...variant.props }
@@ -371,7 +371,7 @@ export function ComponentCatalog({
                                 size="sm"
                                 onClick={() =>
                                   copyToClipboard(
-                                    JSON.stringify(variant.props, null, 2)
+                                    JSON.stringify(variant.props, null, 2),
                                   )
                                 }
                               >

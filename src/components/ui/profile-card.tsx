@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { Badge } from "./badge";
 import { Button } from "./button";
-import { Trophy, Star} from "lucide-react";
+import { Trophy, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ProfileCardProps {
@@ -31,7 +31,8 @@ export function ProfileCard({
   stats = [],
   onViewProfile,
   className,
-  variant = "default"}: ProfileCardProps) {
+  variant = "default",
+}: ProfileCardProps) {
   const initials = name
     .split(" ")
     .map((n) => n[0])
@@ -41,7 +42,12 @@ export function ProfileCard({
 
   if (variant === "compact") {
     return (
-      <div className={cn("flex items-center gap-3 p-3 rounded-lg border bg-card", className)}>
+      <div
+        className={cn(
+          "flex items-center gap-3 p-3 rounded-lg border bg-card",
+          className,
+        )}
+      >
         <Avatar className="w-12 h-12">
           <AvatarImage src={avatar} alt={name} />
           <AvatarFallback>{initials}</AvatarFallback>
@@ -49,15 +55,12 @@ export function ProfileCard({
         <div className="flex-1 min-w-0">
           <div className="font-semibold truncate">{name}</div>
           {level && (
-            <div className="text-sm text-muted-foreground">
-              المستوى {level}
-            </div>
+            <div className="text-sm text-muted-foreground">المستوى {level}</div>
           )}
         </div>
         {rank && (
           <Badge variant="secondary" className="flex items-center gap-1">
-            <Trophy className="w-3 h-3" />
-            #{rank}
+            <Trophy className="w-3 h-3" />#{rank}
           </Badge>
         )}
       </div>
@@ -70,8 +73,7 @@ export function ProfileCard({
         {rank && rank <= 3 && (
           <div className="absolute top-2 left-2">
             <Badge variant="secondary" className="flex items-center gap-1">
-              <Trophy className="w-4 h-4 text-yellow-500" />
-              #{rank}
+              <Trophy className="w-4 h-4 text-yellow-500" />#{rank}
             </Badge>
           </div>
         )}
@@ -117,7 +119,9 @@ export function ProfileCard({
                   <div className="flex justify-center mb-1">{stat.icon}</div>
                 )}
                 <div className="text-2xl font-bold">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div className="text-sm text-muted-foreground">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -132,4 +136,3 @@ export function ProfileCard({
     </div>
   );
 }
-

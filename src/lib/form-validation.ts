@@ -23,21 +23,24 @@ export type ValidationResult = {
 
 // Arabic error messages
 const errorMessages = {
-  required: 'هذا الحقل مطلوب',
+  required: "هذا الحقل مطلوب",
   minLength: (min: number) => `يجب أن يحتوي على ${min} أحرف على الأقل`,
   maxLength: (max: number) => `يجب ألا يتجاوز ${max} حرف`,
   min: (min: number) => `القيمة يجب أن تكون ${min} على الأقل`,
   max: (max: number) => `القيمة يجب ألا تتجاوز ${max}`,
-  email: 'البريد الإلكتروني غير صحيح',
-  phone: 'رقم الهاتف غير صحيح',
-  pattern: 'التنسيق غير صحيح',
-  custom: 'القيمة غير صحيحة',
+  email: "البريد الإلكتروني غير صحيح",
+  phone: "رقم الهاتف غير صحيح",
+  pattern: "التنسيق غير صحيح",
+  custom: "القيمة غير صحيحة",
 };
 
 // Validation functions
-export function validateField(value: any, rules: ValidationRule): ValidationResult {
+export function validateField(
+  value: any,
+  rules: ValidationRule,
+): ValidationResult {
   // Required check
-  if (rules.required && (!value || value.toString().trim() === '')) {
+  if (rules.required && (!value || value.toString().trim() === "")) {
     return {
       isValid: false,
       error: rules.message || errorMessages.required,
@@ -45,7 +48,7 @@ export function validateField(value: any, rules: ValidationRule): ValidationResu
   }
 
   // If not required and empty, it's valid
-  if (!value || value.toString().trim() === '') {
+  if (!value || value.toString().trim() === "") {
     return { isValid: true };
   }
 
@@ -81,7 +84,7 @@ export function validateField(value: any, rules: ValidationRule): ValidationResu
   // Phone validation (Egyptian format)
   if (rules.phone) {
     const phoneRegex = /^(01)[0-9]{9}$/;
-    if (!phoneRegex.test(stringValue.replace(/[\s-]/g, ''))) {
+    if (!phoneRegex.test(stringValue.replace(/[\s-]/g, ""))) {
       return {
         isValid: false,
         error: rules.message || errorMessages.phone,
@@ -98,9 +101,9 @@ export function validateField(value: any, rules: ValidationRule): ValidationResu
   }
 
   // Numeric min/max
-  if (typeof value === 'number' || !isNaN(Number(value))) {
+  if (typeof value === "number" || !isNaN(Number(value))) {
     const numValue = Number(value);
-    
+
     if (rules.min !== undefined && numValue < rules.min) {
       return {
         isValid: false,
@@ -130,7 +133,7 @@ export function validateField(value: any, rules: ValidationRule): ValidationResu
 // Validate entire form
 export function validateForm(
   values: Record<string, any>,
-  rules: Record<string, ValidationRule>
+  rules: Record<string, ValidationRule>,
 ): {
   isValid: boolean;
   errors: Record<string, string>;
@@ -153,7 +156,7 @@ export function validateForm(
 // Real-time validation hook
 export function useFormValidation(
   initialValues: Record<string, any>,
-  rules: Record<string, ValidationRule>
+  rules: Record<string, ValidationRule>,
 ) {
   const [values, setValues] = React.useState(initialValues);
   const [errors, setErrors] = React.useState<Record<string, string>>({});
@@ -163,7 +166,7 @@ export function useFormValidation(
     const result = validateField(value, rules[field] || {});
     setErrors((prev) => ({
       ...prev,
-      [field]: result.error || '',
+      [field]: result.error || "",
     }));
     return result.isValid;
   };
@@ -183,11 +186,11 @@ export function useFormValidation(
   const handleSubmit = (onSubmit: (values: Record<string, any>) => void) => {
     return (e: React.FormEvent) => {
       e.preventDefault();
-      
+
       // Mark all fields as touched
       const allTouched = Object.keys(rules).reduce(
         (acc, field) => ({ ...acc, [field]: true }),
-        {}
+        {},
       );
       setTouched(allTouched);
 
@@ -224,28 +227,28 @@ export const commonRules = {
   email: {
     required: true,
     email: true,
-    message: 'البريد الإلكتروني مطلوب وغير صحيح',
+    message: "البريد الإلكتروني مطلوب وغير صحيح",
   },
   password: {
     required: true,
     minLength: 8,
-    message: 'كلمة المرور يجب أن تحتوي على 8 أحرف على الأقل',
+    message: "كلمة المرور يجب أن تحتوي على 8 أحرف على الأقل",
   },
   phone: {
     required: true,
     phone: true,
-    message: 'رقم الهاتف مطلوب وغير صحيح',
+    message: "رقم الهاتف مطلوب وغير صحيح",
   },
   name: {
     required: true,
     minLength: 2,
     maxLength: 50,
-    message: 'الاسم مطلوب ويجب أن يكون بين 2 و 50 حرف',
+    message: "الاسم مطلوب ويجب أن يكون بين 2 و 50 حرف",
   },
   grade: {
     required: true,
-    custom: (value: any) => ['1', '2', '3'].includes(value),
-    message: 'يجب اختيار الصف الدراسي',
+    custom: (value: any) => ["1", "2", "3"].includes(value),
+    message: "يجب اختيار الصف الدراسي",
   },
 };
 
@@ -266,5 +269,4 @@ export const commonRules = {
 //   {touched.email && errors.email && <span>{errors.email}</span>}
 // </form>
 
-import React from 'react';
-
+import React from "react";

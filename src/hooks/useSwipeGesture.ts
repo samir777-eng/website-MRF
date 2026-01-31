@@ -74,4 +74,3 @@ export function useSwipeGesture({
     };
   }, [onSwipeLeft, onSwipeRight, onSwipeUp, onSwipeDown, threshold]);
 }
-

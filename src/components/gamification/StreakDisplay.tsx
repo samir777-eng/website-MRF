@@ -47,19 +47,19 @@ export default function StreakDisplay({
   const dailyProgress = {
     lessons: Math.min(
       100,
-      (dailyGoals.lessonsCompleted / dailyTargets.lessonsCompleted) * 100
+      (dailyGoals.lessonsCompleted / dailyTargets.lessonsCompleted) * 100,
     ),
     quizzes: Math.min(
       100,
-      (dailyGoals.quizzesTaken / dailyTargets.quizzesTaken) * 100
+      (dailyGoals.quizzesTaken / dailyTargets.quizzesTaken) * 100,
     ),
     studyTime: Math.min(
       100,
-      (dailyGoals.studyTime / dailyTargets.studyTime) * 100
+      (dailyGoals.studyTime / dailyTargets.studyTime) * 100,
     ),
     notes: Math.min(
       100,
-      (dailyGoals.notesWritten / dailyTargets.notesWritten) * 100
+      (dailyGoals.notesWritten / dailyTargets.notesWritten) * 100,
     ),
   };
 

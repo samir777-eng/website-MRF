@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { rateLimit, getResetTime } from '@/lib/security/rate-limiter';
-import { loginSchema } from '@/lib/validation/auth-schemas';
+import { NextRequest, NextResponse } from "next/server";
+import { rateLimit, getResetTime } from "@/lib/security/rate-limiter";
+import { loginSchema } from "@/lib/validation/auth-schemas";
 
 /**
  * POST /api/auth/login
@@ -14,15 +14,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: 'محاولات كثيرة جداً. يرجى المحاولة لاحقاً.',
+          error: "محاولات كثيرة جداً. يرجى المحاولة لاحقاً.",
           retryAfter,
         },
         {
           status: 429,
           headers: {
-            'Retry-After': retryAfter.toString(),
+            "Retry-After": retryAfter.toString(),
           },
-        }
+        },
       );
     }
 
@@ -34,10 +34,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: 'بيانات غير صالحة',
+          error: "بيانات غير صالحة",
           errors: validation.error.flatten().fieldErrors,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -53,32 +53,32 @@ export async function POST(request: NextRequest) {
     // 5. Return user data
 
     // Mock authentication (REMOVE IN PRODUCTION)
-    if (email === 'test@example.com' && password === 'password123') {
+    if (email === "test@example.com" && password === "password123") {
       // Generate mock token (replace with actual JWT)
-      const token = 'mock-jwt-token-' + Date.now();
+      const token = "mock-jwt-token-" + Date.now();
 
       // Set HTTP-only cookie
       const response = NextResponse.json(
         {
           success: true,
-          message: 'تم تسجيل الدخول بنجاح',
+          message: "تم تسجيل الدخول بنجاح",
           user: {
-            id: '1',
-            name: 'مستخدم تجريبي',
+            id: "1",
+            name: "مستخدم تجريبي",
             email,
-            role: 'student',
+            role: "student",
           },
         },
-        { status: 200 }
+        { status: 200 },
       );
 
       // Set secure cookie
-      response.cookies.set('auth-token', token, {
+      response.cookies.set("auth-token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
         maxAge: rememberMe ? 30 * 24 * 60 * 60 : 24 * 60 * 60, // 30 days or 1 day
-        path: '/',
+        path: "/",
       });
 
       return response;
@@ -88,19 +88,18 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: 'البريد الإلكتروني أو كلمة المرور غير صحيحة',
+        error: "البريد الإلكتروني أو كلمة المرور غير صحيحة",
       },
-      { status: 401 }
+      { status: 401 },
     );
   } catch (error) {
-    console.error('Login error:', error);
+    console.error("Login error:", error);
     return NextResponse.json(
       {
         success: false,
-        error: 'حدث خطأ أثناء تسجيل الدخول. يرجى المحاولة مرة أخرى.',
+        error: "حدث خطأ أثناء تسجيل الدخول. يرجى المحاولة مرة أخرى.",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
-

@@ -93,7 +93,7 @@ export function OnboardingFlow({
     <div
       className={cn(
         "min-h-screen bg-gradient-to-b from-background to-muted/20",
-        className
+        className,
       )}
       dir="rtl"
     >
@@ -138,10 +138,7 @@ export function OnboardingFlow({
               variant="ghost"
               onClick={handleBack}
               disabled={isFirstStep}
-              className={cn(
-                "gap-2",
-                isFirstStep && "invisible"
-              )}
+              className={cn("gap-2", isFirstStep && "invisible")}
             >
               <ChevronRight className="w-4 h-4" />
               السابق
@@ -149,7 +146,11 @@ export function OnboardingFlow({
 
             {/* Skip Button */}
             {currentStep.canSkip && (
-              <Button variant="ghost" onClick={handleSkip} className="text-muted-foreground">
+              <Button
+                variant="ghost"
+                onClick={handleSkip}
+                className="text-muted-foreground"
+              >
                 تخطي
               </Button>
             )}

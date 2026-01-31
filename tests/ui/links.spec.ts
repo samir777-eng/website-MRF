@@ -124,7 +124,7 @@ test.describe("Link UI Tests - Complete Coverage", () => {
       await page.waitForLoadState("networkidle");
 
       const breadcrumbs = page.locator(
-        'nav[aria-label*="breadcrumb"] a, [role="navigation"] a'
+        'nav[aria-label*="breadcrumb"] a, [role="navigation"] a',
       );
       const count = await breadcrumbs.count();
 
@@ -146,7 +146,7 @@ test.describe("Link UI Tests - Complete Coverage", () => {
       await page.goto("/ar");
 
       const externalLinks = page.locator(
-        'a[target="_blank"], a[rel*="external"]'
+        'a[target="_blank"], a[rel*="external"]',
       );
       const count = await externalLinks.count();
 
@@ -257,7 +257,7 @@ test.describe("Link UI Tests - Complete Coverage", () => {
 
       // Should focus on a link or button
       expect(
-        ["A", "BUTTON"].includes(focusedElement.tagName || "")
+        ["A", "BUTTON"].includes(focusedElement.tagName || ""),
       ).toBeTruthy();
     });
 
@@ -364,7 +364,7 @@ test.describe("Link UI Tests - Complete Coverage", () => {
       await page.waitForLoadState("networkidle");
 
       const paginationLinks = page.locator(
-        '[role="navigation"] a, .pagination a'
+        '[role="navigation"] a, .pagination a',
       );
       const count = await paginationLinks.count();
 
@@ -432,7 +432,7 @@ test.describe("Link UI Tests - Complete Coverage", () => {
       const link = page.locator("a").first();
 
       const direction = await link.evaluate(
-        (el) => window.getComputedStyle(el).direction
+        (el) => window.getComputedStyle(el).direction,
       );
 
       expect(direction).toBe("rtl");

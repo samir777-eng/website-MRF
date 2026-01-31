@@ -13,8 +13,18 @@ export function CheckoutSkeleton() {
       <div className="container mx-auto px-4 md:px-6 py-6 md:py-8 space-y-8">
         {/* Page Header */}
         <div className="text-center space-y-2">
-          <EnhancedSkeleton variant="text" width="200px" height="36px" className="mx-auto" />
-          <EnhancedSkeleton variant="text" width="300px" height="20px" className="mx-auto" />
+          <EnhancedSkeleton
+            variant="text"
+            width="200px"
+            height="36px"
+            className="mx-auto"
+          />
+          <EnhancedSkeleton
+            variant="text"
+            width="300px"
+            height="20px"
+            className="mx-auto"
+          />
         </div>
 
         {/* Progress Steps */}
@@ -62,7 +72,11 @@ export function CheckoutSkeleton() {
               <div className="space-y-4">
                 {/* Full Name */}
                 <div className="space-y-2">
-                  <EnhancedSkeleton variant="text" width="100px" height="16px" />
+                  <EnhancedSkeleton
+                    variant="text"
+                    width="100px"
+                    height="16px"
+                  />
                   <EnhancedSkeleton
                     variant="rectangular"
                     width="100%"
@@ -74,7 +88,11 @@ export function CheckoutSkeleton() {
                 {/* Email & Phone */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <EnhancedSkeleton variant="text" width="80px" height="16px" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="80px"
+                      height="16px"
+                    />
                     <EnhancedSkeleton
                       variant="rectangular"
                       width="100%"
@@ -83,7 +101,11 @@ export function CheckoutSkeleton() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <EnhancedSkeleton variant="text" width="80px" height="16px" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="80px"
+                      height="16px"
+                    />
                     <EnhancedSkeleton
                       variant="rectangular"
                       width="100%"
@@ -111,7 +133,11 @@ export function CheckoutSkeleton() {
                 {/* Governorate & City */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <EnhancedSkeleton variant="text" width="80px" height="16px" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="80px"
+                      height="16px"
+                    />
                     <EnhancedSkeleton
                       variant="rectangular"
                       width="100%"
@@ -120,7 +146,11 @@ export function CheckoutSkeleton() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <EnhancedSkeleton variant="text" width="80px" height="16px" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="80px"
+                      height="16px"
+                    />
                     <EnhancedSkeleton
                       variant="rectangular"
                       width="100%"
@@ -132,7 +162,11 @@ export function CheckoutSkeleton() {
 
                 {/* Street Address */}
                 <div className="space-y-2">
-                  <EnhancedSkeleton variant="text" width="120px" height="16px" />
+                  <EnhancedSkeleton
+                    variant="text"
+                    width="120px"
+                    height="16px"
+                  />
                   <EnhancedSkeleton
                     variant="rectangular"
                     width="100%"
@@ -143,7 +177,11 @@ export function CheckoutSkeleton() {
 
                 {/* Additional Details */}
                 <div className="space-y-2">
-                  <EnhancedSkeleton variant="text" width="150px" height="16px" />
+                  <EnhancedSkeleton
+                    variant="text"
+                    width="150px"
+                    height="16px"
+                  />
                   <EnhancedSkeleton
                     variant="rectangular"
                     width="100%"
@@ -171,7 +209,11 @@ export function CheckoutSkeleton() {
                         height="24px"
                       />
                       <div className="flex-1 flex items-center justify-between">
-                        <EnhancedSkeleton variant="text" width="150px" height="20px" />
+                        <EnhancedSkeleton
+                          variant="text"
+                          width="150px"
+                          height="20px"
+                        />
                         <EnhancedSkeleton
                           variant="rectangular"
                           width="60px"
@@ -212,7 +254,10 @@ export function CheckoutSkeleton() {
                 {/* Order Items */}
                 <div className="space-y-3">
                   {Array.from({ length: 2 }).map((_, i) => (
-                    <div key={i} className="flex gap-3 pb-3 border-b border-border last:border-0">
+                    <div
+                      key={i}
+                      className="flex gap-3 pb-3 border-b border-border last:border-0"
+                    >
                       <EnhancedSkeleton
                         variant="rectangular"
                         width="60px"
@@ -220,9 +265,21 @@ export function CheckoutSkeleton() {
                         className="rounded-lg"
                       />
                       <div className="flex-1 space-y-2">
-                        <EnhancedSkeleton variant="text" width="100%" height="16px" />
-                        <EnhancedSkeleton variant="text" width="40%" height="14px" />
-                        <EnhancedSkeleton variant="text" width="60px" height="20px" />
+                        <EnhancedSkeleton
+                          variant="text"
+                          width="100%"
+                          height="16px"
+                        />
+                        <EnhancedSkeleton
+                          variant="text"
+                          width="40%"
+                          height="14px"
+                        />
+                        <EnhancedSkeleton
+                          variant="text"
+                          width="60px"
+                          height="20px"
+                        />
                       </div>
                     </div>
                   ))}
@@ -232,8 +289,16 @@ export function CheckoutSkeleton() {
                 <div className="space-y-3 pt-3 border-t border-border">
                   {Array.from({ length: 4 }).map((_, i) => (
                     <div key={i} className="flex items-center justify-between">
-                      <EnhancedSkeleton variant="text" width="100px" height="16px" />
-                      <EnhancedSkeleton variant="text" width="80px" height="16px" />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="100px"
+                        height="16px"
+                      />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="80px"
+                        height="16px"
+                      />
                     </div>
                   ))}
                 </div>
@@ -241,7 +306,11 @@ export function CheckoutSkeleton() {
                 {/* Total */}
                 <div className="flex items-center justify-between pt-3 border-t-2 border-border">
                   <EnhancedSkeleton variant="text" width="80px" height="24px" />
-                  <EnhancedSkeleton variant="text" width="120px" height="32px" />
+                  <EnhancedSkeleton
+                    variant="text"
+                    width="120px"
+                    height="32px"
+                  />
                 </div>
 
                 {/* Place Order Button */}
@@ -261,8 +330,16 @@ export function CheckoutSkeleton() {
                     className="rounded mt-1"
                   />
                   <div className="flex-1 space-y-1">
-                    <EnhancedSkeleton variant="text" width="100%" height="14px" />
-                    <EnhancedSkeleton variant="text" width="80%" height="14px" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="100%"
+                      height="14px"
+                    />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="80%"
+                      height="14px"
+                    />
                   </div>
                 </div>
               </div>

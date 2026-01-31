@@ -1,6 +1,12 @@
 "use client";
 
-type HapticType = "light" | "medium" | "heavy" | "success" | "warning" | "error";
+type HapticType =
+  | "light"
+  | "medium"
+  | "heavy"
+  | "success"
+  | "warning"
+  | "error";
 
 export function useHapticFeedback() {
   const triggerHaptic = (type: HapticType = "light") => {
@@ -24,4 +30,3 @@ export function useHapticFeedback() {
 
   return { triggerHaptic };
 }
-

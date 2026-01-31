@@ -60,16 +60,16 @@ The application will be available at `http://localhost:3000`.
 
 ## Available Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start development server |
-| `npm run dev:turbo` | Start with Turbopack |
-| `npm run build` | Build for production |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npm run format` | Format with Prettier |
-| `npm run test` | Run unit tests |
-| `npm run test:e2e` | Run E2E tests |
+| Script              | Description              |
+| ------------------- | ------------------------ |
+| `npm run dev`       | Start development server |
+| `npm run dev:turbo` | Start with Turbopack     |
+| `npm run build`     | Build for production     |
+| `npm run start`     | Start production server  |
+| `npm run lint`      | Run ESLint               |
+| `npm run format`    | Format with Prettier     |
+| `npm run test`      | Run unit tests           |
+| `npm run test:e2e`  | Run E2E tests            |
 
 ## Project Structure
 

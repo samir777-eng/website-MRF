@@ -64,16 +64,18 @@ export function CountUp({
     };
   }, [end, start, duration, delay]);
 
-  const displayValue = decimals > 0
-    ? count.toFixed(decimals)
-    : Math.floor(count).toLocaleString("ar-EG");
+  const displayValue =
+    decimals > 0
+      ? count.toFixed(decimals)
+      : Math.floor(count).toLocaleString("ar-EG");
 
   return (
     <span className={cn("tabular-nums", className)}>
-      {prefix}{displayValue}{suffix}
+      {prefix}
+      {displayValue}
+      {suffix}
     </span>
   );
 }
-
 
 export default CountUp;

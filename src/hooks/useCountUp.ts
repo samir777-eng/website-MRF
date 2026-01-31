@@ -49,4 +49,3 @@ export function useCountUp(target: number, duration: number = 1000): number {
 
   return count;
 }
-

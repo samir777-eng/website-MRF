@@ -114,7 +114,8 @@ function HomeworkContent() {
   const router = useRouter();
   const lectureId = params.id as string;
 
-  const { completeHomework, progress: lectureProgress } = useLectureProgress(lectureId);
+  const { completeHomework, progress: lectureProgress } =
+    useLectureProgress(lectureId);
 
   const [homework] = useState(() => getMockHomework(lectureId));
   const [state, setState] = useState<HomeworkState>("intro");
@@ -168,7 +169,8 @@ function HomeworkContent() {
   };
 
   const passed = score >= homework.passingScore;
-  const quizProgress = ((currentQuestion + 1) / homework.questions.length) * 100;
+  const quizProgress =
+    ((currentQuestion + 1) / homework.questions.length) * 100;
   const currentQ = homework.questions[currentQuestion];
 
   // Locked state

@@ -110,11 +110,41 @@ const mockMilestones: Milestone[] = [
 ];
 
 const mockTopics: Topic[] = [
-  { id: "1", title: "النحو الأساسي", completed: true, current: false, locked: false },
-  { id: "2", title: "الأفعال الناسخة", completed: true, current: false, locked: false },
-  { id: "3", title: "البلاغة: التشبيه", completed: false, current: true, locked: false },
-  { id: "4", title: "الشعر الجاهلي", completed: false, current: false, locked: false },
-  { id: "5", title: "علم البيان", completed: false, current: false, locked: true },
+  {
+    id: "1",
+    title: "النحو الأساسي",
+    completed: true,
+    current: false,
+    locked: false,
+  },
+  {
+    id: "2",
+    title: "الأفعال الناسخة",
+    completed: true,
+    current: false,
+    locked: false,
+  },
+  {
+    id: "3",
+    title: "البلاغة: التشبيه",
+    completed: false,
+    current: true,
+    locked: false,
+  },
+  {
+    id: "4",
+    title: "الشعر الجاهلي",
+    completed: false,
+    current: false,
+    locked: false,
+  },
+  {
+    id: "5",
+    title: "علم البيان",
+    completed: false,
+    current: false,
+    locked: true,
+  },
 ];
 
 const currentProgress = 36; // percentage
@@ -144,9 +174,7 @@ export function LearningJourneyMap() {
             </Badge>
           </div>
           <Progress value={currentProgress} className="h-3 mb-2" />
-          <p className="text-sm text-muted-foreground">
-            22 من 60 درس مكتمل
-          </p>
+          <p className="text-sm text-muted-foreground">22 من 60 درس مكتمل</p>
         </CardContent>
       </Card>
 
@@ -218,8 +246,9 @@ function MilestoneItem({
           className={cn(
             "w-20 h-20 rounded-full flex items-center justify-center text-3xl shadow-2xl",
             isCompleted && "bg-gradient-to-br from-success-500 to-emerald-600",
-            isCurrent && "bg-gradient-to-br from-primary to-primary-600 animate-pulse",
-            isLocked && "bg-muted/50 grayscale"
+            isCurrent &&
+              "bg-gradient-to-br from-primary to-primary-600 animate-pulse",
+            isLocked && "bg-muted/50 grayscale",
           )}
         >
           {isLocked ? (
@@ -241,10 +270,12 @@ function MilestoneItem({
       <div className="flex-1 pt-2">
         <div className="flex items-start justify-between gap-4 mb-2">
           <div>
-            <h4 className={cn(
-              "font-bold text-lg",
-              isLocked ? "text-muted-foreground" : "text-foreground"
-            )}>
+            <h4
+              className={cn(
+                "font-bold text-lg",
+                isLocked ? "text-muted-foreground" : "text-foreground",
+              )}
+            >
               {milestone.title}
             </h4>
             <p className="text-sm text-muted-foreground">
@@ -257,7 +288,8 @@ function MilestoneItem({
               variant="outline"
               className={cn(
                 "text-xs",
-                isCompleted && "border-success-500/30 text-success-600 bg-success-500/10"
+                isCompleted &&
+                  "border-success-500/30 text-success-600 bg-success-500/10",
               )}
             >
               +{milestone.reward.xp} XP
@@ -274,8 +306,10 @@ function MilestoneItem({
               </span>
               <span className="font-medium text-foreground">
                 {Math.round(
-                  (milestone.lessonsCompleted / milestone.lessonsRequired) * 100
-                )}%
+                  (milestone.lessonsCompleted / milestone.lessonsRequired) *
+                    100,
+                )}
+                %
               </span>
             </div>
             <Progress
@@ -308,7 +342,7 @@ function TopicItem({ topic }: { topic: Topic }) {
       className={cn(
         "flex items-center gap-3 p-3 rounded-lg transition-colors",
         topic.current && "bg-primary/10 border border-primary/30",
-        !topic.current && "bg-muted/30"
+        !topic.current && "bg-muted/30",
       )}
     >
       {/* Status Icon */}
@@ -330,7 +364,7 @@ function TopicItem({ topic }: { topic: Topic }) {
           "flex-1 text-sm font-medium",
           topic.completed && "text-muted-foreground line-through",
           topic.current && "text-primary font-bold",
-          topic.locked && "text-muted-foreground"
+          topic.locked && "text-muted-foreground",
         )}
       >
         {topic.title}

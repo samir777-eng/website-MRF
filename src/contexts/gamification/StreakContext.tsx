@@ -54,7 +54,7 @@ export function StreakProvider({ children }: StreakProviderProps) {
   // Fetch streak data from server
   const refreshStreak = useCallback(async () => {
     try {
-      setState(prev => ({ ...prev, isLoading: true }));
+      setState((prev) => ({ ...prev, isLoading: true }));
 
       const result = await apiGetStats();
 
@@ -66,11 +66,11 @@ export function StreakProvider({ children }: StreakProviderProps) {
           isLoading: false,
         });
       } else {
-        setState(prev => ({ ...prev, isLoading: false }));
+        setState((prev) => ({ ...prev, isLoading: false }));
       }
     } catch (err) {
       console.error("Failed to refresh streak:", err);
-      setState(prev => ({ ...prev, isLoading: false }));
+      setState((prev) => ({ ...prev, isLoading: false }));
     }
   }, []);
 
@@ -78,7 +78,7 @@ export function StreakProvider({ children }: StreakProviderProps) {
   const updateStreak = useCallback(async () => {
     const result = await apiUpdateStreak();
     if (result.success) {
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
         currentStreak: result.currentStreak,
         longestStreak: result.longestStreak,
@@ -93,7 +93,7 @@ export function StreakProvider({ children }: StreakProviderProps) {
       const result = await apiUpdateStreak();
       if (result.success && result.isNewDay) {
         // Update state with new streak values
-        setState(prev => ({
+        setState((prev) => ({
           ...prev,
           currentStreak: result.currentStreak,
           longestStreak: result.longestStreak,
@@ -110,13 +110,11 @@ export function StreakProvider({ children }: StreakProviderProps) {
       updateStreak,
       refreshStreak,
     }),
-    [state, updateStreak, refreshStreak]
+    [state, updateStreak, refreshStreak],
   );
 
   return (
-    <StreakContext.Provider value={value}>
-      {children}
-    </StreakContext.Provider>
+    <StreakContext.Provider value={value}>{children}</StreakContext.Provider>
   );
 }
 
@@ -152,5 +150,9 @@ export function useLongestStreak() {
  */
 export function useStreakComparison() {
   const { currentStreak, longestStreak } = useStreak();
-  return { currentStreak, longestStreak, isAtBest: currentStreak >= longestStreak };
+  return {
+    currentStreak,
+    longestStreak,
+    isAtBest: currentStreak >= longestStreak,
+  };
 }

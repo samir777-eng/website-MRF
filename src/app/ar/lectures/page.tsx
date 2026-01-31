@@ -344,7 +344,7 @@ export default function LecturesPage() {
         acc[lesson.branch].push(lesson);
         return acc;
       },
-      {} as Record<ArabicBranch, LessonContent[]>
+      {} as Record<ArabicBranch, LessonContent[]>,
     );
   };
 
@@ -360,10 +360,10 @@ export default function LecturesPage() {
 
   // Calculate overall course progress
   const completedLectures = gradeLectures.filter(
-    (l) => l.access?.currentStep === "complete"
+    (l) => l.access?.currentStep === "complete",
   ).length;
   const overallProgress = Math.round(
-    (completedLectures / gradeLectures.length) * 100
+    (completedLectures / gradeLectures.length) * 100,
   );
 
   const getGradeLabel = (grade: GradeLevel) => {
@@ -650,7 +650,7 @@ export default function LecturesPage() {
                                               : "text-muted-foreground/30"
                                           }`}
                                         />
-                                      )
+                                      ),
                                     )}
                                   </div>
                                 </div>
@@ -749,7 +749,7 @@ export default function LecturesPage() {
                                         </ul>
                                       </div>
                                     );
-                                  }
+                                  },
                                 )}
                               </div>
                             </div>

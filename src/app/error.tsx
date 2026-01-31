@@ -17,7 +17,10 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" dir="rtl">
+    <div
+      className="min-h-screen flex items-center justify-center p-4"
+      dir="rtl"
+    >
       <div className="text-center max-w-md">
         <div className="mb-8">
           <div className="flex justify-center mb-4">
@@ -41,7 +44,10 @@ export default function Error({
             <RefreshCw className="w-4 h-4 ms-2" />
             حاول مرة أخرى
           </Button>
-          <Button variant="outline" onClick={() => (window.location.href = "/ar")}>
+          <Button
+            variant="outline"
+            onClick={() => (window.location.href = "/ar")}
+          >
             <Home className="w-4 h-4 ms-2" />
             العودة للرئيسية
           </Button>
@@ -50,4 +56,3 @@ export default function Error({
     </div>
   );
 }
-

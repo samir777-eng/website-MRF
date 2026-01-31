@@ -420,7 +420,7 @@ function LessonContent() {
                                       onClick={(e) => {
                                         e.stopPropagation();
                                         setPlaybackSpeed(
-                                          speed as PlaybackSpeed
+                                          speed as PlaybackSpeed,
                                         );
                                       }}
                                       role="menuitem"
@@ -428,7 +428,7 @@ function LessonContent() {
                                     >
                                       {speed}x
                                     </button>
-                                  )
+                                  ),
                                 )}
                               </div>
                             </div>

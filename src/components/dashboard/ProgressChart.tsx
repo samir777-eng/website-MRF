@@ -147,12 +147,28 @@ export function ProgressChart({ variant = "area" }: ProgressChartProps) {
               >
                 <defs>
                   <linearGradient id="colorXP" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor={CHART_COLORS.hex.info} stopOpacity={0.8} />
-                    <stop offset="95%" stopColor={CHART_COLORS.hex.info} stopOpacity={0} />
+                    <stop
+                      offset="5%"
+                      stopColor={CHART_COLORS.hex.info}
+                      stopOpacity={0.8}
+                    />
+                    <stop
+                      offset="95%"
+                      stopColor={CHART_COLORS.hex.info}
+                      stopOpacity={0}
+                    />
                   </linearGradient>
                   <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor={CHART_COLORS.hex.primary} stopOpacity={0.8} />
-                    <stop offset="95%" stopColor={CHART_COLORS.hex.primary} stopOpacity={0} />
+                    <stop
+                      offset="5%"
+                      stopColor={CHART_COLORS.hex.primary}
+                      stopOpacity={0.8}
+                    />
+                    <stop
+                      offset="95%"
+                      stopColor={CHART_COLORS.hex.primary}
+                      stopOpacity={0}
+                    />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
@@ -264,7 +280,7 @@ export function ProgressChart({ variant = "area" }: ProgressChartProps) {
               label: "متوسط الدرجة",
               value:
                 Math.round(
-                  data.reduce((sum, d) => sum + d.score, 0) / data.length
+                  data.reduce((sum, d) => sum + d.score, 0) / data.length,
                 ) + "%",
               color: "from-orange-500 to-red-500",
             },

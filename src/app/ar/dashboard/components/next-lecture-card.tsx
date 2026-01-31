@@ -49,7 +49,16 @@ function getNextLecture(): NextLectureData {
   };
 }
 
-const stepConfig: Record<LectureStep, { label: string; icon: typeof Play; color: string; action: string; href: string }> = {
+const stepConfig: Record<
+  LectureStep,
+  {
+    label: string;
+    icon: typeof Play;
+    color: string;
+    action: string;
+    href: string;
+  }
+> = {
   "pre-quiz": {
     label: "الاختبار القبلي",
     icon: FileQuestion,
@@ -57,7 +66,7 @@ const stepConfig: Record<LectureStep, { label: string; icon: typeof Play; color:
     action: "ابدأ الاختبار",
     href: "/pre-quiz",
   },
-  "videos": {
+  videos: {
     label: "الفيديوهات",
     icon: Video,
     color: "from-blue-500 to-cyan-600",
@@ -71,7 +80,7 @@ const stepConfig: Record<LectureStep, { label: string; icon: typeof Play; color:
     action: "ابدأ الاختبار",
     href: "/post-quiz",
   },
-  "homework": {
+  homework: {
     label: "الواجب",
     icon: BookOpen,
     color: "from-green-500 to-emerald-600",
@@ -87,7 +96,9 @@ function NextLectureCardComponent() {
   const actionHref = `/ar/lectures/${lecture.id}${step.href}`;
 
   return (
-    <Card className={`border-0 shadow-xl bg-gradient-to-br ${step.color} text-white overflow-hidden relative`}>
+    <Card
+      className={`border-0 shadow-xl bg-gradient-to-br ${step.color} text-white overflow-hidden relative`}
+    >
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-40 h-40 bg-white/5 rounded-full -translate-y-20 -translate-x-20" />
       <div className="absolute bottom-0 right-0 w-32 h-32 bg-white/5 rounded-full translate-y-16 translate-x-16" />
@@ -115,14 +126,18 @@ function NextLectureCardComponent() {
                   <Heart
                     key={i}
                     className={`w-4 h-4 ${
-                      i < lecture.livesRemaining ? "fill-white text-white" : "text-white/40"
+                      i < lecture.livesRemaining
+                        ? "fill-white text-white"
+                        : "text-white/40"
                     }`}
                   />
                 ))}
               </div>
               <div className="flex items-center gap-1 text-sm text-white/80">
                 <Clock className="w-3 h-3" />
-                <span>{lecture.daysRemaining}ي {lecture.hoursRemaining}س</span>
+                <span>
+                  {lecture.daysRemaining}ي {lecture.hoursRemaining}س
+                </span>
               </div>
             </div>
           </div>
@@ -133,29 +148,47 @@ function NextLectureCardComponent() {
               <span>تقدم المحاضرة</span>
               <span className="font-medium">{lecture.stepProgress}%</span>
             </div>
-            <Progress value={lecture.stepProgress} className="h-2 bg-white/30" />
+            <Progress
+              value={lecture.stepProgress}
+              className="h-2 bg-white/30"
+            />
           </div>
 
           {/* Steps indicator */}
           <div className="flex items-center justify-between bg-white/10 rounded-lg p-3">
-            {(["pre-quiz", "videos", "post-quiz", "homework"] as LectureStep[]).map((s, i) => {
-              const isComplete = 
+            {(
+              ["pre-quiz", "videos", "post-quiz", "homework"] as LectureStep[]
+            ).map((s, i) => {
+              const isComplete =
                 (lecture.currentStep === "videos" && s === "pre-quiz") ||
-                (lecture.currentStep === "post-quiz" && (s === "pre-quiz" || s === "videos")) ||
+                (lecture.currentStep === "post-quiz" &&
+                  (s === "pre-quiz" || s === "videos")) ||
                 (lecture.currentStep === "homework" && s !== "homework");
               const isCurrent = s === lecture.currentStep;
               const Icon = stepConfig[s].icon;
 
               return (
                 <div key={s} className="flex items-center">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                    isComplete ? "bg-white text-green-600" :
-                    isCurrent ? "bg-white text-gray-900" :
-                    "bg-white/20 text-white/60"
-                  }`}>
-                    {isComplete ? <CheckCircle className="w-4 h-4" /> : <Icon className="w-4 h-4" />}
+                  <div
+                    className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                      isComplete
+                        ? "bg-white text-green-600"
+                        : isCurrent
+                          ? "bg-white text-gray-900"
+                          : "bg-white/20 text-white/60"
+                    }`}
+                  >
+                    {isComplete ? (
+                      <CheckCircle className="w-4 h-4" />
+                    ) : (
+                      <Icon className="w-4 h-4" />
+                    )}
                   </div>
-                  {i < 3 && <div className={`w-6 md:w-10 h-0.5 ${isComplete ? "bg-white" : "bg-white/20"}`} />}
+                  {i < 3 && (
+                    <div
+                      className={`w-6 md:w-10 h-0.5 ${isComplete ? "bg-white" : "bg-white/20"}`}
+                    />
+                  )}
                 </div>
               );
             })}
@@ -163,7 +196,10 @@ function NextLectureCardComponent() {
 
           {/* Action button */}
           <Link href={actionHref}>
-            <Button size="lg" className="w-full bg-white text-gray-900 hover:bg-white/90 font-semibold">
+            <Button
+              size="lg"
+              className="w-full bg-white text-gray-900 hover:bg-white/90 font-semibold"
+            >
               {step.action}
               <ArrowLeft className="w-5 h-5 me-2 rtl:-scale-x-100" />
             </Button>
@@ -175,4 +211,3 @@ function NextLectureCardComponent() {
 }
 
 export const NextLectureCard = memo(NextLectureCardComponent);
-

@@ -26,7 +26,7 @@ test.describe("Grade Selection (Critical Business Rule)", () => {
     page,
   }) => {
     const gradeElements = page.locator(
-      '[data-testid*="grade"], [class*="grade"]'
+      '[data-testid*="grade"], [class*="grade"]',
     );
 
     // If test IDs exist, verify order
@@ -119,10 +119,10 @@ test.describe("Grade Selection (Critical Business Rule)", () => {
     await gradeOption.focus();
 
     const outlineWidth = await gradeOption.evaluate(
-      (el) => window.getComputedStyle(el).outlineWidth
+      (el) => window.getComputedStyle(el).outlineWidth,
     );
     const boxShadow = await gradeOption.evaluate(
-      (el) => window.getComputedStyle(el).boxShadow
+      (el) => window.getComputedStyle(el).boxShadow,
     );
 
     // Either outline or box-shadow should indicate focus
@@ -160,4 +160,3 @@ test.describe("Grade Selection (Critical Business Rule)", () => {
     }
   });
 });
-

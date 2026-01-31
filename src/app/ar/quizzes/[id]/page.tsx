@@ -9,4 +9,3 @@ export default async function QuizDetailPage({ params }: Props) {
   const { id } = await params;
   redirect(`/ar/challenges/${id}`);
 }
-

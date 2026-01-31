@@ -3,7 +3,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { ArrowLeft, ChevronDown, ChevronUp, LineChart, TrendingUp } from "lucide-react";
+import {
+  ArrowLeft,
+  ChevronDown,
+  ChevronUp,
+  LineChart,
+  TrendingUp,
+} from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -73,10 +79,15 @@ function getMasteryColor(mastery: number) {
 
 export default function EvaluationCornerPage() {
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
-  const overallMastery = Math.round(topics.reduce((sum, t) => sum + t.mastery, 0) / topics.length);
+  const overallMastery = Math.round(
+    topics.reduce((sum, t) => sum + t.mastery, 0) / topics.length,
+  );
 
   return (
-    <div className="min-h-screen bg-background dark:bg-zinc-950 pb-24 lg:pb-8" dir="rtl">
+    <div
+      className="min-h-screen bg-background dark:bg-zinc-950 pb-24 lg:pb-8"
+      dir="rtl"
+    >
       <div className="container mx-auto px-4 md:px-6 py-8 space-y-8">
         {/* Header */}
         <div className="flex items-center gap-4">
@@ -91,8 +102,12 @@ export default function EvaluationCornerPage() {
                 <LineChart className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-foreground">ركن التقييم</h1>
-                <p className="text-sm text-muted-foreground">{topics.length} مواضيع</p>
+                <h1 className="text-2xl font-bold text-foreground">
+                  ركن التقييم
+                </h1>
+                <p className="text-sm text-muted-foreground">
+                  {topics.length} مواضيع
+                </p>
               </div>
             </div>
           </div>
@@ -104,9 +119,13 @@ export default function EvaluationCornerPage() {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-purple-600" />
-                <span className="font-semibold text-foreground">الإتقان الكلي</span>
+                <span className="font-semibold text-foreground">
+                  الإتقان الكلي
+                </span>
               </div>
-              <span className={`text-3xl font-bold ${getMasteryColor(overallMastery)}`}>
+              <span
+                className={`text-3xl font-bold ${getMasteryColor(overallMastery)}`}
+              >
                 {overallMastery}%
               </span>
             </div>
@@ -120,17 +139,25 @@ export default function EvaluationCornerPage() {
             <Card key={topic.id} className="overflow-hidden">
               <CardContent className="p-0">
                 <button
-                  onClick={() => setExpandedTopic(expandedTopic === topic.id ? null : topic.id)}
+                  onClick={() =>
+                    setExpandedTopic(
+                      expandedTopic === topic.id ? null : topic.id,
+                    )
+                  }
                   className="w-full p-5 flex items-center gap-4 hover:bg-muted/50 transition-colors"
                 >
                   <div className={`w-3 h-12 rounded-full ${topic.color}`} />
                   <div className="flex-1 text-start">
-                    <div className="font-semibold text-foreground">{topic.name}</div>
+                    <div className="font-semibold text-foreground">
+                      {topic.name}
+                    </div>
                     <div className="text-sm text-muted-foreground">
                       {topic.subtopics.length} مواضيع فرعية
                     </div>
                   </div>
-                  <div className={`text-2xl font-bold ${getMasteryColor(topic.mastery)}`}>
+                  <div
+                    className={`text-2xl font-bold ${getMasteryColor(topic.mastery)}`}
+                  >
                     {topic.mastery}%
                   </div>
                   {expandedTopic === topic.id ? (
@@ -144,10 +171,14 @@ export default function EvaluationCornerPage() {
                     {topic.subtopics.map((sub, idx) => (
                       <div key={idx} className="flex items-center gap-4">
                         <div className="flex-1">
-                          <div className="text-sm font-medium text-foreground mb-1">{sub.name}</div>
+                          <div className="text-sm font-medium text-foreground mb-1">
+                            {sub.name}
+                          </div>
                           <Progress value={sub.mastery} className="h-2" />
                         </div>
-                        <span className={`text-sm font-semibold ${getMasteryColor(sub.mastery)}`}>
+                        <span
+                          className={`text-sm font-semibold ${getMasteryColor(sub.mastery)}`}
+                        >
                           {sub.mastery}%
                         </span>
                       </div>
@@ -162,4 +193,3 @@ export default function EvaluationCornerPage() {
     </div>
   );
 }
-

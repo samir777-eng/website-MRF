@@ -85,7 +85,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [sessionExpiryReason, setSessionExpiryReason] = useState<SessionExpiryReason | null>(null);
+  const [sessionExpiryReason, setSessionExpiryReason] =
+    useState<SessionExpiryReason | null>(null);
   const [sessionState, setSessionState] = useState<SessionState>({
     expiresAt: null,
     timeRemaining: null,
@@ -105,7 +106,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       localStorage.setItem(
         AUTH_SYNC_KEY,
-        JSON.stringify({ event, timestamp: Date.now() })
+        JSON.stringify({ event, timestamp: Date.now() }),
       );
       // Clean up immediately to allow future events
       setTimeout(() => localStorage.removeItem(AUTH_SYNC_KEY), 100);
@@ -138,7 +139,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       const timeRemaining = data.timeRemaining || 0;
-      const isExpiringSoon = timeRemaining <= SESSION_WARNING_THRESHOLD && timeRemaining > 0;
+      const isExpiringSoon =
+        timeRemaining <= SESSION_WARNING_THRESHOLD && timeRemaining > 0;
 
       return {
         expiresAt: data.expiresAt,
@@ -245,104 +247,110 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       description: "يرجى تسجيل الدخول مرة أخرى",
     });
 
-    const redirectPath = pathname && !pathname.includes("/auth") ? pathname : "/ar/dashboard";
-    router.push(`/ar/auth/login?redirect=${encodeURIComponent(redirectPath)}&message=${encodeURIComponent("انتهت جلستك. يرجى تسجيل الدخول مرة أخرى.")}`);
+    const redirectPath =
+      pathname && !pathname.includes("/auth") ? pathname : "/ar/dashboard";
+    router.push(
+      `/ar/auth/login?redirect=${encodeURIComponent(redirectPath)}&message=${encodeURIComponent("انتهت جلستك. يرجى تسجيل الدخول مرة أخرى.")}`,
+    );
   }, [broadcastAuthEvent, router, pathname]);
 
   // Load user from httpOnly cookie on mount
-  const loadUser = useCallback(async (isSessionCheck = false): Promise<boolean> => {
-    try {
-      if (!isSessionCheck) {
-        setIsLoading(true);
-      }
-
-      // Call API to get user from httpOnly cookie
-      const response = await fetch("/api/auth/me", {
-        method: "GET",
-        headers: {
-          "X-Requested-With": "XMLHttpRequest",
-        },
-        credentials: "include", // Important: include cookies
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        // Map API response to User type
-        const userData: User = {
-          id: data.user.id,
-          email: data.user.email,
-          name: data.user.name,
-          phone: data.user.phone,
-          gradeLevel: data.user.gradeLevel as GradeLevel,
-          role: data.user.role,
-          subscriptionStatus: data.user.subscriptionStatus || "inactive",
-          subscriptionPlan: data.user.subscriptionPlan,
-          emailVerified: data.user.verified || false,
-          phoneVerified: false,
-          createdAt: new Date(data.user.createdAt),
-          updatedAt: new Date(),
-          lastLoginAt: new Date(),
-          preferences: {
-            language: "ar",
-            theme: "system",
-            notifications: {
-              email: true,
-              push: true,
-              sms: false,
-              newLecture: true,
-              quizReminder: true,
-              homeworkDeadline: true,
-              gradePosted: true,
-              teacherFeedback: true,
-            },
-            privacy: {
-              showProfile: true,
-              showProgress: true,
-              allowMessages: true,
-            },
-          },
-        };
-        setUser(userData);
-        setSessionExpiryReason(null);
-
-        // Check session status after loading user
+  const loadUser = useCallback(
+    async (isSessionCheck = false): Promise<boolean> => {
+      try {
         if (!isSessionCheck) {
-          const status = await checkSessionStatus();
-          setSessionState(status);
+          setIsLoading(true);
         }
 
-        return true;
-      } else {
-        // Handle specific error codes for session expiry
-        if (data.code === "INVALID_TOKEN") {
-          setSessionExpiryReason("invalid");
-        } else if (data.code === "NO_TOKEN" && user !== null) {
-          // Had a user but now no token - session expired
-          setSessionExpiryReason("expired");
+        // Call API to get user from httpOnly cookie
+        const response = await fetch("/api/auth/me", {
+          method: "GET",
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+          },
+          credentials: "include", // Important: include cookies
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          // Map API response to User type
+          const userData: User = {
+            id: data.user.id,
+            email: data.user.email,
+            name: data.user.name,
+            phone: data.user.phone,
+            gradeLevel: data.user.gradeLevel as GradeLevel,
+            role: data.user.role,
+            subscriptionStatus: data.user.subscriptionStatus || "inactive",
+            subscriptionPlan: data.user.subscriptionPlan,
+            emailVerified: data.user.verified || false,
+            phoneVerified: false,
+            createdAt: new Date(data.user.createdAt),
+            updatedAt: new Date(),
+            lastLoginAt: new Date(),
+            preferences: {
+              language: "ar",
+              theme: "system",
+              notifications: {
+                email: true,
+                push: true,
+                sms: false,
+                newLecture: true,
+                quizReminder: true,
+                homeworkDeadline: true,
+                gradePosted: true,
+                teacherFeedback: true,
+              },
+              privacy: {
+                showProfile: true,
+                showProgress: true,
+                allowMessages: true,
+              },
+            },
+          };
+          setUser(userData);
+          setSessionExpiryReason(null);
+
+          // Check session status after loading user
+          if (!isSessionCheck) {
+            const status = await checkSessionStatus();
+            setSessionState(status);
+          }
+
+          return true;
+        } else {
+          // Handle specific error codes for session expiry
+          if (data.code === "INVALID_TOKEN") {
+            setSessionExpiryReason("invalid");
+          } else if (data.code === "NO_TOKEN" && user !== null) {
+            // Had a user but now no token - session expired
+            setSessionExpiryReason("expired");
+          }
+          setUser(null);
+          setSessionState({
+            expiresAt: null,
+            timeRemaining: null,
+            isExpiringSoon: false,
+            isExpired: true,
+          });
+          return false;
+        }
+      } catch (err) {
+        console.error("Failed to load user:", err);
+        if (user !== null) {
+          setSessionExpiryReason("error");
         }
         setUser(null);
-        setSessionState({
-          expiresAt: null,
-          timeRemaining: null,
-          isExpiringSoon: false,
-          isExpired: true,
-        });
         return false;
+      } finally {
+        if (!isSessionCheck) {
+          setIsLoading(false);
+        }
       }
-    } catch (err) {
-      console.error("Failed to load user:", err);
-      if (user !== null) {
-        setSessionExpiryReason("error");
-      }
-      setUser(null);
-      return false;
-    } finally {
-      if (!isSessionCheck) {
-        setIsLoading(false);
-      }
-    }
-  }, [user, checkSessionStatus]);
+    },
+    [user, checkSessionStatus],
+  );
 
   // Check session validity (can be called explicitly)
   const checkSession = useCallback(async (): Promise<boolean> => {
@@ -428,7 +436,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     checkSessionPeriodically();
 
     // Set up interval
-    sessionCheckIntervalRef.current = setInterval(checkSessionPeriodically, SESSION_CHECK_INTERVAL);
+    sessionCheckIntervalRef.current = setInterval(
+      checkSessionPeriodically,
+      SESSION_CHECK_INTERVAL,
+    );
 
     return () => {
       if (sessionCheckIntervalRef.current) {
@@ -457,7 +468,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               isExpiringSoon: false,
               isExpired: true,
             });
-            setSessionExpiryReason(event === AUTH_LOGOUT_EVENT ? "logout" : "expired");
+            setSessionExpiryReason(
+              event === AUTH_LOGOUT_EVENT ? "logout" : "expired",
+            );
             setShowExpiryModal(false);
 
             // Clear interval
@@ -526,7 +539,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setIsLoading(false);
       }
     },
-    [loadUser, router]
+    [loadUser, router],
   );
 
   const register = useCallback(
@@ -562,7 +575,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setIsLoading(false);
       }
     },
-    [router]
+    [router],
   );
 
   const logout = useCallback(async () => {

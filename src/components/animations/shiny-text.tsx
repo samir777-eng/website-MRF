@@ -13,7 +13,7 @@ export function ShinyText({ text, className }: ShinyTextProps) {
     <motion.span
       className={cn(
         "inline-block bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-400 bg-clip-text text-transparent bg-[length:200%_100%]",
-        className
+        className,
       )}
       animate={{
         backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
@@ -28,6 +28,5 @@ export function ShinyText({ text, className }: ShinyTextProps) {
     </motion.span>
   );
 }
-
 
 export default ShinyText;

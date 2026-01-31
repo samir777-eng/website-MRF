@@ -7,4 +7,3 @@
 
 export { BundleCheckoutModal } from "./bundle-checkout-modal";
 export type { BundleData } from "./bundle-checkout-modal";
-

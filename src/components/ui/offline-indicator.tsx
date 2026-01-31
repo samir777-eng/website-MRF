@@ -53,7 +53,7 @@ export function OfflineIndicator() {
         "transition-all duration-300",
         isOnline
           ? "bg-green-600 text-white dark:bg-green-500"
-          : "bg-destructive text-destructive-foreground"
+          : "bg-destructive text-destructive-foreground",
       )}
     >
       {isOnline ? (

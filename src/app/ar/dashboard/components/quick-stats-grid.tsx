@@ -97,4 +97,3 @@ function QuickStatsGridComponent({ currentStreak }: QuickStatsGridProps) {
 }
 
 export const QuickStatsGrid = memo(QuickStatsGridComponent);
-

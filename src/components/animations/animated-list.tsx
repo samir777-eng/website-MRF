@@ -75,5 +75,4 @@ export function AnimatedList({
   );
 }
 
-
 export default AnimatedList;

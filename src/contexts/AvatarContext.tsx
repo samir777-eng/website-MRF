@@ -69,7 +69,7 @@ export function AvatarProvider({ children }: { children: ReactNode }) {
         } else {
           // Default owned parts (free items)
           const freeParts = AVATAR_PARTS.filter(
-            (part) => part.unlockMethod === "free"
+            (part) => part.unlockMethod === "free",
           ).map((part) => part.id);
           setOwnedParts(freeParts);
         }
@@ -131,7 +131,7 @@ export function AvatarProvider({ children }: { children: ReactNode }) {
         return false;
       }
     },
-    [ownedParts]
+    [ownedParts],
   );
 
   const unlockPart = useCallback(
@@ -140,7 +140,7 @@ export function AvatarProvider({ children }: { children: ReactNode }) {
         setOwnedParts((prev) => [...prev, partId]);
       }
     },
-    [ownedParts]
+    [ownedParts],
   );
 
   const resetToDefault = useCallback(() => {
@@ -153,12 +153,12 @@ export function AvatarProvider({ children }: { children: ReactNode }) {
 
   const isOwned = useCallback(
     (partId: string) => ownedParts.includes(partId),
-    [ownedParts]
+    [ownedParts],
   );
 
   const isEquipped = useCallback(
     (partId: string) => Object.values(config).includes(partId),
-    [config]
+    [config],
   );
 
   // ============================================================================

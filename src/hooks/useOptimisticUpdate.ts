@@ -17,7 +17,7 @@ export function useOptimisticUpdate<T>() {
   const execute = async (
     optimisticValue: T,
     apiCall: () => Promise<T>,
-    options?: OptimisticUpdateOptions<T>
+    options?: OptimisticUpdateOptions<T>,
   ): Promise<T | null> => {
     setIsLoading(true);
 
@@ -57,4 +57,3 @@ export function useOptimisticUpdate<T>() {
 
   return { execute, isLoading };
 }
-

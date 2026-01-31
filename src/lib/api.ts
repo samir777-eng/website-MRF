@@ -118,9 +118,7 @@ class APIClient {
     return httpClient.get("/auth/me");
   }
 
-  async refreshToken(
-    refreshToken: string,
-  ): Promise<
+  async refreshToken(refreshToken: string): Promise<
     APIResponse<{
       accessToken: string;
       refreshToken: string;

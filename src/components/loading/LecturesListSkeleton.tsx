@@ -5,7 +5,11 @@
  * Loading state for lectures page with filters and cards grid
  */
 
-import { EnhancedSkeleton, SkeletonCard, SkeletonButton } from "./EnhancedSkeleton";
+import {
+  EnhancedSkeleton,
+  SkeletonCard,
+  SkeletonButton,
+} from "./EnhancedSkeleton";
 
 export function LecturesListSkeleton() {
   return (
@@ -36,13 +40,7 @@ export function LecturesListSkeleton() {
       {/* Lecture Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {Array.from({ length: 6 }).map((_, i) => (
-          <SkeletonCard
-            key={i}
-            hasImage
-            hasTitle
-            hasDescription
-            hasActions
-          />
+          <SkeletonCard key={i} hasImage hasTitle hasDescription hasActions />
         ))}
       </div>
 

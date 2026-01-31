@@ -516,7 +516,7 @@ export default function HomeworkPage() {
                         </div>
                         <div className="text-sm text-muted-foreground">
                           {(files[question.id][0].size / 1024 / 1024).toFixed(
-                            2
+                            2,
                           )}{" "}
                           MB
                         </div>

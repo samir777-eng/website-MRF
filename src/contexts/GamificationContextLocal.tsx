@@ -55,7 +55,7 @@ interface GamificationContextType {
 }
 
 const GamificationContext = createContext<GamificationContextType | undefined>(
-  undefined
+  undefined,
 );
 
 interface GamificationProviderProps {
@@ -86,7 +86,7 @@ export function GamificationProvider({ children }: GamificationProviderProps) {
   const [currentEnergy, setCurrentEnergy] = useState(ENERGY_CONFIG.MAX_ENERGY);
   const [lastEnergyUpdate, setLastEnergyUpdate] = useState(Date.now());
   const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>(
-    []
+    [],
   );
   const [newAchievements, setNewAchievements] = useState<Achievement[]>([]);
   const [lastActiveDate, setLastActiveDate] = useState<string>("");
@@ -126,7 +126,7 @@ export function GamificationProvider({ children }: GamificationProviderProps) {
       // Check for new achievements
       const newlyUnlocked = checkNewAchievements(
         updatedStats,
-        unlockedAchievements
+        unlockedAchievements,
       );
       if (newlyUnlocked.length > 0) {
         setNewAchievements((prev) => [...prev, ...newlyUnlocked]);
@@ -138,7 +138,7 @@ export function GamificationProvider({ children }: GamificationProviderProps) {
         // Add XP for achievements (but don't trigger infinite loop)
         const achievementXP = newlyUnlocked.reduce(
           (sum, achievement) => sum + achievement.xpReward,
-          0
+          0,
         );
         updatedStats.totalXP += achievementXP;
         updatedStats.level = getLevelFromXP(updatedStats.totalXP);
@@ -158,13 +158,13 @@ export function GamificationProvider({ children }: GamificationProviderProps) {
 
   // Energy system functions
   const canPerformActionCheck = (
-    action: keyof typeof ENERGY_CONFIG.ENERGY_COST
+    action: keyof typeof ENERGY_CONFIG.ENERGY_COST,
   ): boolean => {
     return canPerformAction(action, currentEnergy);
   };
 
   const consumeEnergy = (
-    action: keyof typeof ENERGY_CONFIG.ENERGY_COST
+    action: keyof typeof ENERGY_CONFIG.ENERGY_COST,
   ): boolean => {
     const cost = ENERGY_CONFIG.ENERGY_COST[action];
     if (currentEnergy >= cost) {
@@ -352,7 +352,7 @@ export function useGamification() {
   const context = useContext(GamificationContext);
   if (context === undefined) {
     throw new Error(
-      "useGamification must be used within a GamificationProvider"
+      "useGamification must be used within a GamificationProvider",
     );
   }
   return context;

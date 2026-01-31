@@ -30,4 +30,3 @@ export function Chart({ data, className, type: _type = "bar" }: ChartProps) {
     </div>
   );
 }
-

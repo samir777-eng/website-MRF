@@ -48,7 +48,7 @@ export function SearchTrigger({
       onClick={openSearch}
       className={cn(
         "relative w-full sm:w-64 justify-between text-muted-foreground hover:text-foreground",
-        className
+        className,
       )}
       aria-label="فتح البحث"
       title="فتح البحث"

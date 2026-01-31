@@ -210,7 +210,7 @@ function RecommendationCard({
                   "text-xs font-medium",
                   config.color,
                   config.bgColor,
-                  config.borderColor
+                  config.borderColor,
                 )}
               >
                 {config.label}
@@ -242,7 +242,7 @@ function RecommendationCard({
               <div
                 className={cn(
                   "w-full h-32 rounded-lg flex items-center justify-center",
-                  config.bgColor
+                  config.bgColor,
                 )}
               >
                 <div className="text-5xl">

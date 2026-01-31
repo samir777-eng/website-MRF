@@ -52,13 +52,13 @@ export function LectureLifeDisplay({
                 hasLives && !livesExpired
                   ? "text-rose-500"
                   : "text-muted-foreground",
-                className
+                className,
               )}
             >
               <Heart
                 className={cn(
                   "w-4 h-4",
-                  hasLives && !livesExpired ? "fill-rose-500" : ""
+                  hasLives && !livesExpired ? "fill-rose-500" : "",
                 )}
               />
               <span className="font-medium">{livesRemaining}</span>
@@ -100,7 +100,7 @@ export function LectureLifeDisplay({
                   "w-6 h-6 transition-colors",
                   isActive
                     ? "text-rose-500 fill-rose-500"
-                    : "text-muted-foreground/30"
+                    : "text-muted-foreground/30",
                 )}
               />
             );
@@ -150,7 +150,7 @@ export function LectureLifeDisplay({
               "w-5 h-5 transition-colors",
               isActive
                 ? "text-rose-500 fill-rose-500"
-                : "text-muted-foreground/30"
+                : "text-muted-foreground/30",
             )}
           />
         );

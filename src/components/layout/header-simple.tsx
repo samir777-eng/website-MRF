@@ -16,10 +16,7 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link
-            href={`/${locale}`}
-            className="flex items-center gap-2"
-          >
+          <Link href={`/${locale}`} className="flex items-center gap-2">
             <GraduationCap className="h-8 w-8 text-primary-600" />
             <span className="text-xl font-bold text-primary-900 dark:text-primary-100">
               الأستاذ رضا الفاروق

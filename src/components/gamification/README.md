@@ -9,15 +9,15 @@ Enhanced gamification UX with streak visualization, animated leaderboard, and im
 Visual calendar showing the last 30 days of activity with milestones and freeze feature.
 
 ```tsx
-import { StreakCalendar } from '@/components/gamification/StreakCalendar';
+import { StreakCalendar } from "@/components/gamification/StreakCalendar";
 
 <StreakCalendar
   currentStreak={7}
   longestStreak={21}
   freezesAvailable={2}
   freezeCost={50}
-  onUseFreeze={() => console.log('Freeze used')}
-/>
+  onUseFreeze={() => console.log("Freeze used")}
+/>;
 ```
 
 #### Features
@@ -42,7 +42,7 @@ import { StreakCalendar } from '@/components/gamification/StreakCalendar';
 Full leaderboard page with tabs, rank changes, and smooth animations.
 
 ```tsx
-import { LeaderboardClient } from '@/app/ar/leaderboard/leaderboard-client';
+import { LeaderboardClient } from "@/app/ar/leaderboard/leaderboard-client";
 
 // In page.tsx
 export default function LeaderboardPage() {
@@ -72,7 +72,7 @@ export default function LeaderboardPage() {
 Achievements page with filters, progress tracking, and rarity system.
 
 ```tsx
-import { AchievementsClient } from '@/app/ar/achievements/achievements-client';
+import { AchievementsClient } from "@/app/ar/achievements/achievements-client";
 
 // In page.tsx
 export default function AchievementsPage() {
@@ -134,9 +134,7 @@ animate={{ opacity: 1, y: 0 }}
 ### Layout Animations
 
 ```tsx
-<motion.div layout>
-  {/* Content shifts smoothly */}
-</motion.div>
+<motion.div layout>{/* Content shifts smoothly */}</motion.div>
 ```
 
 ### Continuous Animations
@@ -233,9 +231,9 @@ transition={{
 
 ```tsx
 // Dashboard with gamification
-import { StreakCounter } from '@/components/gamification/streak-counter';
-import { StreakCalendar } from '@/components/gamification/StreakCalendar';
-import { useState } from 'react';
+import { StreakCounter } from "@/components/gamification/streak-counter";
+import { StreakCalendar } from "@/components/gamification/StreakCalendar";
+import { useState } from "react";
 
 function DashboardPage() {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -243,11 +241,7 @@ function DashboardPage() {
   return (
     <div>
       {/* Compact Streak Display */}
-      <StreakCounter
-        days={7}
-        onTap={() => setShowCalendar(true)}
-        animated
-      />
+      <StreakCounter days={7} onTap={() => setShowCalendar(true)} animated />
 
       {/* Expandable Calendar */}
       {showCalendar && (
@@ -268,15 +262,15 @@ function DashboardPage() {
 ### Unit Tests
 
 ```tsx
-describe('StreakCalendar', () => {
-  it('renders 30 days', () => {
+describe("StreakCalendar", () => {
+  it("renders 30 days", () => {
     render(<StreakCalendar currentStreak={7} />);
-    expect(screen.getAllByRole('button')).toHaveLength(30);
+    expect(screen.getAllByRole("button")).toHaveLength(30);
   });
 
-  it('highlights streak days', () => {
+  it("highlights streak days", () => {
     const { container } = render(<StreakCalendar currentStreak={3} />);
-    const streakDays = container.querySelectorAll('.border-orange-500');
+    const streakDays = container.querySelectorAll(".border-orange-500");
     expect(streakDays.length).toBeGreaterThan(0);
   });
 });
@@ -285,11 +279,11 @@ describe('StreakCalendar', () => {
 ### E2E Tests
 
 ```tsx
-test('user can view day details', async ({ page }) => {
-  await page.goto('/dashboard');
+test("user can view day details", async ({ page }) => {
+  await page.goto("/dashboard");
   await page.click('[data-testid="streak-calendar"]');
-  await page.click('.day-cell:first-child');
-  await expect(page.locator('.day-details')).toBeVisible();
+  await page.click(".day-cell:first-child");
+  await expect(page.locator(".day-details")).toBeVisible();
 });
 ```
 

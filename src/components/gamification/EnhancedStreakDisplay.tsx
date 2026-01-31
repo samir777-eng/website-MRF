@@ -238,7 +238,7 @@ function MiniStreak({
         fireIntensity.color,
         "text-white font-bold text-sm shadow-lg",
         isAtRisk && "animate-pulse",
-        className
+        className,
       )}
       style={{
         boxShadow: `0 0 ${20 * fireIntensity.glowIntensity}px rgba(251, 146, 60, ${fireIntensity.glowIntensity})`,
@@ -294,7 +294,7 @@ function BadgeStreak({
         "text-white font-bold shadow-xl",
         isAtRisk &&
           "ring-2 ring-yellow-300 ring-offset-2 ring-offset-background",
-        className
+        className,
       )}
       style={{
         boxShadow: `0 0 ${30 * fireIntensity.glowIntensity}px rgba(251, 146, 60, ${fireIntensity.glowIntensity})`,
@@ -404,7 +404,7 @@ function CardStreak({
         fireIntensity.color,
         "text-white shadow-2xl",
         onClick && "cursor-pointer",
-        className
+        className,
       )}
       style={{
         boxShadow: `0 0 ${40 * fireIntensity.glowIntensity}px rgba(251, 146, 60, ${fireIntensity.glowIntensity})`,

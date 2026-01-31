@@ -46,7 +46,7 @@ export function PullToRefresh({
         touchStartY.current = e.touches[0].clientY;
       }
     },
-    [disabled, pullState]
+    [disabled, pullState],
   );
 
   const handleTouchMove = useCallback(
@@ -74,7 +74,7 @@ export function PullToRefresh({
         }
       }
     },
-    [disabled, pullState, threshold]
+    [disabled, pullState, threshold],
   );
 
   const handleTouchEnd = useCallback(async () => {
@@ -184,7 +184,7 @@ export function PullToRefresh({
             "flex items-center gap-2 px-4 py-2 rounded-full",
             "bg-primary/10 text-primary backdrop-blur-sm",
             "border border-primary/20 shadow-lg",
-            "transition-all duration-200"
+            "transition-all duration-200",
           )}
           style={{
             opacity: indicatorOpacity,
@@ -215,7 +215,7 @@ export function usePullToRefresh(
   options: {
     threshold?: number;
     disabled?: boolean;
-  } = {}
+  } = {},
 ) {
   const { threshold = 80, disabled = false } = options;
   const [pullState, setPullState] = useState<PullState>("idle");
@@ -262,7 +262,7 @@ export function usePullToRefresh(
         }
       },
     }),
-    [disabled, onRefresh, pullState, threshold]
+    [disabled, onRefresh, pullState, threshold],
   );
 
   return {

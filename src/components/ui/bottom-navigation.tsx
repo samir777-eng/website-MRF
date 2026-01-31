@@ -47,7 +47,7 @@ export function BottomNavigation() {
                 "flex flex-col items-center justify-center gap-1 flex-1 h-full transition-colors",
                 isActive
                   ? "text-primary"
-                  : "text-muted-foreground hover:text-foreground"
+                  : "text-muted-foreground hover:text-foreground",
               )}
             >
               {item.icon}

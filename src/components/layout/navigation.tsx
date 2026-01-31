@@ -158,10 +158,7 @@ export function Navigation() {
             suppressHydrationWarning
           >
             {/* Auth-dependent content - wrapped to suppress hydration warnings */}
-            <div
-              className="flex items-center gap-1"
-              suppressHydrationWarning
-            >
+            <div className="flex items-center gap-1" suppressHydrationWarning>
               {!mounted ? (
                 // Skeleton placeholder during SSR/hydration
                 <>
@@ -285,7 +282,7 @@ export function Navigation() {
                       onClick={() => {
                         localStorage.setItem(
                           "user",
-                          JSON.stringify({ id: 1, name: "أحمد" })
+                          JSON.stringify({ id: 1, name: "أحمد" }),
                         );
                         window.location.reload();
                       }}

@@ -891,7 +891,7 @@ export const AVATAR_PARTS: AvatarPart[] = [
 
 export function getPartsByType(type: AvatarPartType): AvatarPart[] {
   return AVATAR_PARTS.filter((part) => part.type === type).sort(
-    (a, b) => a.sortOrder - b.sortOrder
+    (a, b) => a.sortOrder - b.sortOrder,
   );
 }
 
@@ -926,7 +926,7 @@ export function canUnlockPart(
   userLevel: number,
   userStreak: number,
   userAchievements: string[],
-  userGems: number
+  userGems: number,
 ): { canUnlock: boolean; reason?: string } {
   switch (part.unlockMethod) {
     case "free":

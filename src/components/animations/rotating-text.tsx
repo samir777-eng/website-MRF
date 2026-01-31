@@ -42,5 +42,4 @@ export function RotatingText({
   );
 }
 
-
 export default RotatingText;

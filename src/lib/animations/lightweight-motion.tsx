@@ -32,7 +32,8 @@ export function FadeIn({
   children,
   duration = 300,
   delay = 0,
-  className = ""}: FadeInProps) {
+  className = "",
+}: FadeInProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -60,7 +61,8 @@ export function FadeIn({
       className={className}
       style={{
         opacity: isVisible ? 1 : 0,
-        transition: `opacity ${duration}ms ease-out ${delay}ms`}}
+        transition: `opacity ${duration}ms ease-out ${delay}ms`,
+      }}
     >
       {children}
     </div>
@@ -74,7 +76,8 @@ export function SlideIn({
   distance = 20,
   duration = 300,
   delay = 0,
-  className = ""}: SlideInProps) {
+  className = "",
+}: SlideInProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -120,7 +123,8 @@ export function SlideIn({
       style={{
         opacity: isVisible ? 1 : 0,
         transform: getTransform(),
-        transition: `opacity ${duration}ms ease-out ${delay}ms, transform ${duration}ms ease-out ${delay}ms`}}
+        transition: `opacity ${duration}ms ease-out ${delay}ms, transform ${duration}ms ease-out ${delay}ms`,
+      }}
     >
       {children}
     </div>
@@ -133,7 +137,8 @@ export function ScaleIn({
   scale = 0.95,
   duration = 300,
   delay = 0,
-  className = ""}: ScaleInProps) {
+  className = "",
+}: ScaleInProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -162,7 +167,8 @@ export function ScaleIn({
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "scale(1)" : `scale(${scale})`,
-        transition: `opacity ${duration}ms ease-out ${delay}ms, transform ${duration}ms ease-out ${delay}ms`}}
+        transition: `opacity ${duration}ms ease-out ${delay}ms, transform ${duration}ms ease-out ${delay}ms`,
+      }}
     >
       {children}
     </div>
@@ -179,7 +185,8 @@ interface StaggerProps {
 export function Stagger({
   children,
   staggerDelay = 100,
-  className = ""}: StaggerProps) {
+  className = "",
+}: StaggerProps) {
   return (
     <div className={className}>
       {React.Children.map(children, (child, index) => (
@@ -196,12 +203,14 @@ export const hoverAnimations = {
   glow: "transition-all duration-200 hover:shadow-md hover:shadow-primary/20",
   fade: "transition-opacity duration-200 hover:opacity-80",
   slideRight: "transition-transform duration-200 hover:translate-x-1",
-  slideUp: "transition-transform duration-200 hover:-translate-y-1"};
+  slideUp: "transition-transform duration-200 hover:-translate-y-1",
+};
 
 // Loading animations
 export function Pulse({
   children,
-  className = ""}: {
+  className = "",
+}: {
   children: React.ReactNode;
   className?: string;
 }) {
@@ -210,7 +219,8 @@ export function Pulse({
 
 export function Spin({
   children,
-  className = ""}: {
+  className = "",
+}: {
   children: React.ReactNode;
   className?: string;
 }) {
@@ -219,7 +229,8 @@ export function Spin({
 
 export function Bounce({
   children,
-  className = ""}: {
+  className = "",
+}: {
   children: React.ReactNode;
   className?: string;
 }) {
@@ -291,4 +302,5 @@ export const animationClasses = {
   fadeInUp: "animate-[fadeInUp_0.3s_ease-out]",
   slideInUp: "animate-[slideInUp_0.3s_ease-out]",
   slideInDown: "animate-[slideInDown_0.3s_ease-out]",
-  scaleIn: "animate-[scaleIn_0.3s_ease-out]"};
+  scaleIn: "animate-[scaleIn_0.3s_ease-out]",
+};

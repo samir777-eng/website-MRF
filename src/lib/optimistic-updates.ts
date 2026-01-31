@@ -35,15 +35,15 @@ export interface OptimisticUpdateOptions<T, R> {
 
 /**
  * Hook for managing optimistic updates with automatic revert on error
- * 
+ *
  * @example
  * ```tsx
  * const { performOptimisticUpdate, isUpdating } = useOptimisticUpdate();
- * 
+ *
  * const completeLesson = async (lessonId: string) => {
  *   await performOptimisticUpdate({
  *     currentData: lessons,
- *     updateFn: (data) => data.map(l => 
+ *     updateFn: (data) => data.map(l =>
  *       l.id === lessonId ? { ...l, completed: true } : l
  *     ),
  *     apiFn: () => api.completeLesson(lessonId),
@@ -57,7 +57,7 @@ export function useOptimisticUpdate<T>() {
   const [isUpdating, setIsUpdating] = useState(false);
 
   const performOptimisticUpdate = useCallback(
-    async <R,>({
+    async <R>({
       currentData,
       updateFn,
       apiFn,
@@ -103,7 +103,7 @@ export function useOptimisticUpdate<T>() {
         setIsUpdating(false);
       }
     },
-    []
+    [],
   );
 
   return {
@@ -122,7 +122,7 @@ export function useOptimisticUpdate<T>() {
 export function optimisticUpdateArray<T extends { id: string | number }>(
   array: T[],
   itemId: string | number,
-  updateFn: (item: T) => T
+  updateFn: (item: T) => T,
 ): T[] {
   return array.map((item) => (item.id === itemId ? updateFn(item) : item));
 }
@@ -139,7 +139,7 @@ export function optimisticAddToArray<T>(array: T[], newItem: T): T[] {
  */
 export function optimisticRemoveFromArray<T extends { id: string | number }>(
   array: T[],
-  itemId: string | number
+  itemId: string | number,
 ): T[] {
   return array.filter((item) => item.id !== itemId);
 }
@@ -150,14 +150,17 @@ export function optimisticRemoveFromArray<T extends { id: string | number }>(
 export function optimisticUpdateNested<T extends Record<string, any>>(
   obj: T,
   path: string[],
-  value: any
+  value: any,
 ): T {
   if (path.length === 0) return value;
 
   const [head, ...tail] = path;
   return {
     ...obj,
-    [head]: tail.length === 0 ? value : optimisticUpdateNested(obj[head], tail, value),
+    [head]:
+      tail.length === 0
+        ? value
+        : optimisticUpdateNested(obj[head], tail, value),
   };
 }
 
@@ -167,15 +170,15 @@ export function optimisticUpdateNested<T extends Record<string, any>>(
 
 /**
  * Example: Optimistic Lesson Completion
- * 
+ *
  * ```tsx
  * const { performOptimisticUpdate } = useOptimisticUpdate();
  * const [lessons, setLessons] = useState<Lesson[]>([]);
  * const [userStats, setUserStats] = useState<UserStats>({ totalXP: 0 });
- * 
+ *
  * const completeLesson = async (lessonId: string) => {
  *   const lessonXP = 100;
- *   
+ *
  *   const result = await performOptimisticUpdate({
  *     currentData: { lessons, userStats },
  *     updateFn: (data) => ({
@@ -198,7 +201,7 @@ export function optimisticUpdateNested<T extends Record<string, any>>(
  *       toast.error('حدث خطأ، يرجى المحاولة مرة أخرى');
  *     },
  *   });
- * 
+ *
  *   if (result.success) {
  *     setLessons(result.data.lessons);
  *     setUserStats(result.data.userStats);
@@ -209,7 +212,7 @@ export function optimisticUpdateNested<T extends Record<string, any>>(
 
 /**
  * Example: Optimistic Quiz Answer Submit
- * 
+ *
  * ```tsx
  * const submitAnswer = async (questionId: string, answer: string) => {
  *   await performOptimisticUpdate({

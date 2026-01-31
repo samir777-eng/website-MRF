@@ -2,7 +2,7 @@
 
 /**
  * Analytics Provider - Unified analytics tracking for the platform
- * 
+ *
  * Features:
  * - Page view tracking
  * - User action tracking
@@ -11,7 +11,13 @@
  */
 
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useCallback, createContext, useContext, Suspense } from "react";
+import {
+  useEffect,
+  useCallback,
+  createContext,
+  useContext,
+  Suspense,
+} from "react";
 
 interface AnalyticsContextType {
   trackEvent: (event: string, data?: Record<string, unknown>) => void;
@@ -20,7 +26,9 @@ interface AnalyticsContextType {
   trackError: (error: Error, context?: Record<string, unknown>) => void;
 }
 
-const AnalyticsContext = createContext<AnalyticsContextType | undefined>(undefined);
+const AnalyticsContext = createContext<AnalyticsContextType | undefined>(
+  undefined,
+);
 
 // Page view tracker component
 function PageViewTrackerInner() {
@@ -29,30 +37,32 @@ function PageViewTrackerInner() {
 
   useEffect(() => {
     // Track page view
-    const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
-    
+    const url =
+      pathname +
+      (searchParams?.toString() ? `?${searchParams.toString()}` : "");
+
     // Send to Google Analytics if available
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'page_view', {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "page_view", {
         page_path: url,
         page_title: document.title,
       });
     }
 
     // Log in development
-    if (process.env.NODE_ENV === 'development') {
-      console.log('📄 Page View:', url);
+    if (process.env.NODE_ENV === "development") {
+      console.log("📄 Page View:", url);
     }
 
     // Send to custom endpoint
-    fetch('/api/analytics/page-view', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    fetch("/api/analytics/page-view", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         url,
-        title: typeof document !== 'undefined' ? document.title : '',
+        title: typeof document !== "undefined" ? document.title : "",
         timestamp: Date.now(),
-        referrer: typeof document !== 'undefined' ? document.referrer : '',
+        referrer: typeof document !== "undefined" ? document.referrer : "",
       }),
     }).catch(() => {
       // Silently fail - analytics should never break the app
@@ -76,45 +86,62 @@ interface AnalyticsProviderProps {
 }
 
 export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
-  const trackEvent = useCallback((event: string, data?: Record<string, unknown>) => {
-    // Google Analytics
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', event, data);
-    }
+  const trackEvent = useCallback(
+    (event: string, data?: Record<string, unknown>) => {
+      // Google Analytics
+      if (typeof window !== "undefined" && window.gtag) {
+        window.gtag("event", event, data);
+      }
 
-    // Development logging
-    if (process.env.NODE_ENV === 'development') {
-      console.log('📊 Event:', event, data);
-    }
-  }, []);
+      // Development logging
+      if (process.env.NODE_ENV === "development") {
+        console.log("📊 Event:", event, data);
+      }
+    },
+    [],
+  );
 
-  const trackClick = useCallback((element: string, value?: string) => {
-    trackEvent('click', {
-      element,
-      value,
-      page_path: typeof window !== 'undefined' ? window.location.pathname : '',
-    });
-  }, [trackEvent]);
+  const trackClick = useCallback(
+    (element: string, value?: string) => {
+      trackEvent("click", {
+        element,
+        value,
+        page_path:
+          typeof window !== "undefined" ? window.location.pathname : "",
+      });
+    },
+    [trackEvent],
+  );
 
-  const trackFormSubmit = useCallback((formName: string, success: boolean) => {
-    trackEvent('form_submit', {
-      form_name: formName,
-      success,
-      page_path: typeof window !== 'undefined' ? window.location.pathname : '',
-    });
-  }, [trackEvent]);
+  const trackFormSubmit = useCallback(
+    (formName: string, success: boolean) => {
+      trackEvent("form_submit", {
+        form_name: formName,
+        success,
+        page_path:
+          typeof window !== "undefined" ? window.location.pathname : "",
+      });
+    },
+    [trackEvent],
+  );
 
-  const trackError = useCallback((error: Error, context?: Record<string, unknown>) => {
-    trackEvent('error', {
-      error_name: error.name,
-      error_message: error.message,
-      ...context,
-      page_path: typeof window !== 'undefined' ? window.location.pathname : '',
-    });
-  }, [trackEvent]);
+  const trackError = useCallback(
+    (error: Error, context?: Record<string, unknown>) => {
+      trackEvent("error", {
+        error_name: error.name,
+        error_message: error.message,
+        ...context,
+        page_path:
+          typeof window !== "undefined" ? window.location.pathname : "",
+      });
+    },
+    [trackEvent],
+  );
 
   return (
-    <AnalyticsContext.Provider value={{ trackEvent, trackClick, trackFormSubmit, trackError }}>
+    <AnalyticsContext.Provider
+      value={{ trackEvent, trackClick, trackFormSubmit, trackError }}
+    >
       <PageViewTracker />
       {children}
     </AnalyticsContext.Provider>
@@ -134,4 +161,3 @@ export function useAnalytics() {
   }
   return context;
 }
-

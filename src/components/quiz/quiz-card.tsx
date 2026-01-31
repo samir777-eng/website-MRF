@@ -93,7 +93,10 @@ export function QuizCard({
             </span>
           </div>
         </div>
-        <CardTitle className="text-lg leading-relaxed" id={`question-${question.id}`}>
+        <CardTitle
+          className="text-lg leading-relaxed"
+          id={`question-${question.id}`}
+        >
           {question.question}
         </CardTitle>
       </CardHeader>
@@ -127,7 +130,11 @@ export function QuizCard({
                   onClick={() => handleOptionSelect(option.id)}
                   disabled={hasAnswered}
                   aria-labelledby={`question-${question.id}`}
-                  aria-describedby={hasAnswered && question.explanation ? `explanation-${question.id}` : undefined}
+                  aria-describedby={
+                    hasAnswered && question.explanation
+                      ? `explanation-${question.id}`
+                      : undefined
+                  }
                   aria-pressed={isSelected}
                   role="radio"
                   aria-checked={isSelected}

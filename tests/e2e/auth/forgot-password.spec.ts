@@ -17,14 +17,16 @@ test.describe("Forgot Password Flow", () => {
     await checkRTL(page);
 
     // Check page title or heading is in Arabic
-    await expect(page.getByText(/نسيت كلمة المرور|استعادة كلمة المرور/)).toBeVisible();
+    await expect(
+      page.getByText(/نسيت كلمة المرور|استعادة كلمة المرور/),
+    ).toBeVisible();
 
     // Check email input is visible
     await expect(page.getByLabel("البريد الإلكتروني")).toBeVisible();
 
     // Check submit button is in Arabic
     await expect(
-      page.getByRole("button", { name: /إرسال|استعادة|إعادة تعيين/ })
+      page.getByRole("button", { name: /إرسال|استعادة|إعادة تعيين/ }),
     ).toBeVisible();
   });
 
@@ -52,10 +54,10 @@ test.describe("Forgot Password Flow", () => {
     await emailInput.focus();
 
     const outlineWidth = await emailInput.evaluate(
-      (el) => window.getComputedStyle(el).outlineWidth
+      (el) => window.getComputedStyle(el).outlineWidth,
     );
     const boxShadow = await emailInput.evaluate(
-      (el) => window.getComputedStyle(el).boxShadow
+      (el) => window.getComputedStyle(el).boxShadow,
     );
 
     const hasFocusIndicator =
@@ -74,10 +76,10 @@ test.describe("Forgot Password Flow", () => {
     await expect(page.getByLabel("البريد الإلكتروني")).toBeVisible();
 
     const scrollWidth = await page.evaluate(
-      () => document.documentElement.scrollWidth
+      () => document.documentElement.scrollWidth,
     );
     const clientWidth = await page.evaluate(
-      () => document.documentElement.clientWidth
+      () => document.documentElement.clientWidth,
     );
 
     expect(scrollWidth).toBeLessThanOrEqual(clientWidth + 5);
@@ -115,4 +117,3 @@ test.describe("Forgot Password Flow", () => {
     expect(type).toBe("email");
   });
 });
-

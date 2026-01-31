@@ -9,12 +9,9 @@ Adaptive learning system with personalized recommendations and weak area trackin
 Displays personalized content recommendations based on user performance and learning patterns.
 
 ```tsx
-import { RecommendedSection } from '@/components/dashboard/RecommendedSection';
+import { RecommendedSection } from "@/components/dashboard/RecommendedSection";
 
-<RecommendedSection
-  maxRecommendations={3}
-  className="my-6"
-/>
+<RecommendedSection maxRecommendations={3} className="my-6" />;
 ```
 
 #### Recommendation Types
@@ -53,13 +50,9 @@ import { RecommendedSection } from '@/components/dashboard/RecommendedSection';
 Tracks and displays topics requiring improvement with progress insights.
 
 ```tsx
-import { WeakAreasSection } from '@/components/dashboard/WeakAreasSection';
+import { WeakAreasSection } from "@/components/dashboard/WeakAreasSection";
 
-<WeakAreasSection
-  maxAreas={4}
-  showInsight={true}
-  className="my-6"
-/>
+<WeakAreasSection maxAreas={4} showInsight={true} className="my-6" />;
 ```
 
 #### Features
@@ -89,14 +82,14 @@ interface UserPerformanceData {
     accuracy: number;
     timestamp: Date;
   }>;
-  
+
   // Learning patterns
   completedLessons: string[];
   lastReviewDates: Record<string, Date>;
   learningStreak: number;
-  
+
   // Preferences
-  preferredDifficulty: 'easy' | 'medium' | 'hard';
+  preferredDifficulty: "easy" | "medium" | "hard";
   averageStudyDuration: number;
 }
 ```
@@ -104,56 +97,58 @@ interface UserPerformanceData {
 ### Recommendation Logic
 
 ```typescript
-function generateRecommendations(userData: UserPerformanceData): Recommendation[] {
+function generateRecommendations(
+  userData: UserPerformanceData,
+): Recommendation[] {
   const recommendations: Recommendation[] = [];
-  
+
   // 1. Weak Areas (accuracy < 70%)
   const weakTopics = userData.quizScores
-    .filter(score => score.accuracy < 70)
+    .filter((score) => score.accuracy < 70)
     .sort((a, b) => a.accuracy - b.accuracy)
     .slice(0, 2);
-  
-  weakTopics.forEach(topic => {
+
+  weakTopics.forEach((topic) => {
     recommendations.push({
-      type: 'weak-area',
+      type: "weak-area",
       priority: 5 - Math.floor(topic.accuracy / 20), // Lower accuracy = higher priority
-      ...topic
+      ...topic,
     });
   });
-  
+
   // 2. Review (last studied > 7 days ago)
   const needsReview = Object.entries(userData.lastReviewDates)
     .filter(([_, date]) => daysSince(date) >= 7)
     .slice(0, 1);
-  
+
   needsReview.forEach(([topic, date]) => {
     recommendations.push({
-      type: 'review',
+      type: "review",
       priority: 3,
-      topic
+      topic,
     });
   });
-  
+
   // 3. Next Lesson (based on curriculum)
   const nextLesson = getNextLessonInPath(userData.completedLessons);
   if (nextLesson) {
     recommendations.push({
-      type: 'next-lesson',
+      type: "next-lesson",
       priority: 4,
-      ...nextLesson
+      ...nextLesson,
     });
   }
-  
+
   // 4. Challenge (if performing well)
   const averageAccuracy = calculateAverageAccuracy(userData.quizScores);
   if (averageAccuracy >= 80) {
     recommendations.push({
-      type: 'challenge',
+      type: "challenge",
       priority: 2,
-      difficulty: 'hard'
+      difficulty: "hard",
     });
   }
-  
+
   return recommendations.sort((a, b) => b.priority - a.priority);
 }
 ```
@@ -163,22 +158,22 @@ function generateRecommendations(userData: UserPerformanceData): Recommendation[
 ```typescript
 function identifyWeakAreas(quizScores: QuizScore[]): WeakArea[] {
   // Group by topic
-  const topicScores = groupBy(quizScores, 'topic');
-  
+  const topicScores = groupBy(quizScores, "topic");
+
   return Object.entries(topicScores)
     .map(([topic, scores]) => {
-      const accuracy = average(scores.map(s => s.accuracy));
+      const accuracy = average(scores.map((s) => s.accuracy));
       const improvement = calculateWeeklyImprovement(scores);
-      
+
       return {
         topic,
         accuracy,
         improvementRate: improvement,
         questionsAttempted: scores.length,
-        lastAttempt: max(scores.map(s => s.timestamp))
+        lastAttempt: max(scores.map((s) => s.timestamp)),
       };
     })
-    .filter(area => area.accuracy < 75) // Only show areas needing improvement
+    .filter((area) => area.accuracy < 75) // Only show areas needing improvement
     .sort((a, b) => a.accuracy - b.accuracy); // Lowest accuracy first
 }
 ```
@@ -187,22 +182,22 @@ function identifyWeakAreas(quizScores: QuizScore[]): WeakArea[] {
 
 ```tsx
 // Dashboard with personalization
-import { RecommendedSection } from '@/components/dashboard/RecommendedSection';
-import { WeakAreasSection } from '@/components/dashboard/WeakAreasSection';
-import { NextActionCard } from '@/components/dashboard/NextActionCard';
+import { RecommendedSection } from "@/components/dashboard/RecommendedSection";
+import { WeakAreasSection } from "@/components/dashboard/WeakAreasSection";
+import { NextActionCard } from "@/components/dashboard/NextActionCard";
 
 export function PersonalizedDashboard() {
   return (
     <div className="space-y-8">
       {/* Primary action from recommendations */}
       <NextActionCard action={getTopRecommendation()} />
-      
+
       {/* Personalized recommendations */}
       <RecommendedSection maxRecommendations={3} />
-      
+
       {/* Weak areas tracking */}
       <WeakAreasSection maxAreas={4} showInsight={true} />
-      
+
       {/* Other dashboard content */}
     </div>
   );
@@ -249,12 +244,12 @@ Adjust question difficulty based on real-time performance:
 ```typescript
 function adaptDifficulty(
   correctStreak: number,
-  currentDifficulty: Difficulty
+  currentDifficulty: Difficulty,
 ): Difficulty {
-  if (correctStreak >= 3 && currentDifficulty !== 'hard') {
+  if (correctStreak >= 3 && currentDifficulty !== "hard") {
     return increaseDifficulty(currentDifficulty);
   }
-  if (correctStreak <= -2 && currentDifficulty !== 'easy') {
+  if (correctStreak <= -2 && currentDifficulty !== "easy") {
     return decreaseDifficulty(currentDifficulty);
   }
   return currentDifficulty;
@@ -269,13 +264,16 @@ Optimize review timing based on forgetting curve:
 function calculateNextReview(
   lastReview: Date,
   accuracy: number,
-  reviewCount: number
+  reviewCount: number,
 ): Date {
   // SM-2 algorithm simplified
-  const interval = reviewCount === 0 ? 1 :
-                   reviewCount === 1 ? 6 :
-                   Math.round(interval * (2.5 - (1 - accuracy / 100)));
-  
+  const interval =
+    reviewCount === 0
+      ? 1
+      : reviewCount === 1
+        ? 6
+        : Math.round(interval * (2.5 - (1 - accuracy / 100)));
+
   return addDays(lastReview, interval);
 }
 ```
@@ -287,10 +285,10 @@ Suggest optimal lesson sequence:
 ```typescript
 function optimizeLearningPath(
   userPerformance: PerformanceData,
-  availableLessons: Lesson[]
+  availableLessons: Lesson[],
 ): Lesson[] {
   return availableLessons
-    .filter(lesson => hasPrerequisites(lesson, userPerformance))
+    .filter((lesson) => hasPrerequisites(lesson, userPerformance))
     .sort((a, b) => {
       const scoreA = calculateLessonScore(a, userPerformance);
       const scoreB = calculateLessonScore(b, userPerformance);
@@ -311,21 +309,24 @@ function optimizeLearningPath(
 
 ```typescript
 const accuracyColors = {
-  danger: {    // < 60%
-    text: 'text-destructive',
-    bg: 'bg-destructive/10',
-    border: 'border-destructive/30'
+  danger: {
+    // < 60%
+    text: "text-destructive",
+    bg: "bg-destructive/10",
+    border: "border-destructive/30",
   },
-  warning: {   // 60-74%
-    text: 'text-orange-600',
-    bg: 'bg-orange-500/10',
-    border: 'border-orange-500/30'
+  warning: {
+    // 60-74%
+    text: "text-orange-600",
+    bg: "bg-orange-500/10",
+    border: "border-orange-500/30",
   },
-  success: {   // ≥ 75%
-    text: 'text-success-600',
-    bg: 'bg-success-500/10',
-    border: 'border-success-500/30'
-  }
+  success: {
+    // ≥ 75%
+    text: "text-success-600",
+    bg: "bg-success-500/10",
+    border: "border-success-500/30",
+  },
 };
 ```
 
@@ -334,7 +335,7 @@ const accuracyColors = {
 Use skeleton loaders while fetching recommendations:
 
 ```tsx
-import { SkeletonCard } from '@/components/loading';
+import { SkeletonCard } from "@/components/loading";
 
 function RecommendedSectionSkeleton() {
   return (
@@ -357,17 +358,17 @@ const CACHE_DURATION = 5 * 60 * 1000;
 
 async function getCachedRecommendations(userId: string) {
   const cached = await redis.get(`recommendations:${userId}`);
-  
+
   if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
     return cached.data;
   }
-  
+
   const fresh = await generateRecommendations(userId);
   await redis.set(`recommendations:${userId}`, {
     data: fresh,
-    timestamp: Date.now()
+    timestamp: Date.now(),
   });
-  
+
   return fresh;
 }
 ```
@@ -380,11 +381,11 @@ Recalculate recommendations after quiz completion:
 async function handleQuizComplete(quizResult: QuizResult) {
   // Save result
   await saveQuizResult(quizResult);
-  
+
   // Trigger background recommendation update
-  queueJob('update-recommendations', {
+  queueJob("update-recommendations", {
     userId: quizResult.userId,
-    priority: 'high'
+    priority: "high",
   });
 }
 ```

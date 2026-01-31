@@ -1,28 +1,44 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
-import { Cart, CartItem, Book, Order, Wishlist, CheckoutState, CheckoutShippingData, CheckoutStep } from '@/types/store';
-import { MOCK_BOOKS } from '@/lib/store/mock-books';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+  useCallback,
+} from "react";
+import {
+  Cart,
+  CartItem,
+  Book,
+  Order,
+  Wishlist,
+  CheckoutState,
+  CheckoutShippingData,
+  CheckoutStep,
+} from "@/types/store";
+import { MOCK_BOOKS } from "@/lib/store/mock-books";
 
-const CHECKOUT_STORAGE_KEY = 'mrf-checkout-state';
+const CHECKOUT_STORAGE_KEY = "mrf-checkout-state";
 
 // Default checkout state
 const getDefaultCheckoutState = (): CheckoutState => ({
-  step: 'shipping',
+  step: "shipping",
   shippingData: {
-    fullName: '',
-    phone: '',
-    email: '',
-    governorate: '',
-    city: '',
-    area: '',
-    street: '',
-    building: '',
-    floor: '',
-    apartment: '',
-    notes: '',
+    fullName: "",
+    phone: "",
+    email: "",
+    governorate: "",
+    city: "",
+    area: "",
+    street: "",
+    building: "",
+    floor: "",
+    apartment: "",
+    notes: "",
   },
-  selectedPayment: 'cod',
+  selectedPayment: "cod",
   updatedAt: new Date().toISOString(),
 });
 
@@ -31,7 +47,11 @@ interface StoreContextType {
   wishlist: Wishlist | null;
   orders: Order[];
   checkoutState: CheckoutState | null;
-  addToCart: (book: Book, quantity?: number, format?: 'physical' | 'digital') => void;
+  addToCart: (
+    book: Book,
+    quantity?: number,
+    format?: "physical" | "digital",
+  ) => void;
   removeFromCart: (itemId: string) => void;
   updateCartItemQuantity: (itemId: string, quantity: number) => void;
   clearCart: () => void;
@@ -53,17 +73,19 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<Cart | null>(null);
   const [wishlist, setWishlist] = useState<Wishlist | null>(null);
   const [orders, setOrders] = useState<Order[]>([]);
-  const [checkoutState, setCheckoutState] = useState<CheckoutState | null>(null);
+  const [checkoutState, setCheckoutState] = useState<CheckoutState | null>(
+    null,
+  );
 
   // Initialize cart from localStorage
   useEffect(() => {
-    const savedCart = localStorage.getItem('mrf-cart');
+    const savedCart = localStorage.getItem("mrf-cart");
     if (savedCart) {
       setCart(JSON.parse(savedCart));
     } else {
       // Check if we're in test environment (port 3006 or NODE_ENV=test)
-      const isTestPort = window.location.port === '3006';
-      const isTestEnv = process.env.NODE_ENV === 'test' || isTestPort;
+      const isTestPort = window.location.port === "3006";
+      const isTestEnv = process.env.NODE_ENV === "test" || isTestPort;
 
       if (isTestEnv && MOCK_BOOKS.length > 0) {
         // Create cart with sample items for testing
@@ -75,7 +97,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           quantity: 2,
           price: testBook.price,
           subtotal: testBook.price * 2,
-          format: 'physical',
+          format: "physical",
           addedAt: new Date().toISOString(),
         };
 
@@ -88,13 +110,13 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           tax: 0,
           discount: 0,
           total: testItem.subtotal,
-          currency: 'EGP',
+          currency: "EGP",
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
         };
         setCart(newCart);
         // Save to localStorage so it persists
-        localStorage.setItem('mrf-cart', JSON.stringify(newCart));
+        localStorage.setItem("mrf-cart", JSON.stringify(newCart));
       } else {
         // Initialize empty cart for production
         const newCart: Cart = {
@@ -106,7 +128,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           tax: 0,
           discount: 0,
           total: 0,
-          currency: 'EGP',
+          currency: "EGP",
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
         };
@@ -114,13 +136,13 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       }
     }
 
-    const savedWishlist = localStorage.getItem('mrf-wishlist');
+    const savedWishlist = localStorage.getItem("mrf-wishlist");
     if (savedWishlist) {
       setWishlist(JSON.parse(savedWishlist));
     } else {
       const newWishlist: Wishlist = {
         id: `wishlist-${Date.now()}`,
-        userId: 'guest',
+        userId: "guest",
         books: [],
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
@@ -136,7 +158,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         // Check if the checkout state is still valid (not older than 24 hours)
         const updatedAt = new Date(parsed.updatedAt);
         const now = new Date();
-        const hoursDiff = (now.getTime() - updatedAt.getTime()) / (1000 * 60 * 60);
+        const hoursDiff =
+          (now.getTime() - updatedAt.getTime()) / (1000 * 60 * 60);
 
         if (hoursDiff < 24) {
           setCheckoutState(parsed);
@@ -158,21 +181,24 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   // Save cart to localStorage whenever it changes
   useEffect(() => {
     if (cart) {
-      localStorage.setItem('mrf-cart', JSON.stringify(cart));
+      localStorage.setItem("mrf-cart", JSON.stringify(cart));
     }
   }, [cart]);
 
   // Save wishlist to localStorage
   useEffect(() => {
     if (wishlist) {
-      localStorage.setItem('mrf-wishlist', JSON.stringify(wishlist));
+      localStorage.setItem("mrf-wishlist", JSON.stringify(wishlist));
     }
   }, [wishlist]);
 
   // Save checkout state to sessionStorage
   useEffect(() => {
     if (checkoutState) {
-      sessionStorage.setItem(CHECKOUT_STORAGE_KEY, JSON.stringify(checkoutState));
+      sessionStorage.setItem(
+        CHECKOUT_STORAGE_KEY,
+        JSON.stringify(checkoutState),
+      );
     }
   }, [checkoutState]);
 
@@ -187,11 +213,15 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     return { subtotal, itemCount, shipping, tax, discount, total };
   };
 
-  const addToCart = (book: Book, quantity = 1, format: 'physical' | 'digital' = 'physical') => {
+  const addToCart = (
+    book: Book,
+    quantity = 1,
+    format: "physical" | "digital" = "physical",
+  ) => {
     if (!cart) return;
 
     const existingItemIndex = cart.items.findIndex(
-      item => item.bookId === book.id && item.format === format
+      (item) => item.bookId === book.id && item.format === format,
     );
 
     let newItems: CartItem[];
@@ -200,7 +230,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       // Update existing item
       newItems = [...cart.items];
       newItems[existingItemIndex].quantity += quantity;
-      newItems[existingItemIndex].subtotal = newItems[existingItemIndex].quantity * book.price;
+      newItems[existingItemIndex].subtotal =
+        newItems[existingItemIndex].quantity * book.price;
     } else {
       // Add new item
       const newItem: CartItem = {
@@ -229,7 +260,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const removeFromCart = (itemId: string) => {
     if (!cart) return;
 
-    const newItems = cart.items.filter(item => item.id !== itemId);
+    const newItems = cart.items.filter((item) => item.id !== itemId);
     const totals = calculateCartTotals(newItems);
 
     setCart({
@@ -248,7 +279,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    const newItems = cart.items.map(item => {
+    const newItems = cart.items.map((item) => {
       if (item.id === itemId) {
         return {
           ...item,
@@ -288,7 +319,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const addToWishlist = (book: Book) => {
     if (!wishlist) return;
 
-    if (!wishlist.books.find(b => b.id === book.id)) {
+    if (!wishlist.books.find((b) => b.id === book.id)) {
       setWishlist({
         ...wishlist,
         books: [...wishlist.books, book],
@@ -302,13 +333,13 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
     setWishlist({
       ...wishlist,
-      books: wishlist.books.filter(b => b.id !== bookId),
+      books: wishlist.books.filter((b) => b.id !== bookId),
       updatedAt: new Date().toISOString(),
     });
   };
 
   const isInWishlist = (bookId: string): boolean => {
-    return wishlist?.books.some(b => b.id === bookId) || false;
+    return wishlist?.books.some((b) => b.id === bookId) || false;
   };
 
   const getCartItemCount = (): number => {
@@ -321,7 +352,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   // Checkout state management functions
   const setCheckoutStep = useCallback((step: CheckoutStep) => {
-    setCheckoutState(prev => {
+    setCheckoutState((prev) => {
       if (!prev) return getDefaultCheckoutState();
       return {
         ...prev,
@@ -331,22 +362,25 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const setCheckoutShippingData = useCallback((data: Partial<CheckoutShippingData>) => {
-    setCheckoutState(prev => {
-      if (!prev) return getDefaultCheckoutState();
-      return {
-        ...prev,
-        shippingData: {
-          ...prev.shippingData,
-          ...data,
-        },
-        updatedAt: new Date().toISOString(),
-      };
-    });
-  }, []);
+  const setCheckoutShippingData = useCallback(
+    (data: Partial<CheckoutShippingData>) => {
+      setCheckoutState((prev) => {
+        if (!prev) return getDefaultCheckoutState();
+        return {
+          ...prev,
+          shippingData: {
+            ...prev.shippingData,
+            ...data,
+          },
+          updatedAt: new Date().toISOString(),
+        };
+      });
+    },
+    [],
+  );
 
   const setCheckoutPayment = useCallback((paymentId: string) => {
-    setCheckoutState(prev => {
+    setCheckoutState((prev) => {
       if (!prev) return getDefaultCheckoutState();
       return {
         ...prev,
@@ -391,8 +425,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 export function useStore() {
   const context = useContext(StoreContext);
   if (context === undefined) {
-    throw new Error('useStore must be used within a StoreProvider');
+    throw new Error("useStore must be used within a StoreProvider");
   }
   return context;
 }
-

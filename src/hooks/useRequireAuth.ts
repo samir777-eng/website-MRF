@@ -48,7 +48,7 @@ interface UseRequireAuthResult {
 }
 
 export function useRequireAuth(
-  options: UseRequireAuthOptions = {}
+  options: UseRequireAuthOptions = {},
 ): UseRequireAuthResult {
   const {
     redirectTo = "/ar/auth/login",
@@ -158,7 +158,7 @@ export function useRequireAuth(
  * (login, signup, forgot password, etc.)
  */
 export function useRedirectIfAuthenticated(
-  redirectTo: string = "/ar/dashboard"
+  redirectTo: string = "/ar/dashboard",
 ) {
   return useRequireAuth({
     redirectIfAuthenticated: true,

@@ -42,7 +42,7 @@ describe("QuizEngine", () => {
   describe("Rendering", () => {
     it("should render without crashing", () => {
       const { container } = render(
-        <QuizEngine quiz={mockQuiz} onComplete={mockOnComplete} />
+        <QuizEngine quiz={mockQuiz} onComplete={mockOnComplete} />,
       );
       expect(container).toBeTruthy();
     });
@@ -70,7 +70,7 @@ describe("QuizEngine", () => {
           quiz={mockQuiz}
           onComplete={mockOnComplete}
           onAnswer={mockOnAnswer}
-        />
+        />,
       );
       const option = screen.getByText("4");
       fireEvent.click(option);
@@ -82,7 +82,7 @@ describe("QuizEngine", () => {
   describe("Accessibility", () => {
     it("should have proper structure", () => {
       const { container } = render(
-        <QuizEngine quiz={mockQuiz} onComplete={mockOnComplete} />
+        <QuizEngine quiz={mockQuiz} onComplete={mockOnComplete} />,
       );
       expect(container.firstChild).toBeInTheDocument();
     });
@@ -98,7 +98,7 @@ describe("QuizEngine", () => {
 
     it("should unmount cleanly", () => {
       const { unmount } = render(
-        <QuizEngine quiz={mockQuiz} onComplete={mockOnComplete} />
+        <QuizEngine quiz={mockQuiz} onComplete={mockOnComplete} />,
       );
       unmount();
       expect(true).toBe(true);

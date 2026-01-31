@@ -123,29 +123,29 @@ export default function XPDisplay({
               className="border-0 shadow-2xl bg-gradient-to-br from-yellow-400 to-orange-500 text-white max-w-md mx-4"
               onClick={(e: React.MouseEvent) => e.stopPropagation()}
             >
-                <CardContent className="p-8 text-center relative">
-                  <button
-                    onClick={() => setShowLevelUp(false)}
-                    className="absolute top-2 left-2 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                    aria-label="إغلاق"
-                  >
-                    <span className="text-white text-lg">✕</span>
-                  </button>
-                  <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Trophy className="w-10 h-10" />
-                  </div>
-                  <h2 id="level-up-title" className="text-3xl font-bold mb-2">
-                    تهانينا!
-                  </h2>
-                  <p className="text-xl mb-4">
-                    وصلت إلى المستوى {userStats.level}
-                  </p>
-                  <Badge className="bg-white/20 text-white text-lg px-4 py-2">
-                    {levelTitle.title}
-                  </Badge>
-                  <p className="text-white/90 mt-2">{levelTitle.description}</p>
-                </CardContent>
-              </Card>
+              <CardContent className="p-8 text-center relative">
+                <button
+                  onClick={() => setShowLevelUp(false)}
+                  className="absolute top-2 left-2 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  aria-label="إغلاق"
+                >
+                  <span className="text-white text-lg">✕</span>
+                </button>
+                <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Trophy className="w-10 h-10" />
+                </div>
+                <h2 id="level-up-title" className="text-3xl font-bold mb-2">
+                  تهانينا!
+                </h2>
+                <p className="text-xl mb-4">
+                  وصلت إلى المستوى {userStats.level}
+                </p>
+                <Badge className="bg-white/20 text-white text-lg px-4 py-2">
+                  {levelTitle.title}
+                </Badge>
+                <p className="text-white/90 mt-2">{levelTitle.description}</p>
+              </CardContent>
+            </Card>
             {/* FocusTrap removed for lint compliance */}
           </div>
         )}

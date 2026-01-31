@@ -15,7 +15,7 @@ describe("Progress", () => {
 
     it("should apply custom className", () => {
       const { container } = render(
-        <Progress value={50} className="custom-class" />
+        <Progress value={50} className="custom-class" />,
       );
       const element = container.firstChild;
       expect(element).toHaveClass("custom-class");

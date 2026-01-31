@@ -99,7 +99,7 @@ export function Pagination({
             >
               {page}
             </Button>
-          )
+          ),
         )}
 
         {/* Next button - ChevronLeft points forward in RTL */}

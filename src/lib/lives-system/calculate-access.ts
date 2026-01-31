@@ -65,7 +65,7 @@ export function calculateAccessState(input: CalculateAccessInput): AccessState {
   // Calculate lives expiry
   const livesExpireAt = new Date(
     activationDate.getTime() +
-      lectureSettings.livesExpiryDays * 24 * 60 * 60 * 1000
+      lectureSettings.livesExpiryDays * 24 * 60 * 60 * 1000,
   );
   const livesExpired = now > livesExpireAt;
 
@@ -77,7 +77,7 @@ export function calculateAccessState(input: CalculateAccessInput): AccessState {
 
   // Calculate access expiry
   const accessExpiresAt = new Date(
-    activationDate.getTime() + totalAccessDays * 24 * 60 * 60 * 1000
+    activationDate.getTime() + totalAccessDays * 24 * 60 * 60 * 1000,
   );
   const accessExpired = now > accessExpiresAt;
 
@@ -158,7 +158,7 @@ function createAccessState(
     Pick<
       AccessState,
       "status" | "livesRemaining" | "preQuizAttemptsRemaining" | "preQuizStatus"
-    >
+    >,
 ): AccessState {
   return {
     canAccessVideos: false,
@@ -182,7 +182,7 @@ function createAccessState(
  * Full access calculation with notification flags
  */
 export function calculateAccess(
-  input: CalculateAccessInput
+  input: CalculateAccessInput,
 ): CalculateAccessResult {
   const accessState = calculateAccessState(input);
   const { lectureSettings } = input;
@@ -215,7 +215,7 @@ export function calculateAccess(
  */
 export function formatTimeRemaining(
   daysRemaining: number | null,
-  hoursRemaining: number | null
+  hoursRemaining: number | null,
 ): string {
   if (daysRemaining === null || hoursRemaining === null) {
     return "غير متاح";

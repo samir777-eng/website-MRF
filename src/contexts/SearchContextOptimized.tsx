@@ -93,7 +93,9 @@ export function SearchProviderOptimized({
   const [isOpen, setIsOpen] = useState(false);
 
   // Filter state - updates occasionally
-  const [filters, setFiltersState] = useState<SearchFiltersState["filters"]>({});
+  const [filters, setFiltersState] = useState<SearchFiltersState["filters"]>(
+    {},
+  );
 
   // History state - updates rarely
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
@@ -138,7 +140,7 @@ export function SearchProviderOptimized({
         setSuggestions([]);
       }
     },
-    [getAllSearchableItems]
+    [getAllSearchableItems],
   );
 
   // Perform search - memoized with filter dependency
@@ -167,7 +169,7 @@ export function SearchProviderOptimized({
         setIsSearching(false);
       }
     },
-    [getAllSearchableItems, filters]
+    [getAllSearchableItems, filters],
   );
 
   // Clear search - memoized
@@ -197,12 +199,15 @@ export function SearchProviderOptimized({
 
       setRecentSearches((prev) => {
         const filtered = prev.filter((s) => s !== searchQuery);
-        const updated = [searchQuery, ...filtered].slice(0, MAX_RECENT_SEARCHES);
+        const updated = [searchQuery, ...filtered].slice(
+          0,
+          MAX_RECENT_SEARCHES,
+        );
         saveRecentSearches(updated);
         return updated;
       });
     },
-    [saveRecentSearches]
+    [saveRecentSearches],
   );
 
   const clearRecentSearches = useCallback(() => {
@@ -215,7 +220,7 @@ export function SearchProviderOptimized({
     (newFilters: SearchFiltersState["filters"]) => {
       setFiltersState(newFilters);
     },
-    []
+    [],
   );
 
   const clearFilters = useCallback(() => {
@@ -287,7 +292,7 @@ export function SearchProviderOptimized({
       clearRecentSearches,
       setFilters,
       clearFilters,
-    ]
+    ],
   );
 
   return (
@@ -300,7 +305,7 @@ export function useSearchOptimized() {
   const context = useContext(SearchContext);
   if (context === undefined) {
     throw new Error(
-      "useSearchOptimized must be used within a SearchProviderOptimized"
+      "useSearchOptimized must be used within a SearchProviderOptimized",
     );
   }
   return context;
@@ -320,7 +325,8 @@ export function useSearchResults() {
  * Get only search modal state - for modal toggle button
  */
 export function useSearchModal() {
-  const { isOpen, openSearch, closeSearch, toggleSearch } = useSearchOptimized();
+  const { isOpen, openSearch, closeSearch, toggleSearch } =
+    useSearchOptimized();
   return { isOpen, openSearch, closeSearch, toggleSearch };
 }
 
@@ -328,7 +334,8 @@ export function useSearchModal() {
  * Get only recent searches - for recent searches display
  */
 export function useRecentSearches() {
-  const { recentSearches, addRecentSearch, clearRecentSearches } = useSearchOptimized();
+  const { recentSearches, addRecentSearch, clearRecentSearches } =
+    useSearchOptimized();
   return { recentSearches, addRecentSearch, clearRecentSearches };
 }
 
@@ -344,7 +351,8 @@ export function useSearchFilters() {
  * Get only search actions - for search input component
  */
 export function useSearchActions() {
-  const { setQuery, search, clearSearch, addRecentSearch } = useSearchOptimized();
+  const { setQuery, search, clearSearch, addRecentSearch } =
+    useSearchOptimized();
   return { setQuery, search, clearSearch, addRecentSearch };
 }
 

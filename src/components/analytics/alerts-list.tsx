@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AlertTriangle, TrendingDown, Clock, Trophy, Bell, Check } from "lucide-react";
+import {
+  AlertTriangle,
+  TrendingDown,
+  Clock,
+  Trophy,
+  Bell,
+  Check,
+} from "lucide-react";
 import { EducatorAlert } from "@/types/analytics";
 
 interface AlertsListProps {
@@ -48,13 +55,17 @@ export function AlertsList({ alerts, onDismiss }: AlertsListProps) {
             <div className="mt-0.5">{alertIcons[alert.type]}</div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
-                <span className="font-medium text-white">{alert.studentName}</span>
+                <span className="font-medium text-white">
+                  {alert.studentName}
+                </span>
                 {!alert.isRead && (
                   <span className="w-2 h-2 bg-purple-500 rounded-full" />
                 )}
               </div>
               <p className="text-gray-300 text-sm">{alert.messageAr}</p>
-              <p className="text-gray-500 text-sm mt-1">{formatTimeAgo(alert.createdAt)}</p>
+              <p className="text-gray-500 text-sm mt-1">
+                {formatTimeAgo(alert.createdAt)}
+              </p>
             </div>
             {onDismiss && !alert.isRead && (
               <button
@@ -80,4 +91,3 @@ function formatTimeAgo(date: Date): string {
   if (seconds < 604800) return `منذ ${Math.floor(seconds / 86400)} يوم`;
   return new Date(date).toLocaleDateString("ar-EG");
 }
-

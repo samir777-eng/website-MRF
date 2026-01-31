@@ -23,11 +23,12 @@ const avatarVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  }
+  },
 );
 
 interface AvatarProps
-  extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>,
+  extends
+    React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>,
     VariantProps<typeof avatarVariants> {}
 
 const Avatar = React.forwardRef<
@@ -62,7 +63,7 @@ const AvatarFallback = React.forwardRef<
     ref={ref}
     className={cn(
       "flex h-full w-full items-center justify-center rounded-full bg-muted font-medium text-muted-foreground",
-      className
+      className,
     )}
     {...props}
   />

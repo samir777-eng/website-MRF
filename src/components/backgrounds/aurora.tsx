@@ -62,5 +62,4 @@ export function Aurora({ className }: AuroraProps) {
   );
 }
 
-
 export default Aurora;

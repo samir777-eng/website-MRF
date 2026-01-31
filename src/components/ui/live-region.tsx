@@ -41,7 +41,10 @@ export function LiveRegion({
 }
 
 export function useAnnounce() {
-  const announce = (message: string, politeness: "polite" | "assertive" = "polite") => {
+  const announce = (
+    message: string,
+    politeness: "polite" | "assertive" = "polite",
+  ) => {
     const region = document.createElement("div");
     region.setAttribute("role", "status");
     region.setAttribute("aria-live", politeness);
@@ -58,4 +61,3 @@ export function useAnnounce() {
 
   return { announce };
 }
-

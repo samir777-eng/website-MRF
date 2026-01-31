@@ -46,7 +46,7 @@ export function MagnetButton({
         });
       }
     },
-    [strength]
+    [strength],
   );
 
   const handleMouseLeave = useCallback(() => {
@@ -68,6 +68,5 @@ export function MagnetButton({
     </button>
   );
 }
-
 
 export default MagnetButton;

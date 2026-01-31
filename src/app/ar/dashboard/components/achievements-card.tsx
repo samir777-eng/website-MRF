@@ -73,4 +73,3 @@ const AchievementItem = memo(function AchievementItem({
 });
 
 export const AchievementsCard = memo(AchievementsCardComponent);
-

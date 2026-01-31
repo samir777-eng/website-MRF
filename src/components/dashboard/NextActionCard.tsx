@@ -92,7 +92,9 @@ export function NextActionCard({
   return (
     <Card
       className={`relative overflow-hidden border-2 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1 ${
-        prominent ? `border-transparent bg-gradient-to-br ${config.gradient}` : ""
+        prominent
+          ? `border-transparent bg-gradient-to-br ${config.gradient}`
+          : ""
       } ${isLarge ? "p-6 md:p-8" : "p-4 md:p-6"}`}
     >
       {/* Top gradient accent */}
@@ -168,9 +170,7 @@ export function NextActionCard({
                   </span>
                 </div>
                 {action.completionReward.badge && (
-                  <span className="text-xs text-muted-foreground">
-                    + شارة
-                  </span>
+                  <span className="text-xs text-muted-foreground">+ شارة</span>
                 )}
               </div>
             )}

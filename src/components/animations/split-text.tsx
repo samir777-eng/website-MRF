@@ -12,12 +12,12 @@ interface SplitTextProps {
   stagger?: number;
 }
 
-export function SplitText({ 
-  text, 
-  className, 
-  delay = 0, 
-  duration = 0.5, 
-  stagger = 0.03 
+export function SplitText({
+  text,
+  className,
+  delay = 0,
+  duration = 0.5,
+  stagger = 0.03,
 }: SplitTextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -25,7 +25,7 @@ export function SplitText({
     if (!containerRef.current) return;
 
     const chars = containerRef.current.querySelectorAll(".char");
-    
+
     gsap.fromTo(
       chars,
       {
@@ -39,7 +39,7 @@ export function SplitText({
         delay,
         stagger,
         ease: "power2.out",
-      }
+      },
     );
   }, [text, delay, duration, stagger]);
 
@@ -59,6 +59,5 @@ export function SplitText({
     </div>
   );
 }
-
 
 export default SplitText;

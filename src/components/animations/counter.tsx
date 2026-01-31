@@ -27,9 +27,10 @@ export function Counter({
   });
 
   const display = useTransform(spring, (current) => {
-    const formatted = decimals > 0
-      ? current.toFixed(decimals)
-      : Math.floor(current).toLocaleString();
+    const formatted =
+      decimals > 0
+        ? current.toFixed(decimals)
+        : Math.floor(current).toLocaleString();
     return `${prefix}${formatted}${suffix}`;
   });
 
@@ -43,6 +44,5 @@ export function Counter({
     </motion.span>
   );
 }
-
 
 export default Counter;

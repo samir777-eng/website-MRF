@@ -38,5 +38,4 @@ export function BlurText({
   );
 }
 
-
 export default BlurText;

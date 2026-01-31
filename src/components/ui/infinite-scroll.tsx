@@ -27,7 +27,7 @@ export function InfiniteScroll({
 
     const handleIntersection = async (entries: IntersectionObserverEntry[]) => {
       const [entry] = entries;
-      
+
       if (entry.isIntersecting && hasMore && !isLoading) {
         setIsLoading(true);
         try {
@@ -59,10 +59,10 @@ export function InfiniteScroll({
       {children}
       {hasMore && (
         <div ref={loadMoreRef} className="py-8 flex justify-center">
-          {isLoading && (loader || <LoadingSpinner size="md" text="جاري التحميل..." />)}
+          {isLoading &&
+            (loader || <LoadingSpinner size="md" text="جاري التحميل..." />)}
         </div>
       )}
     </div>
   );
 }
-

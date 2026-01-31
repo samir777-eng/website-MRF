@@ -135,7 +135,7 @@ export function RegisterForm({ locale }: RegisterFormProps) {
         grade: formData.grade,
       });
       router.push(
-        `/${locale}/verify-otp?email=${encodeURIComponent(formData.email)}`
+        `/${locale}/verify-otp?email=${encodeURIComponent(formData.email)}`,
       );
     } catch (_error) {
       setErrors({ general: t("auth.registerError") });

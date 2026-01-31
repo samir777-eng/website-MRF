@@ -43,7 +43,12 @@ export function LectureDetailSkeleton() {
 
           {/* Progress Bar */}
           <div className="space-y-2">
-            <EnhancedSkeleton variant="rectangular" width="100%" height="12px" className="rounded-full" />
+            <EnhancedSkeleton
+              variant="rectangular"
+              width="100%"
+              height="12px"
+              className="rounded-full"
+            />
             <div className="flex justify-between">
               <EnhancedSkeleton variant="text" width="100px" height="14px" />
               <EnhancedSkeleton variant="text" width="60px" height="14px" />
@@ -54,8 +59,18 @@ export function LectureDetailSkeleton() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {Array.from({ length: 4 }).map((_, i) => (
               <div key={i} className="text-center space-y-2">
-                <EnhancedSkeleton variant="text" width="60%" height="32px" className="mx-auto" />
-                <EnhancedSkeleton variant="text" width="80%" height="14px" className="mx-auto" />
+                <EnhancedSkeleton
+                  variant="text"
+                  width="60%"
+                  height="32px"
+                  className="mx-auto"
+                />
+                <EnhancedSkeleton
+                  variant="text"
+                  width="80%"
+                  height="14px"
+                  className="mx-auto"
+                />
               </div>
             ))}
           </div>
@@ -76,7 +91,7 @@ export function LectureDetailSkeleton() {
         {/* Lecture Steps */}
         <div className="space-y-4">
           <EnhancedSkeleton variant="text" width="150px" height="28px" />
-          
+
           {/* Step Cards */}
           {Array.from({ length: 5 }).map((_, i) => (
             <div
@@ -96,8 +111,16 @@ export function LectureDetailSkeleton() {
                 <div className="flex-1 space-y-3">
                   <div className="flex items-start justify-between">
                     <div className="flex-1 space-y-2">
-                      <EnhancedSkeleton variant="text" width="30%" height="20px" />
-                      <EnhancedSkeleton variant="text" width="60%" height="24px" />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="30%"
+                        height="20px"
+                      />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="60%"
+                        height="24px"
+                      />
                     </div>
                     <EnhancedSkeleton
                       variant="rectangular"
@@ -109,19 +132,43 @@ export function LectureDetailSkeleton() {
 
                   {/* Description */}
                   <div className="space-y-2">
-                    <EnhancedSkeleton variant="text" width="100%" height="16px" />
-                    <EnhancedSkeleton variant="text" width="85%" height="16px" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="100%"
+                      height="16px"
+                    />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="85%"
+                      height="16px"
+                    />
                   </div>
 
                   {/* Meta Info */}
                   <div className="flex items-center gap-4 pt-2">
                     <div className="flex items-center gap-2">
-                      <EnhancedSkeleton variant="circular" width="20px" height="20px" />
-                      <EnhancedSkeleton variant="text" width="60px" height="16px" />
+                      <EnhancedSkeleton
+                        variant="circular"
+                        width="20px"
+                        height="20px"
+                      />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="60px"
+                        height="16px"
+                      />
                     </div>
                     <div className="flex items-center gap-2">
-                      <EnhancedSkeleton variant="circular" width="20px" height="20px" />
-                      <EnhancedSkeleton variant="text" width="80px" height="16px" />
+                      <EnhancedSkeleton
+                        variant="circular"
+                        width="20px"
+                        height="20px"
+                      />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="80px"
+                        height="16px"
+                      />
                     </div>
                   </div>
 
@@ -147,8 +194,16 @@ export function LectureDetailSkeleton() {
               <div className="space-y-3">
                 {Array.from({ length: 3 }).map((_, i) => (
                   <div key={i} className="flex items-center justify-between">
-                    <EnhancedSkeleton variant="text" width="100px" height="16px" />
-                    <EnhancedSkeleton variant="text" width="60px" height="16px" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="100px"
+                      height="16px"
+                    />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="60px"
+                      height="16px"
+                    />
                   </div>
                 ))}
               </div>
@@ -167,8 +222,16 @@ export function LectureDetailSkeleton() {
                       className="rounded-lg"
                     />
                     <div className="flex-1 space-y-2">
-                      <EnhancedSkeleton variant="text" width="100%" height="16px" />
-                      <EnhancedSkeleton variant="text" width="70%" height="14px" />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="100%"
+                        height="16px"
+                      />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="70%"
+                        height="14px"
+                      />
                     </div>
                   </div>
                 ))}

@@ -374,7 +374,7 @@ export default function LeaderboardDisplay({
               <Button
                 onClick={() =>
                   setSelectedTimeframe(
-                    selectedTimeframe === "weekly" ? "monthly" : "weekly"
+                    selectedTimeframe === "weekly" ? "monthly" : "weekly",
                   )
                 }
                 variant="outline"

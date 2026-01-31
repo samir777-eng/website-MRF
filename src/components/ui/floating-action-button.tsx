@@ -35,7 +35,7 @@ export function FloatingActionButton({
         "fixed z-50 rounded-full shadow-lg",
         showLabel ? "h-12 px-5 gap-2" : "h-14 w-14 p-0",
         positionClasses[position],
-        className
+        className,
       )}
       aria-label={label}
       title={label}
@@ -49,4 +49,3 @@ export function FloatingActionButton({
     </Button>
   );
 }
-

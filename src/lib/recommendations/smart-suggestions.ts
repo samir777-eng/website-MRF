@@ -32,12 +32,12 @@ interface Suggestion {
 
 export function getNextLessonSuggestion(
   userProgress: UserProgress,
-  allLessons: Lesson[]
+  allLessons: Lesson[],
 ): Suggestion | null {
   // Find lessons where prerequisites are met
   const availableLessons = allLessons.filter((lesson) => {
     const prerequisitesMet = lesson.prerequisites.every((prereq) =>
-      userProgress.completedLessons.includes(prereq)
+      userProgress.completedLessons.includes(prereq),
     );
     const notCompleted = !userProgress.completedLessons.includes(lesson.id);
     return prerequisitesMet && notCompleted;
@@ -67,14 +67,14 @@ export function getNextLessonSuggestion(
 
 export function getQuizSuggestions(
   userProgress: UserProgress,
-  allQuizzes: Quiz[]
+  allQuizzes: Quiz[],
 ): Suggestion[] {
   const suggestions: Suggestion[] = [];
 
   // Suggest quizzes for weak areas
   userProgress.weakAreas.forEach((weakArea) => {
     const relevantQuizzes = allQuizzes.filter(
-      (quiz) => quiz.topic === weakArea && !userProgress.quizScores[quiz.id]
+      (quiz) => quiz.topic === weakArea && !userProgress.quizScores[quiz.id],
     );
 
     relevantQuizzes.slice(0, 2).forEach((quiz) => {
@@ -92,7 +92,7 @@ export function getQuizSuggestions(
 }
 
 export function getStudyScheduleSuggestion(
-  userProgress: UserProgress
+  userProgress: UserProgress,
 ): Suggestion | null {
   const avgTime = userProgress.averageStudyTime;
 
@@ -122,7 +122,7 @@ export function getStudyScheduleSuggestion(
 export function getAllSuggestions(
   userProgress: UserProgress,
   allLessons: Lesson[],
-  allQuizzes: Quiz[]
+  allQuizzes: Quiz[],
 ): Suggestion[] {
   const suggestions: Suggestion[] = [];
 
@@ -137,4 +137,3 @@ export function getAllSuggestions(
 
   return suggestions.sort((a, b) => a.priority - b.priority);
 }
-

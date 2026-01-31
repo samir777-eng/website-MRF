@@ -30,9 +30,7 @@ export function TextareaWithCounter({
 
   return (
     <div className={cn("space-y-2", className)}>
-      {label && (
-        <label className="text-sm font-medium">{label}</label>
-      )}
+      {label && <label className="text-sm font-medium">{label}</label>}
       <Textarea
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -40,18 +38,16 @@ export function TextareaWithCounter({
         rows={rows}
         maxLength={maxLength}
         className={cn(
-          error && "border-destructive focus-visible:ring-destructive"
+          error && "border-destructive focus-visible:ring-destructive",
         )}
       />
       <div className="flex items-center justify-between text-sm">
-        {error && (
-          <span className="text-destructive">{error}</span>
-        )}
+        {error && <span className="text-destructive">{error}</span>}
         <span
           className={cn(
             "mr-auto",
             isOverLimit && "text-destructive",
-            isNearLimit && !isOverLimit && "text-yellow-600"
+            isNearLimit && !isOverLimit && "text-yellow-600",
           )}
         >
           {remaining} حرف متبقي
@@ -60,4 +56,3 @@ export function TextareaWithCounter({
     </div>
   );
 }
-

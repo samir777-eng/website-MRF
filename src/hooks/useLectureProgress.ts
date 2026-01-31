@@ -81,7 +81,7 @@ function saveProgress(progress: LectureProgressData): void {
     progress.lastUpdated = new Date().toISOString();
     localStorage.setItem(
       getStorageKey(progress.lectureId),
-      JSON.stringify(progress)
+      JSON.stringify(progress),
     );
   } catch (error) {
     console.error("Failed to save lecture progress:", error);
@@ -90,7 +90,7 @@ function saveProgress(progress: LectureProgressData): void {
 
 export function useLectureProgress(lectureId: string, totalVideos: number = 5) {
   const [progress, setProgress] = useState<LectureProgressData>(() =>
-    getDefaultProgress(lectureId)
+    getDefaultProgress(lectureId),
   );
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -130,7 +130,8 @@ export function useLectureProgress(lectureId: string, totalVideos: number = 5) {
           if (!progress.allVideosCompleted) {
             return {
               canAccess: false,
-              reason: "يجب مشاهدة جميع الفيديوهات أولاً للوصول إلى الاختبار البعدي",
+              reason:
+                "يجب مشاهدة جميع الفيديوهات أولاً للوصول إلى الاختبار البعدي",
               redirectTo: `/ar/lectures/${lectureId}`,
             };
           }
@@ -154,7 +155,8 @@ export function useLectureProgress(lectureId: string, totalVideos: number = 5) {
           if (!progress.postQuizCompleted) {
             return {
               canAccess: false,
-              reason: "يجب إكمال الاختبار البعدي أولاً للوصول إلى الواجب المنزلي",
+              reason:
+                "يجب إكمال الاختبار البعدي أولاً للوصول إلى الواجب المنزلي",
               redirectTo: `/ar/lectures/${lectureId}/post-quiz`,
             };
           }
@@ -164,25 +166,22 @@ export function useLectureProgress(lectureId: string, totalVideos: number = 5) {
           return { canAccess: true };
       }
     },
-    [progress, lectureId]
+    [progress, lectureId],
   );
 
   // Mark pre-quiz as completed
-  const completePreQuiz = useCallback(
-    (score: number) => {
-      setProgress((prev) => {
-        const updated: LectureProgressData = {
-          ...prev,
-          preQuizCompleted: true,
-          preQuizScore: score,
-          preQuizCompletedAt: new Date().toISOString(),
-        };
-        saveProgress(updated);
-        return updated;
-      });
-    },
-    []
-  );
+  const completePreQuiz = useCallback((score: number) => {
+    setProgress((prev) => {
+      const updated: LectureProgressData = {
+        ...prev,
+        preQuizCompleted: true,
+        preQuizScore: score,
+        preQuizCompletedAt: new Date().toISOString(),
+      };
+      saveProgress(updated);
+      return updated;
+    });
+  }, []);
 
   // Mark a video as watched
   const markVideoWatched = useCallback(
@@ -202,7 +201,7 @@ export function useLectureProgress(lectureId: string, totalVideos: number = 5) {
         return updated;
       });
     },
-    [totalVideos]
+    [totalVideos],
   );
 
   // Mark all videos as completed (for testing or admin)
@@ -218,38 +217,32 @@ export function useLectureProgress(lectureId: string, totalVideos: number = 5) {
   }, []);
 
   // Mark post-quiz as completed
-  const completePostQuiz = useCallback(
-    (score: number) => {
-      setProgress((prev) => {
-        const updated: LectureProgressData = {
-          ...prev,
-          postQuizCompleted: true,
-          postQuizScore: score,
-          postQuizCompletedAt: new Date().toISOString(),
-        };
-        saveProgress(updated);
-        return updated;
-      });
-    },
-    []
-  );
+  const completePostQuiz = useCallback((score: number) => {
+    setProgress((prev) => {
+      const updated: LectureProgressData = {
+        ...prev,
+        postQuizCompleted: true,
+        postQuizScore: score,
+        postQuizCompletedAt: new Date().toISOString(),
+      };
+      saveProgress(updated);
+      return updated;
+    });
+  }, []);
 
   // Mark homework as completed
-  const completeHomework = useCallback(
-    (score: number) => {
-      setProgress((prev) => {
-        const updated: LectureProgressData = {
-          ...prev,
-          homeworkCompleted: true,
-          homeworkScore: score,
-          homeworkCompletedAt: new Date().toISOString(),
-        };
-        saveProgress(updated);
-        return updated;
-      });
-    },
-    []
-  );
+  const completeHomework = useCallback((score: number) => {
+    setProgress((prev) => {
+      const updated: LectureProgressData = {
+        ...prev,
+        homeworkCompleted: true,
+        homeworkScore: score,
+        homeworkCompletedAt: new Date().toISOString(),
+      };
+      saveProgress(updated);
+      return updated;
+    });
+  }, []);
 
   // Reset all progress for this lecture
   const resetProgress = useCallback(() => {

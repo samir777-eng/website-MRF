@@ -52,7 +52,7 @@ interface QuizEngineProps {
 export function QuizEngine({ quiz }: QuizEngineProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<(number | boolean | string | null)[]>(
-    new Array(quiz.questions_data.length).fill(null)
+    new Array(quiz.questions_data.length).fill(null),
   );
   const [timeLeft, setTimeLeft] = useState(quiz.duration * 60); // Convert to seconds
   const [isStarted, setIsStarted] = useState(false);
@@ -172,7 +172,7 @@ export function QuizEngine({ quiz }: QuizEngineProps) {
     });
 
     const finalScore = Math.round(
-      (correctAnswers / quiz.questions_data.length) * 100
+      (correctAnswers / quiz.questions_data.length) * 100,
     );
     setScore(finalScore);
     setIsFinished(true);
@@ -248,7 +248,7 @@ export function QuizEngine({ quiz }: QuizEngineProps) {
   // Results Screen
   if (isFinished) {
     const correctAnswers = answers.filter(
-      (answer, index) => answer === quiz.questions_data[index].correct
+      (answer, index) => answer === quiz.questions_data[index].correct,
     ).length;
 
     const getScoreColor = (score: number) => {
@@ -474,7 +474,7 @@ export function QuizEngine({ quiz }: QuizEngineProps) {
                         e.preventDefault();
                         const sibling =
                           e.currentTarget.parentElement?.querySelector(
-                            "button:not(:focus)"
+                            "button:not(:focus)",
                           ) as HTMLElement;
                         sibling?.focus();
                       }
@@ -506,7 +506,7 @@ export function QuizEngine({ quiz }: QuizEngineProps) {
                         e.preventDefault();
                         const sibling =
                           e.currentTarget.parentElement?.querySelector(
-                            "button:not(:focus)"
+                            "button:not(:focus)",
                           ) as HTMLElement;
                         sibling?.focus();
                       }

@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
 interface SkeletonProps {
   className?: string;
@@ -9,10 +9,11 @@ export function Skeleton({ className, shimmer = true }: SkeletonProps) {
   return (
     <div
       className={cn(
-        'rounded-md bg-muted',
-        shimmer && 'relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent',
-        !shimmer && 'animate-pulse',
-        className
+        "rounded-md bg-muted",
+        shimmer &&
+          "relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent",
+        !shimmer && "animate-pulse",
+        className,
       )}
     />
   );
@@ -45,7 +46,13 @@ export function ListSkeleton({ count = 3 }: { count?: number }) {
   );
 }
 
-export function TableSkeleton({ rows = 5, cols = 4 }: { rows?: number; cols?: number }) {
+export function TableSkeleton({
+  rows = 5,
+  cols = 4,
+}: {
+  rows?: number;
+  cols?: number;
+}) {
   return (
     <div className="space-y-3">
       {Array.from({ length: rows }).map((_, i) => (
@@ -185,4 +192,3 @@ export function PageSkeleton() {
     </div>
   );
 }
-

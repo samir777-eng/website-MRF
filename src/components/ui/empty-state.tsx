@@ -31,7 +31,7 @@ export function EmptyState({
       className={cn(
         "flex flex-col items-center justify-center text-center",
         compact ? "py-8 px-4" : "py-16 px-4",
-        className
+        className,
       )}
     >
       <div className={cn("relative", compact ? "mb-4" : "mb-6")}>
@@ -42,13 +42,13 @@ export function EmptyState({
         <div
           className={cn(
             "relative rounded-full bg-muted flex items-center justify-center",
-            compact ? "w-16 h-16" : "w-20 h-20"
+            compact ? "w-16 h-16" : "w-20 h-20",
           )}
         >
           <Icon
             className={cn(
               "text-muted-foreground",
-              compact ? "w-8 h-8" : "w-10 h-10"
+              compact ? "w-8 h-8" : "w-10 h-10",
             )}
             strokeWidth={1.5}
           />
@@ -58,7 +58,7 @@ export function EmptyState({
       <h3
         className={cn(
           "font-semibold text-foreground font-display",
-          compact ? "text-lg mb-2" : "text-xl mb-3"
+          compact ? "text-lg mb-2" : "text-xl mb-3",
         )}
       >
         {title}
@@ -66,7 +66,7 @@ export function EmptyState({
       <p
         className={cn(
           "text-muted-foreground max-w-md leading-relaxed",
-          compact ? "text-sm mb-4" : "text-base mb-6"
+          compact ? "text-sm mb-4" : "text-base mb-6",
         )}
       >
         {description}
@@ -93,4 +93,3 @@ export function EmptyState({
     </div>
   );
 }
-

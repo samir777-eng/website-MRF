@@ -21,7 +21,7 @@ test.describe("User Journey - Arabic Learning Platform", () => {
 
     // Check hero section
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "مرحباً بكم"
+      "مرحباً بكم",
     );
 
     // Check grade selection cards
@@ -41,7 +41,7 @@ test.describe("User Journey - Arabic Learning Platform", () => {
 
     // Check page title and content
     await expect(
-      page.getByRole("heading", { name: "المحاضرات" })
+      page.getByRole("heading", { name: "المحاضرات" }),
     ).toBeVisible();
 
     // Check search functionality
@@ -126,7 +126,7 @@ test.describe("User Journey - Arabic Learning Platform", () => {
 
     // Check recent activity
     await expect(
-      page.getByRole("heading", { name: "النشاط الأخير" })
+      page.getByRole("heading", { name: "النشاط الأخير" }),
     ).toBeVisible();
 
     // Check daily streak component
@@ -248,7 +248,7 @@ test.describe("User Journey - Arabic Learning Platform", () => {
     // Measure page load performance
     const performanceMetrics = await page.evaluate(() => {
       const navigation = performance.getEntriesByType(
-        "navigation"
+        "navigation",
       )[0] as PerformanceNavigationTiming;
       return {
         domContentLoaded:

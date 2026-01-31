@@ -26,7 +26,7 @@ function AchievementsContent() {
   const unlockedCount = safeUnlockedAchievements.length;
   const completionRate = Math.round((unlockedCount / totalAchievements) * 100);
   const totalXP = ACHIEVEMENTS.filter((a) =>
-    safeUnlockedAchievements.includes(a.id)
+    safeUnlockedAchievements.includes(a.id),
   ).reduce((sum, a) => sum + a.xpReward, 0);
 
   // Animated counters
@@ -36,12 +36,12 @@ function AchievementsContent() {
 
   // Get recently unlocked (mock - last 3)
   const recentlyUnlocked = ACHIEVEMENTS.filter((a) =>
-    safeUnlockedAchievements.includes(a.id)
+    safeUnlockedAchievements.includes(a.id),
   ).slice(0, 3);
 
   // Get next achievements to unlock
   const nextToUnlock = ACHIEVEMENTS.filter(
-    (a) => !safeUnlockedAchievements.includes(a.id)
+    (a) => !safeUnlockedAchievements.includes(a.id),
   ).slice(0, 2);
 
   // Rarity distribution

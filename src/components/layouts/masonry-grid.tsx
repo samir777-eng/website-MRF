@@ -54,5 +54,4 @@ export function MasonryGrid({
   );
 }
 
-
 export default MasonryGrid;

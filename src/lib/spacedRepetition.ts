@@ -7,34 +7,34 @@
 export interface ReviewItem {
   id: string;
   contentId: string;
-  contentType: 'vocabulary' | 'grammar' | 'concept' | 'verse' | 'exercise';
+  contentType: "vocabulary" | "grammar" | "concept" | "verse" | "exercise";
   title: string;
   description: string;
   difficulty: 1 | 2 | 3 | 4 | 5; // 1 = very easy, 5 = very hard
-  
+
   // Spaced repetition data
   easeFactor: number; // Starting at 2.5, minimum 1.3
   interval: number; // Days until next review
   repetitions: number; // Number of successful reviews
   nextReviewDate: Date;
   lastReviewDate?: Date;
-  
+
   // Performance tracking
   totalReviews: number;
   correctReviews: number;
   averageResponseTime: number; // milliseconds
   streakCount: number; // consecutive correct answers
-  
+
   // Learning context
-  subject: 'نحو' | 'بلاغة' | 'أدب' | 'نصوص' | 'قراءة' | 'تعبير';
+  subject: "نحو" | "بلاغة" | "أدب" | "نصوص" | "قراءة" | "تعبير";
   tags: string[];
   relatedItems: string[]; // IDs of related review items
-  
+
   // Metadata
   createdAt: Date;
   lastModified: Date;
   isActive: boolean;
-  priority: 'low' | 'medium' | 'high' | 'urgent';
+  priority: "low" | "medium" | "high" | "urgent";
 }
 
 export interface ReviewSession {
@@ -46,7 +46,7 @@ export interface ReviewSession {
   totalItems: number;
   correctAnswers: number;
   averageResponseTime: number;
-  sessionType: 'scheduled' | 'practice' | 'cram' | 'weak_areas';
+  sessionType: "scheduled" | "practice" | "cram" | "weak_areas";
   xpEarned: number;
 }
 
@@ -113,7 +113,7 @@ export const ARABIC_LEARNING_PATTERNS = {
  */
 export function calculateNextInterval(
   item: ReviewItem,
-  response: ReviewResponse
+  response: ReviewResponse,
 ): { interval: number; easeFactor: number; repetitions: number } {
   const { quality, responseTime } = response;
   let { easeFactor, interval, repetitions } = item;
@@ -139,7 +139,7 @@ export function calculateNextInterval(
   const qualityFactor = (5 - quality) * SM2_CONFIG.EASE_FACTOR_PENALTY;
   easeFactor = Math.max(
     SM2_CONFIG.MINIMUM_EASE_FACTOR,
-    easeFactor + (0.1 - qualityFactor)
+    easeFactor + (0.1 - qualityFactor),
   );
 
   // Apply Arabic learning pattern adjustments
@@ -159,7 +159,10 @@ export function calculateNextInterval(
   }
 
   // Apply bounds
-  interval = Math.max(SM2_CONFIG.MINIMUM_INTERVAL, Math.min(SM2_CONFIG.MAXIMUM_INTERVAL, interval));
+  interval = Math.max(
+    SM2_CONFIG.MINIMUM_INTERVAL,
+    Math.min(SM2_CONFIG.MAXIMUM_INTERVAL, interval),
+  );
 
   return { interval, easeFactor, repetitions };
 }
@@ -170,30 +173,32 @@ export function calculateNextInterval(
 export function getItemsDueForReview(
   items: ReviewItem[],
   currentDate: Date = new Date(),
-  maxItems: number = 20
+  maxItems: number = 20,
 ): ReviewItem[] {
   const dueItems = items
-    .filter(item => 
-      item.isActive && 
-      item.nextReviewDate <= currentDate
-    )
+    .filter((item) => item.isActive && item.nextReviewDate <= currentDate)
     .sort((a, b) => {
       // Priority sorting: urgent > overdue > priority > ease factor
-      if (a.priority === 'urgent' && b.priority !== 'urgent') return -1;
-      if (b.priority === 'urgent' && a.priority !== 'urgent') return 1;
-      
+      if (a.priority === "urgent" && b.priority !== "urgent") return -1;
+      if (b.priority === "urgent" && a.priority !== "urgent") return 1;
+
       // Overdue items first
-      const aOverdue = (currentDate.getTime() - a.nextReviewDate.getTime()) / (1000 * 60 * 60 * 24);
-      const bOverdue = (currentDate.getTime() - b.nextReviewDate.getTime()) / (1000 * 60 * 60 * 24);
-      
+      const aOverdue =
+        (currentDate.getTime() - a.nextReviewDate.getTime()) /
+        (1000 * 60 * 60 * 24);
+      const bOverdue =
+        (currentDate.getTime() - b.nextReviewDate.getTime()) /
+        (1000 * 60 * 60 * 24);
+
       if (aOverdue > 1 && bOverdue <= 1) return -1;
       if (bOverdue > 1 && aOverdue <= 1) return 1;
-      
+
       // Then by priority
       const priorityOrder = { urgent: 4, high: 3, medium: 2, low: 1 };
-      const priorityDiff = priorityOrder[b.priority] - priorityOrder[a.priority];
+      const priorityDiff =
+        priorityOrder[b.priority] - priorityOrder[a.priority];
       if (priorityDiff !== 0) return priorityDiff;
-      
+
       // Finally by ease factor (harder items first)
       return a.easeFactor - b.easeFactor;
     });
@@ -206,21 +211,27 @@ export function getItemsDueForReview(
  */
 export function updateReviewItem(
   item: ReviewItem,
-  response: ReviewResponse
+  response: ReviewResponse,
 ): ReviewItem {
-  const { interval, easeFactor, repetitions } = calculateNextInterval(item, response);
-  
+  const { interval, easeFactor, repetitions } = calculateNextInterval(
+    item,
+    response,
+  );
+
   const nextReviewDate = new Date();
   nextReviewDate.setDate(nextReviewDate.getDate() + interval);
-  
+
   // Update performance metrics
   const totalReviews = item.totalReviews + 1;
-  const correctReviews = item.correctReviews + (response.quality >= SM2_CONFIG.QUALITY_THRESHOLD ? 1 : 0);
-  const streakCount = response.quality >= SM2_CONFIG.QUALITY_THRESHOLD ? item.streakCount + 1 : 0;
-  
+  const correctReviews =
+    item.correctReviews +
+    (response.quality >= SM2_CONFIG.QUALITY_THRESHOLD ? 1 : 0);
+  const streakCount =
+    response.quality >= SM2_CONFIG.QUALITY_THRESHOLD ? item.streakCount + 1 : 0;
+
   // Update average response time (weighted average)
-  const avgResponseTime = item.averageResponseTime 
-    ? (item.averageResponseTime * 0.8 + response.responseTime * 0.2)
+  const avgResponseTime = item.averageResponseTime
+    ? item.averageResponseTime * 0.8 + response.responseTime * 0.2
     : response.responseTime;
 
   return {
@@ -256,27 +267,37 @@ export function getReviewStatistics(items: ReviewItem[]): {
   const tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
 
-  const dueToday = items.filter(item => 
-    item.isActive && item.nextReviewDate >= today && item.nextReviewDate < tomorrow
+  const dueToday = items.filter(
+    (item) =>
+      item.isActive &&
+      item.nextReviewDate >= today &&
+      item.nextReviewDate < tomorrow,
   ).length;
 
-  const overdue = items.filter(item => 
-    item.isActive && item.nextReviewDate < today
+  const overdue = items.filter(
+    (item) => item.isActive && item.nextReviewDate < today,
   ).length;
 
-  const mastered = items.filter(item => 
-    item.easeFactor >= 2.8 && item.interval >= 30 && item.repetitions >= 5
+  const mastered = items.filter(
+    (item) =>
+      item.easeFactor >= 2.8 && item.interval >= 30 && item.repetitions >= 5,
   ).length;
 
-  const struggling = items.filter(item => 
-    item.easeFactor <= 1.5 || (item.totalReviews >= 5 && (item.correctReviews / item.totalReviews) < 0.6)
+  const struggling = items.filter(
+    (item) =>
+      item.easeFactor <= 1.5 ||
+      (item.totalReviews >= 5 && item.correctReviews / item.totalReviews < 0.6),
   ).length;
 
   const totalReviews = items.reduce((sum, item) => sum + item.totalReviews, 0);
-  const totalCorrect = items.reduce((sum, item) => sum + item.correctReviews, 0);
-  const averageAccuracy = totalReviews > 0 ? (totalCorrect / totalReviews) * 100 : 0;
+  const totalCorrect = items.reduce(
+    (sum, item) => sum + item.correctReviews,
+    0,
+  );
+  const averageAccuracy =
+    totalReviews > 0 ? (totalCorrect / totalReviews) * 100 : 0;
 
-  const streakItems = items.filter(item => item.streakCount >= 5).length;
+  const streakItems = items.filter((item) => item.streakCount >= 5).length;
 
   return {
     totalItems: items.length,
@@ -295,16 +316,18 @@ export function getReviewStatistics(items: ReviewItem[]): {
  */
 export function createReviewItem(
   contentId: string,
-  contentType: ReviewItem['contentType'],
+  contentType: ReviewItem["contentType"],
   title: string,
   description: string,
-  difficulty: ReviewItem['difficulty'],
-  subject: ReviewItem['subject'],
-  tags: string[] = []
+  difficulty: ReviewItem["difficulty"],
+  subject: ReviewItem["subject"],
+  tags: string[] = [],
 ): ReviewItem {
   const now = new Date();
   const nextReviewDate = new Date();
-  nextReviewDate.setDate(nextReviewDate.getDate() + DIFFICULTY_INTERVALS[difficulty].first);
+  nextReviewDate.setDate(
+    nextReviewDate.getDate() + DIFFICULTY_INTERVALS[difficulty].first,
+  );
 
   return {
     id: `review_${contentId}_${Date.now()}`,
@@ -327,7 +350,7 @@ export function createReviewItem(
     createdAt: now,
     lastModified: now,
     isActive: true,
-    priority: 'medium',
+    priority: "medium",
   };
 }
 
@@ -336,20 +359,22 @@ export function createReviewItem(
  */
 export function getOptimalSessionSize(
   userStats: { averageAccuracy: number; averageSessionTime: number },
-  availableTime: number // minutes
+  availableTime: number, // minutes
 ): number {
   const baseSessionSize = 10;
-  
+
   // Adjust based on accuracy
   let sizeMultiplier = 1.0;
   if (userStats.averageAccuracy >= 90) sizeMultiplier = 1.3;
   else if (userStats.averageAccuracy >= 80) sizeMultiplier = 1.1;
   else if (userStats.averageAccuracy < 60) sizeMultiplier = 0.7;
-  
+
   // Adjust based on available time
   const estimatedTimePerItem = 45; // seconds
-  const maxItemsByTime = Math.floor((availableTime * 60) / estimatedTimePerItem);
-  
+  const maxItemsByTime = Math.floor(
+    (availableTime * 60) / estimatedTimePerItem,
+  );
+
   const optimalSize = Math.round(baseSessionSize * sizeMultiplier);
   return Math.min(optimalSize, maxItemsByTime, 25); // Cap at 25 items
 }

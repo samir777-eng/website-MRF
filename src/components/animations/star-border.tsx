@@ -40,7 +40,12 @@ export function StarBorder({
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      const gradient = ctx.createLinearGradient(
+        0,
+        0,
+        canvas.width,
+        canvas.height,
+      );
       gradient.addColorStop(0, "transparent");
       gradient.addColorStop(0.5, color);
       gradient.addColorStop(1, "transparent");
@@ -69,11 +74,13 @@ export function StarBorder({
   }, [speed, color]);
 
   return (
-    <div ref={containerRef} className={cn("relative overflow-hidden", className)}>
+    <div
+      ref={containerRef}
+      className={cn("relative overflow-hidden", className)}
+    >
       {children}
     </div>
   );
 }
-
 
 export default StarBorder;

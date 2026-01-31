@@ -85,7 +85,8 @@ function PostQuizContent() {
   const router = useRouter();
   const lectureId = params?.id as string;
 
-  const { completePostQuiz, progress: lectureProgress } = useLectureProgress(lectureId);
+  const { completePostQuiz, progress: lectureProgress } =
+    useLectureProgress(lectureId);
 
   const [state, setState] = useState<QuizState>("intro");
   const [currentQuestion, setCurrentQuestion] = useState(0);

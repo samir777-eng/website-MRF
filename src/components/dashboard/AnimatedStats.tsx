@@ -132,7 +132,7 @@ function AnimatedStatCard({ stat, delay, mounted }: AnimatedStatCardProps) {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (cardRef.current) {

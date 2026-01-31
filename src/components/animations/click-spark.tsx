@@ -84,5 +84,4 @@ export function ClickSpark({
   );
 }
 
-
 export default ClickSpark;

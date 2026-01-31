@@ -52,15 +52,24 @@ interface GamificationStatsActions {
     action: keyof typeof XP_ACTIONS,
     contextOrAmount?:
       | number
-      | { lessonId?: string; quizId?: string; score?: number }
+      | { lessonId?: string; quizId?: string; score?: number },
   ) => Promise<void>;
   canPerformAction: (action: keyof typeof ENERGY_CONFIG.ENERGY_COST) => boolean;
-  consumeEnergy: (action: keyof typeof ENERGY_CONFIG.ENERGY_COST) => Promise<boolean>;
+  consumeEnergy: (
+    action: keyof typeof ENERGY_CONFIG.ENERGY_COST,
+  ) => Promise<boolean>;
   incrementLessonsCompleted: (lessonId?: string) => Promise<void>;
-  incrementQuizzesTaken: (quizId: string, score: number, perfect: boolean) => Promise<void>;
+  incrementQuizzesTaken: (
+    quizId: string,
+    score: number,
+    perfect: boolean,
+  ) => Promise<void>;
   addNote: () => Promise<void>;
   addBookmark: () => Promise<void>;
-  purchaseItem: (itemId: string, quantity?: number) => Promise<{
+  purchaseItem: (
+    itemId: string,
+    quantity?: number,
+  ) => Promise<{
     success: boolean;
     error?: string;
     newBalance?: number;
@@ -75,9 +84,13 @@ interface GamificationStatsDerived {
 }
 
 // Combined context type
-type GamificationStatsContextType = GamificationStatsState & GamificationStatsActions & GamificationStatsDerived;
+type GamificationStatsContextType = GamificationStatsState &
+  GamificationStatsActions &
+  GamificationStatsDerived;
 
-const GamificationStatsContext = createContext<GamificationStatsContextType | undefined>(undefined);
+const GamificationStatsContext = createContext<
+  GamificationStatsContextType | undefined
+>(undefined);
 
 const initialState: GamificationStatsState = {
   totalXP: 0,
@@ -98,24 +111,26 @@ interface GamificationStatsProviderProps {
   children: ReactNode;
 }
 
-export function GamificationStatsProvider({ children }: GamificationStatsProviderProps) {
+export function GamificationStatsProvider({
+  children,
+}: GamificationStatsProviderProps) {
   const [state, setState] = useState<GamificationStatsState>(initialState);
 
   // Calculate level info - memoized since it only depends on totalXP
   const levelInfo = useMemo(
     () => getProgressToNextLevel(state.totalXP),
-    [state.totalXP]
+    [state.totalXP],
   );
 
   // Fetch stats from server
   const refreshStats = useCallback(async () => {
     try {
-      setState(prev => ({ ...prev, isLoading: true, error: null }));
+      setState((prev) => ({ ...prev, isLoading: true, error: null }));
 
       const result = await apiGetStats();
 
       if (result.success && result.stats) {
-        setState(prev => ({
+        setState((prev) => ({
           ...prev,
           totalXP: result.stats!.totalXP,
           level: result.stats!.level,
@@ -126,14 +141,14 @@ export function GamificationStatsProvider({ children }: GamificationStatsProvide
           isLoading: false,
         }));
       } else {
-        setState(prev => ({
+        setState((prev) => ({
           ...prev,
           error: result.error || "Failed to load stats",
           isLoading: false,
         }));
       }
     } catch (err) {
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
         error: "Failed to connect to server",
         isLoading: false,
@@ -151,13 +166,16 @@ export function GamificationStatsProvider({ children }: GamificationStatsProvide
   const addXP = useCallback(
     async (
       action: keyof typeof XP_ACTIONS,
-      contextOrAmount?: number | { lessonId?: string; quizId?: string; score?: number }
+      contextOrAmount?:
+        | number
+        | { lessonId?: string; quizId?: string; score?: number },
     ) => {
-      const context = typeof contextOrAmount === "number" ? undefined : contextOrAmount;
+      const context =
+        typeof contextOrAmount === "number" ? undefined : contextOrAmount;
       const result = await apiAwardXP(action, context);
 
       if (result.success) {
-        setState(prev => ({
+        setState((prev) => ({
           ...prev,
           totalXP: result.totalXP,
           level: result.level,
@@ -166,7 +184,7 @@ export function GamificationStatsProvider({ children }: GamificationStatsProvide
         console.error("Failed to award XP:", result.error);
       }
     },
-    []
+    [],
   );
 
   // Energy system
@@ -175,14 +193,16 @@ export function GamificationStatsProvider({ children }: GamificationStatsProvide
       const cost = ENERGY_CONFIG.ENERGY_COST[action];
       return state.currentEnergy >= cost;
     },
-    [state.currentEnergy]
+    [state.currentEnergy],
   );
 
   const consumeEnergy = useCallback(
-    async (action: keyof typeof ENERGY_CONFIG.ENERGY_COST): Promise<boolean> => {
+    async (
+      action: keyof typeof ENERGY_CONFIG.ENERGY_COST,
+    ): Promise<boolean> => {
       const result = await apiConsumeEnergy(action);
 
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
         currentEnergy: result.currentEnergy,
         timeToNextEnergy: result.timeToNextEnergy,
@@ -190,37 +210,37 @@ export function GamificationStatsProvider({ children }: GamificationStatsProvide
 
       return result.success;
     },
-    []
+    [],
   );
 
   // Statistics update functions
   const incrementLessonsCompleted = useCallback(
     async (lessonId?: string) => {
       await addXP("LESSON_COMPLETED", { lessonId });
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
         lessonsCompleted: prev.lessonsCompleted + 1,
       }));
     },
-    [addXP]
+    [addXP],
   );
 
   const incrementQuizzesTaken = useCallback(
     async (quizId: string, score: number, perfect: boolean) => {
       const action = perfect ? "QUIZ_PERFECT_SCORE" : "QUIZ_COMPLETED";
       await addXP(action, { quizId, score });
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
         quizzesTaken: prev.quizzesTaken + 1,
         perfectScores: perfect ? prev.perfectScores + 1 : prev.perfectScores,
       }));
     },
-    [addXP]
+    [addXP],
   );
 
   const addNote = useCallback(async () => {
     await addXP("NOTE_TAKEN");
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
       notesWritten: prev.notesWritten + 1,
     }));
@@ -228,7 +248,7 @@ export function GamificationStatsProvider({ children }: GamificationStatsProvide
 
   const addBookmark = useCallback(async () => {
     await addXP("BOOKMARK_ADDED");
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
       bookmarksAdded: prev.bookmarksAdded + 1,
     }));
@@ -240,7 +260,7 @@ export function GamificationStatsProvider({ children }: GamificationStatsProvide
       const { getGems } = await import("@/lib/gamification/api-client");
       const result = await getGems();
       if (result.success && result.balance !== undefined) {
-        setState(prev => ({ ...prev, gems: result.balance! }));
+        setState((prev) => ({ ...prev, gems: result.balance! }));
       }
     } catch (err) {
       console.error("Failed to refresh gems:", err);
@@ -250,10 +270,11 @@ export function GamificationStatsProvider({ children }: GamificationStatsProvide
   const purchaseItem = useCallback(
     async (itemId: string, quantity: number = 1) => {
       try {
-        const { purchaseItem: apiPurchase } = await import("@/lib/gamification/api-client");
+        const { purchaseItem: apiPurchase } =
+          await import("@/lib/gamification/api-client");
         const result = await apiPurchase(itemId, quantity);
         if (result.success && result.newBalance !== undefined) {
-          setState(prev => ({ ...prev, gems: result.newBalance! }));
+          setState((prev) => ({ ...prev, gems: result.newBalance! }));
         }
         return {
           success: result.success,
@@ -268,7 +289,7 @@ export function GamificationStatsProvider({ children }: GamificationStatsProvide
         };
       }
     },
-    []
+    [],
   );
 
   // Load gems on mount
@@ -308,7 +329,7 @@ export function GamificationStatsProvider({ children }: GamificationStatsProvide
       purchaseItem,
       refreshGems,
       refreshStats,
-    ]
+    ],
   );
 
   return (
@@ -322,7 +343,9 @@ export function GamificationStatsProvider({ children }: GamificationStatsProvide
 export function useGamificationStats() {
   const context = useContext(GamificationStatsContext);
   if (context === undefined) {
-    throw new Error("useGamificationStats must be used within a GamificationStatsProvider");
+    throw new Error(
+      "useGamificationStats must be used within a GamificationStatsProvider",
+    );
   }
   return context;
 }
@@ -357,7 +380,8 @@ export function useGamificationLevel() {
  * Get only the energy info - use this for energy displays
  */
 export function useGamificationEnergy() {
-  const { currentEnergy, timeToNextEnergy, canPerformAction, consumeEnergy } = useGamificationStats();
+  const { currentEnergy, timeToNextEnergy, canPerformAction, consumeEnergy } =
+    useGamificationStats();
   return { currentEnergy, timeToNextEnergy, canPerformAction, consumeEnergy };
 }
 
@@ -365,8 +389,20 @@ export function useGamificationEnergy() {
  * Get only lesson/quiz stats - use this for progress displays
  */
 export function useGamificationProgress() {
-  const { lessonsCompleted, quizzesTaken, perfectScores, notesWritten, bookmarksAdded } = useGamificationStats();
-  return { lessonsCompleted, quizzesTaken, perfectScores, notesWritten, bookmarksAdded };
+  const {
+    lessonsCompleted,
+    quizzesTaken,
+    perfectScores,
+    notesWritten,
+    bookmarksAdded,
+  } = useGamificationStats();
+  return {
+    lessonsCompleted,
+    quizzesTaken,
+    perfectScores,
+    notesWritten,
+    bookmarksAdded,
+  };
 }
 
 /**

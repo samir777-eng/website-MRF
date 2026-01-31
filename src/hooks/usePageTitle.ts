@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect } from "react";
 
 /**
  * Custom hook to set the page title dynamically
@@ -7,7 +7,8 @@ import { useEffect, useLayoutEffect } from 'react';
 export function usePageTitle(title: string) {
   // Use useLayoutEffect to set title before paint (synchronously)
   // This ensures the title is set before the page is visible
-  const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+  const useIsomorphicLayoutEffect =
+    typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
   useIsomorphicLayoutEffect(() => {
     const fullTitle = `${title} | منصة الأستاذ رضا الفاروق`;
@@ -15,8 +16,8 @@ export function usePageTitle(title: string) {
 
     // Cleanup: restore default title when component unmounts
     return () => {
-      document.title = 'منصة الأستاذ رضا الفاروق التعليمية - تعلم اللغة العربية للثانوية العامة';
+      document.title =
+        "منصة الأستاذ رضا الفاروق التعليمية - تعلم اللغة العربية للثانوية العامة";
     };
   }, [title]);
 }
-

@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useMemo } from 'react';
-import { Pagination } from './pagination';
-import { cn } from '@/lib/utils';
+import { useState, useMemo } from "react";
+import { Pagination } from "./pagination";
+import { cn } from "@/lib/utils";
 
 interface PaginatedListProps<T> {
   items: T[];
@@ -30,7 +30,7 @@ export function PaginatedList<T>({
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(items.length / itemsPerPage);
-  
+
   const paginatedItems = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -40,7 +40,7 @@ export function PaginatedList<T>({
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     // Scroll to top of list when page changes
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   if (isLoading && loadingState) {
@@ -108,7 +108,7 @@ export function PaginatedGrid<T>({
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(items.length / itemsPerPage);
-  
+
   const paginatedItems = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -118,7 +118,7 @@ export function PaginatedGrid<T>({
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     // Scroll to top of grid when page changes
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   if (isLoading && loadingState) {
@@ -132,11 +132,8 @@ export function PaginatedGrid<T>({
   return (
     <div className={cn("space-y-6", className)}>
       {/* Items Grid */}
-      <div 
-        className={cn(
-          "grid",
-          gridClassName
-        )}
+      <div
+        className={cn("grid", gridClassName)}
         style={{
           gridTemplateColumns: `repeat(${columns}, 1fr)`,
           gap: `${gap * 0.25}rem`,

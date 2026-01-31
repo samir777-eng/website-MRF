@@ -82,4 +82,3 @@ export async function isLoggedIn(page: Page): Promise<boolean> {
     return false;
   }
 }
-

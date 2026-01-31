@@ -16,7 +16,6 @@ import {
   AlertCircle,
   CheckCircle,
   ChevronLeft,
-
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -93,7 +92,7 @@ const mockWeakAreas: WeakArea[] = [
 // Calculate overall improvement
 const overallImprovementRate = Math.round(
   mockWeakAreas.reduce((sum, area) => sum + (area.improvementRate || 0), 0) /
-    mockWeakAreas.filter((a) => a.improvementRate).length
+    mockWeakAreas.filter((a) => a.improvementRate).length,
 );
 
 // ============================================================================
@@ -139,7 +138,7 @@ export function WeakAreasSection({
               "border-2",
               overallImprovementRate > 0
                 ? "bg-success-500/5 border-success-500/30"
-                : "bg-orange-500/5 border-orange-500/30"
+                : "bg-orange-500/5 border-orange-500/30",
             )}
           >
             <CardContent className="p-4">
@@ -149,7 +148,7 @@ export function WeakAreasSection({
                     "w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0",
                     overallImprovementRate > 0
                       ? "bg-success-500/20"
-                      : "bg-orange-500/20"
+                      : "bg-orange-500/20",
                   )}
                 >
                   {overallImprovementRate > 0 ? (
@@ -248,24 +247,25 @@ function WeakAreaCard({ area, index }: { area: WeakArea; index: number }) {
             </div>
 
             {/* Improvement Rate Badge */}
-            {area.improvementRate !== undefined && area.improvementRate !== 0 && (
-              <Badge
-                variant="outline"
-                className={cn(
-                  "text-xs font-medium flex items-center gap-1",
-                  area.improvementRate > 0
-                    ? "border-success-500/30 text-success-600 bg-success-500/10"
-                    : "border-destructive/30 text-destructive bg-destructive/10"
-                )}
-              >
-                {area.improvementRate > 0 ? (
-                  <TrendingUp className="w-3 h-3" />
-                ) : (
-                  <TrendingDown className="w-3 h-3" />
-                )}
-                {Math.abs(area.improvementRate)}%
-              </Badge>
-            )}
+            {area.improvementRate !== undefined &&
+              area.improvementRate !== 0 && (
+                <Badge
+                  variant="outline"
+                  className={cn(
+                    "text-xs font-medium flex items-center gap-1",
+                    area.improvementRate > 0
+                      ? "border-success-500/30 text-success-600 bg-success-500/10"
+                      : "border-destructive/30 text-destructive bg-destructive/10",
+                  )}
+                >
+                  {area.improvementRate > 0 ? (
+                    <TrendingUp className="w-3 h-3" />
+                  ) : (
+                    <TrendingDown className="w-3 h-3" />
+                  )}
+                  {Math.abs(area.improvementRate)}%
+                </Badge>
+              )}
           </div>
 
           {/* Accuracy Display */}
@@ -319,7 +319,7 @@ function WeakAreaCard({ area, index }: { area: WeakArea; index: number }) {
                 "w-full",
                 status === "danger" && "bg-destructive hover:bg-destructive/90",
                 status === "warning" && "bg-orange-500 hover:bg-orange-600",
-                status === "success" && "bg-success-500 hover:bg-success-600"
+                status === "success" && "bg-success-500 hover:bg-success-600",
               )}
             >
               <Target className="w-4 h-4 ms-2" />

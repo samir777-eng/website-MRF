@@ -48,7 +48,7 @@ export default function CheckoutClient() {
     (field: keyof CheckoutShippingData, value: string) => {
       setCheckoutShippingData({ [field]: value });
     },
-    [setCheckoutShippingData]
+    [setCheckoutShippingData],
   );
 
   if (!cart || cart.items.length === 0) {
@@ -237,7 +237,10 @@ export default function CheckoutClient() {
                           id="governorate"
                           value={shippingData.governorate}
                           onChange={(e) =>
-                            handleShippingDataChange("governorate", e.target.value)
+                            handleShippingDataChange(
+                              "governorate",
+                              e.target.value,
+                            )
                           }
                           className="w-full p-2 border rounded-md"
                         >

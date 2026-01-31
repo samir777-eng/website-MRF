@@ -32,7 +32,7 @@ interface PurchaseLifeModalProps {
   lifePriceCoins?: number;
   lifePriceMoney?: number;
   onPurchase: (
-    method: PaymentMethod
+    method: PaymentMethod,
   ) => Promise<{ success: boolean; message: string }>;
 }
 
@@ -47,7 +47,7 @@ export function PurchaseLifeModal({
   onPurchase,
 }: PurchaseLifeModalProps) {
   const [selectedMethod, setSelectedMethod] = useState<PaymentMethod | null>(
-    null
+    null,
   );
   const [isPurchasing, setIsPurchasing] = useState(false);
   const [result, setResult] = useState<{
@@ -125,7 +125,7 @@ export function PurchaseLifeModal({
                   ? "border-amber-500 bg-amber-500/10"
                   : canAffordCoins
                     ? "border-border hover:border-amber-500/50"
-                    : "border-border opacity-50 cursor-not-allowed"
+                    : "border-border opacity-50 cursor-not-allowed",
               )}
             >
               <div className="flex items-center gap-3">
@@ -152,7 +152,7 @@ export function PurchaseLifeModal({
                 "w-full p-4 rounded-xl border-2 transition-all text-start",
                 selectedMethod === "money"
                   ? "border-green-500 bg-green-500/10"
-                  : "border-border hover:border-green-500/50"
+                  : "border-border hover:border-green-500/50",
               )}
             >
               <div className="flex items-center gap-3">
@@ -180,7 +180,7 @@ export function PurchaseLifeModal({
               "p-3 rounded-lg flex items-center gap-2",
               result.success
                 ? "bg-green-500/10 text-green-700 dark:text-green-400"
-                : "bg-destructive/10 text-destructive"
+                : "bg-destructive/10 text-destructive",
             )}
           >
             {result.success ? (

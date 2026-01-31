@@ -22,7 +22,7 @@ export function VideoPlayerSkeleton() {
                 height="100%"
                 className="absolute inset-0"
               />
-              
+
               {/* Play Button Overlay */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <EnhancedSkeleton
@@ -42,18 +42,42 @@ export function VideoPlayerSkeleton() {
                     height="6px"
                     className="rounded-full"
                   />
-                  
+
                   {/* Controls */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <EnhancedSkeleton variant="circular" width="40px" height="40px" />
-                      <EnhancedSkeleton variant="circular" width="40px" height="40px" />
-                      <EnhancedSkeleton variant="text" width="80px" height="16px" />
+                      <EnhancedSkeleton
+                        variant="circular"
+                        width="40px"
+                        height="40px"
+                      />
+                      <EnhancedSkeleton
+                        variant="circular"
+                        width="40px"
+                        height="40px"
+                      />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="80px"
+                        height="16px"
+                      />
                     </div>
                     <div className="flex items-center gap-3">
-                      <EnhancedSkeleton variant="circular" width="40px" height="40px" />
-                      <EnhancedSkeleton variant="circular" width="40px" height="40px" />
-                      <EnhancedSkeleton variant="circular" width="40px" height="40px" />
+                      <EnhancedSkeleton
+                        variant="circular"
+                        width="40px"
+                        height="40px"
+                      />
+                      <EnhancedSkeleton
+                        variant="circular"
+                        width="40px"
+                        height="40px"
+                      />
+                      <EnhancedSkeleton
+                        variant="circular"
+                        width="40px"
+                        height="40px"
+                      />
                     </div>
                   </div>
                 </div>
@@ -78,16 +102,32 @@ export function VideoPlayerSkeleton() {
               {/* Video Stats */}
               <div className="flex items-center gap-6 pt-2">
                 <div className="flex items-center gap-2">
-                  <EnhancedSkeleton variant="circular" width="20px" height="20px" />
+                  <EnhancedSkeleton
+                    variant="circular"
+                    width="20px"
+                    height="20px"
+                  />
                   <EnhancedSkeleton variant="text" width="80px" height="16px" />
                 </div>
                 <div className="flex items-center gap-2">
-                  <EnhancedSkeleton variant="circular" width="20px" height="20px" />
+                  <EnhancedSkeleton
+                    variant="circular"
+                    width="20px"
+                    height="20px"
+                  />
                   <EnhancedSkeleton variant="text" width="60px" height="16px" />
                 </div>
                 <div className="flex items-center gap-2">
-                  <EnhancedSkeleton variant="circular" width="20px" height="20px" />
-                  <EnhancedSkeleton variant="text" width="100px" height="16px" />
+                  <EnhancedSkeleton
+                    variant="circular"
+                    width="20px"
+                    height="20px"
+                  />
+                  <EnhancedSkeleton
+                    variant="text"
+                    width="100px"
+                    height="16px"
+                  />
                 </div>
               </div>
             </div>
@@ -115,13 +155,28 @@ export function VideoPlayerSkeleton() {
             {/* Notes/Comments Section */}
             <div className="space-y-4">
               {Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="p-4 rounded-xl border border-border bg-card">
+                <div
+                  key={i}
+                  className="p-4 rounded-xl border border-border bg-card"
+                >
                   <div className="flex items-start gap-3">
-                    <EnhancedSkeleton variant="circular" width="40px" height="40px" />
+                    <EnhancedSkeleton
+                      variant="circular"
+                      width="40px"
+                      height="40px"
+                    />
                     <div className="flex-1 space-y-2">
                       <div className="flex items-center gap-3">
-                        <EnhancedSkeleton variant="text" width="120px" height="16px" />
-                        <EnhancedSkeleton variant="text" width="80px" height="14px" />
+                        <EnhancedSkeleton
+                          variant="text"
+                          width="120px"
+                          height="16px"
+                        />
+                        <EnhancedSkeleton
+                          variant="text"
+                          width="80px"
+                          height="14px"
+                        />
                       </div>
                       <SkeletonText lines={2} />
                     </div>
@@ -145,7 +200,9 @@ export function VideoPlayerSkeleton() {
                   <div
                     key={i}
                     className={`p-3 rounded-lg ${
-                      i === 0 ? 'bg-primary/10 border border-primary/20' : 'bg-muted/20'
+                      i === 0
+                        ? "bg-primary/10 border border-primary/20"
+                        : "bg-muted/20"
                     }`}
                   >
                     <div className="flex items-start gap-3">
@@ -156,9 +213,21 @@ export function VideoPlayerSkeleton() {
                         className="rounded-lg"
                       />
                       <div className="flex-1 space-y-2">
-                        <EnhancedSkeleton variant="text" width="100%" height="16px" />
-                        <EnhancedSkeleton variant="text" width="70%" height="14px" />
-                        <EnhancedSkeleton variant="text" width="50px" height="12px" />
+                        <EnhancedSkeleton
+                          variant="text"
+                          width="100%"
+                          height="16px"
+                        />
+                        <EnhancedSkeleton
+                          variant="text"
+                          width="70%"
+                          height="14px"
+                        />
+                        <EnhancedSkeleton
+                          variant="text"
+                          width="50px"
+                          height="12px"
+                        />
                       </div>
                     </div>
                   </div>
@@ -168,8 +237,13 @@ export function VideoPlayerSkeleton() {
 
             {/* Related Videos */}
             <div className="p-4 rounded-xl border border-border bg-card">
-              <EnhancedSkeleton variant="text" width="120px" height="20px" className="mb-4" />
-              
+              <EnhancedSkeleton
+                variant="text"
+                width="120px"
+                height="20px"
+                className="mb-4"
+              />
+
               <div className="space-y-3">
                 {Array.from({ length: 3 }).map((_, i) => (
                   <div key={i} className="flex items-start gap-3">
@@ -180,8 +254,16 @@ export function VideoPlayerSkeleton() {
                       className="rounded-lg"
                     />
                     <div className="flex-1 space-y-2">
-                      <EnhancedSkeleton variant="text" width="100%" height="16px" />
-                      <EnhancedSkeleton variant="text" width="60%" height="14px" />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="100%"
+                        height="16px"
+                      />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="60%"
+                        height="14px"
+                      />
                     </div>
                   </div>
                 ))}

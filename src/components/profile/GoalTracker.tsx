@@ -127,7 +127,7 @@ interface GoalTrackerProps {
 export default function GoalTracker({ variant = "compact" }: GoalTrackerProps) {
   const [goals] = useState<Goal[]>(MOCK_GOALS);
   const [filter, setFilter] = useState<"all" | "active" | "completed">(
-    "active"
+    "active",
   );
 
   const filteredGoals = goals.filter((goal) => {
@@ -190,7 +190,7 @@ export default function GoalTracker({ variant = "compact" }: GoalTrackerProps) {
   const getDaysRemaining = (deadline?: Date) => {
     if (!deadline) return null;
     const days = Math.ceil(
-      (deadline.getTime() - Date.now()) / (1000 * 60 * 60 * 24)
+      (deadline.getTime() - Date.now()) / (1000 * 60 * 60 * 24),
     );
     return days;
   };

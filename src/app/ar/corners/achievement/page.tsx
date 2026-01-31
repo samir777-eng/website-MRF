@@ -30,16 +30,39 @@ const stats = {
 };
 
 const recentAchievements = [
-  { id: 1, title: "متعلم نشط", icon: Flame, color: "from-orange-500 to-red-500", date: "اليوم" },
-  { id: 2, title: "أسبوع متواصل", icon: Zap, color: "from-amber-500 to-yellow-500", date: "أمس" },
-  { id: 3, title: "مكمل المحاضرات", icon: BookOpen, color: "from-blue-500 to-indigo-500", date: "منذ 3 أيام" },
+  {
+    id: 1,
+    title: "متعلم نشط",
+    icon: Flame,
+    color: "from-orange-500 to-red-500",
+    date: "اليوم",
+  },
+  {
+    id: 2,
+    title: "أسبوع متواصل",
+    icon: Zap,
+    color: "from-amber-500 to-yellow-500",
+    date: "أمس",
+  },
+  {
+    id: 3,
+    title: "مكمل المحاضرات",
+    icon: BookOpen,
+    color: "from-blue-500 to-indigo-500",
+    date: "منذ 3 أيام",
+  },
 ];
 
 export default function AchievementCornerPage() {
-  const lectureProgress = Math.round((stats.completedLectures / stats.totalLectures) * 100);
+  const lectureProgress = Math.round(
+    (stats.completedLectures / stats.totalLectures) * 100,
+  );
 
   return (
-    <div className="min-h-screen bg-background dark:bg-zinc-950 pb-24 lg:pb-8" dir="rtl">
+    <div
+      className="min-h-screen bg-background dark:bg-zinc-950 pb-24 lg:pb-8"
+      dir="rtl"
+    >
       <div className="container mx-auto px-4 md:px-6 py-8 space-y-8">
         {/* Header */}
         <div className="flex items-center gap-4">
@@ -54,7 +77,9 @@ export default function AchievementCornerPage() {
                 <Trophy className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-foreground">ركن الإنجاز</h1>
+                <h1 className="text-2xl font-bold text-foreground">
+                  ركن الإنجاز
+                </h1>
                 <p className="text-sm text-muted-foreground">تقدمك الكامل</p>
               </div>
             </div>
@@ -67,7 +92,9 @@ export default function AchievementCornerPage() {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <Star className="w-5 h-5 text-amber-600" />
-                <span className="font-semibold text-foreground">المستوى الكلي</span>
+                <span className="font-semibold text-foreground">
+                  المستوى الكلي
+                </span>
               </div>
               <span className="text-3xl font-bold text-amber-600 dark:text-amber-400">
                 {stats.overallLevel}%
@@ -84,16 +111,40 @@ export default function AchievementCornerPage() {
         {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: "المحاضرات المكتملة", value: stats.completedLectures, icon: CheckCircle, color: "text-green-600" },
-            { label: "المحاضرات المتبقية", value: stats.pendingLectures, icon: Clock, color: "text-amber-600" },
-            { label: "جلسات الدراسة", value: stats.studySessions, icon: Target, color: "text-blue-600" },
-            { label: "النقاط المكتسبة", value: stats.totalPoints.toLocaleString(), icon: Zap, color: "text-purple-600" },
+            {
+              label: "المحاضرات المكتملة",
+              value: stats.completedLectures,
+              icon: CheckCircle,
+              color: "text-green-600",
+            },
+            {
+              label: "المحاضرات المتبقية",
+              value: stats.pendingLectures,
+              icon: Clock,
+              color: "text-amber-600",
+            },
+            {
+              label: "جلسات الدراسة",
+              value: stats.studySessions,
+              icon: Target,
+              color: "text-blue-600",
+            },
+            {
+              label: "النقاط المكتسبة",
+              value: stats.totalPoints.toLocaleString(),
+              icon: Zap,
+              color: "text-purple-600",
+            },
           ].map((stat, idx) => (
             <Card key={idx}>
               <CardContent className="p-4 text-center">
                 <stat.icon className={`w-6 h-6 mx-auto mb-2 ${stat.color}`} />
-                <div className="text-2xl font-bold text-foreground">{stat.value}</div>
-                <div className="text-xs text-muted-foreground">{stat.label}</div>
+                <div className="text-2xl font-bold text-foreground">
+                  {stat.value}
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  {stat.label}
+                </div>
               </CardContent>
             </Card>
           ))}
@@ -132,12 +183,18 @@ export default function AchievementCornerPage() {
                   animate={{ opacity: 1, x: 0 }}
                   className="flex items-center gap-4 p-3 rounded-lg bg-muted/50"
                 >
-                  <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${achievement.color} flex items-center justify-center`}>
+                  <div
+                    className={`w-10 h-10 rounded-full bg-gradient-to-br ${achievement.color} flex items-center justify-center`}
+                  >
                     <achievement.icon className="w-5 h-5 text-white" />
                   </div>
                   <div className="flex-1">
-                    <div className="font-medium text-foreground">{achievement.title}</div>
-                    <div className="text-sm text-muted-foreground">{achievement.date}</div>
+                    <div className="font-medium text-foreground">
+                      {achievement.title}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {achievement.date}
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -148,4 +205,3 @@ export default function AchievementCornerPage() {
     </div>
   );
 }
-

@@ -33,7 +33,8 @@ const testimonials: Testimonial[] = [
     avatar: "/testimonials/ahmed.jpg",
     thumbnail: "/testimonials/ahmed-video-thumb.jpg",
     duration: "2:34",
-    quote: "بفضل الأستاذ رضا حصلت على 98% في الثانوية العامة. شرحه واضح ومبسط جداً.",
+    quote:
+      "بفضل الأستاذ رضا حصلت على 98% في الثانوية العامة. شرحه واضح ومبسط جداً.",
     year: "2025",
   },
   {
@@ -44,7 +45,8 @@ const testimonials: Testimonial[] = [
     avatar: "/testimonials/fatima.jpg",
     thumbnail: "/testimonials/fatima-video-thumb.jpg",
     duration: "3:12",
-    quote: "المنصة ساعدتني أتفوق في اللغة العربية وأحقق حلمي. شكراً للأستاذ رضا!",
+    quote:
+      "المنصة ساعدتني أتفوق في اللغة العربية وأحقق حلمي. شكراً للأستاذ رضا!",
     year: "2025",
   },
   {
@@ -202,10 +204,7 @@ function TestimonialCard({
           {/* Rating Stars */}
           <div className="flex gap-1 mt-4">
             {Array.from({ length: 5 }).map((_, i) => (
-              <Star
-                key={i}
-                className="w-4 h-4 text-amber-400 fill-amber-400"
-              />
+              <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
             ))}
           </div>
         </div>

@@ -215,7 +215,7 @@ export default function ArabicCoursesClient() {
   ];
 
   const filteredCourses = courses.filter(
-    (course) => selectedGrade === "all" || course.grade === selectedGrade
+    (course) => selectedGrade === "all" || course.grade === selectedGrade,
   );
 
   const getLevelColor = (level: string) => {
@@ -290,8 +290,8 @@ export default function ArabicCoursesClient() {
                 {Math.round(
                   courses.reduce(
                     (sum, course) => sum + course.completionRate,
-                    0
-                  ) / courses.length
+                    0,
+                  ) / courses.length,
                 )}
                 %
               </div>

@@ -78,7 +78,7 @@ export function FloatingLabelInput({
           "pt-6 pb-2 pe-10",
           showError && "border-destructive focus-visible:ring-destructive",
           showSuccess &&
-            "border-green-600 focus-visible:ring-green-600 dark:border-green-500 dark:focus-visible:ring-green-500"
+            "border-green-600 focus-visible:ring-green-600 dark:border-green-500 dark:focus-visible:ring-green-500",
         )}
       />
       <label
@@ -87,7 +87,7 @@ export function FloatingLabelInput({
           "absolute end-3 transition-all pointer-events-none font-medium",
           isFloating
             ? "top-1.5 text-sm text-muted-foreground"
-            : "top-1/2 -translate-y-1/2 text-base text-muted-foreground"
+            : "top-1/2 -translate-y-1/2 text-base text-muted-foreground",
         )}
       >
         {label}

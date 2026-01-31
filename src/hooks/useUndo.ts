@@ -19,7 +19,7 @@ export function useUndo<T>() {
       data: T,
       action: () => Promise<void>,
       undoAction: () => Promise<void>,
-      message: string
+      message: string,
     ) => {
       // Execute the action
       await action();
@@ -35,7 +35,7 @@ export function useUndo<T>() {
         duration: 5000,
       });
     },
-    [toast]
+    [toast],
   );
 
   const clearHistory = useCallback(() => {
@@ -48,4 +48,3 @@ export function useUndo<T>() {
     clearHistory,
   };
 }
-

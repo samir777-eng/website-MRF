@@ -24,7 +24,10 @@
  */
 
 import React, { ReactNode, useMemo } from "react";
-import { GamificationStatsProvider, useGamificationStats } from "./GamificationStatsContext";
+import {
+  GamificationStatsProvider,
+  useGamificationStats,
+} from "./GamificationStatsContext";
 import { StreakProvider, useStreak } from "./StreakContext";
 import { AchievementsProvider, useAchievements } from "./AchievementsContext";
 
@@ -41,13 +44,13 @@ interface OptimizedGamificationProviderProps {
   children: ReactNode;
 }
 
-export function OptimizedGamificationProvider({ children }: OptimizedGamificationProviderProps) {
+export function OptimizedGamificationProvider({
+  children,
+}: OptimizedGamificationProviderProps) {
   return (
     <GamificationStatsProvider>
       <StreakProvider>
-        <AchievementsProvider>
-          {children}
-        </AchievementsProvider>
+        <AchievementsProvider>{children}</AchievementsProvider>
       </StreakProvider>
     </GamificationStatsProvider>
   );
@@ -126,6 +129,6 @@ export function useGamificationCombined() {
       // Refresh
       refreshStats: stats.refreshStats,
     }),
-    [stats, streak, achievements]
+    [stats, streak, achievements],
   );
 }

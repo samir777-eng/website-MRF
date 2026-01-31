@@ -15,7 +15,9 @@ export function ElectricBorder({
   color = "#9333ea",
 }: ElectricBorderProps) {
   return (
-    <div className={cn("relative p-[2px] rounded-lg overflow-hidden", className)}>
+    <div
+      className={cn("relative p-[2px] rounded-lg overflow-hidden", className)}
+    >
       <motion.div
         className="absolute inset-0"
         style={{
@@ -34,6 +36,5 @@ export function ElectricBorder({
     </div>
   );
 }
-
 
 export default ElectricBorder;

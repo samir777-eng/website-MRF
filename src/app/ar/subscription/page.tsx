@@ -145,7 +145,7 @@ export default function SubscriptionPage() {
                           year: "numeric",
                           month: "long",
                           day: "numeric",
-                        }
+                        },
                       )}
                     </p>
                   </div>

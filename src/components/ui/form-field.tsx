@@ -83,7 +83,7 @@ export function FormField({
             displayError && "border-destructive focus-visible:ring-destructive",
             isValid &&
               showSuccess &&
-              "border-green-600 focus-visible:ring-green-600 dark:border-green-500 dark:focus-visible:ring-green-500"
+              "border-green-600 focus-visible:ring-green-600 dark:border-green-500 dark:focus-visible:ring-green-500",
           )}
         />
         {showSuccess && isValid && (

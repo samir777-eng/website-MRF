@@ -28,7 +28,7 @@ export default function LessonsLoading() {
           <Card key={i} className="overflow-hidden">
             {/* Thumbnail */}
             <Skeleton className="h-48 w-full" />
-            
+
             <CardHeader className="pb-2">
               <div className="flex items-center gap-2 mb-2">
                 <Skeleton className="h-5 w-16 rounded-full" />
@@ -36,11 +36,11 @@ export default function LessonsLoading() {
               </div>
               <Skeleton className="h-6 w-full" />
             </CardHeader>
-            
+
             <CardContent>
               <Skeleton className="h-4 w-full mb-2" />
               <Skeleton className="h-4 w-3/4 mb-4" />
-              
+
               <div className="flex items-center justify-between">
                 <Skeleton className="h-4 w-20" />
                 <Skeleton className="h-8 w-24 rounded-lg" />
@@ -52,4 +52,3 @@ export default function LessonsLoading() {
     </div>
   );
 }
-

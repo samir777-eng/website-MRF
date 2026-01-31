@@ -34,7 +34,7 @@ const lectureStore: Map<string, LectureWithAccess> = new Map();
  */
 export function getLectureAccess(
   userId: string,
-  lectureId: string
+  lectureId: string,
 ): LectureAccess | null {
   const key = `${userId}-${lectureId}`;
   return lectureAccessStore.get(key) ?? null;
@@ -46,7 +46,7 @@ export function getLectureAccess(
 export function createLectureAccess(
   userId: string,
   lectureId: string,
-  lecture: LectureWithAccess
+  lecture: LectureWithAccess,
 ): LectureAccess {
   const key = `${userId}-${lectureId}`;
 
@@ -78,7 +78,7 @@ export function createLectureAccess(
  */
 export function activateLecture(
   request: ActivateLectureRequest,
-  userId: string
+  userId: string,
 ): ActivateLectureResponse {
   const { lectureId } = request;
   const key = `${userId}-${lectureId}`;
@@ -175,7 +175,7 @@ export interface RecordPreQuizAttemptResult {
  * Record a pre-quiz attempt
  */
 export function recordPreQuizAttempt(
-  input: RecordPreQuizAttemptInput
+  input: RecordPreQuizAttemptInput,
 ): RecordPreQuizAttemptResult {
   const { userId, lectureId, score } = input;
   const key = `${userId}-${lectureId}`;
@@ -295,7 +295,7 @@ export function recordPreQuizAttempt(
  */
 export function getLectureDetail(
   userId: string,
-  lectureId: string
+  lectureId: string,
 ): LectureDetailWithAccess | null {
   const lecture = lectureStore.get(lectureId);
   if (!lecture) return null;
@@ -374,7 +374,7 @@ export function getLectureDetail(
 export function markVideoWatched(
   userId: string,
   lectureId: string,
-  videoId: string
+  videoId: string,
 ): boolean {
   const key = `${userId}-${lectureId}`;
   const access = lectureAccessStore.get(key);
@@ -384,7 +384,7 @@ export function markVideoWatched(
   // Video progress tracking would be handled by a separate service
   // For now, just verify the user has access to the lecture
   console.log(
-    `Video ${videoId} watched by user ${userId} in lecture ${lectureId}`
+    `Video ${videoId} watched by user ${userId} in lecture ${lectureId}`,
   );
 
   return true;

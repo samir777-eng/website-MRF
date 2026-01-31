@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
     const limit = Math.min(parseInt(searchParams.get("limit") || "20"), 50);
 
     let filteredThreads = Array.from(threads.values()).filter(
-      (t) => t.isApproved
+      (t) => t.isApproved,
     );
 
     // Apply filters
@@ -67,7 +67,7 @@ export async function GET(request: NextRequest) {
     }
     if (gradeLevel) {
       filteredThreads = filteredThreads.filter(
-        (t) => t.gradeLevel === gradeLevel || t.gradeLevel === "all"
+        (t) => t.gradeLevel === gradeLevel || t.gradeLevel === "all",
       );
     }
     if (status) {
@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
         (t) =>
           t.title.toLowerCase().includes(searchLower) ||
           t.content.toLowerCase().includes(searchLower) ||
-          t.tags.some((tag) => tag.toLowerCase().includes(searchLower))
+          t.tags.some((tag) => tag.toLowerCase().includes(searchLower)),
       );
     }
 
@@ -97,7 +97,7 @@ export async function GET(request: NextRequest) {
     const startIndex = (page - 1) * limit;
     const paginatedThreads = filteredThreads.slice(
       startIndex,
-      startIndex + limit
+      startIndex + limit,
     );
 
     return NextResponse.json({
@@ -109,7 +109,7 @@ export async function GET(request: NextRequest) {
     console.error("Get threads error:", error);
     return NextResponse.json(
       { success: false, error: "حدث خطأ" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -124,7 +124,7 @@ export async function POST(request: NextRequest) {
       const retryAfter = Math.ceil(getResetTime(request) / 1000);
       return NextResponse.json(
         { success: false, error: "طلبات كثيرة جداً", retryAfter },
-        { status: 429, headers: { "Retry-After": retryAfter.toString() } }
+        { status: 429, headers: { "Retry-After": retryAfter.toString() } },
       );
     }
 
@@ -141,7 +141,7 @@ export async function POST(request: NextRequest) {
           error: "بيانات غير صالحة",
           errors: validation.error.flatten().fieldErrors,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -178,7 +178,7 @@ export async function POST(request: NextRequest) {
     console.error("Create thread error:", error);
     return NextResponse.json(
       { success: false, error: "حدث خطأ" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

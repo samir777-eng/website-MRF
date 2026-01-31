@@ -5,8 +5,9 @@ import * as SeparatorPrimitive from "@radix-ui/react-separator";
 
 import { cn } from "@/lib/utils";
 
-interface SeparatorProps
-  extends React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root> {
+interface SeparatorProps extends React.ComponentPropsWithoutRef<
+  typeof SeparatorPrimitive.Root
+> {
   /** Text label to show in the middle of the separator */
   label?: string;
 }
@@ -23,7 +24,7 @@ const Separator = React.forwardRef<
       label,
       ...props
     },
-    ref
+    ref,
   ) => {
     if (label && orientation === "horizontal") {
       return (
@@ -35,7 +36,9 @@ const Separator = React.forwardRef<
             className="shrink-0 bg-border h-[1px] flex-1"
             {...props}
           />
-          <span className="text-sm text-muted-foreground shrink-0">{label}</span>
+          <span className="text-sm text-muted-foreground shrink-0">
+            {label}
+          </span>
           <SeparatorPrimitive.Root
             decorative={decorative}
             orientation={orientation}
@@ -53,12 +56,12 @@ const Separator = React.forwardRef<
         className={cn(
           "shrink-0 bg-border",
           orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
-          className
+          className,
         )}
         {...props}
       />
     );
-  }
+  },
 );
 Separator.displayName = SeparatorPrimitive.Root.displayName;
 

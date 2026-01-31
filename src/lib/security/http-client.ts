@@ -43,8 +43,10 @@ class SecureHTTPClient {
     const requestInit: RequestInit = {
       headers: {
         "Content-Type": "application/json",
-        ...requestConfig.headers},
-      ...requestConfig};
+        ...requestConfig.headers,
+      },
+      ...requestConfig,
+    };
 
     // Add authentication header if not skipped
     if (!skipAuth) {
@@ -128,7 +130,8 @@ class SecureHTTPClient {
     return this.request<T>(endpoint, {
       ...config,
       method: "POST",
-      body: data ? JSON.stringify(data) : undefined});
+      body: data ? JSON.stringify(data) : undefined,
+    });
   }
 
   /**
@@ -142,7 +145,8 @@ class SecureHTTPClient {
     return this.request<T>(endpoint, {
       ...config,
       method: "PUT",
-      body: data ? JSON.stringify(data) : undefined});
+      body: data ? JSON.stringify(data) : undefined,
+    });
   }
 
   /**
@@ -156,7 +160,8 @@ class SecureHTTPClient {
     return this.request<T>(endpoint, {
       ...config,
       method: "PATCH",
-      body: data ? JSON.stringify(data) : undefined});
+      body: data ? JSON.stringify(data) : undefined,
+    });
   }
 
   /**
@@ -183,7 +188,8 @@ class SecureHTTPClient {
 
     const token = await tokenManager.getAccessToken();
     const headers: Record<string, string> = {
-      "X-Requested-With": "XMLHttpRequest"};
+      "X-Requested-With": "XMLHttpRequest",
+    };
 
     if (token) {
       headers["Authorization"] = `Bearer ${token}`;
@@ -242,7 +248,8 @@ class SecureHTTPClient {
     try {
       const response = await fetch(url, {
         ...config,
-        signal: controller.signal});
+        signal: controller.signal,
+      });
       clearTimeout(timeoutId);
       return response;
     } catch (_error) {
@@ -269,13 +276,15 @@ class SecureHTTPClient {
             success: false,
             error: data.message || data.error || `HTTP ${response.status}`,
             message:
-              data.message || `Request failed with status ${response.status}`};
+              data.message || `Request failed with status ${response.status}`,
+          };
         }
 
         return {
           success: true,
           data: data.data || data,
-          message: data.message};
+          message: data.message,
+        };
       } else {
         const text = await response.text();
 
@@ -283,18 +292,21 @@ class SecureHTTPClient {
           return {
             success: false,
             error: text || `HTTP ${response.status}`,
-            message: `Request failed with status ${response.status}`};
+            message: `Request failed with status ${response.status}`,
+          };
         }
 
         return {
           success: true,
-          data: text as T};
+          data: text as T,
+        };
       }
     } catch (_error) {
       return {
         success: false,
         error: "Failed to parse response",
-        message: _error instanceof Error ? _error.message : "Unknown error"};
+        message: _error instanceof Error ? _error.message : "Unknown error",
+      };
     }
   }
 
@@ -312,8 +324,10 @@ class SecureHTTPClient {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Requested-With": "XMLHttpRequest"},
-      body: JSON.stringify({ refreshToken: tokenData.refreshToken })});
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      body: JSON.stringify({ refreshToken: tokenData.refreshToken }),
+    });
 
     if (!response.ok) {
       throw new Error("Token refresh failed");

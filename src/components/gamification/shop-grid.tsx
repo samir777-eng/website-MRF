@@ -46,8 +46,8 @@ export function ShopGrid() {
         setUserGems(data.balance);
         setPurchasedIds(
           new Set(
-            data.purchases?.map((p: { itemId: string }) => p.itemId) || []
-          )
+            data.purchases?.map((p: { itemId: string }) => p.itemId) || [],
+          ),
         );
       }
     } catch (error) {
@@ -87,7 +87,7 @@ export function ShopGrid() {
         return false;
       }
     },
-    []
+    [],
   );
 
   const filteredItems =

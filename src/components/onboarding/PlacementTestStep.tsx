@@ -32,12 +32,7 @@ const placementQuestions: Question[] = [
     id: "q1",
     question: "ما إعراب كلمة 'كان' في الجملة التالية: 'كان الطالب مجتهداً'؟",
     topic: "النحو",
-    options: [
-      "فعل ماضٍ ناسخ",
-      "فعل مضارع",
-      "حرف ناسخ",
-      "اسم",
-    ],
+    options: ["فعل ماضٍ ناسخ", "فعل مضارع", "حرف ناسخ", "اسم"],
     correctAnswer: 0,
   },
   {
@@ -51,7 +46,12 @@ const placementQuestions: Question[] = [
     id: "q3",
     question: "من هو شاعر 'معلقة امرئ القيس'؟",
     topic: "الأدب",
-    options: ["امرؤ القيس", "طرفة بن العبد", "عنترة بن شداد", "زهير بن أبي سلمى"],
+    options: [
+      "امرؤ القيس",
+      "طرفة بن العبد",
+      "عنترة بن شداد",
+      "زهير بن أبي سلمى",
+    ],
     correctAnswer: 0,
   },
   {
@@ -81,12 +81,15 @@ const placementQuestions: Question[] = [
 
 export function PlacementTestStep() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswers, setSelectedAnswers] = useState<Record<string, number>>({});
+  const [selectedAnswers, setSelectedAnswers] = useState<
+    Record<string, number>
+  >({});
   const [isComplete, setIsComplete] = useState(false);
   const [score, setScore] = useState(0);
 
   const currentQuestion = placementQuestions[currentQuestionIndex];
-  const progress = ((currentQuestionIndex + 1) / placementQuestions.length) * 100;
+  const progress =
+    ((currentQuestionIndex + 1) / placementQuestions.length) * 100;
   const isLastQuestion = currentQuestionIndex === placementQuestions.length - 1;
   const hasSelectedAnswer = selectedAnswers[currentQuestion.id] !== undefined;
 
@@ -114,9 +117,23 @@ export function PlacementTestStep() {
   };
 
   const getRecommendedLevel = (score: number) => {
-    if (score >= 4) return { level: "متقدم", color: "text-success-500", description: "أنت متفوق! ابدأ من المستوى المتقدم" };
-    if (score >= 3) return { level: "متوسط", color: "text-blue-500", description: "أداء جيد! المستوى المتوسط مناسب لك" };
-    return { level: "مبتدئ", color: "text-orange-500", description: "لا بأس! سنبدأ من الأساسيات" };
+    if (score >= 4)
+      return {
+        level: "متقدم",
+        color: "text-success-500",
+        description: "أنت متفوق! ابدأ من المستوى المتقدم",
+      };
+    if (score >= 3)
+      return {
+        level: "متوسط",
+        color: "text-blue-500",
+        description: "أداء جيد! المستوى المتوسط مناسب لك",
+      };
+    return {
+      level: "مبتدئ",
+      color: "text-orange-500",
+      description: "لا بأس! سنبدأ من الأساسيات",
+    };
   };
 
   const recommendation = getRecommendedLevel(score);
@@ -243,7 +260,7 @@ export function PlacementTestStep() {
                       "hover:shadow-md",
                       selectedAnswers[currentQuestion.id] === index
                         ? "border-primary bg-primary/10 shadow-lg shadow-primary/20"
-                        : "border-border bg-card hover:border-primary/50"
+                        : "border-border bg-card hover:border-primary/50",
                     )}
                   >
                     <div className="flex items-center justify-between gap-3">

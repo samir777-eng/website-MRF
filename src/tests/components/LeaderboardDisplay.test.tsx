@@ -44,7 +44,7 @@ describe("LeaderboardDisplay", () => {
       render(<LeaderboardDisplay />);
       // Should have some leaderboard content
       expect(
-        screen.getByText(/لوحة المتصدرين|المتصدرين|Leaderboard/i)
+        screen.getByText(/لوحة المتصدرين|المتصدرين|Leaderboard/i),
       ).toBeInTheDocument();
     });
   });

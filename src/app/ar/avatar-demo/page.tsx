@@ -17,7 +17,10 @@ export default function AvatarDemoPage() {
   const { config, ownedParts } = useAvatar();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-950 dark:to-purple-950" dir="rtl">
+    <div
+      className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-950 dark:to-purple-950"
+      dir="rtl"
+    >
       {/* Header */}
       <header className="sticky top-0 z-40 backdrop-blur-lg bg-white/80 dark:bg-gray-900/80 border-b border-gray-200/50 dark:border-gray-800/50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -29,7 +32,9 @@ export default function AvatarDemoPage() {
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <div>
-              <h1 className="font-display text-xl font-bold">نظام الصورة الشخصية</h1>
+              <h1 className="font-display text-xl font-bold">
+                نظام الصورة الشخصية
+              </h1>
               <p className="text-sm text-gray-500">تخصيص صورتك الشخصية</p>
             </div>
           </div>
@@ -37,7 +42,9 @@ export default function AvatarDemoPage() {
           {/* Gems Display */}
           <div className="flex items-center gap-2 bg-purple-100 dark:bg-purple-900/30 px-4 py-2 rounded-full">
             <Gem className="w-5 h-5 text-purple-500" />
-            <span className="font-bold text-purple-600 dark:text-purple-400">٥٠٠</span>
+            <span className="font-bold text-purple-600 dark:text-purple-400">
+              ٥٠٠
+            </span>
           </div>
         </div>
       </header>
@@ -57,7 +64,7 @@ export default function AvatarDemoPage() {
               animated={true}
               className="cursor-pointer hover:shadow-2xl transition-shadow duration-300 rounded-full shadow-lg ring-4 ring-white dark:ring-gray-800"
             />
-            
+
             {/* Edit Badge */}
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -73,7 +80,8 @@ export default function AvatarDemoPage() {
             اصنع صورتك الشخصية
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto mb-6">
-            خصّص صورتك الشخصية بالطريقة التي تعبر عنك. اختر الوجه، الشعر، الملابس والإكسسوارات!
+            خصّص صورتك الشخصية بالطريقة التي تعبر عنك. اختر الوجه، الشعر،
+            الملابس والإكسسوارات!
           </p>
 
           <motion.button
@@ -122,21 +130,9 @@ export default function AvatarDemoPage() {
               label="عنصر مملوك"
               color="purple"
             />
-            <StatCard
-              value="١٠+"
-              label="فئة متاحة"
-              color="blue"
-            />
-            <StatCard
-              value="٨٠+"
-              label="عنصر إجمالي"
-              color="green"
-            />
-            <StatCard
-              value="٥"
-              label="ندرات مختلفة"
-              color="orange"
-            />
+            <StatCard value="١٠+" label="فئة متاحة" color="blue" />
+            <StatCard value="٨٠+" label="عنصر إجمالي" color="green" />
+            <StatCard value="٥" label="ندرات مختلفة" color="orange" />
           </div>
         </section>
 
@@ -164,7 +160,11 @@ export default function AvatarDemoPage() {
               <p className="text-xs text-gray-500 mt-2">الملف الشخصي</p>
             </div>
             <div className="text-center">
-              <AvatarDisplay size={160} animated className="shadow-md rounded-full" />
+              <AvatarDisplay
+                size={160}
+                animated
+                className="shadow-md rounded-full"
+              />
               <p className="text-xs text-gray-500 mt-2">المتصدرين</p>
             </div>
           </div>
@@ -200,7 +200,8 @@ function FeatureCard({
   color: "purple" | "pink" | "blue";
 }) {
   const colorClasses = {
-    purple: "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
+    purple:
+      "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400",
     pink: "bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400",
     blue: "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
   };
@@ -211,7 +212,9 @@ function FeatureCard({
       animate={{ opacity: 1, y: 0 }}
       className="bg-white dark:bg-gray-800/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
     >
-      <div className={`w-14 h-14 ${colorClasses[color]} rounded-xl flex items-center justify-center mb-4`}>
+      <div
+        className={`w-14 h-14 ${colorClasses[color]} rounded-xl flex items-center justify-center mb-4`}
+      >
         {icon}
       </div>
       <h3 className="font-bold text-lg mb-2">{title}</h3>

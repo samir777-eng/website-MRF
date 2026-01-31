@@ -50,5 +50,4 @@ export function GlareHover({
   );
 }
 
-
 export default GlareHover;

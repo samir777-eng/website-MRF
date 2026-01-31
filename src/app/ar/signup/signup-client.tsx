@@ -474,7 +474,7 @@ export default function SignupClient() {
 
   const handleInputChange = (
     field: keyof FormData,
-    value: string | boolean | File | null
+    value: string | boolean | File | null,
   ) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: "" }));
@@ -592,7 +592,7 @@ export default function SignupClient() {
           phone: formData.phone,
           grade: formData.grade,
           isAuthenticated: true,
-        })
+        }),
       );
 
       setIsComplete(true);

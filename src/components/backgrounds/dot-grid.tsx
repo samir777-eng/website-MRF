@@ -24,5 +24,4 @@ export function DotGrid({
   );
 }
 
-
 export default DotGrid;

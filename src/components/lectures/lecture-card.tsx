@@ -34,7 +34,7 @@ interface LectureCardProps {
   className?: string;
   onActivate?: () => Promise<void>;
   onPurchaseLife?: (
-    method: "coins" | "money"
+    method: "coins" | "money",
   ) => Promise<{ success: boolean; message: string }>;
   onPurchaseLecture?: () => void;
 }
@@ -132,7 +132,7 @@ export function LectureCard({
     !canAccess && !notPurchased && "cursor-pointer",
     notPurchased && "opacity-75",
     isLocked && "opacity-60",
-    className
+    className,
   );
 
   const cardContent = (

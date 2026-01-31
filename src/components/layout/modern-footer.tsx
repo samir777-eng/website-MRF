@@ -53,13 +53,17 @@ export default function ModernFooter() {
                 <div className="text-2xl font-bold text-primary dark:text-blue-400 mb-1">
                   10K+
                 </div>
-                <div className="text-sm text-muted-foreground dark:text-gray-400">طالب متفوق</div>
+                <div className="text-sm text-muted-foreground dark:text-gray-400">
+                  طالب متفوق
+                </div>
               </div>
               <div className="text-center p-4 rounded-2xl bg-foreground/5 dark:bg-white/10 backdrop-blur-sm border border-border dark:border-white/20">
                 <div className="text-2xl font-bold text-violet-600 dark:text-purple-400 mb-1">
                   98%
                 </div>
-                <div className="text-sm text-muted-foreground dark:text-gray-400">نسبة النجاح</div>
+                <div className="text-sm text-muted-foreground dark:text-gray-400">
+                  نسبة النجاح
+                </div>
               </div>
             </div>
 

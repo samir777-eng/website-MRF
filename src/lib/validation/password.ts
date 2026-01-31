@@ -1,13 +1,13 @@
 /**
  * Password Validation Utilities
- * 
+ *
  * SECURITY: Implements strong password requirements to prevent weak passwords
  */
 
 export interface PasswordValidationResult {
   isValid: boolean;
   errors: string[];
-  strength: 'weak' | 'fair' | 'good' | 'strong';
+  strength: "weak" | "fair" | "good" | "strong";
   score: number; // 0-100
 }
 
@@ -31,10 +31,11 @@ export const DEFAULT_PASSWORD_REQUIREMENTS: PasswordRequirements = {
 // Arabic error messages for password validation
 export const PASSWORD_ERROR_MESSAGES = {
   tooShort: (min: number) => `كلمة المرور يجب أن تكون ${min} أحرف على الأقل`,
-  noUppercase: 'كلمة المرور يجب أن تحتوي على حرف كبير واحد على الأقل',
-  noLowercase: 'كلمة المرور يجب أن تحتوي على حرف صغير واحد على الأقل',
-  noNumber: 'كلمة المرور يجب أن تحتوي على رقم واحد على الأقل',
-  noSpecialChar: 'كلمة المرور يجب أن تحتوي على رمز خاص واحد على الأقل (!@#$%^&*)',
+  noUppercase: "كلمة المرور يجب أن تحتوي على حرف كبير واحد على الأقل",
+  noLowercase: "كلمة المرور يجب أن تحتوي على حرف صغير واحد على الأقل",
+  noNumber: "كلمة المرور يجب أن تحتوي على رقم واحد على الأقل",
+  noSpecialChar:
+    "كلمة المرور يجب أن تحتوي على رمز خاص واحد على الأقل (!@#$%^&*)",
 };
 
 /**
@@ -42,7 +43,7 @@ export const PASSWORD_ERROR_MESSAGES = {
  */
 export function validatePassword(
   password: string,
-  requirements: PasswordRequirements = DEFAULT_PASSWORD_REQUIREMENTS
+  requirements: PasswordRequirements = DEFAULT_PASSWORD_REQUIREMENTS,
 ): PasswordValidationResult {
   const errors: string[] = [];
   let score = 0;
@@ -94,15 +95,15 @@ export function validatePassword(
   }
 
   // Determine strength level
-  let strength: 'weak' | 'fair' | 'good' | 'strong';
+  let strength: "weak" | "fair" | "good" | "strong";
   if (score < 40) {
-    strength = 'weak';
+    strength = "weak";
   } else if (score < 60) {
-    strength = 'fair';
+    strength = "fair";
   } else if (score < 80) {
-    strength = 'good';
+    strength = "good";
   } else {
-    strength = 'strong';
+    strength = "strong";
   }
 
   return {
@@ -119,7 +120,7 @@ export function validatePassword(
  */
 export function getPasswordError(
   password: string,
-  requirements: PasswordRequirements = DEFAULT_PASSWORD_REQUIREMENTS
+  requirements: PasswordRequirements = DEFAULT_PASSWORD_REQUIREMENTS,
 ): string | null {
   const result = validatePassword(password, requirements);
   return result.errors[0] || null;
@@ -131,8 +132,7 @@ export function getPasswordError(
  */
 export function isPasswordValid(
   password: string,
-  minLength: number = 8
+  minLength: number = 8,
 ): boolean {
   return password.length >= minLength;
 }
-

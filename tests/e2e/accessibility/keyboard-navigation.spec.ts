@@ -16,12 +16,12 @@ test.describe("Keyboard Navigation", () => {
         await page.keyboard.press("Tab");
 
         const activeElement = await page.evaluate(
-          () => document.activeElement?.tagName
+          () => document.activeElement?.tagName,
         );
 
         // Should focus on interactive elements
         expect(["A", "BUTTON", "INPUT", "SELECT", "TEXTAREA"]).toContain(
-          activeElement
+          activeElement,
         );
       }
     });
@@ -36,11 +36,11 @@ test.describe("Keyboard Navigation", () => {
       await page.keyboard.press("Shift+Tab");
 
       const activeElement = await page.evaluate(
-        () => document.activeElement?.tagName
+        () => document.activeElement?.tagName,
       );
 
       expect(["A", "BUTTON", "INPUT", "SELECT", "TEXTAREA"]).toContain(
-        activeElement
+        activeElement,
       );
     });
 
@@ -49,10 +49,10 @@ test.describe("Keyboard Navigation", () => {
 
       const activeElement = page.locator(":focus");
       const outlineWidth = await activeElement.evaluate(
-        (el) => window.getComputedStyle(el).outlineWidth
+        (el) => window.getComputedStyle(el).outlineWidth,
       );
       const boxShadow = await activeElement.evaluate(
-        (el) => window.getComputedStyle(el).boxShadow
+        (el) => window.getComputedStyle(el).boxShadow,
       );
 
       const hasFocusIndicator =
@@ -178,4 +178,3 @@ test.describe("Keyboard Navigation", () => {
     });
   });
 });
-

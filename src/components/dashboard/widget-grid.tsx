@@ -31,7 +31,11 @@ interface WidgetGridProps {
   className?: string;
 }
 
-export function WidgetGrid({ widgets, onLayoutChange, className }: WidgetGridProps) {
+export function WidgetGrid({
+  widgets,
+  onLayoutChange,
+  className,
+}: WidgetGridProps) {
   const [layout, setLayout] = useState(
     widgets.map((widget, index) => ({
       i: widget.id,
@@ -39,7 +43,7 @@ export function WidgetGrid({ widgets, onLayoutChange, className }: WidgetGridPro
       y: Math.floor(index / 2) * 4,
       w: widget.defaultSize.w,
       h: widget.defaultSize.h,
-    }))
+    })),
   );
 
   const handleLayoutChange = (newLayout: LayoutItem[]) => {
@@ -73,6 +77,5 @@ export function WidgetGrid({ widgets, onLayoutChange, className }: WidgetGridPro
     </GridLayout>
   );
 }
-
 
 export default WidgetGrid;

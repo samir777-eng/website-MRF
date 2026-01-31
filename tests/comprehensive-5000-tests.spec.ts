@@ -192,7 +192,7 @@ test.describe("Accessibility Compliance", () => {
 
         // Pass if has text, aria-label, aria-labelledby, title, or is an icon button
         expect(
-          text?.trim() || ariaLabel || ariaLabelledBy || title || hasSvg
+          text?.trim() || ariaLabel || ariaLabelledBy || title || hasSvg,
         ).toBeTruthy();
       }
     });
@@ -233,7 +233,7 @@ test.describe("Accessibility Compliance", () => {
           const label = await browserPage.locator(`label[for="${id}"]`).count();
           // Allow inputs with labels, aria-label, aria-labelledby, or placeholder
           expect(
-            label > 0 || ariaLabel || ariaLabelledBy || placeholder
+            label > 0 || ariaLabel || ariaLabelledBy || placeholder,
           ).toBeTruthy();
         } else {
           // Allow inputs with aria-label, aria-labelledby, or placeholder
@@ -343,7 +343,7 @@ test.describe("Performance Metrics", () => {
       const fcp = await browserPage.evaluate(() => {
         const entries = performance.getEntriesByType("paint");
         const fcpEntry = entries.find(
-          (entry) => entry.name === "first-contentful-paint"
+          (entry) => entry.name === "first-contentful-paint",
         );
         return fcpEntry ? fcpEntry.startTime : 0;
       });

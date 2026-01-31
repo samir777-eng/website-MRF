@@ -271,7 +271,12 @@
 
 /* Gradient Text */
 .gradient-text {
-  background: linear-gradient(45deg, hsl(var(--primary)), hsl(234 83% 65%), hsl(160 84% 39%));
+  background: linear-gradient(
+    45deg,
+    hsl(var(--primary)),
+    hsl(234 83% 65%),
+    hsl(160 84% 39%)
+  );
   background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;

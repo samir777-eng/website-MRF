@@ -32,7 +32,7 @@ export function PillNav({
     <div
       className={cn(
         "inline-flex items-center gap-1 p-1.5 bg-muted rounded-xl",
-        className
+        className,
       )}
       role="tablist"
       aria-label={ariaLabel}
@@ -52,7 +52,7 @@ export function PillNav({
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
               isActive
                 ? "bg-background text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+                : "text-muted-foreground hover:text-foreground hover:bg-background/50",
             )}
             role="tab"
             aria-selected={isActive}
@@ -70,7 +70,7 @@ export function PillNav({
                   "px-2 py-0.5 rounded-full text-xs font-medium",
                   isActive
                     ? "bg-primary/10 text-primary"
-                    : "bg-background/50 text-muted-foreground"
+                    : "bg-background/50 text-muted-foreground",
                 )}
                 aria-label={`${item.count} عناصر`}
               >
@@ -83,4 +83,3 @@ export function PillNav({
     </div>
   );
 }
-

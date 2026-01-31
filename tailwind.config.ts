@@ -144,34 +144,34 @@ const config: Config = {
         // Achievement Rarity Colors
         rarity: {
           common: {
-            DEFAULT: "#94a3b8",      // slate-400
-            bg: "#f1f5f9",           // slate-100
-            text: "#334155",         // slate-700
-            border: "#cbd5e1",       // slate-300
+            DEFAULT: "#94a3b8", // slate-400
+            bg: "#f1f5f9", // slate-100
+            text: "#334155", // slate-700
+            border: "#cbd5e1", // slate-300
           },
           uncommon: {
-            DEFAULT: "#22c55e",      // green-500
-            bg: "#dcfce7",           // green-100
-            text: "#166534",         // green-800
-            border: "#86efac",       // green-300
+            DEFAULT: "#22c55e", // green-500
+            bg: "#dcfce7", // green-100
+            text: "#166534", // green-800
+            border: "#86efac", // green-300
           },
           rare: {
-            DEFAULT: "#3b82f6",      // blue-500
-            bg: "#dbeafe",           // blue-100
-            text: "#1e40af",         // blue-800
-            border: "#93c5fd",       // blue-300
+            DEFAULT: "#3b82f6", // blue-500
+            bg: "#dbeafe", // blue-100
+            text: "#1e40af", // blue-800
+            border: "#93c5fd", // blue-300
           },
           epic: {
-            DEFAULT: "#8b5cf6",      // violet-500
-            bg: "#ede9fe",           // violet-100
-            text: "#5b21b6",         // violet-800
-            border: "#c4b5fd",       // violet-300
+            DEFAULT: "#8b5cf6", // violet-500
+            bg: "#ede9fe", // violet-100
+            text: "#5b21b6", // violet-800
+            border: "#c4b5fd", // violet-300
           },
           legendary: {
-            DEFAULT: "#f59e0b",      // amber-500
-            bg: "#fef3c7",           // amber-100
-            text: "#92400e",         // amber-800
-            border: "#fcd34d",       // amber-300
+            DEFAULT: "#f59e0b", // amber-500
+            bg: "#fef3c7", // amber-100
+            text: "#92400e", // amber-800
+            border: "#fcd34d", // amber-300
           },
         },
 
@@ -206,7 +206,8 @@ const config: Config = {
         "gradient-primary": "linear-gradient(135deg, #4338ca 0%, #312e81 100%)", // Deep Indigo
         "gradient-premium": "linear-gradient(135deg, #6366f1 0%, #ef4444 100%)", // Indigo to Coral
         "gradient-accent": "linear-gradient(135deg, #f97354 0%, #dc3535 100%)", // Warm Coral
-        "gradient-success": "radial-gradient(circle at top right, #10b981 0%, #06b6d4 100%)", // Emerald to Cyan
+        "gradient-success":
+          "radial-gradient(circle at top right, #10b981 0%, #06b6d4 100%)", // Emerald to Cyan
         "gradient-xp": "linear-gradient(135deg, #22d3ee 0%, #10b981 100%)", // Cyan to Emerald
         "gradient-dark": "linear-gradient(to bottom, #0f172a, #020617)", // Night Sky
         "gradient-glass":

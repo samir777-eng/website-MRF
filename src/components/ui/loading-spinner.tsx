@@ -85,21 +85,19 @@ export function LoadingSpinner({
         "flex flex-col items-center justify-center",
         sizeConfig.gap,
         centered && "absolute inset-0",
-        className
+        className,
       )}
     >
       {variant === "default" && (
         <SpinnerIcon className={cn("text-primary", sizeConfig.spinner)} />
       )}
       {variant === "dots" && <DotsLoader className={sizeConfig.spinner} />}
-      {variant === "pulse" && (
-        <PulseLoader className={sizeConfig.spinner} />
-      )}
+      {variant === "pulse" && <PulseLoader className={sizeConfig.spinner} />}
       {text && (
         <p
           className={cn(
             "text-muted-foreground font-medium animate-pulse-gentle",
-            sizeConfig.text
+            sizeConfig.text,
           )}
         >
           {text}
@@ -109,4 +107,3 @@ export function LoadingSpinner({
     </div>
   );
 }
-

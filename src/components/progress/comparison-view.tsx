@@ -14,7 +14,11 @@ interface ComparisonViewProps {
   className?: string;
 }
 
-export function ComparisonView({ data, period, className }: ComparisonViewProps) {
+export function ComparisonView({
+  data,
+  period,
+  className,
+}: ComparisonViewProps) {
   const periodLabel = period === "week" ? "الأسبوع الماضي" : "الشهر الماضي";
 
   const getChangePercentage = (current: number, previous: number) => {
@@ -31,7 +35,7 @@ export function ComparisonView({ data, period, className }: ComparisonViewProps)
   const getMotivationalMessage = () => {
     const totalChange = data.reduce(
       (acc, item) => acc + getChangePercentage(item.current, item.previous),
-      0
+      0,
     );
     const avgChange = totalChange / data.length;
 
@@ -50,7 +54,7 @@ export function ComparisonView({ data, period, className }: ComparisonViewProps)
 
       <div className="space-y-4">
         <h3 className="font-semibold">مقارنة مع {periodLabel}</h3>
-        
+
         {data.map((item, index) => {
           const change = getChangePercentage(item.current, item.previous);
           const isPositive = change > 0;
@@ -74,7 +78,7 @@ export function ComparisonView({ data, period, className }: ComparisonViewProps)
                   className={cn(
                     "font-semibold",
                     isPositive && "text-green-500",
-                    isNegative && "text-red-500"
+                    isNegative && "text-red-500",
                   )}
                 >
                   {change > 0 && "+"}
@@ -88,4 +92,3 @@ export function ComparisonView({ data, period, className }: ComparisonViewProps)
     </div>
   );
 }
-

@@ -93,7 +93,7 @@ export function GlobalSearch() {
     const filtered = MOCK_RESULTS.filter(
       (result) =>
         result.title.toLowerCase().includes(query.toLowerCase()) ||
-        result.description?.toLowerCase().includes(query.toLowerCase())
+        result.description?.toLowerCase().includes(query.toLowerCase()),
     );
 
     setResults(filtered);
@@ -104,7 +104,7 @@ export function GlobalSearch() {
     // Save to recent searches
     const recent = [query, ...recentSearches.filter((s) => s !== query)].slice(
       0,
-      5
+      5,
     );
     localStorage.setItem("recentSearches", JSON.stringify(recent));
 
@@ -173,7 +173,7 @@ export function GlobalSearch() {
                       "w-full flex items-center gap-3 p-3 rounded-lg text-right transition-colors",
                       index === selectedIndex
                         ? "bg-primary/10 text-primary"
-                        : "hover:bg-muted"
+                        : "hover:bg-muted",
                     )}
                   >
                     <Icon className="w-5 h-5 flex-shrink-0" />

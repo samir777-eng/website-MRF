@@ -120,7 +120,7 @@ export function validatePasswordStrength(password: string): string | undefined {
 // Confirm password validation
 export function validateConfirmPassword(
   password: string,
-  confirmPassword: string
+  confirmPassword: string,
 ): string | undefined {
   if (!confirmPassword) {
     return "تأكيد كلمة المرور مطلوب";
@@ -178,7 +178,7 @@ export function validateUsername(username: string): string | undefined {
 // Required field validation
 export function validateRequired(
   value: string,
-  fieldName: string = "هذا الحقل"
+  fieldName: string = "هذا الحقل",
 ): string | undefined {
   if (!value || value.trim().length === 0) {
     return `${fieldName} مطلوب`;
@@ -191,7 +191,7 @@ export function validateRequired(
 export function validateMinLength(
   value: string,
   minLength: number,
-  fieldName: string = "هذا الحقل"
+  fieldName: string = "هذا الحقل",
 ): string | undefined {
   if (!value) {
     return `${fieldName} مطلوب`;
@@ -208,7 +208,7 @@ export function validateMinLength(
 export function validateMaxLength(
   value: string,
   maxLength: number,
-  fieldName: string = "هذا الحقل"
+  fieldName: string = "هذا الحقل",
 ): string | undefined {
   if (value && value.length > maxLength) {
     return `${fieldName} يجب أن يكون ${maxLength} حرف كحد أقصى`;
@@ -234,7 +234,7 @@ export function validateUrl(url: string): string | undefined {
 // Number validation
 export function validateNumber(
   value: string,
-  fieldName: string = "هذا الحقل"
+  fieldName: string = "هذا الحقل",
 ): string | undefined {
   if (!value) {
     return `${fieldName} مطلوب`;
@@ -252,7 +252,7 @@ export function validateNumberRange(
   value: string,
   min: number,
   max: number,
-  fieldName: string = "هذا الحقل"
+  fieldName: string = "هذا الحقل",
 ): string | undefined {
   const numberError = validateNumber(value, fieldName);
   if (numberError) return numberError;

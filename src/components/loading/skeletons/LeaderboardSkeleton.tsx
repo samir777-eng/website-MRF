@@ -13,8 +13,18 @@ export function LeaderboardSkeleton() {
       <div className="container mx-auto px-4 md:px-6 py-6 md:py-8 space-y-8">
         {/* Page Header */}
         <div className="text-center space-y-4">
-          <EnhancedSkeleton variant="text" width="200px" height="40px" className="mx-auto" />
-          <EnhancedSkeleton variant="text" width="350px" height="20px" className="mx-auto" />
+          <EnhancedSkeleton
+            variant="text"
+            width="200px"
+            height="40px"
+            className="mx-auto"
+          />
+          <EnhancedSkeleton
+            variant="text"
+            width="350px"
+            height="20px"
+            className="mx-auto"
+          />
         </div>
 
         {/* Filter Tabs */}
@@ -55,10 +65,24 @@ export function LeaderboardSkeleton() {
                   height="80px"
                   className="mx-auto"
                 />
-                <EnhancedSkeleton variant="text" width="70%" height="20px" className="mx-auto" />
-                <EnhancedSkeleton variant="text" width="80%" height="16px" className="mx-auto" />
+                <EnhancedSkeleton
+                  variant="text"
+                  width="70%"
+                  height="20px"
+                  className="mx-auto"
+                />
+                <EnhancedSkeleton
+                  variant="text"
+                  width="80%"
+                  height="16px"
+                  className="mx-auto"
+                />
                 <div className="flex items-center justify-center gap-2">
-                  <EnhancedSkeleton variant="circular" width="20px" height="20px" />
+                  <EnhancedSkeleton
+                    variant="circular"
+                    width="20px"
+                    height="20px"
+                  />
                   <EnhancedSkeleton variant="text" width="60px" height="24px" />
                 </div>
               </div>
@@ -81,13 +105,31 @@ export function LeaderboardSkeleton() {
                     className="mx-auto"
                   />
                   <div className="absolute -top-2 -right-2">
-                    <EnhancedSkeleton variant="circular" width="32px" height="32px" />
+                    <EnhancedSkeleton
+                      variant="circular"
+                      width="32px"
+                      height="32px"
+                    />
                   </div>
                 </div>
-                <EnhancedSkeleton variant="text" width="70%" height="24px" className="mx-auto" />
-                <EnhancedSkeleton variant="text" width="80%" height="16px" className="mx-auto" />
+                <EnhancedSkeleton
+                  variant="text"
+                  width="70%"
+                  height="24px"
+                  className="mx-auto"
+                />
+                <EnhancedSkeleton
+                  variant="text"
+                  width="80%"
+                  height="16px"
+                  className="mx-auto"
+                />
                 <div className="flex items-center justify-center gap-2">
-                  <EnhancedSkeleton variant="circular" width="24px" height="24px" />
+                  <EnhancedSkeleton
+                    variant="circular"
+                    width="24px"
+                    height="24px"
+                  />
                   <EnhancedSkeleton variant="text" width="70px" height="28px" />
                 </div>
               </div>
@@ -108,10 +150,24 @@ export function LeaderboardSkeleton() {
                   height="70px"
                   className="mx-auto"
                 />
-                <EnhancedSkeleton variant="text" width="70%" height="20px" className="mx-auto" />
-                <EnhancedSkeleton variant="text" width="80%" height="16px" className="mx-auto" />
+                <EnhancedSkeleton
+                  variant="text"
+                  width="70%"
+                  height="20px"
+                  className="mx-auto"
+                />
+                <EnhancedSkeleton
+                  variant="text"
+                  width="80%"
+                  height="16px"
+                  className="mx-auto"
+                />
                 <div className="flex items-center justify-center gap-2">
-                  <EnhancedSkeleton variant="circular" width="20px" height="20px" />
+                  <EnhancedSkeleton
+                    variant="circular"
+                    width="20px"
+                    height="20px"
+                  />
                   <EnhancedSkeleton variant="text" width="60px" height="24px" />
                 </div>
               </div>
@@ -154,7 +210,7 @@ export function LeaderboardSkeleton() {
             <div
               key={i}
               className={`p-4 rounded-xl border border-border bg-card hover:shadow-md transition-all ${
-                i < 3 ? 'border-yellow-500/20' : ''
+                i < 3 ? "border-yellow-500/20" : ""
               }`}
             >
               <div className="flex items-center gap-4">
@@ -167,7 +223,11 @@ export function LeaderboardSkeleton() {
                 />
 
                 {/* Avatar */}
-                <EnhancedSkeleton variant="circular" width="56px" height="56px" />
+                <EnhancedSkeleton
+                  variant="circular"
+                  width="56px"
+                  height="56px"
+                />
 
                 {/* User Info */}
                 <div className="flex-1 space-y-2">
@@ -178,12 +238,32 @@ export function LeaderboardSkeleton() {
                 {/* Stats */}
                 <div className="hidden md:flex items-center gap-6">
                   <div className="text-center space-y-1">
-                    <EnhancedSkeleton variant="text" width="60px" height="24px" className="mx-auto" />
-                    <EnhancedSkeleton variant="text" width="40px" height="12px" className="mx-auto" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="60px"
+                      height="24px"
+                      className="mx-auto"
+                    />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="40px"
+                      height="12px"
+                      className="mx-auto"
+                    />
                   </div>
                   <div className="text-center space-y-1">
-                    <EnhancedSkeleton variant="text" width="60px" height="24px" className="mx-auto" />
-                    <EnhancedSkeleton variant="text" width="40px" height="12px" className="mx-auto" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="60px"
+                      height="24px"
+                      className="mx-auto"
+                    />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="40px"
+                      height="12px"
+                      className="mx-auto"
+                    />
                   </div>
                 </div>
 

@@ -69,7 +69,7 @@ export function InteractiveVideoPlayer({
   const [isCorrect, setIsCorrect] = useState(false);
   const [questionStartTime, setQuestionStartTime] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState<Set<string>>(
-    new Set()
+    new Set(),
   );
   const [totalXpEarned, setTotalXpEarned] = useState(0);
 
@@ -222,7 +222,7 @@ export function InteractiveVideoPlayer({
     const xpEarned = calculateInteractiveQuestionXP(
       activeQuestion.difficulty,
       responseTime,
-      correct
+      correct,
     );
 
     setIsCorrect(correct);
@@ -282,7 +282,7 @@ export function InteractiveVideoPlayer({
     if (!videoRef.current) return;
     videoRef.current.currentTime = Math.max(
       0,
-      Math.min(duration, currentTime + seconds)
+      Math.min(duration, currentTime + seconds),
     );
     setCurrentTime(videoRef.current.currentTime);
   };
@@ -385,7 +385,7 @@ export function InteractiveVideoPlayer({
       </span>
       {/* Video Container */}
       <div className="relative bg-black rounded-lg overflow-hidden aspect-video">
-        { }
+        {}
         <video
           ref={videoRef}
           src={videoUrl}
@@ -442,86 +442,75 @@ export function InteractiveVideoPlayer({
             aria-modal="true"
             aria-labelledby="interactive-question-title"
           >
-                {/* FocusTrap disabled for lint compliance */}
-                  <Card className="max-w-2xl w-full border-0 shadow-2xl">
-                    <CardContent className="p-6">
-                      {/* Header */}
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-2">
-                          <Badge className="bg-purple-600 text-white">
-                            <Zap className="w-4 h-4 ms-1" />
-                            <span id="interactive-question-title">
-                              سؤال تفاعلي
-                            </span>
-                          </Badge>
-                          <Badge variant="outline">
-                            <Clock className="w-3 h-3 ms-1" />
-                            {formatTimestamp(activeQuestion.timestamp)}
-                          </Badge>
-                        </div>
-                        <Badge className="bg-yellow-600 text-white">
-                          +{activeQuestion.xpReward} XP
-                        </Badge>
-                      </div>
+            {/* FocusTrap disabled for lint compliance */}
+            <Card className="max-w-2xl w-full border-0 shadow-2xl">
+              <CardContent className="p-6">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <Badge className="bg-purple-600 text-white">
+                      <Zap className="w-4 h-4 ms-1" />
+                      <span id="interactive-question-title">سؤال تفاعلي</span>
+                    </Badge>
+                    <Badge variant="outline">
+                      <Clock className="w-3 h-3 ms-1" />
+                      {formatTimestamp(activeQuestion.timestamp)}
+                    </Badge>
+                  </div>
+                  <Badge className="bg-yellow-600 text-white">
+                    +{activeQuestion.xpReward} XP
+                  </Badge>
+                </div>
 
-                      {/* Question */}
-                      <div className="mb-6">
-                        <h3 className="text-xl font-bold mb-2">
-                          {activeQuestion.question}
-                        </h3>
-                        {activeQuestion.context && (
-                          <p className="text-sm text-muted-foreground">
-                            <AlertCircle className="w-4 h-4 inline ms-1" />
-                            {activeQuestion.context}
-                          </p>
-                        )}
-                      </div>
+                {/* Question */}
+                <div className="mb-6">
+                  <h3 className="text-xl font-bold mb-2">
+                    {activeQuestion.question}
+                  </h3>
+                  {activeQuestion.context && (
+                    <p className="text-sm text-muted-foreground">
+                      <AlertCircle className="w-4 h-4 inline ms-1" />
+                      {activeQuestion.context}
+                    </p>
+                  )}
+                </div>
 
-                      {/* Options with keyboard navigation */}
-                      {!isAnswered && (
-                        <div
-                          className="space-y-3 mb-6"
-                          role="radiogroup"
-                          aria-label="خيارات الإجابة"
-                        >
-                          {activeQuestion.options.map((option, index) => (
-                            <button
-                              key={index}
-                              onClick={() => setSelectedAnswer(index)}
-                              onKeyDown={(e) => {
-                                if (
-                                  e.key === "ArrowDown" ||
-                                  e.key === "ArrowLeft"
-                                ) {
-                                  e.preventDefault();
-                                  const nextIndex =
-                                    (index + 1) % activeQuestion.options.length;
-                                  const nextButton = e.currentTarget
-                                    .parentElement?.children[
-                                    nextIndex
-                                  ] as HTMLElement;
-                                  nextButton?.focus();
-                                } else if (
-                                  e.key === "ArrowUp" ||
-                                  e.key === "ArrowRight"
-                                ) {
-                                  e.preventDefault();
-                                  const prevIndex =
-                                    (index -
-                                      1 +
-                                      activeQuestion.options.length) %
-                                    activeQuestion.options.length;
-                                  const prevButton = e.currentTarget
-                                    .parentElement?.children[
-                                    prevIndex
-                                  ] as HTMLElement;
-                                  prevButton?.focus();
-                                } else if (e.key === "Enter" || e.key === " ") {
-                                  e.preventDefault();
-                                  setSelectedAnswer(index);
-                                }
-                              }}
-                              className={`
+                {/* Options with keyboard navigation */}
+                {!isAnswered && (
+                  <div
+                    className="space-y-3 mb-6"
+                    role="radiogroup"
+                    aria-label="خيارات الإجابة"
+                  >
+                    {activeQuestion.options.map((option, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setSelectedAnswer(index)}
+                        onKeyDown={(e) => {
+                          if (e.key === "ArrowDown" || e.key === "ArrowLeft") {
+                            e.preventDefault();
+                            const nextIndex =
+                              (index + 1) % activeQuestion.options.length;
+                            const nextButton = e.currentTarget.parentElement
+                              ?.children[nextIndex] as HTMLElement;
+                            nextButton?.focus();
+                          } else if (
+                            e.key === "ArrowUp" ||
+                            e.key === "ArrowRight"
+                          ) {
+                            e.preventDefault();
+                            const prevIndex =
+                              (index - 1 + activeQuestion.options.length) %
+                              activeQuestion.options.length;
+                            const prevButton = e.currentTarget.parentElement
+                              ?.children[prevIndex] as HTMLElement;
+                            prevButton?.focus();
+                          } else if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setSelectedAnswer(index);
+                          }
+                        }}
+                        className={`
                           w-full p-4 rounded-lg border-2 text-right transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
                           ${
                             selectedAnswer === index
@@ -529,109 +518,107 @@ export function InteractiveVideoPlayer({
                               : "border-muted hover:border-purple-400 hover:bg-purple-50 dark:hover:bg-purple-950/10"
                           }
                         `}
-                              role="radio"
-                              aria-checked={selectedAnswer === index}
-                              aria-label={`الخيار ${index + 1}: ${option}`}
-                              tabIndex={
-                                selectedAnswer === index ||
-                                (selectedAnswer === null && index === 0)
-                                  ? 0
-                                  : -1
-                              }
-                            >
-                              <div className="flex items-center justify-between">
-                                <span className="font-medium">{option}</span>
-                                <div className="flex items-center gap-2">
-                                  <span className="text-sm text-muted-foreground font-mono">
-                                    ({index + 1})
-                                  </span>
-                                  {selectedAnswer === index && (
-                                    <div className="w-5 h-5 bg-purple-600 rounded-full flex items-center justify-center">
-                                      <div className="w-2 h-2 bg-white rounded-full" />
-                                    </div>
-                                  )}
-                                </div>
+                        role="radio"
+                        aria-checked={selectedAnswer === index}
+                        aria-label={`الخيار ${index + 1}: ${option}`}
+                        tabIndex={
+                          selectedAnswer === index ||
+                          (selectedAnswer === null && index === 0)
+                            ? 0
+                            : -1
+                        }
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-medium">{option}</span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm text-muted-foreground font-mono">
+                              ({index + 1})
+                            </span>
+                            {selectedAnswer === index && (
+                              <div className="w-5 h-5 bg-purple-600 rounded-full flex items-center justify-center">
+                                <div className="w-2 h-2 bg-white rounded-full" />
                               </div>
-                            </button>
-                          ))}
-                        </div>
-                      )}
-
-                      {/* Result */}
-                      {isAnswered && (
-                        <div
-                          className={`p-4 rounded-lg mb-6 ${
-                            isCorrect
-                              ? "bg-green-100 dark:bg-green-900/20 border-2 border-green-600"
-                              : "bg-red-100 dark:bg-red-900/20 border-2 border-red-600"
-                          }`}
-                        >
-                          <div className="flex items-start gap-3">
-                            {isCorrect ? (
-                              <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
-                            ) : (
-                              <XCircle className="w-6 h-6 text-red-600 flex-shrink-0" />
                             )}
-                            <div>
-                              <h4 className="font-semibold text-lg mb-2">
-                                {isCorrect
-                                  ? "إجابة صحيحة! 🎉"
-                                  : "إجابة خاطئة 😔"}
-                              </h4>
-                              <p className="text-sm mb-2">
-                                {isCorrect
-                                  ? activeQuestion.correctFeedback
-                                  : activeQuestion.incorrectFeedback}
-                              </p>
-                              {!isCorrect && (
-                                <p className="text-sm font-medium">
-                                  الإجابة الصحيحة:{" "}
-                                  {
-                                    activeQuestion.options[
-                                      activeQuestion.correctAnswer
-                                    ]
-                                  }
-                                </p>
-                              )}
-                              {activeQuestion.explanation && (
-                                <p className="text-sm mt-2 text-muted-foreground">
-                                  {activeQuestion.explanation}
-                                </p>
-                              )}
-                              {isCorrect && (
-                                <Badge className="bg-yellow-600 text-white mt-2">
-                                  <Zap className="w-4 h-4 ms-1" />+
-                                  {calculateInteractiveQuestionXP(
-                                    activeQuestion.difficulty,
-                                    (Date.now() - questionStartTime) / 1000,
-                                    true
-                                  )}{" "}
-                                  XP
-                                </Badge>
-                              )}
-                            </div>
                           </div>
                         </div>
-                      )}
+                      </button>
+                    ))}
+                  </div>
+                )}
 
-                      {/* Actions */}
-                      {!isAnswered ? (
-                        <Button
-                          onClick={handleAnswerSubmit}
-                          disabled={selectedAnswer === null}
-                          className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white"
-                        >
-                          <CheckCircle className="w-5 h-5 ms-2" />
-                          تأكيد الإجابة
-                        </Button>
+                {/* Result */}
+                {isAnswered && (
+                  <div
+                    className={`p-4 rounded-lg mb-6 ${
+                      isCorrect
+                        ? "bg-green-100 dark:bg-green-900/20 border-2 border-green-600"
+                        : "bg-red-100 dark:bg-red-900/20 border-2 border-red-600"
+                    }`}
+                  >
+                    <div className="flex items-start gap-3">
+                      {isCorrect ? (
+                        <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
                       ) : (
-                        <p className="text-center text-sm text-muted-foreground">
-                          سيستمر الفيديو تلقائياً بعد 3 ثوانٍ...
-                        </p>
+                        <XCircle className="w-6 h-6 text-red-600 flex-shrink-0" />
                       )}
-                    </CardContent>
-                  </Card>
-                {/* FocusTrap removed */}
+                      <div>
+                        <h4 className="font-semibold text-lg mb-2">
+                          {isCorrect ? "إجابة صحيحة! 🎉" : "إجابة خاطئة 😔"}
+                        </h4>
+                        <p className="text-sm mb-2">
+                          {isCorrect
+                            ? activeQuestion.correctFeedback
+                            : activeQuestion.incorrectFeedback}
+                        </p>
+                        {!isCorrect && (
+                          <p className="text-sm font-medium">
+                            الإجابة الصحيحة:{" "}
+                            {
+                              activeQuestion.options[
+                                activeQuestion.correctAnswer
+                              ]
+                            }
+                          </p>
+                        )}
+                        {activeQuestion.explanation && (
+                          <p className="text-sm mt-2 text-muted-foreground">
+                            {activeQuestion.explanation}
+                          </p>
+                        )}
+                        {isCorrect && (
+                          <Badge className="bg-yellow-600 text-white mt-2">
+                            <Zap className="w-4 h-4 ms-1" />+
+                            {calculateInteractiveQuestionXP(
+                              activeQuestion.difficulty,
+                              (Date.now() - questionStartTime) / 1000,
+                              true,
+                            )}{" "}
+                            XP
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Actions */}
+                {!isAnswered ? (
+                  <Button
+                    onClick={handleAnswerSubmit}
+                    disabled={selectedAnswer === null}
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white"
+                  >
+                    <CheckCircle className="w-5 h-5 ms-2" />
+                    تأكيد الإجابة
+                  </Button>
+                ) : (
+                  <p className="text-center text-sm text-muted-foreground">
+                    سيستمر الفيديو تلقائياً بعد 3 ثوانٍ...
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+            {/* FocusTrap removed */}
           </div>
         )}
 

@@ -9,7 +9,8 @@ const actions = [
   {
     icon: BookOpen,
     label: "تصفح الدروس",
-    color: "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600",
+    color:
+      "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600",
     href: "/ar/lectures",
   },
   {
@@ -33,17 +34,14 @@ export function QuickActions() {
   const router = useRouter();
 
   return (
-    <nav
-      className="fixed bottom-6 start-6 z-50"
-      aria-label="إجراءات سريعة"
-    >
+    <nav className="fixed bottom-6 start-6 z-50" aria-label="إجراءات سريعة">
       {/* Action Buttons */}
       <div
         className={cn(
           "flex flex-col gap-3 mb-3 transition-all duration-300",
           open
             ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-4 pointer-events-none"
+            : "opacity-0 translate-y-4 pointer-events-none",
         )}
         role="menu"
         aria-hidden={!open}
@@ -59,7 +57,7 @@ export function QuickActions() {
             tabIndex={open ? 0 : -1}
             className={cn(
               action.color,
-              "text-white h-11 px-4 rounded-full shadow-lg flex items-center gap-2.5 transition-all hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              "text-white h-11 px-4 rounded-full shadow-lg flex items-center gap-2.5 transition-all hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
             )}
             style={{
               transitionDelay: open ? `${index * 50}ms` : "0ms",
@@ -80,7 +78,7 @@ export function QuickActions() {
           "w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
           open
             ? "bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-500"
-            : "bg-primary hover:bg-primary/90"
+            : "bg-primary hover:bg-primary/90",
         )}
         aria-label={open ? "إغلاق القائمة السريعة" : "فتح القائمة السريعة"}
         aria-expanded={open}
@@ -90,7 +88,7 @@ export function QuickActions() {
         <span
           className={cn(
             "transition-transform duration-200",
-            open && "rotate-45"
+            open && "rotate-45",
           )}
         >
           {open ? (

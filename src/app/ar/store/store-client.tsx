@@ -280,7 +280,8 @@ function BundlesTab() {
                 bundle.totalLectures - bundle.lecturesRemaining;
               const progress = (usedLectures / bundle.totalLectures) * 100;
               const daysLeft = Math.ceil(
-                (bundle.expiresAt.getTime() - Date.now()) / (1000 * 60 * 60 * 24)
+                (bundle.expiresAt.getTime() - Date.now()) /
+                  (1000 * 60 * 60 * 24),
               );
 
               return (
@@ -320,7 +321,11 @@ function BundlesTab() {
                     </div>
 
                     <Link href="/ar/lectures">
-                      <Button className="w-full mt-4" variant="outline" size="sm">
+                      <Button
+                        className="w-full mt-4"
+                        variant="outline"
+                        size="sm"
+                      >
                         <Video className="w-4 h-4 ms-2" />
                         استبدال محاضرة
                       </Button>
@@ -459,18 +464,27 @@ function BundlesTab() {
 
 // ==================== BOOKS TAB ====================
 function BooksTab() {
-  const { addToCart, addToWishlist, isInWishlist, getCartItemCount } = useStore();
+  const { addToCart, addToWishlist, isInWishlist, getCartItemCount } =
+    useStore();
   const { triggerAnimation } = useFlyToCart();
-  const [selectedGrade, setSelectedGrade] = useState<"all" | "1" | "2" | "3">("all");
-  const [selectedCategory, setSelectedCategory] = useState<"all" | "package" | "textbook" | "workbook">("all");
+  const [selectedGrade, setSelectedGrade] = useState<"all" | "1" | "2" | "3">(
+    "all",
+  );
+  const [selectedCategory, setSelectedCategory] = useState<
+    "all" | "package" | "textbook" | "workbook"
+  >("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [showPackages, setShowPackages] = useState(true);
   const [cartBounce, setCartBounce] = useState(false);
 
   const filteredBooks = MOCK_BOOKS.filter((book) => {
-    const matchesGrade = selectedGrade === "all" || book.grade === selectedGrade;
-    const matchesCategory = selectedCategory === "all" || book.category === selectedCategory;
-    const matchesSearch = book.titleAr.includes(searchQuery) || book.descriptionAr.includes(searchQuery);
+    const matchesGrade =
+      selectedGrade === "all" || book.grade === selectedGrade;
+    const matchesCategory =
+      selectedCategory === "all" || book.category === selectedCategory;
+    const matchesSearch =
+      book.titleAr.includes(searchQuery) ||
+      book.descriptionAr.includes(searchQuery);
     return matchesGrade && matchesCategory && matchesSearch;
   });
 
@@ -478,7 +492,10 @@ function BooksTab() {
     return selectedGrade === "all" || pkg.grade === selectedGrade;
   });
 
-  const handleAddToCart = (book: Book, event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleAddToCart = (
+    book: Book,
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
     triggerAnimation(event.currentTarget);
     addToCart(book, 1, "physical");
     setCartBounce(true);
@@ -490,7 +507,11 @@ function BooksTab() {
       {/* Cart Link */}
       <div className="flex justify-end">
         <Link href="/ar/cart">
-          <Button size="sm" variant="outline" className="relative cart-button-target">
+          <Button
+            size="sm"
+            variant="outline"
+            className="relative cart-button-target"
+          >
             <ShoppingCart className="w-4 h-4 ms-2" />
             السلة
             {getCartItemCount() > 0 && (
@@ -524,7 +545,9 @@ function BooksTab() {
 
             <select
               value={selectedGrade}
-              onChange={(e) => setSelectedGrade(e.target.value as typeof selectedGrade)}
+              onChange={(e) =>
+                setSelectedGrade(e.target.value as typeof selectedGrade)
+              }
               className="w-full p-2 border rounded-md h-10 text-sm"
             >
               <option value="all">جميع الصفوف</option>
@@ -535,7 +558,9 @@ function BooksTab() {
 
             <select
               value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value as typeof selectedCategory)}
+              onChange={(e) =>
+                setSelectedCategory(e.target.value as typeof selectedCategory)
+              }
               className="w-full p-2 border rounded-md h-10 text-sm"
             >
               <option value="all">جميع الأنواع</option>
@@ -577,11 +602,15 @@ function BooksTab() {
                   <div className="flex items-start justify-between mb-2">
                     <Badge className="bg-purple-500 text-xs">باكيدج</Badge>
                     {pkg.bestseller && (
-                      <Badge className="bg-yellow-500 text-xs">الأكثر مبيعاً</Badge>
+                      <Badge className="bg-yellow-500 text-xs">
+                        الأكثر مبيعاً
+                      </Badge>
                     )}
                   </div>
                   <CardTitle className="text-lg">{pkg.titleAr}</CardTitle>
-                  <p className="text-xs text-muted-foreground">{pkg.descriptionAr}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {pkg.descriptionAr}
+                  </p>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
@@ -596,7 +625,10 @@ function BooksTab() {
                           </div>
                         )}
                       </div>
-                      <Badge variant="outline" className="text-green-600 text-xs">
+                      <Badge
+                        variant="outline"
+                        className="text-green-600 text-xs"
+                      >
                         وفر {pkg.discount} جنيه
                       </Badge>
                     </div>
@@ -610,7 +642,9 @@ function BooksTab() {
                       size="sm"
                       onClick={(e) => {
                         triggerAnimation(e.currentTarget);
-                        pkg.books.forEach((book) => addToCart(book, 1, "physical"));
+                        pkg.books.forEach((book) =>
+                          addToCart(book, 1, "physical"),
+                        );
                         setCartBounce(true);
                         setTimeout(() => setCartBounce(false), 600);
                       }}
@@ -709,7 +743,11 @@ function RewardsTab() {
   const { toast } = useToast();
   const [isPurchasing, setIsPurchasing] = useState(false);
 
-  const handleBuyNow = async (itemId: string, itemName: string, gemCost?: number) => {
+  const handleBuyNow = async (
+    itemId: string,
+    itemName: string,
+    gemCost?: number,
+  ) => {
     if (isPurchasing) return;
 
     if (gemCost && gems < gemCost) {
@@ -791,7 +829,9 @@ function RewardsTab() {
 
         <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl p-4 flex items-center justify-between">
           <div>
-            <div className="text-xl font-bold">{userStats.totalXP.toLocaleString()}</div>
+            <div className="text-xl font-bold">
+              {userStats.totalXP.toLocaleString()}
+            </div>
             <div className="text-xs text-white/80">XP</div>
           </div>
           <TrendingUp className="w-8 h-8 opacity-80" />
@@ -819,7 +859,9 @@ function RewardsTab() {
               className="bg-gradient-to-br from-pink-600 to-rose-600 rounded-xl p-5 text-white"
             >
               <div className="flex items-start justify-between mb-3">
-                <Badge className="bg-white/20 border-0">-{deal.discount}%</Badge>
+                <Badge className="bg-white/20 border-0">
+                  -{deal.discount}%
+                </Badge>
                 <span className="text-3xl">{deal.icon}</span>
               </div>
 
@@ -877,4 +919,3 @@ export default function StoreClient() {
     </Suspense>
   );
 }
-

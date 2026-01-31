@@ -46,7 +46,7 @@ export default function CartClient() {
 
   const totalPrice = cart.items.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0
+    0,
   );
   const totalItems = cart.items.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -110,7 +110,7 @@ export default function CartClient() {
                             onClick={() =>
                               updateCartItemQuantity(
                                 item.id,
-                                Math.max(1, item.quantity - 1)
+                                Math.max(1, item.quantity - 1),
                               )
                             }
                             disabled={item.quantity <= 1}

@@ -9,23 +9,25 @@ Simplified dashboard with progressive disclosure and NextActionCard component.
 Prominent card showing the most important next action for the user.
 
 ```tsx
-import NextActionCard, { type NextAction } from '@/components/dashboard/NextActionCard';
+import NextActionCard, {
+  type NextAction,
+} from "@/components/dashboard/NextActionCard";
 
 const action: NextAction = {
-  type: 'continue-lesson',
-  id: 'lesson-15',
-  title: 'أسلوب الاستثناء',
-  subject: 'النحو',
+  type: "continue-lesson",
+  id: "lesson-15",
+  title: "أسلوب الاستثناء",
+  subject: "النحو",
   progress: 65,
-  duration: '25 دقيقة متبقية',
-  estimatedTime: '15 دقيقة',
+  duration: "25 دقيقة متبقية",
+  estimatedTime: "15 دقيقة",
   completionReward: {
     xp: 100,
-    badge: 'نحوي متميز',
+    badge: "نحوي متميز",
   },
 };
 
-<NextActionCard action={action} prominent size="large" />
+<NextActionCard action={action} prominent size="large" />;
 ```
 
 #### Action Types
@@ -46,7 +48,7 @@ const action: NextAction = {
 Complete dashboard layout with progressive disclosure pattern.
 
 ```tsx
-import { SimplifiedDashboard } from '@/components/dashboard/SimplifiedDashboard';
+import { SimplifiedDashboard } from "@/components/dashboard/SimplifiedDashboard";
 
 export default function DashboardPage() {
   return <SimplifiedDashboard />;
@@ -56,28 +58,33 @@ export default function DashboardPage() {
 ## Dashboard Structure (Phase 1)
 
 ### 1. Next Action Card (Hero Section)
+
 - Most prominent element
 - Shows the single most important next action
 - Large, colorful, with clear CTA
 
 ### 2. Core Stats (3 Only)
+
 - **Level**: User's current level with icon
 - **Streak**: Consecutive days of activity
 - **Today Progress**: Daily goal completion percentage
 
 ### 3. Daily Quests
+
 - Max 3 visible quests by default
 - Expandable accordion for additional quests
 - Shows completion status and XP rewards
 - Total progress badge
 
 ### 4. Quick Access (4 Primary Items)
+
 - **المحاضرات** (Lectures): Video lectures
 - **الإنجازات** (Achievements): Unlocked badges
 - **المتصدرون** (Leaderboard): Rankings
 - **المتجر** (Store): Shop for rewards
 
 ### 5. Explore More (Progressive Disclosure)
+
 - Collapsed by default
 - Contains 6 secondary actions:
   - التحديات (Challenges)
@@ -90,21 +97,25 @@ export default function DashboardPage() {
 ## Design Principles (Phase 1 Task 1.5)
 
 ### Progressive Disclosure
+
 - Show the most important information first
 - Hide secondary actions in collapsible sections
 - Reduce cognitive load and choice paralysis
 
 ### Clear Next Action
+
 - Always show what the user should do next
 - Make it unmissable and prominent
 - Provide context (progress, time, rewards)
 
 ### Limited Options
+
 - Max 4 quick access items (vs 10 previously)
 - Max 3 visible daily quests (expandable)
 - Core stats reduced to 3 (vs 4+ previously)
 
 ### Visual Hierarchy
+
 1. **Primary**: Next Action Card (largest, most colorful)
 2. **Secondary**: Core Stats (gradient cards)
 3. **Tertiary**: Daily Quests (subtle background)
@@ -114,6 +125,7 @@ export default function DashboardPage() {
 ## Comparison: Before vs After
 
 ### Before (Complex Dashboard)
+
 - ❌ 10 quick access items
 - ❌ 4+ stat cards
 - ❌ All daily quests visible
@@ -121,6 +133,7 @@ export default function DashboardPage() {
 - ❌ Overwhelming choices
 
 ### After (Simplified Dashboard)
+
 - ✅ 4 quick access items (+ 6 hidden)
 - ✅ 3 core stats only
 - ✅ 3 visible quests (expandable)
@@ -148,13 +161,13 @@ export default function DashboardPage() {
 
 ```tsx
 // Example with real data from context
-import { useGamification } from '@/contexts/GamificationContext';
+import { useGamification } from "@/contexts/GamificationContext";
 
 function DashboardPage() {
   const { userStats, currentLesson, dailyQuests } = useGamification();
 
   const nextAction: NextAction = {
-    type: 'continue-lesson',
+    type: "continue-lesson",
     id: currentLesson.id,
     title: currentLesson.title,
     subject: currentLesson.subject,

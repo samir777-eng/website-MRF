@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 interface SwipeNavigationOptions {
   enabled?: boolean;
@@ -44,22 +44,22 @@ export function useSwipeNavigation(options: SwipeNavigationOptions = {}) {
       const deltaX = touchEndX.current - touchStartX.current;
       const deltaY = touchEndY.current - touchStartY.current;
       const deltaTime = Date.now() - touchStartTime.current;
-      
+
       // Calculate velocity
       const velocityX = Math.abs(deltaX) / deltaTime;
-      
+
       // Check if horizontal swipe is dominant
       const isHorizontalSwipe = Math.abs(deltaX) > Math.abs(deltaY) * 2;
-      
+
       if (!isHorizontalSwipe) return;
-      
+
       // Check if swipe meets threshold and velocity requirements
       if (Math.abs(deltaX) > threshold && velocityX > velocity) {
         // Haptic feedback
-        if ('vibrate' in navigator) {
+        if ("vibrate" in navigator) {
           navigator.vibrate(15);
         }
-        
+
         // Swipe right (navigate back or to previous route)
         if (deltaX > 0 && routes.right) {
           router.push(routes.right);
@@ -72,16 +72,17 @@ export function useSwipeNavigation(options: SwipeNavigationOptions = {}) {
     };
 
     // Add event listeners
-    document.addEventListener('touchstart', handleTouchStart, { passive: true });
-    document.addEventListener('touchmove', handleTouchMove, { passive: true });
-    document.addEventListener('touchend', handleTouchEnd);
+    document.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+    document.addEventListener("touchmove", handleTouchMove, { passive: true });
+    document.addEventListener("touchend", handleTouchEnd);
 
     // Cleanup
     return () => {
-      document.removeEventListener('touchstart', handleTouchStart);
-      document.removeEventListener('touchmove', handleTouchMove);
-      document.removeEventListener('touchend', handleTouchEnd);
+      document.removeEventListener("touchstart", handleTouchStart);
+      document.removeEventListener("touchmove", handleTouchMove);
+      document.removeEventListener("touchend", handleTouchEnd);
     };
   }, [enabled, threshold, velocity, routes, router]);
 }
-

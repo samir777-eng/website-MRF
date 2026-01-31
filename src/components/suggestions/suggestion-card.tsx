@@ -47,11 +47,16 @@ export function SuggestionCard({
     <div
       className={cn(
         "border rounded-lg p-4 hover:shadow-md transition-shadow",
-        className
+        className,
       )}
     >
       <div className="flex items-start gap-3">
-        <div className={cn("w-10 h-10 rounded-full flex items-center justify-center", config.bgColor)}>
+        <div
+          className={cn(
+            "w-10 h-10 rounded-full flex items-center justify-center",
+            config.bgColor,
+          )}
+        >
           <Icon className={cn("w-5 h-5", config.color)} />
         </div>
 
@@ -81,4 +86,3 @@ export function SuggestionCard({
     </div>
   );
 }
-

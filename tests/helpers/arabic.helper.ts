@@ -13,11 +13,13 @@ export async function checkRTL(page: Page) {
 export async function checkArabicFont(page: Page, selector: string) {
   const element = page.locator(selector);
   const fontFamily = await element.evaluate(
-    (el) => window.getComputedStyle(el).fontFamily
+    (el) => window.getComputedStyle(el).fontFamily,
   );
 
   // Should include Arabic font
-  expect(fontFamily).toMatch(/Noto Sans Arabic|Cairo|Tajawal|IBM Plex Sans Arabic/i);
+  expect(fontFamily).toMatch(
+    /Noto Sans Arabic|Cairo|Tajawal|IBM Plex Sans Arabic/i,
+  );
 }
 
 /**
@@ -26,7 +28,7 @@ export async function checkArabicFont(page: Page, selector: string) {
 export async function checkTextDirection(page: Page, selector: string) {
   const element = page.locator(selector);
   const textAlign = await element.evaluate(
-    (el) => window.getComputedStyle(el).textAlign
+    (el) => window.getComputedStyle(el).textAlign,
   );
 
   // RTL should have right alignment or start (which resolves to right in RTL)
@@ -109,17 +111,16 @@ export async function checkArabicErrors(page: Page) {
  */
 export async function checkRTLSpacing(page: Page, selector: string) {
   const element = page.locator(selector);
-  
-  const paddingRight = await element.evaluate(
-    (el) => parseInt(window.getComputedStyle(el).paddingRight)
+
+  const paddingRight = await element.evaluate((el) =>
+    parseInt(window.getComputedStyle(el).paddingRight),
   );
-  const paddingLeft = await element.evaluate(
-    (el) => parseInt(window.getComputedStyle(el).paddingLeft)
+  const paddingLeft = await element.evaluate((el) =>
+    parseInt(window.getComputedStyle(el).paddingLeft),
   );
-  
+
   // In RTL, typically padding-right should be greater or equal
   // This is context-dependent, so we just check both exist
   expect(paddingRight).toBeGreaterThanOrEqual(0);
   expect(paddingLeft).toBeGreaterThanOrEqual(0);
 }
-

@@ -48,7 +48,7 @@ export default function SpacedRepetitionDisplay({
   const handleStartSession = () => {
     const session = startReviewSession(
       selectedSessionType,
-      recommendedSessionSize
+      recommendedSessionSize,
     );
     if (session) {
       // Navigate to review session page or show review interface

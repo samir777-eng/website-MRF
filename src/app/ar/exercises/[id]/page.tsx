@@ -61,7 +61,7 @@ export default function ExercisePage() {
   const [exerciseCompleted, setExerciseCompleted] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<{ [key: string]: string | number }>(
-    {}
+    {},
   );
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [score, setScore] = useState(0);

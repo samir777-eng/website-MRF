@@ -25,12 +25,22 @@ export function SettingsSkeleton() {
                 <div
                   key={i}
                   className={`p-4 rounded-lg ${
-                    i === 0 ? 'bg-primary/10 border border-primary/20' : 'bg-card border border-border'
+                    i === 0
+                      ? "bg-primary/10 border border-primary/20"
+                      : "bg-card border border-border"
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <EnhancedSkeleton variant="circular" width="24px" height="24px" />
-                    <EnhancedSkeleton variant="text" width="80px" height="18px" />
+                    <EnhancedSkeleton
+                      variant="circular"
+                      width="24px"
+                      height="24px"
+                    />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="80px"
+                      height="18px"
+                    />
                   </div>
                 </div>
               ))}
@@ -41,7 +51,11 @@ export function SettingsSkeleton() {
               {/* Profile Section */}
               <div className="p-6 rounded-xl border border-border bg-card space-y-6">
                 <div className="flex items-center justify-between">
-                  <EnhancedSkeleton variant="text" width="150px" height="24px" />
+                  <EnhancedSkeleton
+                    variant="text"
+                    width="150px"
+                    height="24px"
+                  />
                   <EnhancedSkeleton
                     variant="rectangular"
                     width="80px"
@@ -52,10 +66,22 @@ export function SettingsSkeleton() {
 
                 {/* Avatar Upload */}
                 <div className="flex items-center gap-6">
-                  <EnhancedSkeleton variant="circular" width="100px" height="100px" />
+                  <EnhancedSkeleton
+                    variant="circular"
+                    width="100px"
+                    height="100px"
+                  />
                   <div className="flex-1 space-y-3">
-                    <EnhancedSkeleton variant="text" width="200px" height="20px" />
-                    <EnhancedSkeleton variant="text" width="100%" height="16px" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="200px"
+                      height="20px"
+                    />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="100%"
+                      height="16px"
+                    />
                     <EnhancedSkeleton
                       variant="rectangular"
                       width="150px"
@@ -69,7 +95,11 @@ export function SettingsSkeleton() {
                 <div className="space-y-4 pt-4">
                   {/* Full Name */}
                   <div className="space-y-2">
-                    <EnhancedSkeleton variant="text" width="100px" height="16px" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="100px"
+                      height="16px"
+                    />
                     <EnhancedSkeleton
                       variant="rectangular"
                       width="100%"
@@ -81,7 +111,11 @@ export function SettingsSkeleton() {
                   {/* Email & Phone Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <EnhancedSkeleton variant="text" width="80px" height="16px" />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="80px"
+                        height="16px"
+                      />
                       <EnhancedSkeleton
                         variant="rectangular"
                         width="100%"
@@ -90,7 +124,11 @@ export function SettingsSkeleton() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <EnhancedSkeleton variant="text" width="80px" height="16px" />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="80px"
+                        height="16px"
+                      />
                       <EnhancedSkeleton
                         variant="rectangular"
                         width="100%"
@@ -102,7 +140,11 @@ export function SettingsSkeleton() {
 
                   {/* Bio */}
                   <div className="space-y-2">
-                    <EnhancedSkeleton variant="text" width="120px" height="16px" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="120px"
+                      height="16px"
+                    />
                     <EnhancedSkeleton
                       variant="rectangular"
                       width="100%"
@@ -124,8 +166,16 @@ export function SettingsSkeleton() {
                       className="flex items-start justify-between p-4 rounded-lg bg-muted/30"
                     >
                       <div className="flex-1 space-y-2">
-                        <EnhancedSkeleton variant="text" width="70%" height="18px" />
-                        <EnhancedSkeleton variant="text" width="90%" height="14px" />
+                        <EnhancedSkeleton
+                          variant="text"
+                          width="70%"
+                          height="18px"
+                        />
+                        <EnhancedSkeleton
+                          variant="text"
+                          width="90%"
+                          height="14px"
+                        />
                       </div>
                       <EnhancedSkeleton
                         variant="rectangular"
@@ -145,7 +195,11 @@ export function SettingsSkeleton() {
                 <div className="space-y-4">
                   {Array.from({ length: 3 }).map((_, i) => (
                     <div key={i} className="space-y-2">
-                      <EnhancedSkeleton variant="text" width="200px" height="18px" />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="200px"
+                        height="18px"
+                      />
                       <EnhancedSkeleton
                         variant="rectangular"
                         width="100%"
@@ -164,7 +218,11 @@ export function SettingsSkeleton() {
                 <div className="space-y-4">
                   {/* Change Password */}
                   <div className="space-y-2">
-                    <EnhancedSkeleton variant="text" width="150px" height="16px" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="150px"
+                      height="16px"
+                    />
                     <EnhancedSkeleton
                       variant="rectangular"
                       width="100%"
@@ -174,7 +232,11 @@ export function SettingsSkeleton() {
                   </div>
 
                   <div className="space-y-2">
-                    <EnhancedSkeleton variant="text" width="150px" height="16px" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="150px"
+                      height="16px"
+                    />
                     <EnhancedSkeleton
                       variant="rectangular"
                       width="100%"

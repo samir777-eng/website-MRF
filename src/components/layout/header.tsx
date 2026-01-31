@@ -5,33 +5,33 @@ import { SearchTrigger } from "@/components/search/search-trigger";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { NotificationCenter } from "@/components/ui/notification-center";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useGamification } from "@/contexts/GamificationContext";
 import {
-    BarChart3,
-    BookOpen,
-    ChevronDown,
-    Flame,
-    Globe,
-    GraduationCap,
-    LogOut,
-    Menu,
-    Moon,
-    Settings,
-    ShoppingBag,
-    ShoppingCart,
-    Sun,
-    Trophy,
-    User,
-    Users,
-    Zap,
+  BarChart3,
+  BookOpen,
+  ChevronDown,
+  Flame,
+  Globe,
+  GraduationCap,
+  LogOut,
+  Menu,
+  Moon,
+  Settings,
+  ShoppingBag,
+  ShoppingCart,
+  Sun,
+  Trophy,
+  User,
+  Users,
+  Zap,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
@@ -258,10 +258,7 @@ export function Header() {
                   variant="ghost"
                   className="flex items-center gap-2 px-2 py-1.5 h-auto hover:bg-muted rounded-full"
                 >
-                  <AvatarDisplay
-                    size={32}
-                    className="ring-2 ring-border"
-                  />
+                  <AvatarDisplay size={32} className="ring-2 ring-border" />
                   <ChevronDown className="w-4 h-4 text-muted-foreground" />
                 </Button>
               </DropdownMenuTrigger>
@@ -282,7 +279,9 @@ export function Header() {
                           <span className="text-xs text-primary font-medium">
                             المستوى ٧
                           </span>
-                          <span className="text-xs text-muted-foreground">•</span>
+                          <span className="text-xs text-muted-foreground">
+                            •
+                          </span>
                           <span className="text-xs text-muted-foreground flex items-center gap-1">
                             <Zap className="w-3 h-3" />
                             {totalXP.toLocaleString()} XP
@@ -410,11 +409,7 @@ export function Header() {
 
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="hover:bg-muted"
-                >
+                <Button variant="ghost" size="icon" className="hover:bg-muted">
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>

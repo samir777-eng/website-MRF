@@ -166,7 +166,7 @@ export class LazyLoader {
     if (typeof window !== "undefined" && "IntersectionObserver" in window) {
       this.observer = new IntersectionObserver(
         this.handleIntersection.bind(this),
-        options
+        options,
       );
     }
   }
@@ -320,21 +320,21 @@ export const initPerformanceTracking = () => {
   window.addEventListener("load", () => {
     setTimeout(() => {
       const navigation = performance.getEntriesByType(
-        "navigation"
+        "navigation",
       )[0] as PerformanceNavigationTiming;
 
       (tracker as any).metrics.set(
         "TTFB",
-        navigation.responseStart - navigation.requestStart
+        navigation.responseStart - navigation.requestStart,
       );
       (tracker as any).metrics.set(
         "DOMContentLoaded",
         navigation.domContentLoadedEventEnd -
-          navigation.domContentLoadedEventStart
+          navigation.domContentLoadedEventStart,
       );
       (tracker as any).metrics.set(
         "LoadComplete",
-        navigation.loadEventEnd - navigation.loadEventStart
+        navigation.loadEventEnd - navigation.loadEventStart,
       );
 
       // Get Core Web Vitals
@@ -342,19 +342,19 @@ export const initPerformanceTracking = () => {
         import("web-vitals")
           .then(({ onCLS, onINP, onFCP, onLCP, onTTFB }) => {
             onCLS((metric: any) =>
-              (tracker as any).metrics.set("CLS", metric.value)
+              (tracker as any).metrics.set("CLS", metric.value),
             );
             onINP((metric: any) =>
-              (tracker as any).metrics.set("INP", metric.value)
+              (tracker as any).metrics.set("INP", metric.value),
             );
             onFCP((metric: any) =>
-              (tracker as any).metrics.set("FCP", metric.value)
+              (tracker as any).metrics.set("FCP", metric.value),
             );
             onLCP((metric: any) =>
-              (tracker as any).metrics.set("LCP", metric.value)
+              (tracker as any).metrics.set("LCP", metric.value),
             );
             onTTFB((metric: any) =>
-              (tracker as any).metrics.set("TTFB", metric.value)
+              (tracker as any).metrics.set("TTFB", metric.value),
             );
 
             // Report after all metrics are collected

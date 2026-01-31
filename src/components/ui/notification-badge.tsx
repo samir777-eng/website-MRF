@@ -56,7 +56,7 @@ export function NotificationBadge() {
 
   const markAsRead = (id: string) => {
     setNotifications(
-      notifications.map((n) => (n.id === id ? { ...n, read: true } : n))
+      notifications.map((n) => (n.id === id ? { ...n, read: true } : n)),
     );
   };
 
@@ -140,7 +140,7 @@ export function NotificationBadge() {
                   key={notification.id}
                   className={cn(
                     "p-3 cursor-pointer focus:bg-muted",
-                    !notification.read && "bg-primary/5"
+                    !notification.read && "bg-primary/5",
                   )}
                   onClick={() => markAsRead(notification.id)}
                 >

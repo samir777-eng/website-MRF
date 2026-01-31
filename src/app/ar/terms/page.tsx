@@ -64,7 +64,9 @@ export default function TermsPage() {
 
         <Card>
           <CardHeader>
-            <h2 className="text-2xl font-semibold leading-none tracking-tight">التسجيل والحساب</h2>
+            <h2 className="text-2xl font-semibold leading-none tracking-tight">
+              التسجيل والحساب
+            </h2>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -90,7 +92,9 @@ export default function TermsPage() {
 
         <Card>
           <CardHeader>
-            <h2 className="text-2xl font-semibold leading-none tracking-tight">الاشتراكات والدفع</h2>
+            <h2 className="text-2xl font-semibold leading-none tracking-tight">
+              الاشتراكات والدفع
+            </h2>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -117,7 +121,9 @@ export default function TermsPage() {
 
         <Card>
           <CardHeader>
-            <h2 className="text-2xl font-semibold leading-none tracking-tight">حقوق الملكية الفكرية</h2>
+            <h2 className="text-2xl font-semibold leading-none tracking-tight">
+              حقوق الملكية الفكرية
+            </h2>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">
@@ -160,7 +166,9 @@ export default function TermsPage() {
 
         <Card>
           <CardHeader>
-            <h2 className="text-2xl font-semibold leading-none tracking-tight">إنهاء الخدمة</h2>
+            <h2 className="text-2xl font-semibold leading-none tracking-tight">
+              إنهاء الخدمة
+            </h2>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">نحتفظ بالحق في:</p>
@@ -194,7 +202,9 @@ export default function TermsPage() {
 
         <Card>
           <CardHeader>
-            <h2 className="text-2xl font-semibold leading-none tracking-tight">القانون الحاكم</h2>
+            <h2 className="text-2xl font-semibold leading-none tracking-tight">
+              القانون الحاكم
+            </h2>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
@@ -206,7 +216,9 @@ export default function TermsPage() {
 
         <Card>
           <CardHeader>
-            <h2 className="text-2xl font-semibold leading-none tracking-tight">التعديلات</h2>
+            <h2 className="text-2xl font-semibold leading-none tracking-tight">
+              التعديلات
+            </h2>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
@@ -220,7 +232,9 @@ export default function TermsPage() {
 
         <Card>
           <CardHeader>
-            <h2 className="text-2xl font-semibold leading-none tracking-tight">اتصل بنا</h2>
+            <h2 className="text-2xl font-semibold leading-none tracking-tight">
+              اتصل بنا
+            </h2>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">

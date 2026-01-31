@@ -34,7 +34,7 @@ describe("UI Components", () => {
 
     it("renders different variants", () => {
       const { rerender } = render(
-        <Button variant="secondary">Secondary</Button>
+        <Button variant="secondary">Secondary</Button>,
       );
       expect(screen.getByRole("button")).toHaveClass("bg-secondary-500");
 
@@ -72,7 +72,7 @@ describe("UI Components", () => {
           <CardContent>
             <p>Card content goes here</p>
           </CardContent>
-        </Card>
+        </Card>,
       );
 
       expect(screen.getByText("Card Title")).toBeInTheDocument();
@@ -86,18 +86,18 @@ describe("UI Components", () => {
           <CardHeader data-testid="header">
             <CardTitle data-testid="title">Title</CardTitle>
           </CardHeader>
-        </Card>
+        </Card>,
       );
 
       expect(screen.getByTestId("card")).toHaveClass(
         "rounded-xl",
         "border",
-        "bg-card"
+        "bg-card",
       );
       expect(screen.getByTestId("header")).toHaveClass(
         "flex",
         "flex-col",
-        "space-y-1.5"
+        "space-y-1.5",
       );
       expect(screen.getByTestId("title")).toHaveClass("font-semibold");
     });
@@ -155,7 +155,7 @@ describe("UI Components", () => {
         <Alert>
           <AlertTitle>Alert Title</AlertTitle>
           <AlertDescription>Alert description text</AlertDescription>
-        </Alert>
+        </Alert>,
       );
 
       expect(screen.getByText("Alert Title")).toBeInTheDocument();
@@ -166,14 +166,14 @@ describe("UI Components", () => {
       const { rerender } = render(
         <Alert variant="destructive" data-testid="alert">
           <AlertTitle>Error</AlertTitle>
-        </Alert>
+        </Alert>,
       );
       expect(screen.getByTestId("alert")).toHaveClass("border-destructive/50");
 
       rerender(
         <Alert variant="default" data-testid="alert">
           <AlertTitle>Info</AlertTitle>
-        </Alert>
+        </Alert>,
       );
       expect(screen.getByTestId("alert")).toHaveClass("border");
     });
@@ -202,7 +202,7 @@ describe("UI Components", () => {
         <Avatar>
           <AvatarImage src="/test-avatar.jpg" alt="Test Avatar" />
           <AvatarFallback>TA</AvatarFallback>
-        </Avatar>
+        </Avatar>,
       );
 
       // In test environment, images don't load so fallback is shown
@@ -213,7 +213,7 @@ describe("UI Components", () => {
       render(
         <Avatar>
           <AvatarFallback>JD</AvatarFallback>
-        </Avatar>
+        </Avatar>,
       );
 
       expect(screen.getByText("JD")).toBeInTheDocument();
@@ -230,7 +230,7 @@ describe("UI Components", () => {
           </TabsList>
           <TabsContent value="tab1">Content 1</TabsContent>
           <TabsContent value="tab2">Content 2</TabsContent>
-        </Tabs>
+        </Tabs>,
       );
 
       expect(screen.getByText("Tab 1")).toBeInTheDocument();
@@ -247,7 +247,7 @@ describe("UI Components", () => {
           </TabsList>
           <TabsContent value="tab1">Content 1</TabsContent>
           <TabsContent value="tab2">Content 2</TabsContent>
-        </Tabs>
+        </Tabs>,
       );
 
       // Initially Content 1 should be visible

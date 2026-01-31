@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
           error: "غير مصرح. يرجى تسجيل الدخول.",
           code: "NO_TOKEN",
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -62,7 +62,7 @@ export async function GET(request: NextRequest) {
           error: "جلسة غير صالحة. يرجى تسجيل الدخول مرة أخرى.",
           code: "INVALID_TOKEN",
         },
-        { status: 401 }
+        { status: 401 },
       );
       response.cookies.delete("auth-token");
       return response;
@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
           error: "المستخدم غير موجود.",
           code: "USER_NOT_FOUND",
         },
-        { status: 401 }
+        { status: 401 },
       );
       response.cookies.delete("auth-token");
       return response;
@@ -107,7 +107,7 @@ export async function GET(request: NextRequest) {
         success: false,
         error: "حدث خطأ. يرجى المحاولة مرة أخرى.",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -92,8 +92,16 @@ export function QuizSkeleton() {
                     className="rounded-lg"
                   />
                   <div className="flex-1 space-y-2">
-                    <EnhancedSkeleton variant="text" width="80%" height="20px" />
-                    <EnhancedSkeleton variant="text" width="60%" height="16px" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="80%"
+                      height="20px"
+                    />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="60%"
+                      height="16px"
+                    />
                   </div>
                 </div>
               </div>
@@ -128,7 +136,7 @@ export function QuizSkeleton() {
         {/* Question Navigator */}
         <div className="p-6 rounded-xl border border-border bg-card space-y-4">
           <EnhancedSkeleton variant="text" width="150px" height="20px" />
-          
+
           <div className="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-2">
             {Array.from({ length: 20 }).map((_, i) => (
               <EnhancedSkeleton

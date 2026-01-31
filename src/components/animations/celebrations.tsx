@@ -266,9 +266,10 @@ export function ConfettiBurst({ show }: { show: boolean }) {
       const newParticles = Array.from({ length: 30 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
-        color: CELEBRATION_COLORS.confetti[
-          Math.floor(Math.random() * CELEBRATION_COLORS.confetti.length)
-        ],
+        color:
+          CELEBRATION_COLORS.confetti[
+            Math.floor(Math.random() * CELEBRATION_COLORS.confetti.length)
+          ],
       }));
       setParticles(newParticles);
 

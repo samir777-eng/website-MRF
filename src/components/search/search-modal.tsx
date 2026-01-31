@@ -142,7 +142,7 @@ export function SearchModal() {
 
   const toggleFilter = (
     filterType: "type" | "difficulty" | "category",
-    value: string
+    value: string,
   ) => {
     const currentFilters = filters[filterType] || [];
     const newFilters = currentFilters.includes(value)
@@ -156,7 +156,7 @@ export function SearchModal() {
   };
 
   const hasActiveFilters = Object.values(filters).some(
-    (f) => f && f.length > 0
+    (f) => f && f.length > 0,
   );
 
   return (
@@ -275,7 +275,7 @@ export function SearchModal() {
                       className={cn(
                         "w-full text-right p-3 rounded-lg transition-colors",
                         "hover:bg-muted/50 focus:bg-muted/50 focus:outline-none",
-                        index === selectedIndex && "bg-muted/50"
+                        index === selectedIndex && "bg-muted/50",
                       )}
                     >
                       <div className="flex items-start gap-3">
@@ -288,7 +288,7 @@ export function SearchModal() {
                               className="font-semibold text-sm truncate"
                               dangerouslySetInnerHTML={{
                                 __html: sanitizeHighlight(
-                                  result.highlightedTitle
+                                  result.highlightedTitle,
                                 ),
                               }}
                             />
@@ -304,7 +304,7 @@ export function SearchModal() {
                               className="text-sm text-muted-foreground line-clamp-2"
                               dangerouslySetInnerHTML={{
                                 __html: sanitizeHighlight(
-                                  result.highlightedDescription
+                                  result.highlightedDescription,
                                 ),
                               }}
                             />

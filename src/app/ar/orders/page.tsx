@@ -137,11 +137,11 @@ const paymentStatusConfig: Record<
 
 export default function OrdersPage() {
   const totalSpent = MOCK_ORDERS.filter(
-    (o) => o.paymentStatus === "paid"
+    (o) => o.paymentStatus === "paid",
   ).reduce((sum, o) => sum + o.total, 0);
   const totalOrders = MOCK_ORDERS.length;
   const deliveredOrders = MOCK_ORDERS.filter(
-    (o) => o.status === "delivered"
+    (o) => o.status === "delivered",
   ).length;
 
   return (

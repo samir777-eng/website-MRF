@@ -1,11 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
 // Validation schema for Web Vitals metrics
 const webVitalsSchema = z.object({
-  name: z.enum(['LCP', 'FCP', 'CLS', 'TTFB', 'INP', 'FID']),
+  name: z.enum(["LCP", "FCP", "CLS", "TTFB", "INP", "FID"]),
   value: z.number(),
-  rating: z.enum(['good', 'needs-improvement', 'poor']),
+  rating: z.enum(["good", "needs-improvement", "poor"]),
   delta: z.number(),
   id: z.string(),
   url: z.string().url(),
@@ -33,8 +33,8 @@ export async function POST(request: NextRequest) {
 
     if (!validation.success) {
       return NextResponse.json(
-        { success: false, error: 'Invalid metric data' },
-        { status: 400 }
+        { success: false, error: "Invalid metric data" },
+        { status: 400 },
       );
     }
 
@@ -52,17 +52,24 @@ export async function POST(request: NextRequest) {
     }
 
     // Log in development
-    if (process.env.NODE_ENV === 'development') {
-      const ratingEmoji = metric.rating === 'good' ? '🟢' : metric.rating === 'needs-improvement' ? '🟡' : '🔴';
-      console.log(`📊 ${ratingEmoji} ${metric.name}: ${metric.value.toFixed(2)}ms (${metric.rating})`);
+    if (process.env.NODE_ENV === "development") {
+      const ratingEmoji =
+        metric.rating === "good"
+          ? "🟢"
+          : metric.rating === "needs-improvement"
+            ? "🟡"
+            : "🔴";
+      console.log(
+        `📊 ${ratingEmoji} ${metric.name}: ${metric.value.toFixed(2)}ms (${metric.rating})`,
+      );
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Web Vitals API error:', error);
+    console.error("Web Vitals API error:", error);
     return NextResponse.json(
-      { success: false, error: 'Failed to process metric' },
-      { status: 500 }
+      { success: false, error: "Failed to process metric" },
+      { status: 500 },
     );
   }
 }
@@ -75,22 +82,28 @@ export async function GET(request: NextRequest) {
   try {
     // Get last hour of metrics
     const oneHourAgo = Date.now() - 60 * 60 * 1000;
-    const recentMetrics = metricsStore.filter(m => m.receivedAt > oneHourAgo);
+    const recentMetrics = metricsStore.filter((m) => m.receivedAt > oneHourAgo);
 
     // Aggregate by metric name
-    const aggregated: Record<string, {
-      name: string;
-      count: number;
-      avg: number;
-      p75: number;
-      p95: number;
-      good: number;
-      needsImprovement: number;
-      poor: number;
-    }> = {};
+    const aggregated: Record<
+      string,
+      {
+        name: string;
+        count: number;
+        avg: number;
+        p75: number;
+        p95: number;
+        good: number;
+        needsImprovement: number;
+        poor: number;
+      }
+    > = {};
 
     const metricsByName: Record<string, number[]> = {};
-    const ratingsByName: Record<string, { good: number; needsImprovement: number; poor: number }> = {};
+    const ratingsByName: Record<
+      string,
+      { good: number; needsImprovement: number; poor: number }
+    > = {};
 
     for (const { metric } of recentMetrics) {
       if (!metricsByName[metric.name]) {
@@ -98,8 +111,9 @@ export async function GET(request: NextRequest) {
         ratingsByName[metric.name] = { good: 0, needsImprovement: 0, poor: 0 };
       }
       metricsByName[metric.name].push(metric.value);
-      if (metric.rating === 'good') ratingsByName[metric.name].good++;
-      else if (metric.rating === 'needs-improvement') ratingsByName[metric.name].needsImprovement++;
+      if (metric.rating === "good") ratingsByName[metric.name].good++;
+      else if (metric.rating === "needs-improvement")
+        ratingsByName[metric.name].needsImprovement++;
       else ratingsByName[metric.name].poor++;
     }
 
@@ -122,16 +136,15 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      period: 'last_hour',
+      period: "last_hour",
       totalMetrics: recentMetrics.length,
       metrics: aggregated,
     });
   } catch (error) {
-    console.error('Web Vitals GET error:', error);
+    console.error("Web Vitals GET error:", error);
     return NextResponse.json(
-      { success: false, error: 'Failed to retrieve metrics' },
-      { status: 500 }
+      { success: false, error: "Failed to retrieve metrics" },
+      { status: 500 },
     );
   }
 }
-

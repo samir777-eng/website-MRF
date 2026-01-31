@@ -43,7 +43,7 @@ class OfflineSyncService {
           this.syncAll();
         }
       },
-      5 * 60 * 1000
+      5 * 60 * 1000,
     );
   }
 
@@ -251,7 +251,7 @@ class OfflineSyncService {
   // Public method to queue offline actions
   async queueAction(
     type: "progress" | "xp" | "quiz" | "achievement",
-    payload: unknown
+    payload: unknown,
   ): Promise<void> {
     await indexedDBManager.addToOfflineQueue({
       type,

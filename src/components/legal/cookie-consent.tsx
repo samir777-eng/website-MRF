@@ -251,7 +251,11 @@ export function CookieConsent() {
               <Button onClick={saveCustomPreferences} size="sm">
                 حفظ التفضيلات
               </Button>
-              <Button onClick={acceptAll} size="sm" className="text-[var(--color-purple-500)]">
+              <Button
+                onClick={acceptAll}
+                size="sm"
+                className="text-[var(--color-purple-500)]"
+              >
                 قبول الكل
               </Button>
             </div>

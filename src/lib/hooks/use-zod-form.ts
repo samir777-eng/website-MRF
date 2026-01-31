@@ -46,7 +46,7 @@ export interface UseZodFormReturn<T> {
     onChange: (
       e: React.ChangeEvent<
         HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-      >
+      >,
     ) => void;
     onBlur: () => void;
     error: string | undefined;
@@ -64,7 +64,7 @@ export interface UseZodFormReturn<T> {
  * Provides consistent validation behavior across all forms
  */
 export function useZodForm<T extends Record<string, unknown>>(
-  options: UseZodFormOptions<T>
+  options: UseZodFormOptions<T>,
 ): UseZodFormReturn<T> {
   const {
     schema,
@@ -95,7 +95,7 @@ export function useZodForm<T extends Record<string, unknown>>(
       });
       return fieldErrors;
     },
-    []
+    [],
   );
 
   // Validate a single field
@@ -108,7 +108,7 @@ export function useZodForm<T extends Record<string, unknown>>(
 
         if (!result.success) {
           const fieldError = result.error.issues.find(
-            (e) => e.path[0] === field
+            (e) => e.path[0] === field,
           );
           return fieldError?.message || null;
         }
@@ -117,7 +117,7 @@ export function useZodForm<T extends Record<string, unknown>>(
         return null;
       }
     },
-    [schema, state.values]
+    [schema, state.values],
   );
 
   // Validate entire form
@@ -159,7 +159,7 @@ export function useZodForm<T extends Record<string, unknown>>(
           const result = schema.safeParse(newValues);
           if (!result.success) {
             const fieldError = result.error.issues.find(
-              (e) => e.path[0] === field
+              (e) => e.path[0] === field,
             );
             if (fieldError) {
               newErrors[field] = fieldError.message;
@@ -174,7 +174,7 @@ export function useZodForm<T extends Record<string, unknown>>(
         };
       });
     },
-    [schema, validateOnChange]
+    [schema, validateOnChange],
   );
 
   // Set multiple values at once
@@ -197,7 +197,7 @@ export function useZodForm<T extends Record<string, unknown>>(
           const result = schema.safeParse(prev.values);
           if (!result.success) {
             const fieldError = result.error.issues.find(
-              (e) => e.path[0] === field
+              (e) => e.path[0] === field,
             );
             if (fieldError) {
               newErrors[field] = fieldError.message;
@@ -214,7 +214,7 @@ export function useZodForm<T extends Record<string, unknown>>(
         };
       });
     },
-    [schema, validateOnBlur]
+    [schema, validateOnBlur],
   );
 
   // Manually set an error
@@ -245,7 +245,7 @@ export function useZodForm<T extends Record<string, unknown>>(
           acc[key as keyof T] = true;
           return acc;
         },
-        {} as Partial<Record<keyof T, boolean>>
+        {} as Partial<Record<keyof T, boolean>>,
       );
 
       setState((prev) => ({ ...prev, touched: allTouched, isSubmitted: true }));
@@ -264,7 +264,7 @@ export function useZodForm<T extends Record<string, unknown>>(
         }
       }
     },
-    [state.values, validateForm, onSubmit]
+    [state.values, validateForm, onSubmit],
   );
 
   // Reset form to initial values
@@ -286,7 +286,7 @@ export function useZodForm<T extends Record<string, unknown>>(
       onChange: (
         e: React.ChangeEvent<
           HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-        >
+        >,
       ) => {
         const value =
           e.target.type === "checkbox"
@@ -298,7 +298,7 @@ export function useZodForm<T extends Record<string, unknown>>(
       error: state.errors[field],
       touched: !!state.touched[field],
     }),
-    [state.values, state.errors, state.touched, setValue, setTouched]
+    [state.values, state.errors, state.touched, setValue, setTouched],
   );
 
   // Get props for checkbox fields
@@ -308,7 +308,7 @@ export function useZodForm<T extends Record<string, unknown>>(
       onChange: (checked: boolean) => setValue(field, checked as T[keyof T]),
       error: state.errors[field],
     }),
-    [state.values, state.errors, setValue]
+    [state.values, state.errors, setValue],
   );
 
   return {
@@ -342,7 +342,7 @@ export function useZodForm<T extends Record<string, unknown>>(
  */
 export function getFirstError<T>(
   schema: ZodSchema<T>,
-  values: T
+  values: T,
 ): { field: string; message: string } | null {
   const result = schema.safeParse(values);
   if (result.success) return null;

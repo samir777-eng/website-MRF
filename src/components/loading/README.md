@@ -47,7 +47,7 @@ import {
   LecturesListSkeleton,
   LessonsListSkeleton,
   ProfileSkeleton,
-} from '@/components/loading';
+} from "@/components/loading";
 
 // In your loading.tsx file
 export default function Loading() {
@@ -70,7 +70,7 @@ export default function Loading() {
 ### Using the Hook
 
 ```tsx
-import { useOptimisticUpdate } from '@/lib/optimistic-updates';
+import { useOptimisticUpdate } from "@/lib/optimistic-updates";
 
 function LessonCard({ lesson }) {
   const { performOptimisticUpdate, isUpdating } = useOptimisticUpdate();
@@ -81,15 +81,15 @@ function LessonCard({ lesson }) {
       currentData: lessons,
       updateFn: (data) =>
         data.map((l) =>
-          l.id === lesson.id ? { ...l, completed: true, progress: 100 } : l
+          l.id === lesson.id ? { ...l, completed: true, progress: 100 } : l,
         ),
       apiFn: () => api.completeLesson(lesson.id),
       onSuccess: () => {
-        toast.success('تم إكمال الدرس');
+        toast.success("تم إكمال الدرس");
         celebration.showXPGain(100);
       },
       onError: () => {
-        toast.error('حدث خطأ، يرجى المحاولة مرة أخرى');
+        toast.error("حدث خطأ، يرجى المحاولة مرة أخرى");
       },
     });
 
@@ -100,7 +100,7 @@ function LessonCard({ lesson }) {
 
   return (
     <button onClick={completeLesson} disabled={isUpdating}>
-      {isUpdating ? 'جاري الحفظ...' : 'إكمال الدرس'}
+      {isUpdating ? "جاري الحفظ..." : "إكمال الدرس"}
     </button>
   );
 }
@@ -114,7 +114,7 @@ import {
   optimisticAddToArray,
   optimisticRemoveFromArray,
   optimisticUpdateNested,
-} from '@/lib/optimistic-updates';
+} from "@/lib/optimistic-updates";
 
 // Update single item in array
 const updated = optimisticUpdateArray(lessons, lessonId, (lesson) => ({
@@ -129,7 +129,11 @@ const added = optimisticAddToArray(lessons, newLesson);
 const removed = optimisticRemoveFromArray(lessons, lessonId);
 
 // Update nested property
-const nested = optimisticUpdateNested(userStats, ['progress', 'lessonsCompleted'], 10);
+const nested = optimisticUpdateNested(
+  userStats,
+  ["progress", "lessonsCompleted"],
+  10,
+);
 ```
 
 ## Best Practices
@@ -147,11 +151,17 @@ Replace existing loading spinners:
 
 ```tsx
 // ❌ Before
-{isLoading && <Spinner />}
-{!isLoading && <Content />}
+{
+  isLoading && <Spinner />;
+}
+{
+  !isLoading && <Content />;
+}
 
 // ✅ After
-{isLoading ? <DashboardSkeleton /> : <Content />}
+{
+  isLoading ? <DashboardSkeleton /> : <Content />;
+}
 ```
 
 Implement optimistic updates:
@@ -164,7 +174,7 @@ const handleClick = async () => {
     await api.update();
     setData(newData);
   } catch (error) {
-    toast.error('Error');
+    toast.error("Error");
   } finally {
     setLoading(false);
   }
@@ -178,8 +188,8 @@ const handleClick = async () => {
     currentData: data,
     updateFn: (d) => ({ ...d, updated: true }),
     apiFn: () => api.update(),
-    onSuccess: () => toast.success('تم التحديث'),
-    onError: () => toast.error('حدث خطأ'),
+    onSuccess: () => toast.success("تم التحديث"),
+    onError: () => toast.error("حدث خطأ"),
   });
 };
 ```

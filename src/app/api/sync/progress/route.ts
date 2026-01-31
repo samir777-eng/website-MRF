@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
 // Validation schema for progress entries
 const progressEntrySchema = z.object({
@@ -31,13 +31,17 @@ export async function POST(request: NextRequest) {
 
     if (!validation.success) {
       return NextResponse.json(
-        { success: false, error: 'Invalid data', details: validation.error.issues },
-        { status: 400 }
+        {
+          success: false,
+          error: "Invalid data",
+          details: validation.error.issues,
+        },
+        { status: 400 },
       );
     }
 
     const { progress } = validation.data;
-    
+
     // Process each progress entry
     const results = {
       synced: 0,
@@ -48,7 +52,7 @@ export async function POST(request: NextRequest) {
     for (const entry of progress) {
       try {
         const existing = progressStore.get(entry.id);
-        
+
         // Check for conflicts (server has newer data)
         if (existing && existing.lastUpdated > entry.lastUpdated) {
           results.conflicts++;
@@ -63,17 +67,19 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    console.log(`📥 Progress synced: ${results.synced} entries, ${results.conflicts} conflicts`);
+    console.log(
+      `📥 Progress synced: ${results.synced} entries, ${results.conflicts} conflicts`,
+    );
 
     return NextResponse.json({
       success: true,
       results,
     });
   } catch (error) {
-    console.error('Sync progress error:', error);
+    console.error("Sync progress error:", error);
     return NextResponse.json(
-      { success: false, error: 'Failed to sync progress' },
-      { status: 500 }
+      { success: false, error: "Failed to sync progress" },
+      { status: 500 },
     );
   }
 }
@@ -85,31 +91,31 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const lessonId = searchParams.get('lessonId');
+    const lessonId = searchParams.get("lessonId");
 
     if (lessonId) {
       // Get specific lesson progress
-      const progress = Array.from(progressStore.values())
-        .find(p => p.lessonId === lessonId);
-      
-      return NextResponse.json({ 
-        success: true, 
-        progress: progress || null 
+      const progress = Array.from(progressStore.values()).find(
+        (p) => p.lessonId === lessonId,
+      );
+
+      return NextResponse.json({
+        success: true,
+        progress: progress || null,
       });
     }
 
     // Get all progress
     const allProgress = Array.from(progressStore.values());
-    return NextResponse.json({ 
-      success: true, 
-      progress: allProgress 
+    return NextResponse.json({
+      success: true,
+      progress: allProgress,
     });
   } catch (error) {
-    console.error('Get progress error:', error);
+    console.error("Get progress error:", error);
     return NextResponse.json(
-      { success: false, error: 'Failed to get progress' },
-      { status: 500 }
+      { success: false, error: "Failed to get progress" },
+      { status: 500 },
     );
   }
 }
-

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export function useUnsavedChanges(hasUnsavedChanges: boolean) {
-    const [showWarning, setShowWarning] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -25,7 +25,7 @@ export function useUnsavedChanges(hasUnsavedChanges: boolean) {
   const confirmNavigation = (callback: () => void) => {
     if (hasUnsavedChanges) {
       const confirmed = window.confirm(
-        "لديك تغييرات غير محفوظة. هل أنت متأكد من المغادرة؟"
+        "لديك تغييرات غير محفوظة. هل أنت متأكد من المغادرة؟",
       );
       if (confirmed) {
         callback();
@@ -37,4 +37,3 @@ export function useUnsavedChanges(hasUnsavedChanges: boolean) {
 
   return { confirmNavigation, showWarning, setShowWarning };
 }
-

@@ -50,5 +50,4 @@ export function SpotlightCard({
   );
 }
 
-
 export default SpotlightCard;

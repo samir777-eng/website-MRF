@@ -65,14 +65,14 @@ export function useCelebrations() {
     (
       title: string,
       description: string,
-      icon: "trophy" | "star" | "target" | "flame" | "award" = "trophy"
+      icon: "trophy" | "star" | "target" | "flame" | "award" = "trophy",
     ) => {
       setState((prev) => ({
         ...prev,
         achievement: { show: true, title, description, icon },
       }));
     },
-    []
+    [],
   );
 
   const hideAchievement = useCallback(() => {
@@ -132,4 +132,3 @@ export function useCelebrations() {
     triggerConfetti,
   };
 }
-

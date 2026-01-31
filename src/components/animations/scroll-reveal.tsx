@@ -34,7 +34,7 @@ export function ScrollReveal({
       {
         threshold: 0.1,
         rootMargin: "0px 0px -50px 0px",
-      }
+      },
     );
 
     if (ref.current) {
@@ -50,7 +50,7 @@ export function ScrollReveal({
 
   const getTransform = () => {
     if (isVisible) return "translate(0, 0)";
-    
+
     switch (direction) {
       case "up":
         return `translate(0, ${distance}px)`;
@@ -80,6 +80,5 @@ export function ScrollReveal({
     </div>
   );
 }
-
 
 export default ScrollReveal;

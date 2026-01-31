@@ -1,51 +1,56 @@
 // Authentication System Types for MRF Educational Platform
 // CRITICAL: Grade Selection - Grade is IMMUTABLE after registration
 
-import type { GradeLevel } from './lecture';
+import type { GradeLevel } from "./lecture";
 
-export type UserRole = 'student' | 'teacher' | 'admin';
+export type UserRole = "student" | "teacher" | "admin";
 
-export type SubscriptionStatus = 'active' | 'expired' | 'trial' | 'cancelled' | 'none';
+export type SubscriptionStatus =
+  | "active"
+  | "expired"
+  | "trial"
+  | "cancelled"
+  | "none";
 
-export type SubscriptionPlan = 'monthly' | 'semester' | 'yearly';
+export type SubscriptionPlan = "monthly" | "semester" | "yearly";
 
 export interface User {
   id: string;
   email: string;
   name: string;
-  
+
   // CRITICAL: Grade Selection
   gradeLevel: GradeLevel; // IMMUTABLE after registration
   role: UserRole;
-  
+
   // Profile
   phone?: string;
   avatar?: string;
   bio?: string;
-  
+
   // Subscription
   subscriptionStatus: SubscriptionStatus;
   subscriptionPlan?: SubscriptionPlan;
   subscriptionStartDate?: Date;
   subscriptionEndDate?: Date;
-  
+
   // Verification
   emailVerified: boolean;
   emailVerifiedAt?: Date;
   phoneVerified: boolean;
-  
+
   // Metadata
   createdAt: Date;
   updatedAt: Date;
   lastLoginAt?: Date;
-  
+
   // Settings
   preferences: UserPreferences;
 }
 
 export interface UserPreferences {
-  language: 'ar' | 'en';
-  theme: 'light' | 'dark' | 'system';
+  language: "ar" | "en";
+  theme: "light" | "dark" | "system";
   notifications: NotificationPreferences;
   privacy: PrivacyPreferences;
 }
@@ -54,7 +59,7 @@ export interface NotificationPreferences {
   email: boolean;
   push: boolean;
   sms: boolean;
-  
+
   // Notification types
   newLecture: boolean;
   quizReminder: boolean;
@@ -165,7 +170,7 @@ export interface GradeChangeRequest {
   currentGrade: GradeLevel;
   requestedGrade: GradeLevel;
   reason: string;
-  status: 'pending' | 'approved' | 'rejected';
+  status: "pending" | "approved" | "rejected";
   requestedAt: Date;
   reviewedAt?: Date;
   reviewedBy?: string; // Admin ID
@@ -199,7 +204,7 @@ export interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
-  
+
   // Actions
   login: (credentials: LoginRequest) => Promise<void>;
   register: (data: RegisterRequest) => Promise<void>;
@@ -207,11 +212,11 @@ export interface AuthContextType {
   updateProfile: (data: UpdateProfileRequest) => Promise<void>;
   changePassword: (data: ChangePasswordRequest) => Promise<void>;
   requestGradeChange: (data: RequestGradeChangeRequest) => Promise<void>;
-  
+
   // Verification
   verifyEmail: (token: string) => Promise<void>;
   resendVerificationEmail: () => Promise<void>;
-  
+
   // Password reset
   forgotPassword: (email: string) => Promise<void>;
   resetPassword: (data: ResetPasswordRequest) => Promise<void>;
@@ -222,25 +227,25 @@ export interface Subscription {
   id: string;
   userId: string;
   gradeLevel: GradeLevel;
-  
+
   // Plan
   plan: SubscriptionPlan;
   status: SubscriptionStatus;
-  
+
   // Dates
   startDate: Date;
   endDate: Date;
   cancelledAt?: Date;
-  
+
   // Payment
   amount: number;
   currency: string;
   paymentMethod: string;
-  
+
   // Auto-renewal
   autoRenew: boolean;
   nextBillingDate?: Date;
-  
+
   // Metadata
   createdAt: Date;
   updatedAt: Date;
@@ -283,4 +288,3 @@ export interface RequestContext {
   isStudent: boolean;
   hasActiveSubscription: boolean;
 }
-

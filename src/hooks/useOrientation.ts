@@ -53,7 +53,7 @@ export function useOrientation(): OrientationState {
       if (screen.orientation) {
         screen.orientation.removeEventListener(
           "change",
-          handleOrientationChange
+          handleOrientationChange,
         );
       }
     };

@@ -62,7 +62,13 @@ const questions = [
   },
 ];
 
-const lectures = ["الكل", "المحاضرة الأولى", "المحاضرة الثانية", "المحاضرة الخامسة", "المحاضرة العاشرة"];
+const lectures = [
+  "الكل",
+  "المحاضرة الأولى",
+  "المحاضرة الثانية",
+  "المحاضرة الخامسة",
+  "المحاضرة العاشرة",
+];
 
 export default function QuestionsCornerPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -70,12 +76,16 @@ export default function QuestionsCornerPage() {
 
   const filteredQuestions = questions.filter((q) => {
     const matchesSearch = q.title.includes(searchQuery);
-    const matchesLecture = selectedLecture === "الكل" || q.lecture === selectedLecture;
+    const matchesLecture =
+      selectedLecture === "الكل" || q.lecture === selectedLecture;
     return matchesSearch && matchesLecture;
   });
 
   return (
-    <div className="min-h-screen bg-background dark:bg-zinc-950 pb-24 lg:pb-8" dir="rtl">
+    <div
+      className="min-h-screen bg-background dark:bg-zinc-950 pb-24 lg:pb-8"
+      dir="rtl"
+    >
       <div className="container mx-auto px-4 md:px-6 py-8 space-y-8">
         {/* Header */}
         <div className="flex items-center gap-4">
@@ -90,8 +100,12 @@ export default function QuestionsCornerPage() {
                 <HelpCircle className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-foreground">ركن الأسئلة</h1>
-                <p className="text-sm text-muted-foreground">{questions.length} سؤال</p>
+                <h1 className="text-2xl font-bold text-foreground">
+                  ركن الأسئلة
+                </h1>
+                <p className="text-sm text-muted-foreground">
+                  {questions.length} سؤال
+                </p>
               </div>
             </div>
           </div>
@@ -118,7 +132,9 @@ export default function QuestionsCornerPage() {
             </SelectTrigger>
             <SelectContent>
               {lectures.map((lecture) => (
-                <SelectItem key={lecture} value={lecture}>{lecture}</SelectItem>
+                <SelectItem key={lecture} value={lecture}>
+                  {lecture}
+                </SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -127,10 +143,15 @@ export default function QuestionsCornerPage() {
         {/* Questions List */}
         <div className="space-y-4">
           {filteredQuestions.map((question) => (
-            <Card key={question.id} className="hover:shadow-lg transition-shadow">
+            <Card
+              key={question.id}
+              className="hover:shadow-lg transition-shadow"
+            >
               <CardContent className="p-5">
                 <div className="flex items-start gap-4">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center ${question.status === "answered" ? "bg-green-100 dark:bg-green-900/30" : "bg-amber-100 dark:bg-amber-900/30"}`}>
+                  <div
+                    className={`w-10 h-10 rounded-full flex items-center justify-center ${question.status === "answered" ? "bg-green-100 dark:bg-green-900/30" : "bg-amber-100 dark:bg-amber-900/30"}`}
+                  >
                     {question.status === "answered" ? (
                       <CheckCircle className="w-5 h-5 text-green-600" />
                     ) : (
@@ -138,7 +159,9 @@ export default function QuestionsCornerPage() {
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-foreground mb-1">{question.title}</h3>
+                    <h3 className="font-semibold text-foreground mb-1">
+                      {question.title}
+                    </h3>
                     <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                       <Badge variant="secondary">{question.lecture}</Badge>
                       <Badge variant="outline">{question.category}</Badge>
@@ -152,7 +175,9 @@ export default function QuestionsCornerPage() {
                       )}
                     </div>
                   </div>
-                  <Button variant="ghost" size="sm">عرض</Button>
+                  <Button variant="ghost" size="sm">
+                    عرض
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -173,4 +198,3 @@ export default function QuestionsCornerPage() {
     </div>
   );
 }
-

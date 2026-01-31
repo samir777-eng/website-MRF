@@ -88,5 +88,4 @@ export function Particles({
   );
 }
 
-
 export default Particles;

@@ -5,7 +5,12 @@
  * Smooth pull-to-refresh with rubber band effect and haptic feedback
  */
 
-import { motion, useMotionValue, useTransform, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import { RefreshCw, Loader2 } from "lucide-react";
 import { usePullToRefresh } from "@/lib/swipe-gestures";
 import { cn } from "@/lib/utils";
@@ -45,28 +50,28 @@ export function PullToRefresh({
   const rubberBandDistance = useTransform(
     useMotionValue(pullDistance),
     [0, threshold, threshold * 1.5],
-    [0, threshold, threshold * 1.2]
+    [0, threshold, threshold * 1.2],
   );
 
   // Rotation based on pull distance
   const rotation = useTransform(
     useMotionValue(pullDistance),
     [0, threshold],
-    [0, 180]
+    [0, 180],
   );
 
   // Opacity fade in
   const opacity = useTransform(
     useMotionValue(pullDistance),
     [0, threshold / 2, threshold],
-    [0, 0.5, 1]
+    [0, 0.5, 1],
   );
 
   // Scale up as approaching threshold
   const scale = useTransform(
     useMotionValue(pullDistance),
     [0, threshold / 2, threshold],
-    [0.5, 0.8, 1]
+    [0.5, 0.8, 1],
   );
 
   const isTriggered = pullDistance >= threshold;
@@ -113,7 +118,7 @@ export function PullToRefresh({
                   "w-10 h-10 rounded-full flex items-center justify-center",
                   isTriggered || isRefreshing
                     ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground"
+                    : "bg-muted text-muted-foreground",
                 )}
               >
                 {isRefreshing ? (
@@ -192,7 +197,7 @@ export function SimpleRefreshIndicator({
           className={cn(
             "fixed top-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-sm",
             "py-2 px-4 flex items-center justify-center gap-2 text-primary-foreground",
-            className
+            className,
           )}
         >
           <motion.div

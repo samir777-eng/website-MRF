@@ -11,7 +11,8 @@ interface ErrorBoundaryProviderProps {
  * Client-side Error Boundary Provider
  * Wraps the application with error boundary to catch runtime errors
  */
-export function ErrorBoundaryProvider({ children }: ErrorBoundaryProviderProps) {
+export function ErrorBoundaryProvider({
+  children,
+}: ErrorBoundaryProviderProps) {
   return <ErrorBoundary>{children}</ErrorBoundary>;
 }
-

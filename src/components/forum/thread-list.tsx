@@ -24,7 +24,7 @@ export function ThreadList({ initialCategory, gradeLevel }: ThreadListProps) {
   const [threads, setThreads] = useState<ForumThread[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [category, setCategory] = useState<ForumCategory | "all">(
-    initialCategory || "all"
+    initialCategory || "all",
   );
   const [searchQuery, setSearchQuery] = useState("");
   const [showFilters, setShowFilters] = useState(false);
@@ -54,8 +54,12 @@ export function ThreadList({ initialCategory, gradeLevel }: ThreadListProps) {
   }
 
   const statusIcons = {
-    open: <MessageSquare className="text-blue-500 dark:text-blue-400" size={16} />,
-    answered: <CheckCircle className="text-green-500 dark:text-green-400" size={16} />,
+    open: (
+      <MessageSquare className="text-blue-500 dark:text-blue-400" size={16} />
+    ),
+    answered: (
+      <CheckCircle className="text-green-500 dark:text-green-400" size={16} />
+    ),
     closed: <Lock className="text-muted-foreground" size={16} />,
     pinned: <Pin className="text-yellow-500 dark:text-yellow-400" size={16} />,
   };
@@ -124,10 +128,7 @@ export function ThreadList({ initialCategory, gradeLevel }: ThreadListProps) {
       <div className="space-y-3">
         {isLoading ? (
           Array.from({ length: 5 }).map((_, i) => (
-            <div
-              key={i}
-              className="p-4 bg-muted/50 rounded-xl animate-pulse"
-            >
+            <div key={i} className="p-4 bg-muted/50 rounded-xl animate-pulse">
               <div className="h-5 bg-muted rounded w-3/4 mb-2" />
               <div className="h-4 bg-muted rounded w-1/2" />
             </div>

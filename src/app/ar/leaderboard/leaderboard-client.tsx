@@ -205,7 +205,10 @@ export function LeaderboardClient() {
       {/* Tabs */}
       <Card className="glass border-border/50">
         <CardContent className="p-6">
-          <Tabs value={period} onValueChange={(v) => setPeriod(v as LeaderboardPeriod)}>
+          <Tabs
+            value={period}
+            onValueChange={(v) => setPeriod(v as LeaderboardPeriod)}
+          >
             <TabsList className="grid w-full grid-cols-4 mb-6">
               <TabsTrigger value="weekly" className="flex items-center gap-2">
                 <Zap className="w-4 h-4" />
@@ -228,11 +231,7 @@ export function LeaderboardClient() {
             <TabsContent value={period} className="space-y-3 mt-0">
               <AnimatePresence mode="popLayout">
                 {users.map((user, index) => (
-                  <LeaderboardItem
-                    key={user.id}
-                    user={user}
-                    index={index}
-                  />
+                  <LeaderboardItem key={user.id} user={user} index={index} />
                 ))}
               </AnimatePresence>
             </TabsContent>
@@ -244,7 +243,8 @@ export function LeaderboardClient() {
       <Card className="glass border-border/50">
         <CardContent className="p-4">
           <div className="text-center text-sm text-muted-foreground">
-            يتم تحديث الترتيب كل ساعة • إجمالي الطلاب: {currentUserRank.totalUsers.toLocaleString()}
+            يتم تحديث الترتيب كل ساعة • إجمالي الطلاب:{" "}
+            {currentUserRank.totalUsers.toLocaleString()}
           </div>
         </CardContent>
       </Card>
@@ -271,10 +271,7 @@ function CurrentUserRankCard({
   const progressToNext = 100 - (xpToNext / 1000) * 100; // Assume 1000 XP difference
 
   return (
-    <motion.div
-      initial={{ y: 20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-    >
+    <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
       <Card className="border-0 bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-2xl">
         <CardContent className="p-6">
           <div className="flex items-center gap-4">
@@ -293,7 +290,9 @@ function CurrentUserRankCard({
                 <h3 className="text-2xl font-bold">ترتيبك الحالي</h3>
                 <div className="flex items-center gap-2 text-white/90 text-sm">
                   <TrendingUp className="w-4 h-4" />
-                  <span>أفضل من <strong>{percentile}%</strong> من الطلاب</span>
+                  <span>
+                    أفضل من <strong>{percentile}%</strong> من الطلاب
+                  </span>
                 </div>
               </div>
 
@@ -367,10 +366,14 @@ function LeaderboardItem({
         <div
           className={cn(
             "w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg",
-            user.rank === 1 && "bg-gradient-to-br from-amber-400 to-orange-500 ring-4 ring-amber-400/30",
-            user.rank === 2 && "bg-gradient-to-br from-gray-300 to-gray-500 ring-4 ring-gray-400/30",
-            user.rank === 3 && "bg-gradient-to-br from-orange-400 to-orange-600 ring-4 ring-orange-400/30",
-            user.rank > 3 && "bg-gradient-to-br from-brand-indigo-500 to-brand-indigo-600",
+            user.rank === 1 &&
+              "bg-gradient-to-br from-amber-400 to-orange-500 ring-4 ring-amber-400/30",
+            user.rank === 2 &&
+              "bg-gradient-to-br from-gray-300 to-gray-500 ring-4 ring-gray-400/30",
+            user.rank === 3 &&
+              "bg-gradient-to-br from-orange-400 to-orange-600 ring-4 ring-orange-400/30",
+            user.rank > 3 &&
+              "bg-gradient-to-br from-brand-indigo-500 to-brand-indigo-600",
           )}
         >
           {user.name.charAt(0)}
@@ -380,23 +383,21 @@ function LeaderboardItem({
       {/* User Info */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-1">
-          <h3 className="font-bold text-foreground truncate">
-            {user.name}
-          </h3>
+          <h3 className="font-bold text-foreground truncate">{user.name}</h3>
           {user.isCurrentUser && (
             <Badge className="bg-primary text-white text-xs">أنت</Badge>
           )}
           {user.badges && (
             <div className="flex gap-1">
               {user.badges.map((badge, i) => (
-                <span key={i} className="text-sm">{badge}</span>
+                <span key={i} className="text-sm">
+                  {badge}
+                </span>
               ))}
             </div>
           )}
         </div>
-        <div className="text-xs text-muted-foreground">
-          {user.grade}
-        </div>
+        <div className="text-xs text-muted-foreground">{user.grade}</div>
       </div>
 
       {/* XP Display */}
@@ -445,11 +446,7 @@ function RankBadge({ rank }: { rank: number }) {
     return <div className="text-3xl">🥉</div>;
   }
 
-  return (
-    <div className="text-xl font-bold text-muted-foreground">
-      #{rank}
-    </div>
-  );
+  return <div className="text-xl font-bold text-muted-foreground">#{rank}</div>;
 }
 
 // ============================================================================

@@ -49,11 +49,12 @@ const badgeVariants = cva(
       size: "default",
       animated: false,
     },
-  }
+  },
 );
 
 export interface BadgeProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof badgeVariants> {
   /** Optional icon to display before text */
   icon?: React.ReactNode;

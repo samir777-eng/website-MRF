@@ -85,7 +85,9 @@ export function VideoPlayer({
   const [hasError, setHasError] = useState(false);
   const [isSafariBrowser, setIsSafariBrowser] = useState(false);
   const [captionsEnabled, setCaptionsEnabled] = useState(false);
-  const [activeCaptionTrack, setActiveCaptionTrack] = useState<string | null>(null);
+  const [activeCaptionTrack, setActiveCaptionTrack] = useState<string | null>(
+    null,
+  );
   const [showCaptionMenu, setShowCaptionMenu] = useState(false);
 
   // Detect Safari on mount
@@ -141,7 +143,7 @@ export function VideoPlayer({
         JSON.stringify({
           enabled: captionsEnabled,
           trackLang: activeCaptionTrack,
-        })
+        }),
       );
     }
   }, [captionsEnabled, activeCaptionTrack, captions]);
@@ -352,7 +354,7 @@ export function VideoPlayer({
 
     video.currentTime = Math.max(
       0,
-      Math.min(duration, video.currentTime + seconds)
+      Math.min(duration, video.currentTime + seconds),
     );
   };
 
@@ -481,7 +483,7 @@ export function VideoPlayer({
       ref={containerRef}
       className={cn(
         "relative bg-black rounded-lg overflow-hidden group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-        className
+        className,
       )}
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
@@ -494,9 +496,10 @@ export function VideoPlayer({
       {/* Hidden keyboard shortcuts help text for screen readers */}
       <span id="video-keyboard-shortcuts" className="sr-only">
         اضغط مسافة أو K للتشغيل/الإيقاف، سهم يمين أو L للتقديم 10 ثواني، سهم
-        يسار أو J للرجوع 10 ثواني، M لكتم الصوت، F لملء الشاشة، C لتفعيل/إيقاف الترجمة
+        يسار أو J للرجوع 10 ثواني، M لكتم الصوت، F لملء الشاشة، C لتفعيل/إيقاف
+        الترجمة
       </span>
-      { }
+      {}
       <video
         ref={videoRef}
         src={src}
@@ -589,7 +592,7 @@ export function VideoPlayer({
           "absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-all duration-300",
           showControls || !isPlaying
             ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-5"
+            : "opacity-0 translate-y-5",
         )}
       >
         {/* Progress Bar */}
@@ -700,7 +703,7 @@ export function VideoPlayer({
                   variant="ghost"
                   className={cn(
                     "text-white hover:bg-white/20",
-                    captionsEnabled && "bg-white/20"
+                    captionsEnabled && "bg-white/20",
                   )}
                   onClick={() => {
                     if (captions.length === 1) {
@@ -709,10 +712,14 @@ export function VideoPlayer({
                       setShowCaptionMenu(!showCaptionMenu);
                     }
                   }}
-                  aria-label={captionsEnabled ? "إيقاف الترجمة" : "تفعيل الترجمة"}
+                  aria-label={
+                    captionsEnabled ? "إيقاف الترجمة" : "تفعيل الترجمة"
+                  }
                   aria-expanded={showCaptionMenu}
                   aria-haspopup={captions.length > 1 ? "menu" : undefined}
-                  title={captionsEnabled ? "إيقاف الترجمة (C)" : "تفعيل الترجمة (C)"}
+                  title={
+                    captionsEnabled ? "إيقاف الترجمة (C)" : "تفعيل الترجمة (C)"
+                  }
                 >
                   {captionsEnabled ? (
                     <Captions className="w-4 h-4" aria-hidden="true" />
@@ -731,14 +738,17 @@ export function VideoPlayer({
                     <button
                       className={cn(
                         "w-full px-4 py-2 text-start text-sm text-white hover:bg-white/20 transition-colors",
-                        !captionsEnabled && "bg-white/10"
+                        !captionsEnabled && "bg-white/10",
                       )}
                       role="menuitem"
                       onClick={turnOffCaptions}
                     >
                       إيقاف الترجمة
                     </button>
-                    <div className="border-t border-white/20 my-1" role="separator" />
+                    <div
+                      className="border-t border-white/20 my-1"
+                      role="separator"
+                    />
                     {captions.map((track) => (
                       <button
                         key={`${track.srcLang}-${track.kind}`}
@@ -746,12 +756,13 @@ export function VideoPlayer({
                           "w-full px-4 py-2 text-start text-sm text-white hover:bg-white/20 transition-colors",
                           captionsEnabled &&
                             activeCaptionTrack === track.srcLang &&
-                            "bg-white/10"
+                            "bg-white/10",
                         )}
                         role="menuitem"
                         onClick={() => selectCaptionTrack(track.srcLang)}
                         aria-current={
-                          captionsEnabled && activeCaptionTrack === track.srcLang
+                          captionsEnabled &&
+                          activeCaptionTrack === track.srcLang
                             ? "true"
                             : undefined
                         }

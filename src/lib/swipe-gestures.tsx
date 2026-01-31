@@ -63,7 +63,7 @@ export function useSwipeable(config: SwipeConfig) {
         time: Date.now(),
       };
     },
-    []
+    [],
   );
 
   const getSwipeDirection = useCallback(
@@ -85,7 +85,7 @@ export function useSwipeable(config: SwipeConfig) {
         return deltaY > 0 ? "down" : "up";
       }
     },
-    [threshold]
+    [threshold],
   );
 
   const handleStart = useCallback(
@@ -93,7 +93,7 @@ export function useSwipeable(config: SwipeConfig) {
       startPoint.current = getTouchPoint(event);
       isSwiping.current = true;
     },
-    [getTouchPoint]
+    [getTouchPoint],
   );
 
   const handleMove = useCallback(
@@ -111,7 +111,12 @@ export function useSwipeable(config: SwipeConfig) {
         onSwipeStart(direction);
       }
     },
-    [getTouchPoint, getSwipeDirection, onSwipeStart, preventDefaultTouchmoveEvent]
+    [
+      getTouchPoint,
+      getSwipeDirection,
+      onSwipeStart,
+      preventDefaultTouchmoveEvent,
+    ],
   );
 
   const handleEnd = useCallback(
@@ -121,7 +126,7 @@ export function useSwipeable(config: SwipeConfig) {
       const endPoint = getTouchPoint(
         "changedTouches" in event
           ? { ...event, touches: event.changedTouches }
-          : event
+          : event,
       );
       const direction = getSwipeDirection(startPoint.current, endPoint);
 
@@ -161,7 +166,7 @@ export function useSwipeable(config: SwipeConfig) {
       onSwipeDown,
       onSwipeEnd,
       hapticFeedback,
-    ]
+    ],
   );
 
   // Return event handlers
@@ -198,11 +203,7 @@ export function Swipeable({
   const handlers = useSwipeable(config);
 
   return (
-    <div 
-      {...(handlers as any)} 
-      className={className} 
-      style={style}
-    >
+    <div {...(handlers as any)} className={className} style={style}>
       {children}
     </div>
   );
@@ -268,7 +269,7 @@ export function useSwipeProgress(maxDistance: number = 200) {
         isActive: true,
       });
     },
-    [maxDistance]
+    [maxDistance],
   );
 
   const handleEnd = useCallback(() => {
@@ -307,7 +308,7 @@ import React from "react";
 
 export function useCarouselSwipe(
   itemCount: number,
-  onIndexChange?: (index: number) => void
+  onIndexChange?: (index: number) => void,
 ) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
@@ -350,9 +351,13 @@ export function useNavigationSwipe(
     threshold?: number;
     hapticFeedback?: boolean;
     disabled?: boolean;
-  }
+  },
 ) {
-  const { threshold = 100, hapticFeedback = true, disabled = false } = options || {};
+  const {
+    threshold = 100,
+    hapticFeedback = true,
+    disabled = false,
+  } = options || {};
 
   const handlers = useSwipeable({
     onSwipeLeft: disabled ? undefined : onNext,
@@ -376,19 +381,26 @@ export function usePullToRefresh(
     threshold?: number;
     refreshingDuration?: number;
     disabled?: boolean;
-  }
+  },
 ) {
-  const { threshold = 80, refreshingDuration = 1000, disabled = false } = options || {};
-  
+  const {
+    threshold = 80,
+    refreshingDuration = 1000,
+    disabled = false,
+  } = options || {};
+
   const [isRefreshing, setIsRefreshing] = React.useState(false);
   const [pullDistance, setPullDistance] = React.useState(0);
   const startY = useRef<number>(0);
   const isPulling = useRef(false);
 
-  const handleTouchStart = useCallback((event: TouchEvent) => {
-    if (disabled || window.scrollY > 0) return;
-    startY.current = event.touches[0].clientY;
-  }, [disabled]);
+  const handleTouchStart = useCallback(
+    (event: TouchEvent) => {
+      if (disabled || window.scrollY > 0) return;
+      startY.current = event.touches[0].clientY;
+    },
+    [disabled],
+  );
 
   const handleTouchMove = useCallback(
     (event: TouchEvent) => {
@@ -407,7 +419,7 @@ export function usePullToRefresh(
         }
       }
     },
-    [disabled, threshold, pullDistance]
+    [disabled, threshold, pullDistance],
   );
 
   const handleTouchEnd = useCallback(async () => {

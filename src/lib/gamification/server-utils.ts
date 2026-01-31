@@ -84,7 +84,7 @@ function createInitialState(userId: string): ServerGamificationState {
  */
 export function validateAction(
   state: ServerGamificationState,
-  action: XPActionName
+  action: XPActionName,
 ): { valid: boolean; reason?: string } {
   const now = Date.now();
 
@@ -105,7 +105,7 @@ export function validateAction(
   if (maxPerHour) {
     const oneHourAgo = now - 3600000;
     const recentActions = state.actionHistory.filter(
-      (h) => h.action === action && h.timestamp > oneHourAgo
+      (h) => h.action === action && h.timestamp > oneHourAgo,
     );
     if (recentActions.length >= maxPerHour) {
       return {
@@ -142,7 +142,7 @@ export function calculateLevel(totalXP: number): number {
 export function awardXP(
   userId: string,
   action: XPActionName,
-  context?: Record<string, unknown>
+  context?: Record<string, unknown>,
 ): {
   success: boolean;
   xpAwarded: number;
@@ -220,7 +220,7 @@ export function awardXP(
  */
 function updateStatsForAction(
   state: ServerGamificationState,
-  action: XPActionName
+  action: XPActionName,
 ): void {
   switch (action) {
     case "LESSON_COMPLETED":
@@ -389,7 +389,7 @@ export function updateStreak(userId: string): {
  */
 export function consumeEnergy(
   userId: string,
-  action: EnergyAction
+  action: EnergyAction,
 ): {
   success: boolean;
   energyConsumed: number;
@@ -405,7 +405,7 @@ export function consumeEnergy(
   const energyToAdd = Math.floor(timePassed / ENERGY_CONFIG.ENERGY_REGEN_TIME);
   state.currentEnergy = Math.min(
     ENERGY_CONFIG.MAX_ENERGY,
-    state.currentEnergy + energyToAdd
+    state.currentEnergy + energyToAdd,
   );
 
   if (energyToAdd > 0) {

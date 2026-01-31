@@ -11,7 +11,11 @@ interface GemsDisplayProps {
   animated?: boolean;
 }
 
-export function GemsDisplay({ showAddButton = true, size = "md", animated = true }: GemsDisplayProps) {
+export function GemsDisplay({
+  showAddButton = true,
+  size = "md",
+  animated = true,
+}: GemsDisplayProps) {
   const [gems, setGems] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [showPulse, _setShowPulse] = useState(false);
@@ -43,14 +47,16 @@ export function GemsDisplay({ showAddButton = true, size = "md", animated = true
   const iconSizes = { sm: 14, md: 18, lg: 24 };
 
   return (
-    <div className={`flex items-center ${sizeClasses[size]} bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full border border-purple-500/20`}>
+    <div
+      className={`flex items-center ${sizeClasses[size]} bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full border border-purple-500/20`}
+    >
       <motion.div
         animate={animated && showPulse ? { scale: [1, 1.2, 1] } : {}}
         transition={{ duration: 0.3 }}
       >
         <Gem className="text-purple-400" size={iconSizes[size]} />
       </motion.div>
-      
+
       <AnimatePresence mode="wait">
         <motion.span
           key={gems}
@@ -64,7 +70,11 @@ export function GemsDisplay({ showAddButton = true, size = "md", animated = true
       </AnimatePresence>
 
       {showAddButton && (
-        <Link href="/ar/store?tab=rewards" className="ms-1 p-1 hover:bg-purple-500/20 rounded-full transition-colors" aria-label="اذهب للمتجر">
+        <Link
+          href="/ar/store?tab=rewards"
+          className="ms-1 p-1 hover:bg-purple-500/20 rounded-full transition-colors"
+          aria-label="اذهب للمتجر"
+        >
           <Plus size={iconSizes[size] - 4} className="text-purple-400" />
         </Link>
       )}
@@ -73,7 +83,13 @@ export function GemsDisplay({ showAddButton = true, size = "md", animated = true
 }
 
 // Gems earned animation overlay
-export function GemsEarnedAnimation({ amount, onComplete }: { amount: number; onComplete: () => void }) {
+export function GemsEarnedAnimation({
+  amount,
+  onComplete,
+}: {
+  amount: number;
+  onComplete: () => void;
+}) {
   useEffect(() => {
     const timer = setTimeout(onComplete, 2000);
     return () => clearTimeout(timer);
@@ -93,4 +109,3 @@ export function GemsEarnedAnimation({ amount, onComplete }: { amount: number; on
     </motion.div>
   );
 }
-

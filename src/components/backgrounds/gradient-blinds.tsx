@@ -39,5 +39,4 @@ export function GradientBlinds({
   );
 }
 
-
 export default GradientBlinds;

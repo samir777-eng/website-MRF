@@ -60,7 +60,7 @@ export async function GET(request: NextRequest) {
     if (!userId) {
       return NextResponse.json(
         { success: false, error: "غير مصرح. يرجى تسجيل الدخول." },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -82,7 +82,7 @@ export async function GET(request: NextRequest) {
     console.error("Get gems error:", error);
     return NextResponse.json(
       { success: false, error: "حدث خطأ. يرجى المحاولة مرة أخرى." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -102,7 +102,7 @@ export async function POST(request: NextRequest) {
           error: "طلبات كثيرة جداً. يرجى المحاولة لاحقاً.",
           retryAfter,
         },
-        { status: 429, headers: { "Retry-After": retryAfter.toString() } }
+        { status: 429, headers: { "Retry-After": retryAfter.toString() } },
       );
     }
 
@@ -112,7 +112,7 @@ export async function POST(request: NextRequest) {
     if (!userId) {
       return NextResponse.json(
         { success: false, error: "غير مصرح. يرجى تسجيل الدخول." },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -127,14 +127,14 @@ export async function POST(request: NextRequest) {
     } else {
       return NextResponse.json(
         { success: false, error: "عملية غير صالحة" },
-        { status: 400 }
+        { status: 400 },
       );
     }
   } catch (error) {
     console.error("Gems transaction error:", error);
     return NextResponse.json(
       { success: false, error: "حدث خطأ. يرجى المحاولة مرة أخرى." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -149,7 +149,7 @@ function handleEarnGems(userId: string, body: unknown) {
         error: "بيانات غير صالحة",
         errors: validation.error.flatten().fieldErrors,
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -223,7 +223,7 @@ function handleSpendGems(userId: string, body: unknown) {
         error: "بيانات غير صالحة",
         errors: validation.error.flatten().fieldErrors,
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -233,14 +233,14 @@ function handleSpendGems(userId: string, body: unknown) {
   if (!item) {
     return NextResponse.json(
       { success: false, error: "المنتج غير موجود" },
-      { status: 404 }
+      { status: 404 },
     );
   }
 
   if (!item.isActive) {
     return NextResponse.json(
       { success: false, error: "المنتج غير متاح حالياً" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -259,7 +259,7 @@ function handleSpendGems(userId: string, body: unknown) {
         required: totalCost,
         available: current.balance,
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -272,7 +272,7 @@ function handleSpendGems(userId: string, body: unknown) {
     if (existingPurchases + quantity > item.maxPerUser) {
       return NextResponse.json(
         { success: false, error: `الحد الأقصى للشراء هو ${item.maxPerUser}` },
-        { status: 400 }
+        { status: 400 },
       );
     }
   }

@@ -19,7 +19,9 @@ export function DashboardSetupStep() {
   const [dailyGoal, setDailyGoal] = useState(30); // minutes
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [remindersEnabled, setRemindersEnabled] = useState(true);
-  const [studyTime, setStudyTime] = useState<"morning" | "afternoon" | "evening">("evening");
+  const [studyTime, setStudyTime] = useState<
+    "morning" | "afternoon" | "evening"
+  >("evening");
 
   const studyTimes = [
     { id: "morning", label: "الصباح", time: "8:00 - 12:00", icon: "🌅" },
@@ -46,9 +48,7 @@ export function DashboardSetupStep() {
                 <Target className="w-5 h-5 text-primary" />
               </div>
               <div className="flex-1">
-                <h3 className="font-bold text-foreground mb-1">
-                  الهدف اليومي
-                </h3>
+                <h3 className="font-bold text-foreground mb-1">الهدف اليومي</h3>
                 <p className="text-sm text-muted-foreground mb-4">
                   كم دقيقة تريد أن تدرس يومياً؟
                 </p>
@@ -188,7 +188,8 @@ export function DashboardSetupStep() {
 
                 {notificationsEnabled && remindersEnabled && (
                   <Badge variant="secondary" className="mt-2">
-                    سنذكرك في وقت الدراسة المفضل ({studyTimes.find(t => t.id === studyTime)?.label})
+                    سنذكرك في وقت الدراسة المفضل (
+                    {studyTimes.find((t) => t.id === studyTime)?.label})
                   </Badge>
                 )}
               </div>

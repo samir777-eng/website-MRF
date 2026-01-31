@@ -24,7 +24,7 @@ export function HomepageSkeleton() {
             height="64px"
             className="mx-auto"
           />
-          
+
           {/* Hero Subtitle */}
           <EnhancedSkeleton
             variant="text"
@@ -32,17 +32,32 @@ export function HomepageSkeleton() {
             height="32px"
             className="mx-auto"
           />
-          
+
           {/* Hero Description */}
           <div className="space-y-2 max-w-2xl mx-auto">
             <EnhancedSkeleton variant="text" width="100%" height="20px" />
-            <EnhancedSkeleton variant="text" width="90%" height="20px" className="mx-auto" />
+            <EnhancedSkeleton
+              variant="text"
+              width="90%"
+              height="20px"
+              className="mx-auto"
+            />
           </div>
-          
+
           {/* CTA Buttons */}
           <div className="flex gap-4 justify-center mt-8">
-            <EnhancedSkeleton variant="rectangular" width="200px" height="56px" className="rounded-xl" />
-            <EnhancedSkeleton variant="rectangular" width="200px" height="56px" className="rounded-xl" />
+            <EnhancedSkeleton
+              variant="rectangular"
+              width="200px"
+              height="56px"
+              className="rounded-xl"
+            />
+            <EnhancedSkeleton
+              variant="rectangular"
+              width="200px"
+              height="56px"
+              className="rounded-xl"
+            />
           </div>
         </div>
 
@@ -53,8 +68,18 @@ export function HomepageSkeleton() {
               key={i}
               className="p-6 rounded-xl border border-border bg-card space-y-3 text-center"
             >
-              <EnhancedSkeleton variant="text" width="60px" height="48px" className="mx-auto" />
-              <EnhancedSkeleton variant="text" width="80%" height="16px" className="mx-auto" />
+              <EnhancedSkeleton
+                variant="text"
+                width="60px"
+                height="48px"
+                className="mx-auto"
+              />
+              <EnhancedSkeleton
+                variant="text"
+                width="80%"
+                height="16px"
+                className="mx-auto"
+              />
             </div>
           ))}
         </div>
@@ -64,8 +89,18 @@ export function HomepageSkeleton() {
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="container mx-auto px-6 md:px-8">
           <div className="text-center mb-12 space-y-4">
-            <EnhancedSkeleton variant="text" width="200px" height="40px" className="mx-auto" />
-            <EnhancedSkeleton variant="text" width="400px" height="24px" className="mx-auto" />
+            <EnhancedSkeleton
+              variant="text"
+              width="200px"
+              height="40px"
+              className="mx-auto"
+            />
+            <EnhancedSkeleton
+              variant="text"
+              width="400px"
+              height="24px"
+              className="mx-auto"
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
@@ -77,10 +112,25 @@ export function HomepageSkeleton() {
                   height="80px"
                   className="rounded-2xl mx-auto"
                 />
-                <EnhancedSkeleton variant="text" width="60px" height="16px" className="mx-auto" />
-                <EnhancedSkeleton variant="text" width="80%" height="24px" className="mx-auto" />
+                <EnhancedSkeleton
+                  variant="text"
+                  width="60px"
+                  height="16px"
+                  className="mx-auto"
+                />
+                <EnhancedSkeleton
+                  variant="text"
+                  width="80%"
+                  height="24px"
+                  className="mx-auto"
+                />
                 <EnhancedSkeleton variant="text" width="100%" height="16px" />
-                <EnhancedSkeleton variant="text" width="90%" height="16px" className="mx-auto" />
+                <EnhancedSkeleton
+                  variant="text"
+                  width="90%"
+                  height="16px"
+                  className="mx-auto"
+                />
               </div>
             ))}
           </div>
@@ -91,8 +141,18 @@ export function HomepageSkeleton() {
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-6 md:px-8">
           <div className="text-center mb-12 space-y-4">
-            <EnhancedSkeleton variant="text" width="250px" height="40px" className="mx-auto" />
-            <EnhancedSkeleton variant="text" width="400px" height="24px" className="mx-auto" />
+            <EnhancedSkeleton
+              variant="text"
+              width="250px"
+              height="40px"
+              className="mx-auto"
+            />
+            <EnhancedSkeleton
+              variant="text"
+              width="400px"
+              height="24px"
+              className="mx-auto"
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -114,13 +174,26 @@ export function HomepageSkeleton() {
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="container mx-auto px-6 md:px-8">
           <div className="text-center mb-12 space-y-4">
-            <EnhancedSkeleton variant="text" width="200px" height="40px" className="mx-auto" />
-            <EnhancedSkeleton variant="text" width="400px" height="24px" className="mx-auto" />
+            <EnhancedSkeleton
+              variant="text"
+              width="200px"
+              height="40px"
+              className="mx-auto"
+            />
+            <EnhancedSkeleton
+              variant="text"
+              width="400px"
+              height="24px"
+              className="mx-auto"
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="p-6 rounded-xl border border-border bg-card space-y-4">
+              <div
+                key={i}
+                className="p-6 rounded-xl border border-border bg-card space-y-4"
+              >
                 <EnhancedSkeleton
                   variant="rectangular"
                   width="56px"
@@ -142,18 +215,43 @@ export function HomepageSkeleton() {
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-6 md:px-8">
           <div className="text-center mb-12 space-y-4">
-            <EnhancedSkeleton variant="text" width="200px" height="40px" className="mx-auto" />
-            <EnhancedSkeleton variant="text" width="400px" height="24px" className="mx-auto" />
+            <EnhancedSkeleton
+              variant="text"
+              width="200px"
+              height="40px"
+              className="mx-auto"
+            />
+            <EnhancedSkeleton
+              variant="text"
+              width="400px"
+              height="24px"
+              className="mx-auto"
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="p-6 rounded-xl border border-border bg-card space-y-4">
+              <div
+                key={i}
+                className="p-6 rounded-xl border border-border bg-card space-y-4"
+              >
                 <div className="flex items-center gap-3">
-                  <EnhancedSkeleton variant="circular" width="48px" height="48px" />
+                  <EnhancedSkeleton
+                    variant="circular"
+                    width="48px"
+                    height="48px"
+                  />
                   <div className="flex-1 space-y-2">
-                    <EnhancedSkeleton variant="text" width="120px" height="16px" />
-                    <EnhancedSkeleton variant="text" width="80px" height="14px" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="120px"
+                      height="16px"
+                    />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="80px"
+                      height="14px"
+                    />
                   </div>
                 </div>
                 <SkeletonText lines={3} />
@@ -168,13 +266,26 @@ export function HomepageSkeleton() {
       <section className="py-16 md:py-20 bg-muted/30">
         <div className="container mx-auto px-6 md:px-8 max-w-3xl">
           <div className="text-center mb-12 space-y-4">
-            <EnhancedSkeleton variant="text" width="250px" height="40px" className="mx-auto" />
-            <EnhancedSkeleton variant="text" width="400px" height="24px" className="mx-auto" />
+            <EnhancedSkeleton
+              variant="text"
+              width="250px"
+              height="40px"
+              className="mx-auto"
+            />
+            <EnhancedSkeleton
+              variant="text"
+              width="400px"
+              height="24px"
+              className="mx-auto"
+            />
           </div>
 
           <div className="space-y-4">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="p-6 rounded-xl border border-border bg-card">
+              <div
+                key={i}
+                className="p-6 rounded-xl border border-border bg-card"
+              >
                 <EnhancedSkeleton variant="text" width="80%" height="20px" />
               </div>
             ))}
@@ -186,9 +297,24 @@ export function HomepageSkeleton() {
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-6 md:px-8">
           <div className="max-w-4xl mx-auto text-center p-12 rounded-2xl border border-border bg-gradient-to-br from-primary/5 to-primary/10 space-y-6">
-            <EnhancedSkeleton variant="text" width="300px" height="48px" className="mx-auto" />
-            <EnhancedSkeleton variant="text" width="500px" height="24px" className="mx-auto" />
-            <EnhancedSkeleton variant="rectangular" width="200px" height="56px" className="rounded-xl mx-auto" />
+            <EnhancedSkeleton
+              variant="text"
+              width="300px"
+              height="48px"
+              className="mx-auto"
+            />
+            <EnhancedSkeleton
+              variant="text"
+              width="500px"
+              height="24px"
+              className="mx-auto"
+            />
+            <EnhancedSkeleton
+              variant="rectangular"
+              width="200px"
+              height="56px"
+              className="rounded-xl mx-auto"
+            />
           </div>
         </div>
       </section>

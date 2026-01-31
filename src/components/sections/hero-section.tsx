@@ -59,7 +59,8 @@ export function HeroSection() {
   const content = {
     badge: `🔥 انضم لـ${formatArabicNumber(studentCount)} طالب متفوق`,
     title: "احصل على 98% في الثانوية العامة",
-    subtitle: "مع الأستاذ رضا الفاروق - 31 عاماً من التميز في تدريس اللغة العربية",
+    subtitle:
+      "مع الأستاذ رضا الفاروق - 31 عاماً من التميز في تدريس اللغة العربية",
     socialProof: "⭐⭐⭐⭐⭐ 4.9/5 من 3,241 تقييم",
     ctaPrimary: "ابدأ تجربتك المجانية لـ7 أيام",
     ctaSecondary: "شاهد عرض تقديمي",
@@ -124,9 +125,7 @@ export function HeroSection() {
             {/* Powerful Headline - Phase 1 Task 1.4 */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 text-foreground leading-[1.1] tracking-tight">
               <span className="block mb-2">احصل على</span>
-              <span className="block text-premium-gradient pb-2">
-                98%
-              </span>
+              <span className="block text-premium-gradient pb-2">98%</span>
               <span className="block">في الثانوية العامة</span>
             </h1>
 
@@ -140,7 +139,6 @@ export function HeroSection() {
               {content.socialProof}
             </p>
 
-
             {/* Large CTA Buttons - 80px height on mobile (Phase 1 Task 1.4) */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center mb-16 max-w-2xl mx-auto">
               <Link href="/ar/signup" className="flex-1 sm:flex-initial">
@@ -148,9 +146,15 @@ export function HeroSection() {
                   size="xl"
                   className="w-full sm:w-auto bg-premium-gradient hover:opacity-90 text-white px-8 sm:px-12 h-20 text-base sm:text-lg font-bold rounded-2xl shadow-2xl shadow-primary/30 btn-glow hover-lift transition-all duration-300"
                 >
-                  <Zap className="w-5 h-5 sm:w-6 sm:h-6 ms-2" aria-hidden="true" />
+                  <Zap
+                    className="w-5 h-5 sm:w-6 sm:h-6 ms-2"
+                    aria-hidden="true"
+                  />
                   {content.ctaPrimary}
-                  <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 me-2" aria-hidden="true" />
+                  <ArrowLeft
+                    className="w-5 h-5 sm:w-6 sm:h-6 me-2"
+                    aria-hidden="true"
+                  />
                 </Button>
               </Link>
               <Button

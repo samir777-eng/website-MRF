@@ -39,5 +39,4 @@ export function FadeContent({
   );
 }
 
-
 export default FadeContent;

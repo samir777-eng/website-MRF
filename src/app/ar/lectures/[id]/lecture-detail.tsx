@@ -156,12 +156,13 @@ export default function LectureDetailPage() {
 
   // Calculate overall progress from actual localStorage data
   const completedVideos = lectureProgressData.videosWatched.length;
-  const allVideosCompleted = lectureProgressData.allVideosCompleted || completedVideos >= totalVideos;
+  const allVideosCompleted =
+    lectureProgressData.allVideosCompleted || completedVideos >= totalVideos;
   const overallProgress = Math.round(
     (progress.preQuizPassed ? 25 : 0) +
       (completedVideos / totalVideos) * 25 +
       (progress.postQuizPassed ? 25 : 0) +
-      (progress.homeworkCompleted ? 25 : 0)
+      (progress.homeworkCompleted ? 25 : 0),
   );
 
   // Check if lecture is complete
@@ -397,8 +398,11 @@ export default function LectureDetailPage() {
               <div className="space-y-3 mt-4">
                 {lecture.videos.map((video, idx) => {
                   // Determine video status based on actual progress
-                  const isVideoWatched = lectureProgressData.videosWatched.includes(video.id);
-                  const actualStatus: VideoStatus = isVideoWatched ? "completed" : "available";
+                  const isVideoWatched =
+                    lectureProgressData.videosWatched.includes(video.id);
+                  const actualStatus: VideoStatus = isVideoWatched
+                    ? "completed"
+                    : "available";
                   const badge = getVideoStatusBadge(actualStatus);
                   const StatusIcon = badge.icon;
                   const canWatch = progress.preQuizPassed;
@@ -563,7 +567,8 @@ export default function LectureDetailPage() {
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div className="text-sm text-orange-700 dark:text-orange-300">
-                  <strong>وضع التطوير:</strong> إعادة تعيين تقدم المحاضرة للاختبار
+                  <strong>وضع التطوير:</strong> إعادة تعيين تقدم المحاضرة
+                  للاختبار
                 </div>
                 <Button
                   variant="outline"

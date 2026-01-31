@@ -75,7 +75,7 @@ export default function LoginClient() {
         JSON.stringify({
           emailOrPhone: formData.emailOrPhone,
           isAuthenticated: true,
-        })
+        }),
       );
 
       success("تم تسجيل الدخول بنجاح", "مرحباً بعودتك!");

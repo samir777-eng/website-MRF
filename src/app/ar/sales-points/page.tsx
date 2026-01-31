@@ -1,89 +1,89 @@
 "use client";
 
-import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { 
-  MapPin, 
-  Phone, 
-  Clock, 
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import {
+  MapPin,
+  Phone,
+  Clock,
   Navigation,
   Search,
   Store,
-  CheckCircle2
-} from 'lucide-react';
+  CheckCircle2,
+} from "lucide-react";
 
 const SALES_POINTS = [
   {
-    id: '1',
-    name: 'مكتبة النور',
-    governorate: 'القاهرة',
-    city: 'مدينة نصر',
-    address: 'شارع عباس العقاد، مدينة نصر',
-    phone: '01234567890',
-    hours: 'السبت - الخميس: 9 ص - 9 م',
+    id: "1",
+    name: "مكتبة النور",
+    governorate: "القاهرة",
+    city: "مدينة نصر",
+    address: "شارع عباس العقاد، مدينة نصر",
+    phone: "01234567890",
+    hours: "السبت - الخميس: 9 ص - 9 م",
     verified: true,
     lat: 30.0444,
     lng: 31.2357,
   },
   {
-    id: '2',
-    name: 'مكتبة الفاروق',
-    governorate: 'الجيزة',
-    city: 'المهندسين',
-    address: 'شارع جامعة الدول العربية، المهندسين',
-    phone: '01234567891',
-    hours: 'السبت - الخميس: 10 ص - 10 م',
+    id: "2",
+    name: "مكتبة الفاروق",
+    governorate: "الجيزة",
+    city: "المهندسين",
+    address: "شارع جامعة الدول العربية، المهندسين",
+    phone: "01234567891",
+    hours: "السبت - الخميس: 10 ص - 10 م",
     verified: true,
     lat: 30.0626,
     lng: 31.2081,
   },
   {
-    id: '3',
-    name: 'مكتبة العلم والإيمان',
-    governorate: 'الإسكندرية',
-    city: 'سموحة',
-    address: 'شارع فوزي معاذ، سموحة',
-    phone: '01234567892',
-    hours: 'السبت - الخميس: 9 ص - 8 م',
+    id: "3",
+    name: "مكتبة العلم والإيمان",
+    governorate: "الإسكندرية",
+    city: "سموحة",
+    address: "شارع فوزي معاذ، سموحة",
+    phone: "01234567892",
+    hours: "السبت - الخميس: 9 ص - 8 م",
     verified: true,
     lat: 31.2001,
     lng: 29.9187,
   },
   {
-    id: '4',
-    name: 'مكتبة الرسالة',
-    governorate: 'القاهرة',
-    city: 'مصر الجديدة',
-    address: 'شارع الحجاز، مصر الجديدة',
-    phone: '01234567893',
-    hours: 'السبت - الخميس: 9 ص - 9 م',
+    id: "4",
+    name: "مكتبة الرسالة",
+    governorate: "القاهرة",
+    city: "مصر الجديدة",
+    address: "شارع الحجاز، مصر الجديدة",
+    phone: "01234567893",
+    hours: "السبت - الخميس: 9 ص - 9 م",
     verified: true,
     lat: 30.0876,
     lng: 31.3266,
   },
   {
-    id: '5',
-    name: 'مكتبة المعرفة',
-    governorate: 'الجيزة',
-    city: 'الهرم',
-    address: 'شارع الهرم، الهرم',
-    phone: '01234567894',
-    hours: 'السبت - الخميس: 10 ص - 10 م',
+    id: "5",
+    name: "مكتبة المعرفة",
+    governorate: "الجيزة",
+    city: "الهرم",
+    address: "شارع الهرم، الهرم",
+    phone: "01234567894",
+    hours: "السبت - الخميس: 10 ص - 10 م",
     verified: true,
-    lat: 29.9870,
+    lat: 29.987,
     lng: 31.1768,
   },
   {
-    id: '6',
-    name: 'مكتبة الأمل',
-    governorate: 'القاهرة',
-    city: 'التجمع الخامس',
-    address: 'التجمع الخامس، القاهرة الجديدة',
-    phone: '01234567895',
-    hours: 'السبت - الخميس: 9 ص - 9 م',
+    id: "6",
+    name: "مكتبة الأمل",
+    governorate: "القاهرة",
+    city: "التجمع الخامس",
+    address: "التجمع الخامس، القاهرة الجديدة",
+    phone: "01234567895",
+    hours: "السبت - الخميس: 9 ص - 9 م",
     verified: true,
     lat: 30.0131,
     lng: 31.4286,
@@ -91,18 +91,23 @@ const SALES_POINTS = [
 ];
 
 export default function SalesPointsPage() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedGovernorate, setSelectedGovernorate] = useState('all');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedGovernorate, setSelectedGovernorate] = useState("all");
 
-  const filteredPoints = SALES_POINTS.filter(point => {
-    const matchesSearch = point.name.includes(searchQuery) || 
-                         point.city.includes(searchQuery) ||
-                         point.address.includes(searchQuery);
-    const matchesGovernorate = selectedGovernorate === 'all' || point.governorate === selectedGovernorate;
+  const filteredPoints = SALES_POINTS.filter((point) => {
+    const matchesSearch =
+      point.name.includes(searchQuery) ||
+      point.city.includes(searchQuery) ||
+      point.address.includes(searchQuery);
+    const matchesGovernorate =
+      selectedGovernorate === "all" ||
+      point.governorate === selectedGovernorate;
     return matchesSearch && matchesGovernorate;
   });
 
-  const governorates = Array.from(new Set(SALES_POINTS.map(p => p.governorate)));
+  const governorates = Array.from(
+    new Set(SALES_POINTS.map((p) => p.governorate)),
+  );
 
   return (
     <div className="min-h-screen page-bg-green" dir="rtl">
@@ -119,13 +124,17 @@ export default function SalesPointsPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Card>
             <CardContent className="p-6 text-center">
-              <div className="text-3xl font-bold text-primary mb-2">{SALES_POINTS.length}</div>
+              <div className="text-3xl font-bold text-primary mb-2">
+                {SALES_POINTS.length}
+              </div>
               <div className="text-sm text-muted-foreground">منفذ بيع</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-6 text-center">
-              <div className="text-3xl font-bold text-primary mb-2">{governorates.length}</div>
+              <div className="text-3xl font-bold text-primary mb-2">
+                {governorates.length}
+              </div>
               <div className="text-sm text-muted-foreground">محافظة</div>
             </CardContent>
           </Card>
@@ -157,7 +166,9 @@ export default function SalesPointsPage() {
               >
                 <option value="all">جميع المحافظات</option>
                 {governorates.map((gov) => (
-                  <option key={gov} value={gov}>{gov}</option>
+                  <option key={gov} value={gov}>
+                    {gov}
+                  </option>
                 ))}
               </select>
             </div>
@@ -241,7 +252,8 @@ export default function SalesPointsPage() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">
-              انضم إلى شبكة منافذ البيع لدينا واحصل على فرصة لتوزيع منتجاتنا في منطقتك
+              انضم إلى شبكة منافذ البيع لدينا واحصل على فرصة لتوزيع منتجاتنا في
+              منطقتك
             </p>
             <Button>
               <Store className="w-4 h-4 ms-2" />
@@ -253,4 +265,3 @@ export default function SalesPointsPage() {
     </div>
   );
 }
-

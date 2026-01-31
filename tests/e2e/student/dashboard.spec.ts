@@ -53,15 +53,21 @@ test.describe("Student Dashboard", () => {
   // ============================================
 
   test("should have navigation to lessons", async ({ page }) => {
-    await expect(page.getByRole("link", { name: /الدروس|Lessons/ })).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: /الدروس|Lessons/ }),
+    ).toBeVisible();
   });
 
   test("should have navigation to quizzes", async ({ page }) => {
-    await expect(page.getByRole("link", { name: /الاختبارات|Quizzes/ })).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: /الاختبارات|Quizzes/ }),
+    ).toBeVisible();
   });
 
   test("should have navigation to profile", async ({ page }) => {
-    await expect(page.getByRole("link", { name: /الملف الشخصي|Profile/ })).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: /الملف الشخصي|Profile/ }),
+    ).toBeVisible();
   });
 
   // ============================================
@@ -79,7 +85,7 @@ test.describe("Student Dashboard", () => {
     await page.keyboard.press("Tab");
 
     const activeElement = await page.evaluate(
-      () => document.activeElement?.tagName
+      () => document.activeElement?.tagName,
     );
     expect(["A", "BUTTON", "INPUT"]).toContain(activeElement);
   });
@@ -90,10 +96,10 @@ test.describe("Student Dashboard", () => {
     await firstLink.focus();
 
     const outlineWidth = await firstLink.evaluate(
-      (el) => window.getComputedStyle(el).outlineWidth
+      (el) => window.getComputedStyle(el).outlineWidth,
     );
     const boxShadow = await firstLink.evaluate(
-      (el) => window.getComputedStyle(el).boxShadow
+      (el) => window.getComputedStyle(el).boxShadow,
     );
 
     const hasFocusIndicator =
@@ -113,10 +119,10 @@ test.describe("Student Dashboard", () => {
 
     // No horizontal scroll
     const scrollWidth = await page.evaluate(
-      () => document.documentElement.scrollWidth
+      () => document.documentElement.scrollWidth,
     );
     const clientWidth = await page.evaluate(
-      () => document.documentElement.clientWidth
+      () => document.documentElement.clientWidth,
     );
 
     expect(scrollWidth).toBeLessThanOrEqual(clientWidth + 5);
@@ -159,4 +165,3 @@ test.describe("Student Dashboard", () => {
     }
   });
 });
-

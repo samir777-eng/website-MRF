@@ -45,7 +45,7 @@ export function getXPForLevel(level: number): number {
   let totalXP = 0;
   for (let i = 2; i <= level; i++) {
     totalXP += Math.floor(
-      LEVEL_CONFIG.BASE_XP * Math.pow(LEVEL_CONFIG.MULTIPLIER, i - 2)
+      LEVEL_CONFIG.BASE_XP * Math.pow(LEVEL_CONFIG.MULTIPLIER, i - 2),
     );
   }
   return totalXP;
@@ -186,7 +186,7 @@ export function getLevelTitle(level: number): {
 // Energy system functions
 export function calculateCurrentEnergy(
   lastEnergyUpdate: number,
-  currentEnergy: number
+  currentEnergy: number,
 ): number {
   if (currentEnergy >= ENERGY_CONFIG.MAX_ENERGY)
     return ENERGY_CONFIG.MAX_ENERGY;
@@ -200,7 +200,7 @@ export function calculateCurrentEnergy(
 
 export function getTimeToNextEnergy(
   lastEnergyUpdate: number,
-  currentEnergy: number
+  currentEnergy: number,
 ): number {
   if (currentEnergy >= ENERGY_CONFIG.MAX_ENERGY) return 0;
 
@@ -215,7 +215,7 @@ export function getTimeToNextEnergy(
 
 export function canPerformAction(
   action: keyof typeof ENERGY_CONFIG.ENERGY_COST,
-  currentEnergy: number
+  currentEnergy: number,
 ): boolean {
   const cost = ENERGY_CONFIG.ENERGY_COST[action];
   return currentEnergy >= cost;
@@ -772,18 +772,18 @@ export const ACHIEVEMENTS: Achievement[] = [
 // Check which achievements are newly unlocked
 export function checkNewAchievements(
   stats: UserStats,
-  unlockedAchievements: string[]
+  unlockedAchievements: string[],
 ): Achievement[] {
   return ACHIEVEMENTS.filter(
     (achievement) =>
       !unlockedAchievements.includes(achievement.id) &&
-      achievement.condition(stats)
+      achievement.condition(stats),
   );
 }
 
 // Get achievement rarity color
 export function getAchievementRarityColor(
-  rarity: Achievement["rarity"]
+  rarity: Achievement["rarity"],
 ): string {
   switch (rarity) {
     case "common":

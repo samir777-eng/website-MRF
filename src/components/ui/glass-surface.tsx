@@ -28,7 +28,7 @@ export function GlassSurface({
         "rounded-lg",
         blurClasses[blur],
         border && "border border-white/20",
-        className
+        className,
       )}
       style={{
         backgroundColor: `rgba(255, 255, 255, ${opacity})`,
@@ -38,4 +38,3 @@ export function GlassSurface({
     </div>
   );
 }
-

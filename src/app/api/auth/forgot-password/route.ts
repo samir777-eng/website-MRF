@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { rateLimit, getResetTime } from '@/lib/security/rate-limiter';
-import { forgotPasswordSchema } from '@/lib/validation/auth-schemas';
+import { NextRequest, NextResponse } from "next/server";
+import { rateLimit, getResetTime } from "@/lib/security/rate-limiter";
+import { forgotPasswordSchema } from "@/lib/validation/auth-schemas";
 
 /**
  * POST /api/auth/forgot-password
@@ -14,15 +14,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: 'محاولات كثيرة جداً. يرجى المحاولة لاحقاً.',
+          error: "محاولات كثيرة جداً. يرجى المحاولة لاحقاً.",
           retryAfter,
         },
         {
           status: 429,
           headers: {
-            'Retry-After': retryAfter.toString(),
+            "Retry-After": retryAfter.toString(),
           },
-        }
+        },
       );
     }
 
@@ -34,10 +34,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: 'بيانات غير صالحة',
+          error: "بيانات غير صالحة",
           errors: validation.error.flatten().fieldErrors,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -56,19 +56,19 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: true,
-        message: 'إذا كان البريد الإلكتروني مسجلاً، ستتلقى رسالة لإعادة تعيين كلمة المرور',
+        message:
+          "إذا كان البريد الإلكتروني مسجلاً، ستتلقى رسالة لإعادة تعيين كلمة المرور",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
-    console.error('Forgot password error:', error);
+    console.error("Forgot password error:", error);
     return NextResponse.json(
       {
         success: false,
-        error: 'حدث خطأ. يرجى المحاولة مرة أخرى.',
+        error: "حدث خطأ. يرجى المحاولة مرة أخرى.",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
-

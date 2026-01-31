@@ -15,7 +15,7 @@ const AnimatedTabsList = React.forwardRef<
     ref={ref}
     className={cn(
       "inline-flex h-12 min-h-[48px] items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground",
-      className
+      className,
     )}
     {...props}
   />
@@ -32,7 +32,7 @@ const AnimatedTabsTrigger = React.forwardRef<
       "relative inline-flex items-center justify-center whitespace-nowrap rounded-md px-4 py-2.5 h-11 min-h-[44px] text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
       "data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:text-foreground",
       "data-[state=active]:text-foreground data-[state=active]:bg-background data-[state=active]:shadow-sm",
-      className
+      className,
     )}
     {...props}
   >
@@ -41,8 +41,9 @@ const AnimatedTabsTrigger = React.forwardRef<
 ));
 AnimatedTabsTrigger.displayName = "AnimatedTabsTrigger";
 
-interface AnimatedTabsContentProps
-  extends React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content> {
+interface AnimatedTabsContentProps extends React.ComponentPropsWithoutRef<
+  typeof TabsPrimitive.Content
+> {
   direction?: "horizontal" | "vertical";
 }
 
@@ -68,7 +69,7 @@ const AnimatedTabsContent = React.forwardRef<
       ref={ref}
       className={cn(
         "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-        className
+        className,
       )}
       {...props}
     >

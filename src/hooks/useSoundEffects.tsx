@@ -3,18 +3,26 @@
 /**
  * Sound Effects System
  * Phase 1.3: Audio feedback for gamification events
- * 
+ *
  * Uses Howler.js for reliable cross-browser audio playback
  */
 
-import { useCallback, useEffect, useRef, useState, createContext, useContext, ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  createContext,
+  useContext,
+  ReactNode,
+} from "react";
 import { Howl } from "howler";
 
 // ============================================================================
 // TYPES
 // ============================================================================
 
-type SoundName = 
+type SoundName =
   | "correct"
   | "wrong"
   | "combo"
@@ -56,13 +64,13 @@ const SOUND_CONFIGS: Record<SoundName, SoundConfig> = {
     src: ["/sounds/correct.mp3", "/sounds/correct.wav"],
     volume: 0.5,
   },
-  
+
   // Wrong answer - soft boop
   wrong: {
     src: ["/sounds/wrong.mp3", "/sounds/wrong.wav"],
     volume: 0.4,
   },
-  
+
   // Combo sounds - escalating intensity
   combo: {
     src: ["/sounds/combo.mp3", "/sounds/combo.wav"],
@@ -82,19 +90,19 @@ const SOUND_CONFIGS: Record<SoundName, SoundConfig> = {
     src: ["/sounds/combo-break.mp3", "/sounds/wrong.wav"],
     volume: 0.4,
   },
-  
+
   // Level up - triumphant fanfare
   levelUp: {
     src: ["/sounds/level-up.mp3", "/sounds/level-up.wav"],
     volume: 0.7,
   },
-  
+
   // Achievement - satisfying unlock
   achievement: {
     src: ["/sounds/achievement.mp3", "/sounds/achievement.wav"],
     volume: 0.6,
   },
-  
+
   // Streak sounds
   streak: {
     src: ["/sounds/streak.mp3", "/sounds/streak.wav"],
@@ -104,19 +112,19 @@ const SOUND_CONFIGS: Record<SoundName, SoundConfig> = {
     src: ["/sounds/streak-milestone.mp3", "/sounds/streak.wav"],
     volume: 0.7,
   },
-  
+
   // Perfect score - epic celebration
   perfectScore: {
     src: ["/sounds/perfect-score.mp3", "/sounds/level-up.wav"],
     volume: 0.8,
   },
-  
+
   // XP gain - quick chime
   xpGain: {
     src: ["/sounds/xp-gain.mp3", "/sounds/coin.wav"],
     volume: 0.4,
   },
-  
+
   // UI sounds
   click: {
     src: ["/sounds/click.mp3", "/sounds/click.wav"],
@@ -149,7 +157,9 @@ class FallbackSoundGenerator {
 
   private getContext(): AudioContext {
     if (!this.audioContext) {
-      this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      this.audioContext = new (
+        window.AudioContext || (window as any).webkitAudioContext
+      )();
     }
     return this.audioContext;
   }
@@ -158,7 +168,7 @@ class FallbackSoundGenerator {
     frequency: number,
     duration: number,
     type: OscillatorType = "sine",
-    volume: number = 0.3
+    volume: number = 0.3,
   ) {
     try {
       const ctx = this.getContext();
@@ -174,7 +184,10 @@ class FallbackSoundGenerator {
       // Envelope for smooth sound
       gainNode.gain.setValueAtTime(0, ctx.currentTime);
       gainNode.gain.linearRampToValueAtTime(volume, ctx.currentTime + 0.01);
-      gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+      gainNode.gain.exponentialRampToValueAtTime(
+        0.01,
+        ctx.currentTime + duration,
+      );
 
       oscillator.start(ctx.currentTime);
       oscillator.stop(ctx.currentTime + duration);
@@ -226,7 +239,7 @@ class FallbackSoundGenerator {
 
 export function useSoundEffects(options: UseSoundEffectsOptions = {}) {
   const { enabled = true, volume = 1 } = options;
-  
+
   const soundsRef = useRef<Map<SoundName, Howl>>(new Map());
   const fallbackRef = useRef<FallbackSoundGenerator | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -274,52 +287,55 @@ export function useSoundEffects(options: UseSoundEffectsOptions = {}) {
   }, [enabled, masterVolume]);
 
   // Play sound function
-  const play = useCallback((name: SoundName) => {
-    if (!enabled || isMuted) return;
+  const play = useCallback(
+    (name: SoundName) => {
+      if (!enabled || isMuted) return;
 
-    const howl = soundsRef.current.get(name);
-    
-    if (howl && howl.state() === "loaded") {
-      howl.play();
-    } else {
-      // Use fallback
-      const fallback = fallbackRef.current;
-      if (!fallback) return;
+      const howl = soundsRef.current.get(name);
 
-      switch (name) {
-        case "correct":
-        case "success":
-          fallback.correct();
-          break;
-        case "wrong":
-        case "comboBreak":
-          fallback.wrong();
-          break;
-        case "combo":
-        case "comboMedium":
-        case "comboHigh":
-          fallback.combo();
-          break;
-        case "levelUp":
-        case "perfectScore":
-        case "streakMilestone":
-          fallback.levelUp();
-          break;
-        case "achievement":
-        case "streak":
-          fallback.achievement();
-          break;
-        case "xpGain":
-        case "coin":
-          fallback.xpGain();
-          break;
-        case "click":
-        case "notification":
-          fallback.click();
-          break;
+      if (howl && howl.state() === "loaded") {
+        howl.play();
+      } else {
+        // Use fallback
+        const fallback = fallbackRef.current;
+        if (!fallback) return;
+
+        switch (name) {
+          case "correct":
+          case "success":
+            fallback.correct();
+            break;
+          case "wrong":
+          case "comboBreak":
+            fallback.wrong();
+            break;
+          case "combo":
+          case "comboMedium":
+          case "comboHigh":
+            fallback.combo();
+            break;
+          case "levelUp":
+          case "perfectScore":
+          case "streakMilestone":
+            fallback.levelUp();
+            break;
+          case "achievement":
+          case "streak":
+            fallback.achievement();
+            break;
+          case "xpGain":
+          case "coin":
+            fallback.xpGain();
+            break;
+          case "click":
+          case "notification":
+            fallback.click();
+            break;
+        }
       }
-    }
-  }, [enabled, isMuted]);
+    },
+    [enabled, isMuted],
+  );
 
   // Volume control
   const setVolume = useCallback((vol: number) => {
@@ -332,17 +348,20 @@ export function useSoundEffects(options: UseSoundEffectsOptions = {}) {
 
   // Mute toggle
   const toggleMute = useCallback(() => {
-    setIsMuted(prev => !prev);
+    setIsMuted((prev) => !prev);
   }, []);
 
   // Convenience methods for common sounds
   const playCorrect = useCallback(() => play("correct"), [play]);
   const playWrong = useCallback(() => play("wrong"), [play]);
-  const playCombo = useCallback((level: number = 1) => {
-    if (level >= 10) play("comboHigh");
-    else if (level >= 5) play("comboMedium");
-    else play("combo");
-  }, [play]);
+  const playCombo = useCallback(
+    (level: number = 1) => {
+      if (level >= 10) play("comboHigh");
+      else if (level >= 5) play("comboMedium");
+      else play("combo");
+    },
+    [play],
+  );
   const playLevelUp = useCallback(() => play("levelUp"), [play]);
   const playAchievement = useCallback(() => play("achievement"), [play]);
   const playXPGain = useCallback(() => play("xpGain"), [play]);
@@ -375,18 +394,16 @@ interface SoundContextType extends ReturnType<typeof useSoundEffects> {}
 
 const SoundContext = createContext<SoundContextType | null>(null);
 
-export function SoundProvider({ 
-  children, 
-  ...options 
-}: { 
-  children: ReactNode 
+export function SoundProvider({
+  children,
+  ...options
+}: {
+  children: ReactNode;
 } & UseSoundEffectsOptions) {
   const sounds = useSoundEffects(options);
-  
+
   return (
-    <SoundContext.Provider value={sounds}>
-      {children}
-    </SoundContext.Provider>
+    <SoundContext.Provider value={sounds}>{children}</SoundContext.Provider>
   );
 }
 
@@ -415,4 +432,3 @@ export function useSound() {
 }
 
 export default useSoundEffects;
-

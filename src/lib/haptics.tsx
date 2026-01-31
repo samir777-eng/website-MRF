@@ -141,7 +141,10 @@ export class HapticManager {
   /**
    * Custom pattern (advanced)
    */
-  static triggerCustom(pattern: number | number[], options?: HapticOptions): void {
+  static triggerCustom(
+    pattern: number | number[],
+    options?: HapticOptions,
+  ): void {
     const { enabled = this.enabled, fallback } = options || {};
 
     if (!enabled || !this.supported) {
@@ -176,9 +179,12 @@ export function useHaptics() {
     return () => clearInterval(interval);
   }, []);
 
-  const trigger = useCallback((pattern: HapticPattern, options?: HapticOptions) => {
-    HapticManager.trigger(pattern, options);
-  }, []);
+  const trigger = useCallback(
+    (pattern: HapticPattern, options?: HapticOptions) => {
+      HapticManager.trigger(pattern, options);
+    },
+    [],
+  );
 
   const enable = useCallback(() => {
     HapticManager.enable();
@@ -261,7 +267,7 @@ export function hapticImpact() {
  */
 export function withHaptic<T extends (...args: any[]) => any>(
   fn: T,
-  pattern: HapticPattern = "selection"
+  pattern: HapticPattern = "selection",
 ): T {
   return ((...args: Parameters<T>) => {
     HapticManager.trigger(pattern);

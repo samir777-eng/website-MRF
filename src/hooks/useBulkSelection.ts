@@ -35,11 +35,12 @@ export function useBulkSelection<T extends { id: string }>(items: T[]) {
 
   const isSelected = useCallback(
     (id: string) => selectedIds.has(id),
-    [selectedIds]
+    [selectedIds],
   );
 
   const isAllSelected = selectedIds.size === items.length && items.length > 0;
-  const isSomeSelected = selectedIds.size > 0 && selectedIds.size < items.length;
+  const isSomeSelected =
+    selectedIds.size > 0 && selectedIds.size < items.length;
 
   const selectedItems = items.filter((item) => selectedIds.has(item.id));
 
@@ -56,4 +57,3 @@ export function useBulkSelection<T extends { id: string }>(items: T[]) {
     selectedCount: selectedIds.size,
   };
 }
-

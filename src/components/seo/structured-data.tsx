@@ -70,7 +70,9 @@ export function OrganizationSchema({
     },
     ...(foundingDate && { foundingDate }),
     ...(address && { address: { "@type": "PostalAddress", ...address } }),
-    ...(contactPoint && { contactPoint: { "@type": "ContactPoint", ...contactPoint } }),
+    ...(contactPoint && {
+      contactPoint: { "@type": "ContactPoint", ...contactPoint },
+    }),
     ...(sameAs && { sameAs }),
   };
 
@@ -144,7 +146,15 @@ export function PersonSchema({
   );
 }
 
-export function WebsiteSchema({ name, url, description }: { name: string; url: string; description: string }) {
+export function WebsiteSchema({
+  name,
+  url,
+  description,
+}: {
+  name: string;
+  url: string;
+  description: string;
+}) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -169,7 +179,11 @@ export function WebsiteSchema({ name, url, description }: { name: string; url: s
   );
 }
 
-export function BreadcrumbSchema({ items }: { items: Array<{ name: string; url: string }> }) {
+export function BreadcrumbSchema({
+  items,
+}: {
+  items: Array<{ name: string; url: string }>;
+}) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -189,7 +203,11 @@ export function BreadcrumbSchema({ items }: { items: Array<{ name: string; url: 
   );
 }
 
-export function FAQSchema({ questions }: { questions: Array<{ question: string; answer: string }> }) {
+export function FAQSchema({
+  questions,
+}: {
+  questions: Array<{ question: string; answer: string }>;
+}) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -285,4 +303,3 @@ export function ReviewSchema({
     />
   );
 }
-

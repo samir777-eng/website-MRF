@@ -4,47 +4,133 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, BookOpen, CheckCircle, ClipboardList, FileText, Video, XCircle } from "lucide-react";
+import {
+  ArrowLeft,
+  BookOpen,
+  CheckCircle,
+  ClipboardList,
+  FileText,
+  Video,
+  XCircle,
+} from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
 // Mock mistakes data
 const mistakesByCategory = {
   lessons: [
-    { id: 1, question: "ما إعراب كلمة 'الكتاب' في الجملة؟", correctAnswer: "مفعول به منصوب", yourAnswer: "فاعل مرفوع", lesson: "الدرس الأول", reviewed: false },
-    { id: 2, question: "ما نوع الخبر في 'الجو جميل'؟", correctAnswer: "خبر مفرد", yourAnswer: "خبر جملة", lesson: "الدرس الثاني", reviewed: true },
+    {
+      id: 1,
+      question: "ما إعراب كلمة 'الكتاب' في الجملة؟",
+      correctAnswer: "مفعول به منصوب",
+      yourAnswer: "فاعل مرفوع",
+      lesson: "الدرس الأول",
+      reviewed: false,
+    },
+    {
+      id: 2,
+      question: "ما نوع الخبر في 'الجو جميل'؟",
+      correctAnswer: "خبر مفرد",
+      yourAnswer: "خبر جملة",
+      lesson: "الدرس الثاني",
+      reviewed: true,
+    },
   ],
   lectures: [
-    { id: 3, question: "أعرب: 'قرأ الطالب الكتاب'", correctAnswer: "قرأ: فعل ماض", yourAnswer: "قرأ: فعل مضارع", lecture: "المحاضرة الثالثة", reviewed: false },
+    {
+      id: 3,
+      question: "أعرب: 'قرأ الطالب الكتاب'",
+      correctAnswer: "قرأ: فعل ماض",
+      yourAnswer: "قرأ: فعل مضارع",
+      lecture: "المحاضرة الثالثة",
+      reviewed: false,
+    },
   ],
   exams: [
-    { id: 4, question: "ما الفرق بين التشبيه والاستعارة؟", correctAnswer: "التشبيه يذكر الطرفين", yourAnswer: "لا فرق بينهما", exam: "امتحان البلاغة", reviewed: false },
-    { id: 5, question: "حدد نوع البيان في البيت", correctAnswer: "استعارة مكنية", yourAnswer: "تشبيه بليغ", exam: "امتحان منتصف العام", reviewed: true },
+    {
+      id: 4,
+      question: "ما الفرق بين التشبيه والاستعارة؟",
+      correctAnswer: "التشبيه يذكر الطرفين",
+      yourAnswer: "لا فرق بينهما",
+      exam: "امتحان البلاغة",
+      reviewed: false,
+    },
+    {
+      id: 5,
+      question: "حدد نوع البيان في البيت",
+      correctAnswer: "استعارة مكنية",
+      yourAnswer: "تشبيه بليغ",
+      exam: "امتحان منتصف العام",
+      reviewed: true,
+    },
   ],
   homework: [
-    { id: 6, question: "أعرب: 'في البيت ضيف كريم'", correctAnswer: "ضيف: مبتدأ مؤخر", yourAnswer: "ضيف: خبر", homework: "واجب المحاضرة الخامسة", reviewed: false },
+    {
+      id: 6,
+      question: "أعرب: 'في البيت ضيف كريم'",
+      correctAnswer: "ضيف: مبتدأ مؤخر",
+      yourAnswer: "ضيف: خبر",
+      homework: "واجب المحاضرة الخامسة",
+      reviewed: false,
+    },
   ],
 };
 
 const categories = [
-  { id: "lessons", label: "الدروس", icon: BookOpen, count: mistakesByCategory.lessons.length },
-  { id: "lectures", label: "المحاضرات", icon: Video, count: mistakesByCategory.lectures.length },
-  { id: "exams", label: "الامتحانات", icon: FileText, count: mistakesByCategory.exams.length },
-  { id: "homework", label: "الواجبات", icon: ClipboardList, count: mistakesByCategory.homework.length },
+  {
+    id: "lessons",
+    label: "الدروس",
+    icon: BookOpen,
+    count: mistakesByCategory.lessons.length,
+  },
+  {
+    id: "lectures",
+    label: "المحاضرات",
+    icon: Video,
+    count: mistakesByCategory.lectures.length,
+  },
+  {
+    id: "exams",
+    label: "الامتحانات",
+    icon: FileText,
+    count: mistakesByCategory.exams.length,
+  },
+  {
+    id: "homework",
+    label: "الواجبات",
+    icon: ClipboardList,
+    count: mistakesByCategory.homework.length,
+  },
 ];
 
 export default function MistakesCornerPage() {
   const [activeTab, setActiveTab] = useState("lessons");
   const totalMistakes = Object.values(mistakesByCategory).flat().length;
-  const reviewedCount = Object.values(mistakesByCategory).flat().filter(m => m.reviewed).length;
+  const reviewedCount = Object.values(mistakesByCategory)
+    .flat()
+    .filter((m) => m.reviewed).length;
 
-  const renderMistakeCard = (mistake: { id: number; question: string; correctAnswer: string; yourAnswer: string; reviewed: boolean } & Record<string, unknown>) => (
-    <Card key={mistake.id} className={`hover:shadow-lg transition-shadow ${mistake.reviewed ? "opacity-60" : ""}`}>
+  const renderMistakeCard = (
+    mistake: {
+      id: number;
+      question: string;
+      correctAnswer: string;
+      yourAnswer: string;
+      reviewed: boolean;
+    } & Record<string, unknown>,
+  ) => (
+    <Card
+      key={mistake.id}
+      className={`hover:shadow-lg transition-shadow ${mistake.reviewed ? "opacity-60" : ""}`}
+    >
       <CardContent className="p-5 space-y-4">
         <div className="flex items-start justify-between">
           <h3 className="font-semibold text-foreground">{mistake.question}</h3>
           {mistake.reviewed && (
-            <Badge variant="secondary" className="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+            <Badge
+              variant="secondary"
+              className="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+            >
               <CheckCircle className="w-3 h-3 me-1" />
               تمت المراجعة
             </Badge>
@@ -76,7 +162,10 @@ export default function MistakesCornerPage() {
   );
 
   return (
-    <div className="min-h-screen bg-background dark:bg-zinc-950 pb-24 lg:pb-8" dir="rtl">
+    <div
+      className="min-h-screen bg-background dark:bg-zinc-950 pb-24 lg:pb-8"
+      dir="rtl"
+    >
       <div className="container mx-auto px-4 md:px-6 py-8 space-y-8">
         {/* Header */}
         <div className="flex items-center gap-4">
@@ -91,7 +180,9 @@ export default function MistakesCornerPage() {
                 <XCircle className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-foreground">ركن الأخطاء</h1>
+                <h1 className="text-2xl font-bold text-foreground">
+                  ركن الأخطاء
+                </h1>
                 <p className="text-sm text-muted-foreground">
                   {reviewedCount}/{totalMistakes} تمت مراجعتها
                 </p>
@@ -106,10 +197,16 @@ export default function MistakesCornerPage() {
             {categories.map((cat) => {
               const Icon = cat.icon;
               return (
-                <TabsTrigger key={cat.id} value={cat.id} className="flex items-center gap-2">
+                <TabsTrigger
+                  key={cat.id}
+                  value={cat.id}
+                  className="flex items-center gap-2"
+                >
                   <Icon className="w-4 h-4" />
                   <span className="hidden sm:inline">{cat.label}</span>
-                  <Badge variant="secondary" className="text-xs">{cat.count}</Badge>
+                  <Badge variant="secondary" className="text-xs">
+                    {cat.count}
+                  </Badge>
                 </TabsTrigger>
               );
             })}
@@ -125,7 +222,9 @@ export default function MistakesCornerPage() {
                     <CheckCircle className="w-10 h-10 text-green-500" />
                   </div>
                   <h2 className="text-xl font-semibold mb-2">لا توجد أخطاء!</h2>
-                  <p className="text-muted-foreground">أحسنت! استمر في التعلم</p>
+                  <p className="text-muted-foreground">
+                    أحسنت! استمر في التعلم
+                  </p>
                 </div>
               )}
             </TabsContent>
@@ -135,4 +234,3 @@ export default function MistakesCornerPage() {
     </div>
   );
 }
-

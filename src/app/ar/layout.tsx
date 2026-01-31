@@ -98,7 +98,6 @@ type Props = {
 };
 
 export default function ArabicLayout({ children }: Props) {
-
   return (
     <AppProviders>
       {/* Structured Data for SEO */}

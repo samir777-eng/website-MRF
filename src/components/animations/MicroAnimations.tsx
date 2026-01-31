@@ -1,30 +1,36 @@
 "use client";
 
 import { CELEBRATION_COLORS } from "@/lib/design-tokens";
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Hook to detect prefers-reduced-motion preference
 function usePrefersReducedMotion() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setPrefersReducedMotion(mediaQuery.matches);
 
     const handler = (event: MediaQueryListEvent) => {
       setPrefersReducedMotion(event.matches);
     };
 
-    mediaQuery.addEventListener('change', handler);
-    return () => mediaQuery.removeEventListener('change', handler);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
   }, []);
 
   return prefersReducedMotion;
 }
 
 // Floating Icon Animation
-export function FloatingIcon({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+export function FloatingIcon({
+  children,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+}) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
@@ -35,7 +41,7 @@ export function FloatingIcon({ children, delay = 0 }: { children: React.ReactNod
         duration: 3,
         repeat: Infinity,
         ease: "easeInOut",
-        delay
+        delay,
       }}
     >
       {children}
@@ -57,7 +63,13 @@ export function BounceOnHover({ children }: { children: React.ReactNode }) {
 }
 
 // Rotate on Hover
-export function RotateOnHover({ children, degrees = 15 }: { children: React.ReactNode; degrees?: number }) {
+export function RotateOnHover({
+  children,
+  degrees = 15,
+}: {
+  children: React.ReactNode;
+  degrees?: number;
+}) {
   return (
     <motion.div
       whileHover={{ rotate: degrees }}
@@ -83,7 +95,13 @@ export function ScalePulse({ children }: { children: React.ReactNode }) {
 }
 
 // Fade In Up
-export function FadeInUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+export function FadeInUp({
+  children,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -96,7 +114,13 @@ export function FadeInUp({ children, delay = 0 }: { children: React.ReactNode; d
 }
 
 // Slide In From Left
-export function SlideInLeft({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+export function SlideInLeft({
+  children,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, x: -50 }}
@@ -109,7 +133,13 @@ export function SlideInLeft({ children, delay = 0 }: { children: React.ReactNode
 }
 
 // Slide In From Right
-export function SlideInRight({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+export function SlideInRight({
+  children,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, x: 50 }}
@@ -130,9 +160,9 @@ export function StaggerChildren({ children }: { children: React.ReactNode }) {
       variants={{
         visible: {
           transition: {
-            staggerChildren: 0.1
-          }
-        }
+            staggerChildren: 0.1,
+          },
+        },
       }}
     >
       {children}
@@ -141,7 +171,13 @@ export function StaggerChildren({ children }: { children: React.ReactNode }) {
 }
 
 // Shake Animation
-export function Shake({ children, trigger }: { children: React.ReactNode; trigger: boolean }) {
+export function Shake({
+  children,
+  trigger,
+}: {
+  children: React.ReactNode;
+  trigger: boolean;
+}) {
   return (
     <motion.div
       animate={trigger ? { x: [-10, 10, -10, 10, 0] } : {}}
@@ -187,14 +223,20 @@ export function SuccessCheckmark({ show }: { show: boolean }) {
 }
 
 // Number Counter Animation
-export function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: number }) {
+export function AnimatedCounter({
+  value,
+  duration = 2,
+}: {
+  value: number;
+  duration?: number;
+}) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     let start = 0;
     const end = value;
     const increment = end / (duration * 60);
-    
+
     const timer = setInterval(() => {
       start += increment;
       if (start >= end) {
@@ -208,24 +250,32 @@ export function AnimatedCounter({ value, duration = 2 }: { value: number; durati
     return () => clearInterval(timer);
   }, [value, duration]);
 
-  return <span>{count.toLocaleString('ar-EG')}</span>;
+  return <span>{count.toLocaleString("ar-EG")}</span>;
 }
 
 // Ripple Effect
-export function RippleButton({ children, onClick }: { children: React.ReactNode; onClick?: () => void }) {
-  const [ripples, setRipples] = useState<Array<{ x: number; y: number; id: number }>>([]);
+export function RippleButton({
+  children,
+  onClick,
+}: {
+  children: React.ReactNode;
+  onClick?: () => void;
+}) {
+  const [ripples, setRipples] = useState<
+    Array<{ x: number; y: number; id: number }>
+  >([]);
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const id = Date.now();
-    
+
     setRipples([...ripples, { x, y, id }]);
     setTimeout(() => {
-      setRipples(ripples => ripples.filter(r => r.id !== id));
+      setRipples((ripples) => ripples.filter((r) => r.id !== id));
     }, 600);
-    
+
     onClick?.();
   };
 
@@ -236,14 +286,14 @@ export function RippleButton({ children, onClick }: { children: React.ReactNode;
       className="relative overflow-hidden cursor-pointer"
       onClick={handleClick}
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+        if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           onClick?.();
         }
       }}
     >
       {children}
-      {ripples.map(ripple => (
+      {ripples.map((ripple) => (
         <motion.span
           key={ripple.id}
           className="absolute bg-white/30 rounded-full pointer-events-none"
@@ -289,7 +339,9 @@ export function MagneticButton({ children }: { children: React.ReactNode }) {
 
 // Confetti Explosion
 export function ConfettiExplosion({ trigger }: { trigger: boolean }) {
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; color: string }>>([]);
+  const [particles, setParticles] = useState<
+    Array<{ id: number; x: number; y: number; color: string }>
+  >([]);
 
   useEffect(() => {
     if (trigger) {
@@ -297,10 +349,13 @@ export function ConfettiExplosion({ trigger }: { trigger: boolean }) {
         id: i,
         x: Math.random() * 200 - 100,
         y: Math.random() * 200 - 100,
-        color: CELEBRATION_COLORS.confetti[Math.floor(Math.random() * CELEBRATION_COLORS.confetti.length)]
+        color:
+          CELEBRATION_COLORS.confetti[
+            Math.floor(Math.random() * CELEBRATION_COLORS.confetti.length)
+          ],
       }));
       setParticles(newParticles);
-      
+
       setTimeout(() => setParticles([]), 2000);
     }
   }, [trigger]);
@@ -308,7 +363,7 @@ export function ConfettiExplosion({ trigger }: { trigger: boolean }) {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       <AnimatePresence>
-        {particles.map(particle => (
+        {particles.map((particle) => (
           <motion.div
             key={particle.id}
             className="absolute w-2 h-2 rounded-full"
@@ -318,7 +373,7 @@ export function ConfettiExplosion({ trigger }: { trigger: boolean }) {
               x: particle.x,
               y: particle.y,
               opacity: 0,
-              scale: 0
+              scale: 0,
             }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
@@ -339,11 +394,13 @@ export function LoadingDots() {
         <motion.div
           key={i}
           className="w-2 h-2 bg-current rounded-full"
-          animate={prefersReducedMotion ? { opacity: [1, 0.5, 1] } : { y: [0, -10, 0] }}
+          animate={
+            prefersReducedMotion ? { opacity: [1, 0.5, 1] } : { y: [0, -10, 0] }
+          }
           transition={{
             duration: 0.6,
             repeat: Infinity,
-            delay: i * 0.2
+            delay: i * 0.2,
           }}
         />
       ))}
@@ -364,8 +421,8 @@ export function ShimmerEffect({ children }: { children: React.ReactNode }) {
       {children}
       <motion.div
         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-        initial={{ x: '-100%' }}
-        animate={{ x: '100%' }}
+        initial={{ x: "-100%" }}
+        animate={{ x: "100%" }}
         transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1 }}
       />
     </div>

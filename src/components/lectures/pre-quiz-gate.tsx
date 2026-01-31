@@ -1,7 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Lock, Unlock, AlertCircle, CheckCircle, Play, RefreshCw } from "lucide-react";
+import {
+  Lock,
+  Unlock,
+  AlertCircle,
+  CheckCircle,
+  Play,
+  RefreshCw,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -52,7 +59,7 @@ export function PreQuizGate({
       <div
         className={cn(
           "p-4 rounded-xl bg-green-500/10 border border-green-500/20",
-          className
+          className,
         )}
       >
         <div className="flex items-center gap-3">
@@ -81,7 +88,7 @@ export function PreQuizGate({
       <div
         className={cn(
           "p-4 rounded-xl bg-destructive/10 border border-destructive/20",
-          className
+          className,
         )}
       >
         <div className="flex items-start gap-3">
@@ -89,12 +96,10 @@ export function PreQuizGate({
             <Lock className="w-5 h-5 text-destructive" />
           </div>
           <div className="flex-1">
-            <h4 className="font-medium text-destructive">
-              المحاضرة مقفلة
-            </h4>
+            <h4 className="font-medium text-destructive">المحاضرة مقفلة</h4>
             <p className="text-sm text-muted-foreground mt-1">
-              استنفدت جميع محاولات {quizTitle}.
-              تواصل مع الدعم الفني لإعادة فتح المحاضرة.
+              استنفدت جميع محاولات {quizTitle}. تواصل مع الدعم الفني لإعادة فتح
+              المحاضرة.
             </p>
             {onContactSupport && (
               <Button
@@ -124,24 +129,36 @@ export function PreQuizGate({
         hasFailed
           ? "bg-amber-500/10 border-amber-500/20"
           : "bg-primary/5 border-primary/20",
-        className
+        className,
       )}
     >
       <div className="flex items-start gap-3">
         <div
           className={cn(
             "w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0",
-            hasFailed ? "bg-amber-500/20" : "bg-primary/20"
+            hasFailed ? "bg-amber-500/20" : "bg-primary/20",
           )}
         >
           {hasFailed ? (
-            <RefreshCw className={cn("w-5 h-5", hasFailed ? "text-amber-500" : "text-primary")} />
+            <RefreshCw
+              className={cn(
+                "w-5 h-5",
+                hasFailed ? "text-amber-500" : "text-primary",
+              )}
+            />
           ) : (
             <Lock className="w-5 h-5 text-primary" />
           )}
         </div>
         <div className="flex-1">
-          <h4 className={cn("font-medium", hasFailed ? "text-amber-700 dark:text-amber-400" : "text-foreground")}>
+          <h4
+            className={cn(
+              "font-medium",
+              hasFailed
+                ? "text-amber-700 dark:text-amber-400"
+                : "text-foreground",
+            )}
+          >
             {hasFailed ? "أعد المحاولة" : "اجتز الاختبار أولاً"}
           </h4>
           <p className="text-sm text-muted-foreground mt-1">
@@ -154,11 +171,19 @@ export function PreQuizGate({
           <div className="mt-3 space-y-1">
             <div className="flex items-center justify-between text-xs">
               <span className="text-muted-foreground">المحاولات</span>
-              <span className={cn("font-medium", attemptsRemaining <= 1 ? "text-amber-500" : "text-foreground")}>
+              <span
+                className={cn(
+                  "font-medium",
+                  attemptsRemaining <= 1 ? "text-amber-500" : "text-foreground",
+                )}
+              >
                 {attemptsRemaining} / {maxAttempts}
               </span>
             </div>
-            <Progress value={(attemptsRemaining / maxAttempts) * 100} className="h-1.5" />
+            <Progress
+              value={(attemptsRemaining / maxAttempts) * 100}
+              className="h-1.5"
+            />
           </div>
 
           {/* Last score if failed */}
@@ -188,4 +213,3 @@ export function PreQuizGate({
     </div>
   );
 }
-

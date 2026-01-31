@@ -32,7 +32,7 @@ interface FlyToCartContextType {
 }
 
 const FlyToCartContext = createContext<FlyToCartContextType | undefined>(
-  undefined
+  undefined,
 );
 
 export function useFlyToCart() {
@@ -106,7 +106,7 @@ export function FlyToCartProvider({ children }: { children: ReactNode }) {
       // Remove source celebration after animation
       setTimeout(() => {
         setCelebrations((prev) =>
-          prev.filter((c) => c.id !== sourceCelebrationId)
+          prev.filter((c) => c.id !== sourceCelebrationId),
         );
       }, 1000);
 
@@ -125,7 +125,7 @@ export function FlyToCartProvider({ children }: { children: ReactNode }) {
       // Remove target celebration after animation
       setTimeout(() => {
         setCelebrations((prev) =>
-          prev.filter((c) => c.id !== targetCelebrationId)
+          prev.filter((c) => c.id !== targetCelebrationId),
         );
       }, 2050); // 550ms delay + 1500ms animation
 
@@ -134,7 +134,7 @@ export function FlyToCartProvider({ children }: { children: ReactNode }) {
         setFlyingItems((prev) => prev.filter((item) => item.id !== itemId));
       }, 700);
     },
-    [cartElement]
+    [cartElement],
   );
 
   return (
@@ -157,7 +157,7 @@ export function FlyToCartProvider({ children }: { children: ReactNode }) {
               />
             ))}
           </div>,
-          document.body
+          document.body,
         )}
     </FlyToCartContext.Provider>
   );
@@ -236,7 +236,8 @@ function CelebrationBurst({ celebration }: { celebration: Celebration }) {
       endX: Math.cos(angle) * distance,
       endY: Math.sin(angle) * distance,
       size: 6 + Math.random() * 6,
-      color: CELEBRATION_COLORS.confetti[i % CELEBRATION_COLORS.confetti.length],
+      color:
+        CELEBRATION_COLORS.confetti[i % CELEBRATION_COLORS.confetti.length],
       delay: Math.random() * 100,
     };
   });

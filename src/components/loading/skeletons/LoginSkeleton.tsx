@@ -9,7 +9,10 @@ import { EnhancedSkeleton } from "../EnhancedSkeleton";
 
 export function LoginSkeleton() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-background via-background to-primary/5" dir="rtl">
+    <div
+      className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-background via-background to-primary/5"
+      dir="rtl"
+    >
       <div className="w-full max-w-md">
         {/* Logo/Header Area */}
         <div className="text-center mb-8 space-y-4">
@@ -44,26 +47,46 @@ export function LoginSkeleton() {
           {/* Email/Phone Input */}
           <div className="space-y-2">
             <EnhancedSkeleton variant="text" width="150px" height="16px" />
-            <EnhancedSkeleton variant="rectangular" width="100%" height="48px" className="rounded-lg" />
+            <EnhancedSkeleton
+              variant="rectangular"
+              width="100%"
+              height="48px"
+              className="rounded-lg"
+            />
           </div>
 
           {/* Password Input */}
           <div className="space-y-2">
             <EnhancedSkeleton variant="text" width="100px" height="16px" />
-            <EnhancedSkeleton variant="rectangular" width="100%" height="48px" className="rounded-lg" />
+            <EnhancedSkeleton
+              variant="rectangular"
+              width="100%"
+              height="48px"
+              className="rounded-lg"
+            />
           </div>
 
           {/* Remember Me & Forgot Password Row */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <EnhancedSkeleton variant="rectangular" width="20px" height="20px" className="rounded" />
+              <EnhancedSkeleton
+                variant="rectangular"
+                width="20px"
+                height="20px"
+                className="rounded"
+              />
               <EnhancedSkeleton variant="text" width="80px" height="16px" />
             </div>
             <EnhancedSkeleton variant="text" width="120px" height="16px" />
           </div>
 
           {/* Submit Button */}
-          <EnhancedSkeleton variant="rectangular" width="100%" height="48px" className="rounded-lg" />
+          <EnhancedSkeleton
+            variant="rectangular"
+            width="100%"
+            height="48px"
+            className="rounded-lg"
+          />
 
           {/* Divider */}
           <div className="flex items-center gap-4 my-6">
@@ -74,14 +97,29 @@ export function LoginSkeleton() {
 
           {/* Social Login Buttons */}
           <div className="space-y-3">
-            <EnhancedSkeleton variant="rectangular" width="100%" height="48px" className="rounded-lg" />
-            <EnhancedSkeleton variant="rectangular" width="100%" height="48px" className="rounded-lg" />
+            <EnhancedSkeleton
+              variant="rectangular"
+              width="100%"
+              height="48px"
+              className="rounded-lg"
+            />
+            <EnhancedSkeleton
+              variant="rectangular"
+              width="100%"
+              height="48px"
+              className="rounded-lg"
+            />
           </div>
         </div>
 
         {/* Sign Up Link */}
         <div className="text-center mt-6">
-          <EnhancedSkeleton variant="text" width="250px" height="20px" className="mx-auto" />
+          <EnhancedSkeleton
+            variant="text"
+            width="250px"
+            height="20px"
+            className="mx-auto"
+          />
         </div>
 
         {/* Quick Links */}

@@ -123,7 +123,7 @@ test.describe("Component UI Tests - Complete Coverage", () => {
       await page.goto("/ar/dashboard");
 
       const progressBars = page.locator(
-        '[role="progressbar"], [class*="progress"]'
+        '[role="progressbar"], [class*="progress"]',
       );
       const count = await progressBars.count();
 
@@ -223,7 +223,7 @@ test.describe("Component UI Tests - Complete Coverage", () => {
 
       // Check for toast
       const toast = page.locator(
-        '[class*="toast"], [role="status"], [role="alert"]'
+        '[class*="toast"], [role="status"], [role="alert"]',
       );
 
       if ((await toast.count()) > 0) {
@@ -405,7 +405,7 @@ test.describe("Component UI Tests - Complete Coverage", () => {
 
         // Check for controls
         const playButton = page.locator(
-          'button[aria-label*="play"], button[aria-label*="تشغيل"]'
+          'button[aria-label*="play"], button[aria-label*="تشغيل"]',
         );
 
         if ((await playButton.count()) > 0) {

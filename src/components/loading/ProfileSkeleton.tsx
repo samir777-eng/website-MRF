@@ -24,9 +24,19 @@ export function ProfileSkeleton() {
 
           {/* User Info */}
           <div className="flex-1 space-y-3 text-center md:text-right">
-            <EnhancedSkeleton variant="text" width="180px" height="28px" className="mx-auto md:mx-0" />
-            <EnhancedSkeleton variant="text" width="140px" height="16px" className="mx-auto md:mx-0" />
-            
+            <EnhancedSkeleton
+              variant="text"
+              width="180px"
+              height="28px"
+              className="mx-auto md:mx-0"
+            />
+            <EnhancedSkeleton
+              variant="text"
+              width="140px"
+              height="16px"
+              className="mx-auto md:mx-0"
+            />
+
             {/* Stats Row */}
             <div className="flex gap-4 justify-center md:justify-start pt-2">
               <div className="text-center space-y-1">
@@ -74,10 +84,13 @@ export function ProfileSkeleton() {
           <EnhancedSkeleton variant="text" width="120px" height="20px" />
           <EnhancedSkeleton variant="text" width="80px" height="16px" />
         </div>
-        
+
         <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="flex flex-col items-center gap-2 p-3 rounded-lg border border-border bg-card">
+            <div
+              key={i}
+              className="flex flex-col items-center gap-2 p-3 rounded-lg border border-border bg-card"
+            >
               <EnhancedSkeleton variant="circular" width="48px" height="48px" />
               <EnhancedSkeleton variant="text" width="60px" height="14px" />
             </div>

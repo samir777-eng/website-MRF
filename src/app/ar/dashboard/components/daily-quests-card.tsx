@@ -73,4 +73,3 @@ const QuestItem = memo(function QuestItem({ quest }: { quest: DailyQuest }) {
 });
 
 export const DailyQuestsCard = memo(DailyQuestsCardComponent);
-

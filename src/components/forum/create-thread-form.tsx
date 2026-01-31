@@ -69,7 +69,9 @@ export function CreateThreadForm() {
       </Link>
 
       <div className="p-6 bg-card border border-border rounded-2xl">
-        <h1 className="text-2xl font-bold text-foreground mb-6">مناقشة جديدة</h1>
+        <h1 className="text-2xl font-bold text-foreground mb-6">
+          مناقشة جديدة
+        </h1>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Title */}
@@ -85,7 +87,9 @@ export function CreateThreadForm() {
               maxLength={150}
               className="w-full p-3 bg-background border border-input rounded-xl text-foreground placeholder-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary"
             />
-            <p className="text-muted-foreground text-sm mt-1">{title.length}/150</p>
+            <p className="text-muted-foreground text-sm mt-1">
+              {title.length}/150
+            </p>
           </div>
 
           {/* Category */}
@@ -129,7 +133,9 @@ export function CreateThreadForm() {
               maxLength={5000}
               className="w-full p-3 bg-background border border-input rounded-xl text-foreground placeholder-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary resize-none"
             />
-            <p className="text-muted-foreground text-sm mt-1">{content.length}/5000</p>
+            <p className="text-muted-foreground text-sm mt-1">
+              {content.length}/5000
+            </p>
           </div>
 
           {/* Tags */}

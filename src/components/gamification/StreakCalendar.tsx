@@ -59,18 +59,20 @@ interface StreakCalendarProps {
 function getLast30Days(): DayData[] {
   const days: DayData[] = [];
   const today = new Date();
-  
+
   // Mock data - Replace with real data from API
-  const mockActiveDays = [0, 1, 2, 3, 4, 5, 6, 8, 9, 11, 13, 14, 16, 18, 20, 22, 24, 26, 28];
-  
+  const mockActiveDays = [
+    0, 1, 2, 3, 4, 5, 6, 8, 9, 11, 13, 14, 16, 18, 20, 22, 24, 26, 28,
+  ];
+
   for (let i = 29; i >= 0; i--) {
     const date = new Date(today);
     date.setDate(date.getDate() - i);
-    
+
     const hasActivity = mockActiveDays.includes(i);
     const isToday = i === 0;
     const inStreak = i <= 6; // Last 7 days is current streak
-    
+
     days.push({
       date: date.getDate(),
       fullDate: date,
@@ -80,7 +82,7 @@ function getLast30Days(): DayData[] {
       xpEarned: hasActivity ? Math.floor(Math.random() * 200) + 50 : undefined,
     });
   }
-  
+
   return days;
 }
 
@@ -129,7 +131,7 @@ export function StreakCalendar({
 }: StreakCalendarProps) {
   const [_showFreezeModal, setShowFreezeModal] = useState(false);
   const [selectedDay, setSelectedDay] = useState<DayData | null>(null);
-  
+
   const last30Days = getLast30Days();
   const milestones = getStreakMilestones(currentStreak);
   const nextMilestone = milestones.find((m) => !m.reached);
@@ -160,7 +162,7 @@ export function StreakCalendar({
               />
             </div>
           </motion.div>
-          
+
           <div>
             <motion.h2
               key={currentStreak}
@@ -170,9 +172,7 @@ export function StreakCalendar({
             >
               {currentStreak} يوم
             </motion.h2>
-            <p className="text-muted-foreground font-medium">
-              السلسلة الحالية
-            </p>
+            <p className="text-muted-foreground font-medium">السلسلة الحالية</p>
           </div>
 
           {/* Longest Streak Badge */}
@@ -207,7 +207,7 @@ export function StreakCalendar({
           <h3 className="text-sm font-semibold text-muted-foreground text-center">
             آخر 30 يوم
           </h3>
-          
+
           <div className="grid grid-cols-10 gap-2">
             {last30Days.map((day, index) => (
               <DayCell
@@ -242,10 +242,7 @@ export function StreakCalendar({
           </h3>
           <div className="grid grid-cols-3 gap-2">
             {milestones.map((milestone) => (
-              <MilestoneCard
-                key={milestone.value}
-                milestone={milestone}
-              />
+              <MilestoneCard key={milestone.value} milestone={milestone} />
             ))}
           </div>
         </div>
@@ -306,10 +303,15 @@ function DayCell({ day, onClick }: { day: DayData; onClick: () => void }) {
       className={cn(
         "aspect-square rounded-lg text-xs font-medium transition-all relative",
         "flex items-center justify-center",
-        day.isToday && "ring-2 ring-primary ring-offset-2 ring-offset-background",
-        day.hasActivity && "bg-success-500/20 text-success-700 dark:text-success-400",
-        day.inStreak && day.hasActivity && "border-2 border-orange-500 bg-orange-500/20",
-        !day.hasActivity && "border border-muted text-muted-foreground hover:border-muted-foreground/50",
+        day.isToday &&
+          "ring-2 ring-primary ring-offset-2 ring-offset-background",
+        day.hasActivity &&
+          "bg-success-500/20 text-success-700 dark:text-success-400",
+        day.inStreak &&
+          day.hasActivity &&
+          "border-2 border-orange-500 bg-orange-500/20",
+        !day.hasActivity &&
+          "border border-muted text-muted-foreground hover:border-muted-foreground/50",
       )}
     >
       {day.date}

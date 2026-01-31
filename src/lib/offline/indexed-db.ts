@@ -299,7 +299,7 @@ class IndexedDBManager {
   }
 
   async getGamificationState(
-    userId: string
+    userId: string,
   ): Promise<GamificationState | null> {
     const db = await this.ensureDB();
     return new Promise((resolve, reject) => {

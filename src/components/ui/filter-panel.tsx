@@ -38,13 +38,13 @@ export function FilterPanel({
 
   const activeFilterCount = Object.values(activeFilters).reduce(
     (acc, values) => acc + values.length,
-    0
+    0,
   );
 
   const handleToggleFilter = (
     groupId: string,
     value: string,
-    type: "single" | "multiple"
+    type: "single" | "multiple",
   ) => {
     const current = activeFilters[groupId] || [];
 
@@ -125,7 +125,7 @@ export function FilterPanel({
                     handleToggleFilter(
                       filter.groupId,
                       filter.value,
-                      group.type
+                      group.type,
                     );
                   }
                 }}
@@ -153,7 +153,7 @@ export function FilterPanel({
               <div className="flex flex-wrap gap-2">
                 {group.options.map((option) => {
                   const isActive = (activeFilters[group.id] || []).includes(
-                    option.value
+                    option.value,
                   );
 
                   return (

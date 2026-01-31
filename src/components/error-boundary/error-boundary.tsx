@@ -80,7 +80,10 @@ export class ErrorBoundary extends Component<Props, State> {
     });
 
     // Send to error reporting service in production
-    if (process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_SENTRY_DSN) {
+    if (
+      process.env.NODE_ENV === "production" &&
+      process.env.NEXT_PUBLIC_SENTRY_DSN
+    ) {
       // Sentry integration would go here
       // Example: Sentry.captureException(error, { extra: errorReport });
     }
@@ -208,7 +211,10 @@ export function useErrorHandler() {
     });
 
     // Send to error reporting service in production
-    if (process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_SENTRY_DSN) {
+    if (
+      process.env.NODE_ENV === "production" &&
+      process.env.NEXT_PUBLIC_SENTRY_DSN
+    ) {
       // Sentry integration would go here
       // Example: Sentry.captureException(error, { extra: errorInfo });
     }

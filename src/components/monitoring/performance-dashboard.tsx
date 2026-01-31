@@ -10,7 +10,14 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { AlertTriangle, Activity, Zap, Eye, Clock as _Clock, Gauge } from "lucide-react";
+import {
+  AlertTriangle,
+  Activity,
+  Zap,
+  Eye,
+  Clock as _Clock,
+  Gauge,
+} from "lucide-react";
 import {
   performanceMonitor,
   type PerformanceMetric,

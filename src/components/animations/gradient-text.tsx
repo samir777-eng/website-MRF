@@ -29,13 +29,12 @@ export function GradientText({
         "bg-clip-text text-transparent",
         gradientClasses,
         animate && "animate-gradient bg-[length:200%_auto]",
-        className
+        className,
       )}
     >
       {children}
     </span>
   );
 }
-
 
 export default GradientText;

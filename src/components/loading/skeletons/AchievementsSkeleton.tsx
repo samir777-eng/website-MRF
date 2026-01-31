@@ -13,22 +13,45 @@ export function AchievementsSkeleton() {
       <div className="container mx-auto px-4 md:px-6 py-6 md:py-8 space-y-8">
         {/* Page Header */}
         <div className="text-center space-y-4">
-          <EnhancedSkeleton variant="text" width="200px" height="40px" className="mx-auto" />
-          <EnhancedSkeleton variant="text" width="350px" height="20px" className="mx-auto" />
+          <EnhancedSkeleton
+            variant="text"
+            width="200px"
+            height="40px"
+            className="mx-auto"
+          />
+          <EnhancedSkeleton
+            variant="text"
+            width="350px"
+            height="20px"
+            className="mx-auto"
+          />
         </div>
 
         {/* Stats Overview */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="p-6 rounded-xl border border-border bg-card text-center space-y-3">
+            <div
+              key={i}
+              className="p-6 rounded-xl border border-border bg-card text-center space-y-3"
+            >
               <EnhancedSkeleton
                 variant="circular"
                 width="56px"
                 height="56px"
                 className="mx-auto"
               />
-              <EnhancedSkeleton variant="text" width="70%" height="28px" className="mx-auto" />
-              <EnhancedSkeleton variant="text" width="80%" height="16px" className="mx-auto" />
+              <EnhancedSkeleton
+                variant="text"
+                width="70%"
+                height="28px"
+                className="mx-auto"
+              />
+              <EnhancedSkeleton
+                variant="text"
+                width="80%"
+                height="16px"
+                className="mx-auto"
+              />
             </div>
           ))}
         </div>
@@ -99,7 +122,7 @@ export function AchievementsSkeleton() {
                       height="100px"
                       className="mx-auto"
                     />
-                    
+
                     {/* Rarity Badge */}
                     <div className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-2">
                       <EnhancedSkeleton
@@ -124,16 +147,38 @@ export function AchievementsSkeleton() {
 
                   {/* Achievement Info */}
                   <div className="text-center space-y-3">
-                    <EnhancedSkeleton variant="text" width="80%" height="24px" className="mx-auto" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="80%"
+                      height="24px"
+                      className="mx-auto"
+                    />
                     <div className="space-y-1">
-                      <EnhancedSkeleton variant="text" width="100%" height="16px" />
-                      <EnhancedSkeleton variant="text" width="90%" height="16px" className="mx-auto" />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="100%"
+                        height="16px"
+                      />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="90%"
+                        height="16px"
+                        className="mx-auto"
+                      />
                     </div>
 
                     {/* Reward */}
                     <div className="flex items-center justify-center gap-2 pt-2">
-                      <EnhancedSkeleton variant="circular" width="24px" height="24px" />
-                      <EnhancedSkeleton variant="text" width="80px" height="20px" />
+                      <EnhancedSkeleton
+                        variant="circular"
+                        width="24px"
+                        height="24px"
+                      />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="80px"
+                        height="20px"
+                      />
                     </div>
 
                     {/* Progress (for in-progress achievements) */}
@@ -145,15 +190,28 @@ export function AchievementsSkeleton() {
                           height="8px"
                           className="rounded-full"
                         />
-                        <EnhancedSkeleton variant="text" width="60px" height="14px" className="mx-auto" />
+                        <EnhancedSkeleton
+                          variant="text"
+                          width="60px"
+                          height="14px"
+                          className="mx-auto"
+                        />
                       </div>
                     )}
 
                     {/* Unlocked Date (for completed achievements) */}
                     {i % 3 === 1 && (
                       <div className="pt-3 flex items-center justify-center gap-2">
-                        <EnhancedSkeleton variant="circular" width="16px" height="16px" />
-                        <EnhancedSkeleton variant="text" width="100px" height="14px" />
+                        <EnhancedSkeleton
+                          variant="circular"
+                          width="16px"
+                          height="16px"
+                        />
+                        <EnhancedSkeleton
+                          variant="text"
+                          width="100px"
+                          height="14px"
+                        />
                       </div>
                     )}
                   </div>
@@ -166,11 +224,18 @@ export function AchievementsSkeleton() {
         {/* Recent Achievements */}
         <div className="max-w-4xl mx-auto space-y-4">
           <EnhancedSkeleton variant="text" width="200px" height="28px" />
-          
+
           <div className="space-y-3">
             {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="p-4 rounded-xl border border-border bg-card flex items-center gap-4">
-                <EnhancedSkeleton variant="circular" width="60px" height="60px" />
+              <div
+                key={i}
+                className="p-4 rounded-xl border border-border bg-card flex items-center gap-4"
+              >
+                <EnhancedSkeleton
+                  variant="circular"
+                  width="60px"
+                  height="60px"
+                />
                 <div className="flex-1 space-y-2">
                   <EnhancedSkeleton variant="text" width="60%" height="20px" />
                   <EnhancedSkeleton variant="text" width="80%" height="16px" />

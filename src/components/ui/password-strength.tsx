@@ -81,7 +81,7 @@ export function PasswordStrength({
         <div
           className={cn(
             "h-full rounded-full transition-all duration-300",
-            config.barColor
+            config.barColor,
           )}
           style={{ width: `${percentage}%` }}
         />
@@ -89,4 +89,3 @@ export function PasswordStrength({
     </div>
   );
 }
-

@@ -59,7 +59,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
       await page.goto("/ar");
 
       const searchButton = page.locator(
-        'button[aria-label*="search"], button[aria-label*="بحث"]'
+        'button[aria-label*="search"], button[aria-label*="بحث"]',
       );
 
       if ((await searchButton.count()) > 0) {
@@ -68,7 +68,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
 
         // Search modal or input should appear
         const searchInput = page.locator(
-          'input[type="search"], input[placeholder*="بحث"]'
+          'input[type="search"], input[placeholder*="بحث"]',
         );
 
         if ((await searchInput.count()) > 0) {
@@ -81,7 +81,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
       await page.goto("/ar");
 
       const userButton = page.locator(
-        'button[aria-label*="user"], button[aria-label*="مستخدم"]'
+        'button[aria-label*="user"], button[aria-label*="مستخدم"]',
       );
 
       if ((await userButton.count()) > 0) {
@@ -101,7 +101,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
       await page.goto("/ar/dashboard");
 
       const notificationBtn = page.locator(
-        'button[aria-label*="notification"], button[aria-label*="إشعار"]'
+        'button[aria-label*="notification"], button[aria-label*="إشعار"]',
       );
 
       if ((await notificationBtn.count()) > 0) {
@@ -121,7 +121,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
 
       const header = page.locator("header").first();
       const initialPosition = await header.evaluate(
-        (el) => window.getComputedStyle(el).position
+        (el) => window.getComputedStyle(el).position,
       );
 
       // Scroll down
@@ -160,7 +160,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
 
       // Menu should be visible
       const mobileMenu = page.locator(
-        '[role="dialog"], .mobile-menu, nav[class*="mobile"]'
+        '[role="dialog"], .mobile-menu, nav[class*="mobile"]',
       );
 
       if ((await mobileMenu.count()) > 0) {
@@ -168,7 +168,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
 
         // Close menu
         const closeButton = page.locator(
-          'button[aria-label*="close"], button[aria-label*="إغلاق"]'
+          'button[aria-label*="close"], button[aria-label*="إغلاق"]',
         );
 
         if ((await closeButton.count()) > 0) {
@@ -198,7 +198,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
       await page.goto("/ar");
 
       const bottomNav = page.locator(
-        '[class*="bottom-nav"], nav[class*="bottom"]'
+        '[class*="bottom-nav"], nav[class*="bottom"]',
       );
 
       if ((await bottomNav.count()) > 0) {
@@ -247,7 +247,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
       await page.goto("/ar/dashboard");
 
       const activeLink = page.locator(
-        'aside a[aria-current="page"], aside a.active'
+        'aside a[aria-current="page"], aside a.active',
       );
 
       if ((await activeLink.count()) > 0) {
@@ -316,7 +316,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
 
       const socialLinks = page.locator(
-        'footer a[aria-label*="social"], footer a[href*="facebook"], footer a[href*="twitter"]'
+        'footer a[aria-label*="social"], footer a[href*="facebook"], footer a[href*="twitter"]',
       );
       const count = await socialLinks.count();
 
@@ -340,7 +340,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
       await page.waitForTimeout(500);
 
       const backToTop = page.locator(
-        'button[aria-label*="top"], button[aria-label*="أعلى"], a[href="#top"]'
+        'button[aria-label*="top"], button[aria-label*="أعلى"], a[href="#top"]',
       );
 
       if (
@@ -363,7 +363,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
       await page.waitForLoadState("networkidle");
 
       const breadcrumb = page.locator(
-        'nav[aria-label*="breadcrumb"], [role="navigation"]:has(ol), [class*="breadcrumb"]'
+        'nav[aria-label*="breadcrumb"], [role="navigation"]:has(ol), [class*="breadcrumb"]',
       );
 
       if ((await breadcrumb.count()) > 0) {
@@ -375,7 +375,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
       await page.goto("/ar/lessons/1");
 
       const breadcrumbLinks = page.locator(
-        'nav[aria-label*="breadcrumb"] a, [class*="breadcrumb"] a'
+        'nav[aria-label*="breadcrumb"] a, [class*="breadcrumb"] a',
       );
       const count = await breadcrumbLinks.count();
 
@@ -395,7 +395,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
       await page.goto("/ar/lessons/1");
 
       const currentPage = page.locator(
-        'nav[aria-label*="breadcrumb"] [aria-current="page"]'
+        'nav[aria-label*="breadcrumb"] [aria-current="page"]',
       );
 
       if ((await currentPage.count()) > 0) {
@@ -515,7 +515,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
       await page.waitForLoadState("networkidle");
 
       const pagination = page.locator(
-        '[role="navigation"]:has([aria-label*="page"]), .pagination'
+        '[role="navigation"]:has([aria-label*="page"]), .pagination',
       );
 
       if ((await pagination.count()) > 0) {
@@ -528,7 +528,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
 
       const nextButton = page
         .locator(
-          'button:has-text("Next"), button:has-text("التالي"), a:has-text("Next")'
+          'button:has-text("Next"), button:has-text("التالي"), a:has-text("Next")',
         )
         .first();
 
@@ -547,7 +547,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
       await page.goto("/ar/lessons");
 
       const pageNumbers = page.locator(
-        '[role="navigation"] button:has-text(/^[0-9]+$/), .pagination button:has-text(/^[0-9]+$/)'
+        '[role="navigation"] button:has-text(/^[0-9]+$/), .pagination button:has-text(/^[0-9]+$/)',
       );
       const count = await pageNumbers.count();
 
@@ -570,7 +570,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
       await page.keyboard.press("Tab");
 
       const skipLink = page.locator(
-        'a[href="#main"], a:has-text("Skip to content")'
+        'a[href="#main"], a:has-text("Skip to content")',
       );
 
       if ((await skipLink.count()) > 0) {
@@ -605,7 +605,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
 
       // Should focus on navigation elements
       const focused = await page.evaluate(
-        () => document.activeElement?.tagName
+        () => document.activeElement?.tagName,
       );
 
       expect(["A", "BUTTON", "INPUT"].includes(focused || "")).toBeTruthy();
@@ -653,7 +653,7 @@ test.describe("Navigation UI Tests - Complete Coverage", () => {
       const nav = page.locator("header nav").first();
 
       const direction = await nav.evaluate(
-        (el) => window.getComputedStyle(el).direction
+        (el) => window.getComputedStyle(el).direction,
       );
 
       expect(direction).toBe("rtl");

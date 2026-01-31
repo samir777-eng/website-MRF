@@ -4,7 +4,10 @@ import { Home, Search, ArrowRight } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" dir="rtl">
+    <div
+      className="min-h-screen flex items-center justify-center p-4"
+      dir="rtl"
+    >
       <div className="text-center max-w-md">
         <div className="mb-8">
           <h1 className="text-9xl font-bold text-primary">404</h1>
@@ -30,9 +33,7 @@ export default function NotFound() {
         </div>
 
         <div className="mt-8 pt-8 border-t">
-          <p className="text-sm text-muted-foreground mb-4">
-            هل تحتاج مساعدة؟
-          </p>
+          <p className="text-sm text-muted-foreground mb-4">هل تحتاج مساعدة؟</p>
           <Link href="/ar/help">
             <Button variant="link" className="flex items-center">
               اتصل بالدعم
@@ -44,4 +45,3 @@ export default function NotFound() {
     </div>
   );
 }
-

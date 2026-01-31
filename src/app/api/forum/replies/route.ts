@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
     if (!threadId) {
       return NextResponse.json(
         { success: false, error: "معرف الموضوع مطلوب" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
     console.error("Get replies error:", error);
     return NextResponse.json(
       { success: false, error: "حدث خطأ" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -83,7 +83,7 @@ export async function POST(request: NextRequest) {
       const retryAfter = Math.ceil(getResetTime(request) / 1000);
       return NextResponse.json(
         { success: false, error: "طلبات كثيرة جداً", retryAfter },
-        { status: 429, headers: { "Retry-After": retryAfter.toString() } }
+        { status: 429, headers: { "Retry-After": retryAfter.toString() } },
       );
     }
 
@@ -100,7 +100,7 @@ export async function POST(request: NextRequest) {
           error: "بيانات غير صالحة",
           errors: validation.error.flatten().fieldErrors,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -139,7 +139,7 @@ export async function POST(request: NextRequest) {
     console.error("Create reply error:", error);
     return NextResponse.json(
       { success: false, error: "حدث خطأ" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -160,7 +160,7 @@ export async function PATCH(request: NextRequest) {
     if (!reply) {
       return NextResponse.json(
         { success: false, error: "الرد غير موجود" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -178,7 +178,7 @@ export async function PATCH(request: NextRequest) {
     console.error("Update reply error:", error);
     return NextResponse.json(
       { success: false, error: "حدث خطأ" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

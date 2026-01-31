@@ -39,7 +39,7 @@ export default function QuestsPage() {
     active: activeQuests.length,
     completed: completedQuests.length,
     completionRate: Math.round(
-      (completedQuests.length / allQuests.length) * 100
+      (completedQuests.length / allQuests.length) * 100,
     ),
   };
 

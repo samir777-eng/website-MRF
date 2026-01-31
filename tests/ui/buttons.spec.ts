@@ -138,7 +138,7 @@ test.describe("Button UI Tests - Complete Coverage", () => {
 
       // Theme toggle button
       const themeToggle = page.locator(
-        'button[aria-label*="theme"], button[aria-label*="نمط"]'
+        'button[aria-label*="theme"], button[aria-label*="نمط"]',
       );
       if ((await themeToggle.count()) > 0) {
         await expect(themeToggle.first()).toBeVisible();
@@ -172,7 +172,7 @@ test.describe("Button UI Tests - Complete Coverage", () => {
 
       // Check back to top button (if exists)
       const backToTopBtn = page.locator(
-        'button[aria-label*="top"], button[aria-label*="أعلى"]'
+        'button[aria-label*="top"], button[aria-label*="أعلى"]',
       );
       if ((await backToTopBtn.count()) > 0) {
         await expect(backToTopBtn.first()).toBeVisible();
@@ -198,7 +198,7 @@ test.describe("Button UI Tests - Complete Coverage", () => {
 
       for (const text of commonButtonTexts) {
         const buttons = page.locator(
-          `button:has-text("${text}"), a:has-text("${text}")`
+          `button:has-text("${text}"), a:has-text("${text}")`,
         );
         const count = await buttons.count();
         if (count > 0) {
@@ -244,7 +244,7 @@ test.describe("Button UI Tests - Complete Coverage", () => {
 
       // Get initial background
       const initialBg = await button.evaluate(
-        (el) => window.getComputedStyle(el).backgroundColor
+        (el) => window.getComputedStyle(el).backgroundColor,
       );
 
       // Hover
@@ -253,7 +253,7 @@ test.describe("Button UI Tests - Complete Coverage", () => {
 
       // Background should change or have transition
       const hoveredBg = await button.evaluate(
-        (el) => window.getComputedStyle(el).backgroundColor
+        (el) => window.getComputedStyle(el).backgroundColor,
       );
 
       // Just ensure hover doesn't break the button
@@ -277,7 +277,7 @@ test.describe("Button UI Tests - Complete Coverage", () => {
 
       // Should have some focus indicator
       expect(
-        outline.outline !== "none" || outline.boxShadow !== "none"
+        outline.outline !== "none" || outline.boxShadow !== "none",
       ).toBeTruthy();
     });
 
@@ -323,12 +323,12 @@ test.describe("Button UI Tests - Complete Coverage", () => {
       // Tab through buttons
       await page.keyboard.press("Tab");
       const firstFocused = await page.evaluate(
-        () => document.activeElement?.tagName
+        () => document.activeElement?.tagName,
       );
 
       await page.keyboard.press("Tab");
       const secondFocused = await page.evaluate(
-        () => document.activeElement?.tagName
+        () => document.activeElement?.tagName,
       );
 
       // Should be able to tab through elements
@@ -402,7 +402,7 @@ test.describe("Button UI Tests - Complete Coverage", () => {
 
       // At least one loading indicator or response should be present
       expect(
-        hasSpinner || isDisabled || hasLoadingText || hasError || urlChanged
+        hasSpinner || isDisabled || hasLoadingText || hasError || urlChanged,
       ).toBeTruthy();
     });
   });

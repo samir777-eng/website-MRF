@@ -5,37 +5,47 @@ import dynamic from "next/dynamic";
 // Use these components directly and handle loading states in parent components
 
 export const LazyVideoPlayer = dynamic(
-  () => import("@/components/video/VideoPlayer").then((mod) => ({ default: mod.VideoPlayer })),
+  () =>
+    import("@/components/video/VideoPlayer").then((mod) => ({
+      default: mod.VideoPlayer,
+    })),
   {
     ssr: false,
-  }
+  },
 );
 
 export const LazyChart = dynamic(
-  () => import("@/components/charts/chart").then((mod) => ({ default: mod.Chart })),
+  () =>
+    import("@/components/charts/chart").then((mod) => ({ default: mod.Chart })),
   {
     ssr: false,
-  }
+  },
 );
 
 export const LazyModal = dynamic(
-  () => import("@/components/ui/dialog").then((mod) => ({ default: mod.Dialog })),
+  () =>
+    import("@/components/ui/dialog").then((mod) => ({ default: mod.Dialog })),
   {
     ssr: false,
-  }
+  },
 );
 
 export const LazyGlobalSearch = dynamic(
-  () => import("@/components/ui/global-search").then((mod) => ({ default: mod.GlobalSearch })),
+  () =>
+    import("@/components/ui/global-search").then((mod) => ({
+      default: mod.GlobalSearch,
+    })),
   {
     ssr: false,
-  }
+  },
 );
 
 export const LazyKeyboardShortcutsModal = dynamic(
-  () => import("@/components/ui/keyboard-shortcuts-modal").then((mod) => ({ default: mod.KeyboardShortcutsModal })),
+  () =>
+    import("@/components/ui/keyboard-shortcuts-modal").then((mod) => ({
+      default: mod.KeyboardShortcutsModal,
+    })),
   {
     ssr: false,
-  }
+  },
 );
-

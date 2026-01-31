@@ -37,9 +37,13 @@ interface AchievementsDerived {
   completionPercentage: number;
 }
 
-type AchievementsContextType = AchievementsState & AchievementsActions & AchievementsDerived;
+type AchievementsContextType = AchievementsState &
+  AchievementsActions &
+  AchievementsDerived;
 
-const AchievementsContext = createContext<AchievementsContextType | undefined>(undefined);
+const AchievementsContext = createContext<AchievementsContextType | undefined>(
+  undefined,
+);
 
 const initialState: AchievementsState = {
   unlockedAchievements: [],
@@ -59,28 +63,28 @@ export function AchievementsProvider({ children }: AchievementsProviderProps) {
   const totalAchievements = ACHIEVEMENTS.length;
   const completionPercentage = useMemo(
     () => Math.round((achievementCount / totalAchievements) * 100),
-    [achievementCount, totalAchievements]
+    [achievementCount, totalAchievements],
   );
 
   // Fetch achievements from server
   const refreshAchievements = useCallback(async () => {
     try {
-      setState(prev => ({ ...prev, isLoading: true }));
+      setState((prev) => ({ ...prev, isLoading: true }));
 
       const result = await apiGetStats();
 
       if (result.success && result.stats) {
-        setState(prev => ({
+        setState((prev) => ({
           ...prev,
           unlockedAchievements: result.stats!.unlockedAchievements,
           isLoading: false,
         }));
       } else {
-        setState(prev => ({ ...prev, isLoading: false }));
+        setState((prev) => ({ ...prev, isLoading: false }));
       }
     } catch (err) {
       console.error("Failed to refresh achievements:", err);
-      setState(prev => ({ ...prev, isLoading: false }));
+      setState((prev) => ({ ...prev, isLoading: false }));
     }
   }, []);
 
@@ -91,16 +95,18 @@ export function AchievementsProvider({ children }: AchievementsProviderProps) {
 
   // Dismiss new achievements notification
   const dismissNewAchievements = useCallback(() => {
-    setState(prev => ({ ...prev, newAchievements: [] }));
+    setState((prev) => ({ ...prev, newAchievements: [] }));
   }, []);
 
   // Add new achievements (called from stats context when XP rewards unlock achievements)
   const addNewAchievements = useCallback((achievementIds: string[]) => {
     if (achievementIds.length === 0) return;
 
-    const newlyUnlocked = ACHIEVEMENTS.filter(a => achievementIds.includes(a.id));
+    const newlyUnlocked = ACHIEVEMENTS.filter((a) =>
+      achievementIds.includes(a.id),
+    );
 
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
       newAchievements: [...prev.newAchievements, ...newlyUnlocked],
       unlockedAchievements: [...prev.unlockedAchievements, ...achievementIds],
@@ -126,7 +132,7 @@ export function AchievementsProvider({ children }: AchievementsProviderProps) {
       dismissNewAchievements,
       addNewAchievements,
       refreshAchievements,
-    ]
+    ],
   );
 
   return (
@@ -140,7 +146,9 @@ export function AchievementsProvider({ children }: AchievementsProviderProps) {
 export function useAchievements() {
   const context = useContext(AchievementsContext);
   if (context === undefined) {
-    throw new Error("useAchievements must be used within an AchievementsProvider");
+    throw new Error(
+      "useAchievements must be used within an AchievementsProvider",
+    );
   }
   return context;
 }
@@ -175,6 +183,7 @@ export function useIsAchievementUnlocked(achievementId: string) {
  * Get achievement progress stats
  */
 export function useAchievementProgress() {
-  const { achievementCount, totalAchievements, completionPercentage } = useAchievements();
+  const { achievementCount, totalAchievements, completionPercentage } =
+    useAchievements();
   return { achievementCount, totalAchievements, completionPercentage };
 }

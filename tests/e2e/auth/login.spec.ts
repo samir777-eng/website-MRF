@@ -20,12 +20,12 @@ test.describe("Login Flow", () => {
 
     // Check button text is Arabic
     await expect(
-      page.getByRole("button", { name: "تسجيل الدخول" })
+      page.getByRole("button", { name: "تسجيل الدخول" }),
     ).toBeVisible();
 
     // Check "Forgot Password" link is Arabic
     await expect(
-      page.getByRole("link", { name: /نسيت كلمة المرور/i })
+      page.getByRole("link", { name: /نسيت كلمة المرور/i }),
     ).toBeVisible();
   });
 
@@ -45,7 +45,7 @@ test.describe("Login Flow", () => {
       await expect(page.getByLabel("البريد الإلكتروني")).toBeVisible();
       await expect(page.getByLabel("كلمة المرور")).toBeVisible();
       await expect(
-        page.getByRole("button", { name: "تسجيل الدخول" })
+        page.getByRole("button", { name: "تسجيل الدخول" }),
       ).toBeVisible();
 
       // Form should not overflow
@@ -78,10 +78,10 @@ test.describe("Login Flow", () => {
 
     // Check focus ring is visible (outline or box-shadow)
     const outlineWidth = await emailInput.evaluate(
-      (el) => window.getComputedStyle(el).outlineWidth
+      (el) => window.getComputedStyle(el).outlineWidth,
     );
     const boxShadow = await emailInput.evaluate(
-      (el) => window.getComputedStyle(el).boxShadow
+      (el) => window.getComputedStyle(el).boxShadow,
     );
 
     const hasFocusIndicator =
@@ -112,10 +112,10 @@ test.describe("Login Flow", () => {
     await page.setViewportSize({ width: 375, height: 667 });
 
     const scrollWidth = await page.evaluate(
-      () => document.documentElement.scrollWidth
+      () => document.documentElement.scrollWidth,
     );
     const clientWidth = await page.evaluate(
-      () => document.documentElement.clientWidth
+      () => document.documentElement.clientWidth,
     );
 
     expect(scrollWidth).toBeLessThanOrEqual(clientWidth);
@@ -147,4 +147,3 @@ test.describe("Login Flow", () => {
     await expect(rememberMe).toBeChecked();
   });
 });
-

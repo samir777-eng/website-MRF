@@ -165,7 +165,7 @@ describe("User Flow Integration Tests", () => {
       render(
         <TestWrapper>
           <LoginForm />
-        </TestWrapper>
+        </TestWrapper>,
       );
 
       // Fill in login form
@@ -178,7 +178,7 @@ describe("User Flow Integration Tests", () => {
       // Wait for success message and token to be stored
       await waitFor(() => {
         expect(screen.getByTestId("message")).toHaveTextContent(
-          "Login successful"
+          "Login successful",
         );
         expect(localStorage.getItem("token")).toBe("mock-jwt-token");
       });
@@ -214,7 +214,7 @@ describe("User Flow Integration Tests", () => {
 
             const data = await response.json();
             setMessage(
-              data.success ? "Registration successful" : "Registration failed"
+              data.success ? "Registration successful" : "Registration failed",
             );
           } catch (error) {
             setMessage("Registration failed");
@@ -270,7 +270,7 @@ describe("User Flow Integration Tests", () => {
       render(
         <TestWrapper>
           <RegisterForm />
-        </TestWrapper>
+        </TestWrapper>,
       );
 
       // Fill in registration form
@@ -279,7 +279,7 @@ describe("User Flow Integration Tests", () => {
       await user.type(screen.getByTestId("password-input"), "password123");
       await user.type(
         screen.getByTestId("confirm-password-input"),
-        "password123"
+        "password123",
       );
 
       // Submit form
@@ -288,7 +288,7 @@ describe("User Flow Integration Tests", () => {
       // Wait for success message
       await waitFor(() => {
         expect(screen.getByTestId("message")).toHaveTextContent(
-          "Registration successful"
+          "Registration successful",
         );
       });
     });
@@ -336,13 +336,13 @@ describe("User Flow Integration Tests", () => {
       render(
         <TestWrapper>
           <LessonViewer />
-        </TestWrapper>
+        </TestWrapper>,
       );
 
       // Wait for lesson to load
       await waitFor(() => {
         expect(screen.getByTestId("lesson-title")).toHaveTextContent(
-          "Arabic Basics"
+          "Arabic Basics",
         );
       });
 
@@ -352,10 +352,10 @@ describe("User Flow Integration Tests", () => {
       // Verify completion
       await waitFor(() => {
         expect(screen.getByTestId("progress")).toHaveTextContent(
-          "Progress: 100%"
+          "Progress: 100%",
         );
         expect(screen.getByTestId("complete-button")).toHaveTextContent(
-          "Completed"
+          "Completed",
         );
       });
     });
@@ -429,13 +429,13 @@ describe("User Flow Integration Tests", () => {
       render(
         <TestWrapper>
           <QuizTaker />
-        </TestWrapper>
+        </TestWrapper>,
       );
 
       // Wait for quiz to load
       await waitFor(() => {
         expect(screen.getByTestId("question")).toHaveTextContent(
-          'What is the Arabic word for "book"?'
+          'What is the Arabic word for "book"?',
         );
       });
 
@@ -448,10 +448,10 @@ describe("User Flow Integration Tests", () => {
       // Verify completion and score
       await waitFor(() => {
         expect(screen.getByTestId("quiz-complete")).toHaveTextContent(
-          "Quiz Complete!"
+          "Quiz Complete!",
         );
         expect(screen.getByTestId("final-score")).toHaveTextContent(
-          "Score: 100%"
+          "Score: 100%",
         );
       });
     });

@@ -10,7 +10,15 @@ import { useRedirectIfAuthenticated } from "@/hooks/useRequireAuth";
 import { useAuth } from "@/contexts/AuthContext";
 import { getFirstError, useZodForm } from "@/lib/hooks/use-zod-form";
 import { loginSchema, type LoginInput } from "@/lib/validation/auth-schemas";
-import { AlertCircle, Eye, EyeOff, Info, Lock, LogIn, Mail } from "lucide-react";
+import {
+  AlertCircle,
+  Eye,
+  EyeOff,
+  Info,
+  Lock,
+  LogIn,
+  Mail,
+} from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, Suspense } from "react";

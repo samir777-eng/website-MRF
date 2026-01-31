@@ -40,7 +40,7 @@ export const LazyAchievementDisplay = dynamic(
   {
     loading: () => <AchievementCardSkeleton />,
     ssr: false,
-  }
+  },
 );
 
 export const LazyXPDisplay = dynamic(
@@ -48,7 +48,7 @@ export const LazyXPDisplay = dynamic(
   {
     loading: () => <XPDisplaySkeleton />,
     ssr: false,
-  }
+  },
 );
 
 export const LazyStreakDisplay = dynamic(
@@ -56,7 +56,7 @@ export const LazyStreakDisplay = dynamic(
   {
     loading: () => <StreakDisplaySkeleton />,
     ssr: false,
-  }
+  },
 );
 
 export const LazyQuestDisplay = dynamic(
@@ -64,7 +64,7 @@ export const LazyQuestDisplay = dynamic(
   {
     loading: () => <QuestDisplaySkeleton />,
     ssr: false,
-  }
+  },
 );
 
 export const LazyLeaderboardDisplay = dynamic(
@@ -72,7 +72,7 @@ export const LazyLeaderboardDisplay = dynamic(
   {
     loading: () => <LeaderboardDisplaySkeleton />,
     ssr: false,
-  }
+  },
 );
 
 export const LazyRewardsSystem = dynamic(
@@ -80,7 +80,7 @@ export const LazyRewardsSystem = dynamic(
   {
     loading: () => <RewardsSystemSkeleton />,
     ssr: false,
-  }
+  },
 );
 
 // ============================================
@@ -95,7 +95,7 @@ export const LazyVideoPlayer = dynamic(
   {
     loading: () => <VideoPlayerSkeleton />,
     ssr: false,
-  }
+  },
 );
 
 export const LazyInteractiveVideoPlayer = dynamic(
@@ -103,7 +103,7 @@ export const LazyInteractiveVideoPlayer = dynamic(
   {
     loading: () => <VideoPlayerSkeleton />,
     ssr: false,
-  }
+  },
 );
 
 // ============================================
@@ -118,7 +118,7 @@ export const LazyQuizEngine = dynamic(
   {
     loading: () => <QuizEngineSkeleton />,
     ssr: false,
-  }
+  },
 );
 
 // ============================================
@@ -133,7 +133,7 @@ export const LazyProgressChart = dynamic(
   {
     loading: () => <ProgressChartSkeleton />,
     ssr: false,
-  }
+  },
 );
 
 export const LazyAnimatedStats = dynamic(
@@ -144,7 +144,7 @@ export const LazyAnimatedStats = dynamic(
   {
     loading: () => <LoadingSpinner />,
     ssr: false,
-  }
+  },
 );
 
 export const LazyPerformanceBreakdown = dynamic(
@@ -155,7 +155,7 @@ export const LazyPerformanceBreakdown = dynamic(
   {
     loading: () => <LoadingSpinner />,
     ssr: false,
-  }
+  },
 );
 
 // ============================================
@@ -167,7 +167,7 @@ export const LazyAdaptiveLearningDisplay = dynamic(
   {
     loading: () => <LoadingSpinner />,
     ssr: false,
-  }
+  },
 );
 
 export const LazySpacedRepetitionDisplay = dynamic(
@@ -175,7 +175,7 @@ export const LazySpacedRepetitionDisplay = dynamic(
   {
     loading: () => <LoadingSpinner />,
     ssr: false,
-  }
+  },
 );
 
 // ============================================
@@ -188,7 +188,7 @@ export function lazyLoad<T extends ComponentType<unknown>>(
   options?: {
     loading?: () => React.ReactElement | null;
     ssr?: boolean;
-  }
+  },
 ) {
   return dynamic(importFunc, {
     loading: options?.loading || (() => <LoadingSpinner />),
@@ -212,7 +212,7 @@ export function preloadComponent(importFunc: () => Promise<unknown>) {
 // Suspense wrapper with consistent fallback
 export function withSuspense<P extends object>(
   Component: React.ComponentType<P>,
-  fallback?: React.ReactNode
+  fallback?: React.ReactNode,
 ) {
   return function SuspenseWrapper(props: P) {
     return (
@@ -226,7 +226,7 @@ export function withSuspense<P extends object>(
 // Preload functions for specific component groups
 export const preloadGamification = () => {
   preloadComponent(
-    () => import("@/components/gamification/AchievementDisplay")
+    () => import("@/components/gamification/AchievementDisplay"),
   );
   preloadComponent(() => import("@/components/gamification/XPDisplay"));
   preloadComponent(() => import("@/components/gamification/StreakDisplay"));

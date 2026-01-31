@@ -16,7 +16,9 @@ export function useKeyboardShortcuts(shortcuts: KeyboardShortcut[]) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       for (const shortcut of shortcuts) {
-        const ctrlMatch = shortcut.ctrl ? e.ctrlKey || e.metaKey : !e.ctrlKey && !e.metaKey;
+        const ctrlMatch = shortcut.ctrl
+          ? e.ctrlKey || e.metaKey
+          : !e.ctrlKey && !e.metaKey;
         const shiftMatch = shortcut.shift ? e.shiftKey : !e.shiftKey;
         const altMatch = shortcut.alt ? e.altKey : !e.altKey;
         const metaMatch = shortcut.meta ? e.metaKey : !e.metaKey;
@@ -50,4 +52,3 @@ export const COMMON_SHORTCUTS = {
   ARROW_LEFT: { key: "ArrowLeft", description: "لليسار" },
   ARROW_RIGHT: { key: "ArrowRight", description: "لليمين" },
 };
-

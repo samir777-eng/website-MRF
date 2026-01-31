@@ -48,8 +48,16 @@ export function CartSkeleton() {
                     <div className="flex-1 space-y-3">
                       <div className="flex items-start justify-between">
                         <div className="flex-1 space-y-2">
-                          <EnhancedSkeleton variant="text" width="70%" height="24px" />
-                          <EnhancedSkeleton variant="text" width="50%" height="16px" />
+                          <EnhancedSkeleton
+                            variant="text"
+                            width="70%"
+                            height="24px"
+                          />
+                          <EnhancedSkeleton
+                            variant="text"
+                            width="50%"
+                            height="16px"
+                          />
                         </div>
                         <EnhancedSkeleton
                           variant="circular"
@@ -60,8 +68,12 @@ export function CartSkeleton() {
 
                       {/* Price & Quantity */}
                       <div className="flex items-center justify-between pt-2">
-                        <EnhancedSkeleton variant="text" width="100px" height="28px" />
-                        
+                        <EnhancedSkeleton
+                          variant="text"
+                          width="100px"
+                          height="28px"
+                        />
+
                         {/* Quantity Controls */}
                         <div className="flex items-center gap-3 p-2 rounded-lg border border-border">
                           <EnhancedSkeleton
@@ -70,7 +82,11 @@ export function CartSkeleton() {
                             height="32px"
                             className="rounded"
                           />
-                          <EnhancedSkeleton variant="text" width="24px" height="24px" />
+                          <EnhancedSkeleton
+                            variant="text"
+                            width="24px"
+                            height="24px"
+                          />
                           <EnhancedSkeleton
                             variant="rectangular"
                             width="32px"
@@ -96,10 +112,13 @@ export function CartSkeleton() {
             {/* Recommended Products */}
             <div className="space-y-4 pt-8">
               <EnhancedSkeleton variant="text" width="200px" height="28px" />
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {Array.from({ length: 2 }).map((_, i) => (
-                  <div key={i} className="p-4 rounded-xl border border-border bg-card flex gap-4">
+                  <div
+                    key={i}
+                    className="p-4 rounded-xl border border-border bg-card flex gap-4"
+                  >
                     <EnhancedSkeleton
                       variant="rectangular"
                       width="80px"
@@ -107,9 +126,21 @@ export function CartSkeleton() {
                       className="rounded-lg"
                     />
                     <div className="flex-1 space-y-2">
-                      <EnhancedSkeleton variant="text" width="100%" height="20px" />
-                      <EnhancedSkeleton variant="text" width="70%" height="16px" />
-                      <EnhancedSkeleton variant="text" width="60px" height="24px" />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="100%"
+                        height="20px"
+                      />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="70%"
+                        height="16px"
+                      />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="60px"
+                        height="24px"
+                      />
                     </div>
                   </div>
                 ))}
@@ -128,8 +159,16 @@ export function CartSkeleton() {
                 <div className="space-y-3">
                   {Array.from({ length: 4 }).map((_, i) => (
                     <div key={i} className="flex items-center justify-between">
-                      <EnhancedSkeleton variant="text" width="100px" height="18px" />
-                      <EnhancedSkeleton variant="text" width="80px" height="18px" />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="100px"
+                        height="18px"
+                      />
+                      <EnhancedSkeleton
+                        variant="text"
+                        width="80px"
+                        height="18px"
+                      />
                     </div>
                   ))}
                 </div>
@@ -140,7 +179,11 @@ export function CartSkeleton() {
                 {/* Total */}
                 <div className="flex items-center justify-between">
                   <EnhancedSkeleton variant="text" width="80px" height="24px" />
-                  <EnhancedSkeleton variant="text" width="120px" height="32px" />
+                  <EnhancedSkeleton
+                    variant="text"
+                    width="120px"
+                    height="32px"
+                  />
                 </div>
 
                 {/* Checkout Button */}
@@ -153,15 +196,23 @@ export function CartSkeleton() {
 
                 {/* Secure Payment Info */}
                 <div className="flex items-center justify-center gap-2 pt-2">
-                  <EnhancedSkeleton variant="circular" width="20px" height="20px" />
-                  <EnhancedSkeleton variant="text" width="150px" height="14px" />
+                  <EnhancedSkeleton
+                    variant="circular"
+                    width="20px"
+                    height="20px"
+                  />
+                  <EnhancedSkeleton
+                    variant="text"
+                    width="150px"
+                    height="14px"
+                  />
                 </div>
               </div>
 
               {/* Coupon Card */}
               <div className="p-6 rounded-xl border border-border bg-card space-y-4">
                 <EnhancedSkeleton variant="text" width="120px" height="20px" />
-                
+
                 <div className="flex gap-2">
                   <EnhancedSkeleton
                     variant="rectangular"
@@ -181,7 +232,7 @@ export function CartSkeleton() {
               {/* Payment Methods */}
               <div className="p-6 rounded-xl border border-border bg-card space-y-4">
                 <EnhancedSkeleton variant="text" width="140px" height="20px" />
-                
+
                 <div className="grid grid-cols-3 gap-2">
                   {Array.from({ length: 3 }).map((_, i) => (
                     <EnhancedSkeleton

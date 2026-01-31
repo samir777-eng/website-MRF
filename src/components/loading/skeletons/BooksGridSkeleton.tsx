@@ -61,7 +61,7 @@ export function BooksGridSkeleton() {
                   height="100%"
                   className="absolute inset-0"
                 />
-                
+
                 {/* Badge */}
                 <div className="absolute top-3 right-3">
                   <EnhancedSkeleton
@@ -113,8 +113,16 @@ export function BooksGridSkeleton() {
                 {/* Price & Button */}
                 <div className="flex items-center justify-between pt-2">
                   <div className="space-y-1">
-                    <EnhancedSkeleton variant="text" width="70px" height="24px" />
-                    <EnhancedSkeleton variant="text" width="50px" height="12px" />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="70px"
+                      height="24px"
+                    />
+                    <EnhancedSkeleton
+                      variant="text"
+                      width="50px"
+                      height="12px"
+                    />
                   </div>
                   <EnhancedSkeleton
                     variant="rectangular"

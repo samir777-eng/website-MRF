@@ -26,7 +26,7 @@ const Switch = React.forwardRef<
         "data-[state=checked]:bg-primary data-[state=unchecked]:bg-input",
         "hover:data-[state=unchecked]:bg-input/80",
         "active:scale-[0.97]",
-        className
+        className,
       )}
       {...props}
       ref={ref}
@@ -39,7 +39,7 @@ const Switch = React.forwardRef<
           // RTL: unchecked=right(0), checked=left(-5) - handled by rtl: variant
           "data-[state=unchecked]:translate-x-0 data-[state=unchecked]:shadow-sm",
           "data-[state=checked]:translate-x-5 data-[state=checked]:shadow-lg",
-          "rtl:data-[state=checked]:-translate-x-5"
+          "rtl:data-[state=checked]:-translate-x-5",
         )}
       />
     </SwitchPrimitives.Root>

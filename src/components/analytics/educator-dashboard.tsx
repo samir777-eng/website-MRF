@@ -2,8 +2,19 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Users, Activity, TrendingUp, Bell, Award, Calendar } from "lucide-react";
-import { DashboardSummary, TimeRange, getTimeRangeLabel } from "@/types/analytics";
+import {
+  Users,
+  Activity,
+  TrendingUp,
+  Bell,
+  Award,
+  Calendar,
+} from "lucide-react";
+import {
+  DashboardSummary,
+  TimeRange,
+  getTimeRangeLabel,
+} from "@/types/analytics";
 import { StudentPerformanceCard } from "./student-performance-card";
 import { AlertsList } from "./alerts-list";
 
@@ -49,10 +60,30 @@ export function EducatorDashboard() {
   if (!summary) return null;
 
   const stats = [
-    { icon: Users, label: "إجمالي الطلاب", value: summary.totalStudents, color: "blue" },
-    { icon: Activity, label: "نشطون اليوم", value: summary.activeToday, color: "green" },
-    { icon: Calendar, label: "نشطون هذا الأسبوع", value: summary.activeThisWeek, color: "purple" },
-    { icon: TrendingUp, label: "متوسط المشاركة", value: `${summary.averageEngagement}%`, color: "amber" },
+    {
+      icon: Users,
+      label: "إجمالي الطلاب",
+      value: summary.totalStudents,
+      color: "blue",
+    },
+    {
+      icon: Activity,
+      label: "نشطون اليوم",
+      value: summary.activeToday,
+      color: "green",
+    },
+    {
+      icon: Calendar,
+      label: "نشطون هذا الأسبوع",
+      value: summary.activeThisWeek,
+      color: "purple",
+    },
+    {
+      icon: TrendingUp,
+      label: "متوسط المشاركة",
+      value: `${summary.averageEngagement}%`,
+      color: "amber",
+    },
   ];
 
   return (
@@ -60,7 +91,9 @@ export function EducatorDashboard() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">لوحة تحكم المعلم</h1>
+          <h1 className="text-2xl font-bold text-foreground">
+            لوحة تحكم المعلم
+          </h1>
           <p className="text-muted-foreground">تتبع تقدم طلابك</p>
         </div>
         <div className="flex items-center gap-2 bg-muted rounded-xl p-1">
@@ -69,7 +102,9 @@ export function EducatorDashboard() {
               key={range}
               onClick={() => setTimeRange(range)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                timeRange === range ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted/80"
+                timeRange === range
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:bg-muted/80"
               }`}
             >
               {getTimeRangeLabel(range).ar}
@@ -88,7 +123,10 @@ export function EducatorDashboard() {
             transition={{ delay: index * 0.1 }}
             className="p-5 bg-card border border-border rounded-2xl"
           >
-            <stat.icon className={`text-${stat.color}-500 dark:text-${stat.color}-400 mb-3`} size={28} />
+            <stat.icon
+              className={`text-${stat.color}-500 dark:text-${stat.color}-400 mb-3`}
+              size={28}
+            />
             <p className="text-3xl font-bold text-foreground">{stat.value}</p>
             <p className="text-muted-foreground text-sm">{stat.label}</p>
           </motion.div>
@@ -98,23 +136,37 @@ export function EducatorDashboard() {
       {/* Weekly trend */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <TrendCard label="نمو النقاط" value={summary.weeklyTrend.xpGrowth} />
-        <TrendCard label="نمو النشاط" value={summary.weeklyTrend.activityGrowth} />
-        <TrendCard label="تغيير الأداء" value={summary.weeklyTrend.performanceChange} />
+        <TrendCard
+          label="نمو النشاط"
+          value={summary.weeklyTrend.activityGrowth}
+        />
+        <TrendCard
+          label="تغيير الأداء"
+          value={summary.weeklyTrend.performanceChange}
+        />
       </div>
 
       {/* Top performers and alerts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="p-6 bg-card border border-border rounded-2xl">
-          <h2 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2"><Award className="text-yellow-500 dark:text-yellow-400" /> المتفوقون</h2>
+          <h2 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
+            <Award className="text-yellow-500 dark:text-yellow-400" /> المتفوقون
+          </h2>
           <div className="space-y-3">
             {summary.topAchievers.slice(0, 5).map((student, index) => (
-              <StudentPerformanceCard key={student.id} student={student} rank={index + 1} />
+              <StudentPerformanceCard
+                key={student.id}
+                student={student}
+                rank={index + 1}
+              />
             ))}
           </div>
         </div>
 
         <div className="p-6 bg-card border border-border rounded-2xl">
-          <h2 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2"><Bell className="text-red-500 dark:text-red-400" /> التنبيهات</h2>
+          <h2 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
+            <Bell className="text-red-500 dark:text-red-400" /> التنبيهات
+          </h2>
           <AlertsList alerts={summary.recentAlerts} />
         </div>
       </div>
@@ -127,8 +179,11 @@ function TrendCard({ label, value }: { label: string; value: number }) {
   return (
     <div className="p-4 bg-card border border-border rounded-xl">
       <p className="text-muted-foreground text-sm mb-1">{label}</p>
-      <p className={`text-2xl font-bold ${isPositive ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}>
-        {isPositive ? "+" : ""}{value.toFixed(1)}%
+      <p
+        className={`text-2xl font-bold ${isPositive ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}
+      >
+        {isPositive ? "+" : ""}
+        {value.toFixed(1)}%
       </p>
     </div>
   );

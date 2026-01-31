@@ -26,7 +26,7 @@ export function MagicBento({ items, className }: MagicBentoProps) {
     <div
       className={cn(
         "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px]",
-        className
+        className,
       )}
     >
       {items.map((item, index) => (
@@ -38,7 +38,7 @@ export function MagicBento({ items, className }: MagicBentoProps) {
           className={cn(
             "bg-card border rounded-lg p-6 overflow-hidden",
             "hover:shadow-lg transition-shadow",
-            sizeClasses[item.size]
+            sizeClasses[item.size],
           )}
         >
           <h3 className="font-semibold mb-4">{item.title}</h3>
@@ -48,6 +48,5 @@ export function MagicBento({ items, className }: MagicBentoProps) {
     </div>
   );
 }
-
 
 export default MagicBento;

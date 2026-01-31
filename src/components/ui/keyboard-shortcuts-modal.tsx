@@ -24,7 +24,11 @@ const shortcuts: Shortcut[] = [
   { keys: ["↑", "↓"], description: "التنقل في القوائم", category: "تنقل" },
   { keys: ["←", "→"], description: "التنقل بين الصفحات", category: "تنقل" },
   { keys: ["Tab"], description: "الانتقال للعنصر التالي", category: "تنقل" },
-  { keys: ["Shift", "Tab"], description: "الانتقال للعنصر السابق", category: "تنقل" },
+  {
+    keys: ["Shift", "Tab"],
+    description: "الانتقال للعنصر السابق",
+    category: "تنقل",
+  },
 ];
 
 export function KeyboardShortcutsModal() {
@@ -94,4 +98,3 @@ export function KeyboardShortcutsModal() {
     </Dialog>
   );
 }
-

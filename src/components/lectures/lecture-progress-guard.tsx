@@ -1,6 +1,9 @@
 "use client";
 
-import { useLectureProgress, type LectureStep } from "@/hooks/useLectureProgress";
+import {
+  useLectureProgress,
+  type LectureStep,
+} from "@/hooks/useLectureProgress";
 import { useToast } from "@/hooks/useToast";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -36,7 +39,10 @@ export function LectureProgressGuard({
 }: LectureProgressGuardProps) {
   const router = useRouter();
   const { toast } = useToast();
-  const { canAccessStep, isLoaded } = useLectureProgress(lectureId, totalVideos);
+  const { canAccessStep, isLoaded } = useLectureProgress(
+    lectureId,
+    totalVideos,
+  );
   const [hasAccess, setHasAccess] = useState<boolean | null>(null);
 
   useEffect(() => {

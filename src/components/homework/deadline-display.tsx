@@ -41,13 +41,13 @@ export function DeadlineDisplay({
       const timeUntilDeadline = deadline.getTime() - now.getTime();
       const daysUntilDeadline = Math.max(
         0,
-        Math.floor(timeUntilDeadline / (1000 * 60 * 60 * 24))
+        Math.floor(timeUntilDeadline / (1000 * 60 * 60 * 24)),
       );
       const hoursUntilDeadline = Math.max(
         0,
         Math.floor(
-          (timeUntilDeadline % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        )
+          (timeUntilDeadline % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        ),
       );
 
       const formatted = `${deadline.toLocaleDateString("ar-EG", {
@@ -64,7 +64,7 @@ export function DeadlineDisplay({
       setTimeRemaining(
         daysUntilDeadline >= 0
           ? `متبقي: ${daysUntilDeadline} يوم و ${hoursUntilDeadline} ساعة`
-          : ""
+          : "",
       );
       setIsLate(!!isLateSubmission);
     };

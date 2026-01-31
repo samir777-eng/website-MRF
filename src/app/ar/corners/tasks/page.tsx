@@ -93,7 +93,7 @@ export default function TasksCornerPage() {
 
   const toggleTask = (id: number) => {
     setTasks(
-      tasks.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t))
+      tasks.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)),
     );
   };
 

@@ -12,7 +12,7 @@ export function ProfileSkeleton() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl" dir="rtl">
       <Skeleton className="h-9 w-40 mb-6" />
-      
+
       <div className="grid gap-6">
         <Card>
           <CardHeader>
@@ -126,7 +126,10 @@ export function LeaderboardSkeleton() {
       <Card>
         <CardContent className="p-0">
           {[4, 5, 6, 7, 8, 9, 10].map((i) => (
-            <div key={i} className="flex items-center gap-4 p-4 border-b last:border-b-0">
+            <div
+              key={i}
+              className="flex items-center gap-4 p-4 border-b last:border-b-0"
+            >
               <Skeleton className="w-8 h-8 rounded-full" />
               <Skeleton className="w-10 h-10 rounded-full" />
               <div className="flex-1">
@@ -191,7 +194,7 @@ export function GenericPageSkeleton() {
     <div className="container mx-auto px-4 py-8" dir="rtl">
       <Skeleton className="h-9 w-48 mb-4" />
       <Skeleton className="h-5 w-full max-w-2xl mb-8" />
-      
+
       <div className="grid gap-6">
         {[1, 2, 3].map((i) => (
           <Card key={i}>
@@ -207,4 +210,3 @@ export function GenericPageSkeleton() {
     </div>
   );
 }
-

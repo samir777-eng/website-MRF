@@ -7,7 +7,10 @@ interface PageLoaderProps {
   fullScreen?: boolean;
 }
 
-export function PageLoader({ text = "جاري التحميل...", fullScreen = true }: PageLoaderProps) {
+export function PageLoader({
+  text = "جاري التحميل...",
+  fullScreen = true,
+}: PageLoaderProps) {
   if (fullScreen) {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
@@ -28,4 +31,3 @@ export function PageLoader({ text = "جاري التحميل...", fullScreen = t
     </div>
   );
 }
-

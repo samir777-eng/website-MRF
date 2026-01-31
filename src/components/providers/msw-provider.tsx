@@ -30,7 +30,7 @@ export function MSWProvider({ children }: MSWProviderProps) {
 
           if (process.env.NODE_ENV === "development") {
             console.log(
-              "[MSW] Mock Service Worker started in development mode"
+              "[MSW] Mock Service Worker started in development mode",
             );
           }
         } catch (error) {

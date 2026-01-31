@@ -131,7 +131,7 @@ export interface PurchaseBundleResponse {
  * Purchase a bundle
  */
 export function purchaseBundle(
-  request: PurchaseBundleRequest
+  request: PurchaseBundleRequest,
 ): PurchaseBundleResponse {
   const { bundleId, userId } = request;
 
@@ -162,7 +162,7 @@ export function purchaseBundle(
   const now = new Date();
   const config = getBundleConfig(bundle.type);
   const expiresAt = new Date(
-    now.getTime() + config.durationDays * 24 * 60 * 60 * 1000
+    now.getTime() + config.durationDays * 24 * 60 * 60 * 1000,
   );
 
   // Create bundle purchase
@@ -217,7 +217,7 @@ let lectureStore: Map<string, LectureWithAccess>;
  * Initialize bundle service with lecture store reference
  */
 export function initializeBundleService(
-  lectureStoreRef: Map<string, LectureWithAccess>
+  lectureStoreRef: Map<string, LectureWithAccess>,
 ) {
   lectureStore = lectureStoreRef;
 }
@@ -226,7 +226,7 @@ export function initializeBundleService(
  * Redeem a lecture from a bundle
  */
 export function redeemLectureFromBundle(
-  request: RedeemLectureRequest
+  request: RedeemLectureRequest,
 ): RedeemLectureResponse {
   const { bundlePurchaseId, lectureId, userId } = request;
 
@@ -341,7 +341,7 @@ export function getUserBundlePurchases(userId: string): BundlePurchase[] {
   }
 
   return purchases.sort(
-    (a, b) => b.purchasedAt.getTime() - a.purchasedAt.getTime()
+    (a, b) => b.purchasedAt.getTime() - a.purchasedAt.getTime(),
   );
 }
 
@@ -350,6 +350,6 @@ export function getUserBundlePurchases(userId: string): BundlePurchase[] {
  */
 export function getUserActiveBundles(userId: string): BundlePurchase[] {
   return getUserBundlePurchases(userId).filter(
-    (p) => p.isActive && p.lecturesRemaining > 0 && new Date() < p.expiresAt
+    (p) => p.isActive && p.lecturesRemaining > 0 && new Date() < p.expiresAt,
   );
 }

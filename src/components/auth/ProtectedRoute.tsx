@@ -1,16 +1,16 @@
 "use client";
 
-import { useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { useAuth } from '@/contexts/AuthContext';
-import { Card, CardContent } from '@/components/ui/card';
-import { Loader2 } from 'lucide-react';
+import { useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
+import { Card, CardContent } from "@/components/ui/card";
+import { Loader2 } from "lucide-react";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
   requireAuth?: boolean;
   requireSubscription?: boolean;
-  allowedRoles?: ('student' | 'teacher' | 'admin')[];
+  allowedRoles?: ("student" | "teacher" | "admin")[];
 }
 
 export function ProtectedRoute({
@@ -29,23 +29,32 @@ export function ProtectedRoute({
     // Check authentication
     if (requireAuth && !isAuthenticated) {
       // Build login URL with redirect parameter
-      const loginUrl = `/ar/auth/login?redirect=${encodeURIComponent(pathname)}&message=${encodeURIComponent('يرجى تسجيل الدخول للوصول إلى هذه الصفحة')}`;
+      const loginUrl = `/ar/auth/login?redirect=${encodeURIComponent(pathname)}&message=${encodeURIComponent("يرجى تسجيل الدخول للوصول إلى هذه الصفحة")}`;
       router.push(loginUrl);
       return;
     }
 
     // Check subscription
-    if (requireSubscription && user?.subscriptionStatus !== 'active') {
-      router.push('/ar/subscription');
+    if (requireSubscription && user?.subscriptionStatus !== "active") {
+      router.push("/ar/subscription");
       return;
     }
 
     // Check role
     if (allowedRoles && user && !allowedRoles.includes(user.role)) {
-      router.push('/ar/dashboard');
+      router.push("/ar/dashboard");
       return;
     }
-  }, [isLoading, isAuthenticated, user, requireAuth, requireSubscription, allowedRoles, router, pathname]);
+  }, [
+    isLoading,
+    isAuthenticated,
+    user,
+    requireAuth,
+    requireSubscription,
+    allowedRoles,
+    router,
+    pathname,
+  ]);
 
   // Show loading state
   if (isLoading) {
@@ -67,7 +76,7 @@ export function ProtectedRoute({
   }
 
   // Check subscription
-  if (requireSubscription && user?.subscriptionStatus !== 'active') {
+  if (requireSubscription && user?.subscriptionStatus !== "active") {
     return null; // Will redirect in useEffect
   }
 
@@ -78,4 +87,3 @@ export function ProtectedRoute({
 
   return <>{children}</>;
 }
-

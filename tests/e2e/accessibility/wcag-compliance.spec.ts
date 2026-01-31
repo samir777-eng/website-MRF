@@ -18,7 +18,7 @@ test.describe("WCAG 2.1 AA Compliance", () => {
 
       // Filter for critical and serious violations only
       const criticalViolations = accessibilityScanResults.violations.filter(
-        (v) => v.impact === "critical" || v.impact === "serious"
+        (v) => v.impact === "critical" || v.impact === "serious",
       );
 
       expect(criticalViolations).toHaveLength(0);
@@ -60,7 +60,7 @@ test.describe("WCAG 2.1 AA Compliance", () => {
         .analyze();
 
       const criticalViolations = accessibilityScanResults.violations.filter(
-        (v) => v.impact === "critical" || v.impact === "serious"
+        (v) => v.impact === "critical" || v.impact === "serious",
       );
 
       expect(criticalViolations).toHaveLength(0);
@@ -110,7 +110,7 @@ test.describe("WCAG 2.1 AA Compliance", () => {
         .analyze();
 
       const criticalViolations = accessibilityScanResults.violations.filter(
-        (v) => v.impact === "critical" || v.impact === "serious"
+        (v) => v.impact === "critical" || v.impact === "serious",
       );
 
       expect(criticalViolations).toHaveLength(0);
@@ -132,7 +132,7 @@ test.describe("WCAG 2.1 AA Compliance", () => {
         .analyze();
 
       const criticalViolations = accessibilityScanResults.violations.filter(
-        (v) => v.impact === "critical" || v.impact === "serious"
+        (v) => v.impact === "critical" || v.impact === "serious",
       );
 
       expect(criticalViolations).toHaveLength(0);
@@ -165,11 +165,10 @@ test.describe("WCAG 2.1 AA Compliance", () => {
         .analyze();
 
       const contrastViolations = accessibilityScanResults.violations.filter(
-        (v) => v.id === "color-contrast"
+        (v) => v.id === "color-contrast",
       );
 
       expect(contrastViolations).toHaveLength(0);
     });
   });
 });
-

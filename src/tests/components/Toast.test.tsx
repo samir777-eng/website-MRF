@@ -27,7 +27,7 @@ describe("Toast", () => {
       const { container } = render(
         <ToastWrapper>
           <div data-testid="content">Content</div>
-        </ToastWrapper>
+        </ToastWrapper>,
       );
       expect(container).toBeTruthy();
     });
@@ -39,7 +39,7 @@ describe("Toast", () => {
             <ToastTitle>Test Title</ToastTitle>
             <ToastDescription>Test Description</ToastDescription>
           </Toast>
-        </ToastWrapper>
+        </ToastWrapper>,
       );
       expect(container).toBeTruthy();
     });
@@ -53,7 +53,7 @@ describe("Toast", () => {
             <ToastTitle>Title</ToastTitle>
             <ToastDescription>Description</ToastDescription>
           </Toast>
-        </ToastWrapper>
+        </ToastWrapper>,
       );
       expect(screen.getByText("Title")).toBeInTheDocument();
       expect(screen.getByText("Description")).toBeInTheDocument();
@@ -67,7 +67,7 @@ describe("Toast", () => {
           <Toast variant="default">
             <ToastTitle>Default Toast</ToastTitle>
           </Toast>
-        </ToastWrapper>
+        </ToastWrapper>,
       );
       expect(container).toBeTruthy();
     });
@@ -78,7 +78,7 @@ describe("Toast", () => {
           <Toast variant="destructive">
             <ToastTitle>Error Toast</ToastTitle>
           </Toast>
-        </ToastWrapper>
+        </ToastWrapper>,
       );
       expect(container).toBeTruthy();
     });
@@ -92,7 +92,7 @@ describe("Toast", () => {
           <Toast>
             <ToastTitle>Test</ToastTitle>
           </Toast>
-        </ToastWrapper>
+        </ToastWrapper>,
       );
       const endTime = performance.now();
       expect(endTime - startTime).toBeLessThan(100);
@@ -104,7 +104,7 @@ describe("Toast", () => {
           <Toast>
             <ToastTitle>Test</ToastTitle>
           </Toast>
-        </ToastWrapper>
+        </ToastWrapper>,
       );
       unmount();
       expect(true).toBe(true);

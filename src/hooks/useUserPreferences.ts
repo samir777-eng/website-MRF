@@ -29,7 +29,8 @@ const defaultPreferences: UserPreferences = {
 };
 
 export function useUserPreferences() {
-  const [preferences, setPreferences] = useState<UserPreferences>(defaultPreferences);
+  const [preferences, setPreferences] =
+    useState<UserPreferences>(defaultPreferences);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -54,7 +55,10 @@ export function useUserPreferences() {
 
   const resetPreferences = () => {
     setPreferences(defaultPreferences);
-    localStorage.setItem("user_preferences", JSON.stringify(defaultPreferences));
+    localStorage.setItem(
+      "user_preferences",
+      JSON.stringify(defaultPreferences),
+    );
   };
 
   return {
@@ -64,4 +68,3 @@ export function useUserPreferences() {
     isLoading,
   };
 }
-

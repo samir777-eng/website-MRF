@@ -72,7 +72,7 @@ export function LectureAccessTimer({
           : isUrgent
             ? "text-amber-500"
             : "text-muted-foreground",
-        className
+        className,
       )}
       role="timer"
       aria-live="polite"

@@ -1,47 +1,47 @@
 // Lesson System Types for MRF Educational Platform
 // CRITICAL: Grade Isolation - Lessons are grade-specific (inherited from lecture)
 
-import type { GradeLevel } from './lecture';
+import type { GradeLevel } from "./lecture";
 
-export type LessonType = 'video' | 'reading' | 'interactive' | 'practice';
+export type LessonType = "video" | "reading" | "interactive" | "practice";
 
-export type LessonStatus = 'locked' | 'available' | 'in-progress' | 'completed';
+export type LessonStatus = "locked" | "available" | "in-progress" | "completed";
 
-export type VideoQuality = '360p' | '480p' | '720p' | '1080p' | 'auto';
+export type VideoQuality = "360p" | "480p" | "720p" | "1080p" | "auto";
 
 export type PlaybackSpeed = 0.5 | 0.75 | 1 | 1.25 | 1.5 | 1.75 | 2;
 
 export interface Lesson {
   id: string;
   lectureId: string;
-  
+
   // Basic Info
   title: string;
   description: string;
   order: number; // 1, 2, 3, etc.
   type: LessonType;
-  
+
   // Content
   videoUrl?: string;
   videoDuration?: number; // in seconds
   thumbnailUrl?: string;
-  
+
   // Materials
   notes?: string; // Markdown content
   pdfUrl?: string;
   attachments?: LessonAttachment[];
-  
+
   // Progress Requirements
   isRequired: boolean;
   unlockAfter?: string; // Lesson ID that must be completed first
   minimumWatchPercentage?: number; // e.g., 80% to mark as complete
-  
+
   // Metadata
   createdAt: Date;
   updatedAt: Date;
   createdBy: string; // Teacher ID
   isPublished: boolean;
-  
+
   // Estimated time
   estimatedDuration: number; // in minutes
 }
@@ -50,7 +50,7 @@ export interface LessonAttachment {
   id: string;
   name: string;
   url: string;
-  type: 'pdf' | 'doc' | 'docx' | 'ppt' | 'pptx' | 'image' | 'other';
+  type: "pdf" | "doc" | "docx" | "ppt" | "pptx" | "image" | "other";
   size: number; // in bytes
   uploadedAt: Date;
 }
@@ -60,24 +60,24 @@ export interface LessonProgress {
   studentId: string;
   lessonId: string;
   lectureId: string;
-  
+
   // Status
   status: LessonStatus;
-  
+
   // Video Progress
   lastWatchedPosition: number; // in seconds
   totalWatchedDuration: number; // total seconds watched (can be > video duration if rewatched)
   watchedPercentage: number; // 0-100
-  
+
   // Completion
   isCompleted: boolean;
   completedAt?: Date;
-  
+
   // Tracking
   startedAt: Date;
   lastAccessedAt: Date;
   accessCount: number; // number of times accessed
-  
+
   // Notes
   studentNotes?: string;
   bookmarks?: LessonBookmark[];
@@ -165,22 +165,22 @@ export interface LessonProgressUpdateResponse {
 export interface LessonStatistics {
   lessonId: string;
   lesson: Lesson;
-  
+
   // Engagement
   totalStudents: number;
   studentsStarted: number;
   studentsCompleted: number;
   completionRate: number; // percentage
-  
+
   // Watch Time
   averageWatchTime: number; // seconds
   averageWatchPercentage: number;
   totalWatchTime: number; // total seconds across all students
-  
+
   // Engagement Points
   averageRewatchCount: number;
   dropOffPoints: DropOffPoint[]; // where students stop watching
-  
+
   // Access
   averageAccessCount: number;
   peakAccessTime?: Date;
@@ -221,4 +221,3 @@ export interface LessonCompletionData {
   totalWatchTime: number; // seconds
   accessCount: number;
 }
-

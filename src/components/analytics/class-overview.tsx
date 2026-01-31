@@ -2,7 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Users, Target, Flame, BarChart3, AlertTriangle, Award } from "lucide-react";
+import {
+  Users,
+  Target,
+  Flame,
+  BarChart3,
+  AlertTriangle,
+  Award,
+} from "lucide-react";
 import { ClassOverview as ClassOverviewType } from "@/types/analytics";
 import { StudentPerformanceCard } from "./student-performance-card";
 
@@ -50,18 +57,48 @@ export function ClassOverview({ classId }: ClassOverviewProps) {
   if (!overview) return null;
 
   const stats = [
-    { icon: Users, label: "الطلاب النشطون", value: `${overview.activeStudents}/${overview.totalStudents}`, color: "blue" },
-    { icon: Target, label: "متوسط المستوى", value: overview.averageLevel.toFixed(1), color: "purple" },
-    { icon: BarChart3, label: "متوسط الدقة", value: `${overview.averageAccuracy}%`, color: "green" },
-    { icon: Flame, label: "متوسط السلسلة", value: `${overview.averageStreak} يوم`, color: "orange" },
+    {
+      icon: Users,
+      label: "الطلاب النشطون",
+      value: `${overview.activeStudents}/${overview.totalStudents}`,
+      color: "blue",
+    },
+    {
+      icon: Target,
+      label: "متوسط المستوى",
+      value: overview.averageLevel.toFixed(1),
+      color: "purple",
+    },
+    {
+      icon: BarChart3,
+      label: "متوسط الدقة",
+      value: `${overview.averageAccuracy}%`,
+      color: "green",
+    },
+    {
+      icon: Flame,
+      label: "متوسط السلسلة",
+      value: `${overview.averageStreak} يوم`,
+      color: "orange",
+    },
   ];
 
   return (
     <div className="space-y-6">
       {/* Class header */}
       <div className="p-6 bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-500/20 rounded-2xl">
-        <h2 className="text-2xl font-bold text-white mb-2">{overview.className}</h2>
-        <p className="text-purple-200">الصف {overview.gradeLevel === "1" ? "الأول" : overview.gradeLevel === "2" ? "الثاني" : "الثالث"} الثانوي</p>
+        <h2 className="text-2xl font-bold text-white mb-2">
+          {overview.className}
+        </h2>
+        <p className="text-purple-200">
+          الصف{" "}
+          {overview.gradeLevel === "1"
+            ? "الأول"
+            : overview.gradeLevel === "2"
+              ? "الثاني"
+              : "الثالث"}{" "}
+          الثانوي
+        </p>
         <div className="mt-4 flex items-center gap-2">
           <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">
             {overview.totalStudents} طالب
@@ -97,7 +134,11 @@ export function ClassOverview({ classId }: ClassOverviewProps) {
           </h3>
           <div className="space-y-2">
             {overview.topPerformers.map((student, index) => (
-              <StudentPerformanceCard key={student.id} student={student} rank={index + 1} />
+              <StudentPerformanceCard
+                key={student.id}
+                student={student}
+                rank={index + 1}
+              />
             ))}
           </div>
         </div>
@@ -123,4 +164,3 @@ export function ClassOverview({ classId }: ClassOverviewProps) {
     </div>
   );
 }
-

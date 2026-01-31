@@ -71,7 +71,7 @@ test.describe("Viewport Matrix - All Pages × All Sizes", () => {
         test("page fits viewport width", async ({ page }) => {
           await page.goto(pagePath);
           const scrollWidth = await page.evaluate(
-            () => document.body.scrollWidth
+            () => document.body.scrollWidth,
           );
           expect(scrollWidth).toBeLessThanOrEqual(viewport.width + 5);
         });
@@ -107,7 +107,7 @@ test.describe("Viewport Matrix - All Pages × All Sizes", () => {
           await page.goto(pagePath);
           const body = page.locator("body");
           const fontSize = await body.evaluate(
-            (el) => window.getComputedStyle(el).fontSize
+            (el) => window.getComputedStyle(el).fontSize,
           );
           const size = parseInt(fontSize);
           expect(size).toBeGreaterThanOrEqual(14);
@@ -192,7 +192,7 @@ test.describe("Viewport Matrix - All Pages × All Sizes", () => {
         test("footer is accessible", async ({ page }) => {
           await page.goto(pagePath);
           await page.evaluate(() =>
-            window.scrollTo(0, document.body.scrollHeight)
+            window.scrollTo(0, document.body.scrollHeight),
           );
           const footer = page.locator("footer").first();
           if ((await footer.count()) > 0) {

@@ -2,9 +2,9 @@ import { useEffect, useRef, useCallback } from "react";
 
 /**
  * Custom hook for trapping focus within a container
- * 
+ *
  * ACCESSIBILITY: Ensures keyboard users can't tab outside of modals/dialogs
- * 
+ *
  * @param isActive - Whether the focus trap is active
  * @param options - Configuration options
  */
@@ -17,7 +17,7 @@ export function useFocusTrap(
     returnFocus?: boolean;
     /** Callback when escape is pressed */
     onEscape?: () => void;
-  }
+  },
 ) {
   const containerRef = useRef<HTMLDivElement>(null);
   const previouslyFocusedRef = useRef<HTMLElement | null>(null);
@@ -25,19 +25,19 @@ export function useFocusTrap(
   // Get all focusable elements within the container
   const getFocusableElements = useCallback(() => {
     if (!containerRef.current) return [];
-    
+
     const focusableSelectors = [
-      'button:not([disabled])',
-      'input:not([disabled])',
-      'select:not([disabled])',
-      'textarea:not([disabled])',
-      'a[href]',
+      "button:not([disabled])",
+      "input:not([disabled])",
+      "select:not([disabled])",
+      "textarea:not([disabled])",
+      "a[href]",
       '[tabindex]:not([tabindex="-1"])',
       '[contenteditable="true"]',
-    ].join(', ');
+    ].join(", ");
 
     return Array.from(
-      containerRef.current.querySelectorAll<HTMLElement>(focusableSelectors)
+      containerRef.current.querySelectorAll<HTMLElement>(focusableSelectors),
     ).filter((el) => {
       // Filter out hidden elements
       return el.offsetParent !== null;
@@ -50,14 +50,14 @@ export function useFocusTrap(
       if (!isActive) return;
 
       // Handle Escape key
-      if (event.key === 'Escape' && options?.onEscape) {
+      if (event.key === "Escape" && options?.onEscape) {
         event.preventDefault();
         options.onEscape();
         return;
       }
 
       // Handle Tab key
-      if (event.key !== 'Tab') return;
+      if (event.key !== "Tab") return;
 
       const focusableElements = getFocusableElements();
       if (focusableElements.length === 0) return;
@@ -79,7 +79,7 @@ export function useFocusTrap(
         }
       }
     },
-    [isActive, getFocusableElements, options]
+    [isActive, getFocusableElements, options],
   );
 
   // Set up focus trap
@@ -105,11 +105,11 @@ export function useFocusTrap(
     const timeoutId = setTimeout(focusInitial, 10);
 
     // Add event listener
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
       clearTimeout(timeoutId);
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
 
       // Return focus to previously focused element
       if (options?.returnFocus !== false && previouslyFocusedRef.current) {
@@ -122,4 +122,3 @@ export function useFocusTrap(
 }
 
 export default useFocusTrap;
-

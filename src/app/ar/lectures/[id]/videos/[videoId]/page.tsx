@@ -1,6 +1,9 @@
 "use client";
 
-import { LectureProgressGuard, LivesPurchaseModal } from "@/components/lectures";
+import {
+  LectureProgressGuard,
+  LivesPurchaseModal,
+} from "@/components/lectures";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -94,7 +97,8 @@ function VideoPlayerContent() {
   const lectureId = params.id as string;
   const videoId = params.videoId as string;
 
-  const { markVideoWatched, progress: lectureProgress } = useLectureProgress(lectureId);
+  const { markVideoWatched, progress: lectureProgress } =
+    useLectureProgress(lectureId);
 
   const [video, setVideo] = useState<VideoData | null>(null);
   const [access, setAccess] = useState<LectureAccess | null>(null);
@@ -391,17 +395,19 @@ function VideoPlayerContent() {
             </div>
             <div className="flex items-center gap-3">
               {/* Mark Complete Button for demo purposes */}
-              {!videoCompleted && !lectureProgress.videosWatched.includes(videoId) && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-white hover:bg-white/20 bg-green-600/80 hover:bg-green-600"
-                  onClick={handleVideoComplete}
-                >
-                  وضع علامة مكتمل
-                </Button>
-              )}
-              {(videoCompleted || lectureProgress.videosWatched.includes(videoId)) && (
+              {!videoCompleted &&
+                !lectureProgress.videosWatched.includes(videoId) && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-white hover:bg-white/20 bg-green-600/80 hover:bg-green-600"
+                    onClick={handleVideoComplete}
+                  >
+                    وضع علامة مكتمل
+                  </Button>
+                )}
+              {(videoCompleted ||
+                lectureProgress.videosWatched.includes(videoId)) && (
                 <span className="text-green-400 text-sm flex items-center gap-1">
                   <Play className="w-4 h-4" />
                   مكتمل

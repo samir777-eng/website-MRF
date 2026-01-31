@@ -18,7 +18,7 @@ export function useLessons() {
     {
       revalidateOnFocus: false,
       dedupingInterval: 60000, // 1 minute
-    }
+    },
   );
 
   return {
@@ -32,7 +32,7 @@ export function useLessons() {
 export function useLesson(id: string) {
   const { data, error, isLoading, mutate } = useSWR<Lesson>(
     id ? `/api/lessons/${id}` : null,
-    fetcher
+    fetcher,
   );
 
   return {
@@ -45,13 +45,8 @@ export function useLesson(id: string) {
 
 // Prefetch next lesson
 export function usePrefetchLesson(nextLessonId: string | null) {
-  useSWR(
-    nextLessonId ? `/api/lessons/${nextLessonId}` : null,
-    fetcher,
-    {
-      revalidateOnMount: false,
-      revalidateOnFocus: false,
-    }
-  );
+  useSWR(nextLessonId ? `/api/lessons/${nextLessonId}` : null, fetcher, {
+    revalidateOnMount: false,
+    revalidateOnFocus: false,
+  });
 }
-

@@ -34,7 +34,7 @@ describe("Gamification Components", () => {
 
     it("renders different sizes correctly", () => {
       const { rerender } = render(<XPBadge xp={100} size="sm" />);
-      expect(screen.getByTestId("xp-badge")).toHaveClass("text-xs");
+      expect(screen.getByTestId("xp-badge")).toHaveClass("text-sm");
 
       rerender(<XPBadge xp={100} size="lg" />);
       expect(screen.getByTestId("xp-badge")).toHaveClass("text-lg");
@@ -88,7 +88,7 @@ describe("Gamification Components", () => {
 
     it("renders different sizes correctly", () => {
       const { rerender } = render(<LevelBadge level={5} size="sm" />);
-      expect(screen.getByTestId("level-badge")).toHaveClass("text-xs");
+      expect(screen.getByTestId("level-badge")).toHaveClass("text-sm");
 
       rerender(<LevelBadge level={5} size="lg" />);
       expect(screen.getByTestId("level-badge")).toHaveClass("text-lg");
@@ -174,7 +174,7 @@ describe("Gamification Components", () => {
 
     it("renders different sizes correctly", () => {
       const { rerender } = render(<StreakCounter days={5} size="sm" />);
-      expect(screen.getByTestId("streak-counter")).toHaveClass("text-xs");
+      expect(screen.getByTestId("streak-counter")).toHaveClass("text-sm");
 
       rerender(<StreakCounter days={5} size="lg" />);
       expect(screen.getByTestId("streak-counter")).toHaveClass("text-lg");

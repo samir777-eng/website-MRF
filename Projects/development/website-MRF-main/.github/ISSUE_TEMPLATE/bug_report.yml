@@ -1,0 +1,57 @@
+---
+name: 🐛 Bug Report
+about: Report a bug to help us improve the platform
+title: '[BUG] '
+labels: ['bug', 'needs-triage']
+assignees: ['samir777-eng']
+---
+
+## 🐛 Bug Description
+A clear and concise description of what the bug is.
+
+## 🔄 Steps to Reproduce
+1. Go to '...'
+2. Click on '...'
+3. Scroll down to '...'
+4. See error
+
+## ✅ Expected Behavior
+A clear and concise description of what you expected to happen.
+
+## 📷 Screenshots
+If applicable, add screenshots to help explain your problem.
+
+## 💻 Environment Information
+- **Device**: [e.g. iPhone 12, MacBook Pro]
+- **OS**: [e.g. iOS 14, macOS 12]
+- **Browser**: [e.g. Chrome 98, Safari 15]
+- **Screen Size**: [e.g. 1920x1080, 375x812]
+- **Internet Speed**: [e.g. Fast, Slow, Offline]
+
+## 👤 User Context
+- **User Type**: [Student, Teacher, Parent, Admin]
+- **Grade Level**: [If student, what grade?]
+- **Login Status**: [Logged in, Guest]
+- **Subscription**: [Free, Premium]
+
+## 🎯 Impact Assessment
+- **Frequency**: [Always, Often, Sometimes, Rarely]
+- **Severity**: [Critical, High, Medium, Low]
+- **Affected Users**: [All users, Specific user type, Just me]
+
+## 📋 Additional Context
+Add any other context about the problem here. Include:
+- Error messages (if any)
+- Console logs (if technical)
+- What you were trying to accomplish
+- Any workarounds you've found
+
+## 🌍 Arabic Language Specific
+- **RTL Layout Issue**: [Yes/No]
+- **Font Rendering**: [Normal/Broken]
+- **Text Direction**: [Correct/Incorrect]
+- **Arabic Input**: [Working/Not Working]
+
+---
+
+**Thank you for helping make our educational platform better! 📚**

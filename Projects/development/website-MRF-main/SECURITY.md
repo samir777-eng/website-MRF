@@ -20,6 +20,7 @@ The security of our educational platform and our students' data is our top prior
 Instead, please email us directly at: **security@mrredaelfarouk.com**
 
 Include the following information:
+
 - Type of issue (e.g. buffer overflow, SQL injection, cross-site scripting, etc.)
 - Full paths of source file(s) related to the manifestation of the issue
 - The location of the affected source code (tag/branch/commit or direct URL)
@@ -38,6 +39,7 @@ Include the following information:
 ### Bug Bounty Program
 
 While we don't currently offer monetary rewards, we do provide:
+
 - Public recognition in our security acknowledgments (if desired)
 - Special contributor status in our community
 - Direct communication channel with our development team
@@ -46,24 +48,28 @@ While we don't currently offer monetary rewards, we do provide:
 ## Security Measures
 
 ### Data Protection
+
 - All student data is encrypted in transit and at rest
 - Minimal data collection following privacy-by-design principles
 - Regular security audits and penetration testing
 - GDPR and local privacy law compliance
 
 ### Authentication & Authorization
+
 - Secure session management with httpOnly cookies
 - Multi-factor authentication support
 - Role-based access control (RBAC)
 - Regular credential rotation
 
 ### Infrastructure Security
+
 - Secure deployment pipeline with automated security scanning
 - Regular dependency updates and vulnerability assessments
 - Web Application Firewall (WAF) protection
 - CDN with DDoS protection
 
 ### Code Security
+
 - Static code analysis with security-focused linting
 - Dependency vulnerability scanning
 - Automated security testing in CI/CD
@@ -72,17 +78,20 @@ While we don't currently offer monetary rewards, we do provide:
 ## Security Best Practices for Contributors
 
 ### Code Review Requirements
+
 - All code must pass security review before merging
 - Two-person approval required for security-sensitive changes
 - Automated security scanning on all pull requests
 
 ### Dependency Management
+
 - Regular updates of all dependencies
 - Automated vulnerability scanning with Dependabot
 - Only well-maintained packages from trusted sources
 - License compliance checking
 
 ### Secure Development
+
 - Input validation and sanitization
 - Output encoding and CSP headers
 - Secure error handling (no sensitive data in errors)
@@ -91,6 +100,7 @@ While we don't currently offer monetary rewards, we do provide:
 ## Compliance and Standards
 
 We follow industry-standard security practices:
+
 - **OWASP Top 10** - Regular assessment against common vulnerabilities
 - **ISO 27001** - Information security management principles
 - **NIST Cybersecurity Framework** - Comprehensive security approach
@@ -99,6 +109,7 @@ We follow industry-standard security practices:
 ## Security Advisories
 
 Security updates and advisories are published:
+
 - In this repository's Security tab
 - Via email to registered users (for critical issues)
 - On our official website and social media channels
@@ -107,7 +118,7 @@ Security updates and advisories are published:
 ## Contact Information
 
 - **Security Team**: security@mrredaelfarouk.com
-- **General Support**: support@mrredaelfarouk.com  
+- **General Support**: support@mrredaelfarouk.com
 - **Project Lead**: samir.eldirini@outlook.com
 
 ---

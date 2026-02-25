@@ -188,13 +188,15 @@ npm install
 ## Authors & Contributors
 
 ### Lead Developer
-- **Samir Eldirini** - *Full Stack Developer & Project Architect*
+
+- **Samir Eldirini** - _Full Stack Developer & Project Architect_
   - GitHub: [@samir777-eng](https://github.com/samir777-eng)
   - LinkedIn: [Samir Eldirini](https://linkedin.com/in/samireldirini)
   - Email: samir.eldirini@outlook.com
 
 ### Subject Matter Expert
-- **Professor Reda El Farouk** - *Arabic Language Education Specialist*
+
+- **Professor Reda El Farouk** - _Arabic Language Education Specialist_
   - 31+ years of Arabic language teaching excellence
   - Egyptian Ministry of Education certified educator
   - High school Arabic language curriculum expert
@@ -227,7 +229,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 ### Third-Party Licenses
 
 - **Next.js** - MIT License
-- **React** - MIT License  
+- **React** - MIT License
 - **Tailwind CSS** - MIT License
 - **Radix UI** - MIT License
 - **Framer Motion** - MIT License
@@ -238,7 +240,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 **Built with 💚 for Egyptian students**
 
-*Empowering Arabic language education through modern technology*
+_Empowering Arabic language education through modern technology_
 
 [![Made in Egypt](https://img.shields.io/badge/Made%20in-Egypt-red)](https://en.wikipedia.org/wiki/Egypt)
 [![For Students](https://img.shields.io/badge/For-Students-blue)](https://github.com/samir777-eng/website-MRF)

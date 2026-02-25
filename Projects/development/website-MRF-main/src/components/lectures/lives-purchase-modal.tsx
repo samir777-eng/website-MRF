@@ -56,10 +56,10 @@ export function LivesPurchaseModal({
   userCoins = 150,
 }: LivesPurchaseModalProps) {
   const [selectedPackage, setSelectedPackage] = useState<string | null>(
-    "life-3"
+    "life-3",
   );
   const [paymentMethod, setPaymentMethod] = useState<"coins" | "money">(
-    "coins"
+    "coins",
   );
   const [isPurchasing, setIsPurchasing] = useState(false);
   const [purchaseSuccess, setPurchaseSuccess] = useState(false);
@@ -110,7 +110,7 @@ export function LivesPurchaseModal({
                     key={i}
                     className="w-8 h-8 text-rose-500 fill-rose-500 animate-pulse"
                   />
-                )
+                ),
               )}
             </div>
           </CardContent>
@@ -120,10 +120,7 @@ export function LivesPurchaseModal({
   }
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
-     
-    >
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
       <Card className="max-w-lg w-full max-h-[90vh] overflow-y-auto">
         <CardContent className="p-6 space-y-6">
           {/* Header */}
@@ -137,7 +134,12 @@ export function LivesPurchaseModal({
                 اشترِ أرواح إضافية لمشاهدة الفيديوهات مرة أخرى
               </p>
             </div>
-            <Button variant="ghost" size="icon" onClick={onClose} aria-label="إغلاق">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onClose}
+              aria-label="إغلاق"
+            >
               <X className="w-5 h-5" />
             </Button>
           </div>

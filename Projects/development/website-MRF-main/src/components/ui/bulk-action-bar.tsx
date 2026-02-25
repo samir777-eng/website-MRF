@@ -30,12 +30,17 @@ export function BulkActionBar({
         "fixed bottom-6 left-1/2 -translate-x-1/2 z-50",
         "bg-background border rounded-lg shadow-lg p-4",
         "flex items-center gap-4",
-        className
+        className,
       )}
     >
       <div className="flex items-center gap-2">
         <span className="font-medium">{selectedCount} محدد</span>
-        <Button variant="ghost" size="icon" onClick={onClear} aria-label="إلغاء التحديد">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onClear}
+          aria-label="إلغاء التحديد"
+        >
           <X className="w-4 h-4" />
         </Button>
       </div>

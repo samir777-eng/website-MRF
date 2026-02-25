@@ -5,15 +5,19 @@ Thank you to everyone who has contributed to the MRF Educational Platform! 🎓
 ## Core Team
 
 ### Lead Developer & Project Architect
+
 **Samir Eldirini** [@samir777-eng](https://github.com/samir777-eng)
+
 - Full-stack development
-- System architecture design  
+- System architecture design
 - DevOps and deployment
 - UI/UX implementation
 - Performance optimization
 
 ### Subject Matter Expert & Content Creator
+
 **Professor Reda El Farouk**
+
 - 31+ years of Arabic language teaching excellence
 - Educational content development
 - Curriculum design and structure
@@ -23,15 +27,18 @@ Thank you to everyone who has contributed to the MRF Educational Platform! 🎓
 ## Technical Contributors
 
 ### Code Contributors
-- **Samir Eldirini** - Core platform development
-- *Open for new contributors!*
 
-### Content Contributors  
+- **Samir Eldirini** - Core platform development
+- _Open for new contributors!_
+
+### Content Contributors
+
 - **Professor Reda El Farouk** - Educational content and methodology
 - **Egyptian Ministry of Education** - Curriculum guidelines
 - **Cairo University Department of Arabic** - Linguistic standards
 
 ### Beta Testers & Feedback Providers
+
 - **15,000+ Egyptian High School Students** - User testing and feedback
 - **50+ Arabic Language Teachers** - Educational validation
 - **Parents and Educators** - Interface and usability testing
@@ -39,18 +46,22 @@ Thank you to everyone who has contributed to the MRF Educational Platform! 🎓
 ## Special Thanks
 
 ### Educational Partners
+
 - **Egyptian Ministry of Education** - Official curriculum standards
 - **Cairo University** - Arabic linguistics research support
 - **Al-Azhar University** - Classical Arabic expertise
 
 ### Technical Mentors & Advisors
+
 - **Next.js Community** - Framework guidance and best practices
 - **Vercel Team** - Deployment and performance optimization
 - **React Team** - Component architecture patterns
 - **Tailwind CSS Team** - Styling system implementation
 
 ### Open Source Heroes
+
 Special recognition to the maintainers of:
+
 - **Next.js** - The foundation of our platform
 - **React** - Our UI library of choice
 - **Tailwind CSS** - Our styling framework
@@ -63,6 +74,7 @@ Special recognition to the maintainers of:
 We welcome contributions from the community! Here's how you can help:
 
 ### Code Contributions
+
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
@@ -70,17 +82,20 @@ We welcome contributions from the community! Here's how you can help:
 5. Submit a pull request
 
 ### Educational Content
+
 1. Contact Professor Reda El Farouk for content collaboration
 2. Submit educational suggestions via GitHub Issues
 3. Participate in curriculum review discussions
 
-### Testing & Feedback  
+### Testing & Feedback
+
 1. Test the platform and report bugs
 2. Suggest new features or improvements
 3. Help with translations or RTL improvements
 4. Share your experience as an educator or student
 
 ### Documentation
+
 1. Improve existing documentation
 2. Add code comments and examples
 3. Create tutorial content
@@ -89,6 +104,7 @@ We welcome contributions from the community! Here's how you can help:
 ## Recognition
 
 Contributors are recognized in multiple ways:
+
 - Listed in this CONTRIBUTORS.md file
 - Mentioned in release notes for significant contributions
 - Special badges in our community Discord
@@ -98,4 +114,4 @@ Contributors are recognized in multiple ways:
 
 **Made with 💚 by our amazing community for Egyptian students everywhere.**
 
-*"Teaching is the profession that creates all other professions."* - Arabic Proverb
+_"Teaching is the profession that creates all other professions."_ - Arabic Proverb

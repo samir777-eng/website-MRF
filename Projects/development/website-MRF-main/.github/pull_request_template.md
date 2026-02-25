@@ -1,11 +1,13 @@
 # 🚀 Pull Request
 
 ## 📝 Description
+
 Brief description of what this PR does and why it's needed.
 
 Fixes #(issue_number)
 
 ## 🔄 Type of Change
+
 - [ ] 🐛 Bug fix (non-breaking change which fixes an issue)
 - [ ] ✨ New feature (non-breaking change which adds functionality)
 - [ ] 💥 Breaking change (fix or feature that would cause existing functionality to not work as expected)
@@ -17,6 +19,7 @@ Fixes #(issue_number)
 - [ ] 🌍 Arabic language/RTL improvement
 
 ## 🧪 Testing
+
 - [ ] Self-tested on desktop
 - [ ] Self-tested on mobile
 - [ ] Self-tested with Arabic content
@@ -26,14 +29,16 @@ Fixes #(issue_number)
 - [ ] All existing tests pass
 
 ## 📱 Device Testing
+
 - [ ] Chrome Desktop
-- [ ] Safari Desktop  
+- [ ] Safari Desktop
 - [ ] Chrome Mobile
 - [ ] Safari Mobile (iOS)
 - [ ] Arabic keyboard input tested
 - [ ] Screen reader tested (if applicable)
 
 ## 🎓 Educational Impact
+
 - [ ] Improves student learning experience
 - [ ] Enhances teacher workflow
 - [ ] Supports Egyptian curriculum standards
@@ -41,6 +46,7 @@ Fixes #(issue_number)
 - [ ] Preserves gamification elements
 
 ## 🌍 Arabic Language Checklist
+
 - [ ] RTL layout remains correct
 - [ ] Arabic fonts render properly
 - [ ] Text direction is appropriate
@@ -49,15 +55,19 @@ Fixes #(issue_number)
 - [ ] Egyptian dialect considerations
 
 ## 📸 Screenshots/Videos
+
 If UI changes, include before/after screenshots:
 
 ### Before
+
 <!-- Add screenshots of old behavior -->
 
-### After  
+### After
+
 <!-- Add screenshots of new behavior -->
 
 ## 🔍 Code Quality
+
 - [ ] Code follows project style guidelines
 - [ ] Self-review completed
 - [ ] Comments added for complex logic
@@ -66,12 +76,14 @@ If UI changes, include before/after screenshots:
 - [ ] Performance implications considered
 
 ## 📚 Documentation
+
 - [ ] README updated (if needed)
 - [ ] API documentation updated (if applicable)
 - [ ] Component documentation updated (if applicable)
 - [ ] Changelog entry added (for releases)
 
 ## 🔐 Security
+
 - [ ] No sensitive information exposed
 - [ ] Authentication/authorization preserved
 - [ ] Input validation maintained
@@ -79,6 +91,7 @@ If UI changes, include before/after screenshots:
 - [ ] Student data privacy maintained
 
 ## ⚡ Performance
+
 - [ ] No significant performance regression
 - [ ] Bundle size impact assessed
 - [ ] Core Web Vitals considered
@@ -86,6 +99,7 @@ If UI changes, include before/after screenshots:
 - [ ] Initial load time not affected
 
 ## 🎮 Gamification
+
 - [ ] XP system still functions
 - [ ] Achievement system unaffected
 - [ ] Leaderboards work correctly
@@ -93,13 +107,16 @@ If UI changes, include before/after screenshots:
 - [ ] Student motivation preserved
 
 ## 📋 Deployment
+
 - [ ] Environment variables documented (if new)
 - [ ] Database migrations included (if needed)
 - [ ] Deployment notes provided (if special steps needed)
 - [ ] Rollback plan considered (for breaking changes)
 
 ## 👀 Reviewers
+
 Please review with attention to:
+
 - Educational value and student experience
 - Arabic language support and RTL layout
 - Mobile responsiveness
@@ -107,6 +124,7 @@ Please review with attention to:
 - Code quality and maintainability
 
 ## 🎯 Follow-up Actions
+
 - [ ] None required
 - [ ] Documentation updates needed
 - [ ] Additional testing required
@@ -116,6 +134,7 @@ Please review with attention to:
 ---
 
 ## 📞 Additional Notes
+
 Any additional context, concerns, or discussion points for reviewers.
 
 **Thank you for contributing to Egyptian education! 🇪🇬📚**

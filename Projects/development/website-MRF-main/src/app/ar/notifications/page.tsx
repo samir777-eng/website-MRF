@@ -40,7 +40,8 @@ const MOCK_NOTIFICATIONS: Notification[] = [
     id: "2",
     type: "lesson",
     title: "درس جديد متاح",
-    message: "تم إضافة درس جديد في النحو والصرف: أسلوب الاستثناء. ابدأ التعلم الآن!",
+    message:
+      "تم إضافة درس جديد في النحو والصرف: أسلوب الاستثناء. ابدأ التعلم الآن!",
     time: "منذ ساعة",
     date: "اليوم",
     read: false,
@@ -49,7 +50,8 @@ const MOCK_NOTIFICATIONS: Notification[] = [
     id: "3",
     type: "reminder",
     title: "تذكير بالمراجعة",
-    message: "لا تنسى مراجعة دروس الأسبوع الماضي. المراجعة المنتظمة تساعد على التثبيت.",
+    message:
+      "لا تنسى مراجعة دروس الأسبوع الماضي. المراجعة المنتظمة تساعد على التثبيت.",
     time: "منذ 3 ساعات",
     date: "اليوم",
     read: true,
@@ -76,7 +78,8 @@ const MOCK_NOTIFICATIONS: Notification[] = [
     id: "6",
     type: "system",
     title: "مرحباً بك!",
-    message: "مرحباً بك في منصة الأستاذ رضا الفاروق. ابدأ رحلتك التعليمية الآن!",
+    message:
+      "مرحباً بك في منصة الأستاذ رضا الفاروق. ابدأ رحلتك التعليمية الآن!",
     time: "منذ أسبوع",
     date: "الأسبوع الماضي",
     read: true,
@@ -84,27 +87,30 @@ const MOCK_NOTIFICATIONS: Notification[] = [
 ];
 
 export default function NotificationsPage() {
-  const [notifications, setNotifications] = useState<Notification[]>(MOCK_NOTIFICATIONS);
+  const [notifications, setNotifications] =
+    useState<Notification[]>(MOCK_NOTIFICATIONS);
   const [filter, setFilter] = useState<"all" | "unread">("all");
 
   const unreadCount = notifications.filter((n) => !n.read).length;
 
-  const filteredNotifications = filter === "unread" 
-    ? notifications.filter((n) => !n.read) 
-    : notifications;
+  const filteredNotifications =
+    filter === "unread" ? notifications.filter((n) => !n.read) : notifications;
 
-  const groupedNotifications = filteredNotifications.reduce((acc, notification) => {
-    const date = notification.date;
-    if (!acc[date]) {
-      acc[date] = [];
-    }
-    acc[date].push(notification);
-    return acc;
-  }, {} as Record<string, Notification[]>);
+  const groupedNotifications = filteredNotifications.reduce(
+    (acc, notification) => {
+      const date = notification.date;
+      if (!acc[date]) {
+        acc[date] = [];
+      }
+      acc[date].push(notification);
+      return acc;
+    },
+    {} as Record<string, Notification[]>,
+  );
 
   const markAsRead = (id: string) => {
     setNotifications(
-      notifications.map((n) => (n.id === id ? { ...n, read: true } : n))
+      notifications.map((n) => (n.id === id ? { ...n, read: true } : n)),
     );
   };
 
@@ -151,9 +157,7 @@ export default function NotificationsPage() {
       system: "نظام",
     };
     return (
-      <Badge className={cn("text-[10px]", styles[type])}>
-        {labels[type]}
-      </Badge>
+      <Badge className={cn("text-[10px]", styles[type])}>{labels[type]}</Badge>
     );
   };
 
@@ -168,7 +172,9 @@ export default function NotificationsPage() {
               الإشعارات
             </h1>
             <p className="text-sm text-muted-foreground mt-1">
-              {unreadCount > 0 ? `${unreadCount} إشعارات غير مقروءة` : "لا توجد إشعارات جديدة"}
+              {unreadCount > 0
+                ? `${unreadCount} إشعارات غير مقروءة`
+                : "لا توجد إشعارات جديدة"}
             </p>
           </div>
         </div>
@@ -251,7 +257,7 @@ export default function NotificationsPage() {
                       key={notification.id}
                       className={cn(
                         "border-border/50 transition-all hover:shadow-md cursor-pointer",
-                        !notification.read && "bg-primary/5 border-primary/20"
+                        !notification.read && "bg-primary/5 border-primary/20",
                       )}
                       onClick={() => markAsRead(notification.id)}
                     >
@@ -327,4 +333,3 @@ export default function NotificationsPage() {
     </div>
   );
 }
-

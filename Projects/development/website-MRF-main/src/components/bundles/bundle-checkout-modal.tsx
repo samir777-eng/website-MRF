@@ -137,7 +137,12 @@ export function BundleCheckoutModal({
               </h2>
               <p className="text-sm text-muted-foreground">{bundle.name}</p>
             </div>
-            <Button variant="ghost" size="icon" onClick={onClose} aria-label="إغلاق">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onClose}
+              aria-label="إغلاق"
+            >
               <X className="w-5 h-5" />
             </Button>
           </div>
